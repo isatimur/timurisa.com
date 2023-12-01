@@ -5,7 +5,7 @@ import {OrbitControls, Preload, useGLTF} from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const WorkStation = ({isMobile}) => {
-    const macbookpro = useGLTF("./mac_book_pro/mac.gltf")
+    const macbookpro = useGLTF("./mac_book_pro/mac.glb")
     return (
         <mesh>
             <hemisphereLight intensity={0.15} groundColor='yellow'/>
