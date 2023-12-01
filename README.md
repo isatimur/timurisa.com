@@ -1,1 +1,1 @@
-# timurisa.com
+# Credit goes to threejs portfolio react guide, the skeleton was taken from it
