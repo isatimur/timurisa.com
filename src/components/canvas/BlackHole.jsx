@@ -5,7 +5,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const BlackHole = ({ isMobile }) => {
-  const blackhole = useGLTF("./blackhole/blackhole.glb");
+  const blackhole = useGLTF("./blackhole/untitled.gltf");
 
   return (
     <primitive object={blackhole.scene} scale={isMobile? 1 : 0.75} position-y={-0.5} rotation-y={0.5} />
