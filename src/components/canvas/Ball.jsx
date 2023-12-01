@@ -1,6 +1,6 @@
-import React, {Suspense, useMemo, useRef, useState} from "react";
-import {Canvas, useFrame} from "@react-three/fiber";
-import {Decal, Float, OrbitControls, PointMaterial, Points, Preload, useTexture,} from "@react-three/drei";
+import React, {Suspense, useMemo} from "react";
+import {Canvas} from "@react-three/fiber";
+import {Decal, Float, OrbitControls, Preload, useTexture,} from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
@@ -8,7 +8,7 @@ const Ball = (props) => {
 
     const [decal] = useTexture([props.imgUrl]);
     const Geometry = useMemo(
-        () => () => <sphereGeometry args={[5,32]} />,
+        () => () => <sphereGeometry args={[5, 32]}/>,
         []
     )
 
@@ -17,7 +17,7 @@ const Ball = (props) => {
             <ambientLight intensity={0.55}/>
             <directionalLight position={[0, 0, 0.5]}/>
             <mesh castShadow receiveShadow scale={2.0}>
-                <sphereGeometry args={[1, 32]} />
+                <sphereGeometry args={[1, 32]}/>
                 <meshStandardMaterial
                     color='#fff'
                 />

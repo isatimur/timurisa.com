@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Tilt from "react-tilt";
-import {AnimatePresence, motion} from "framer-motion";
+import {motion} from "framer-motion";
 
 import {styles} from "../styles";
 import {services} from "../constants";
@@ -33,35 +33,35 @@ const ServiceCard = ({title, icon, description}) => {
                         className='h-full bg-burnt-orange p-[1px] rounded-[20px] shadow-card'
             >
 
-                    <motion.div
-                        className={`h-full transform transition-transform duration-700}`}
-                        variants={flipVariant}
-                        animate={isFlipped ? "back" : "front"}
-                    >
-                        {isFlipped ? (
-                            <div
-                                options={{
-                                    max: 45,
-                                    scale: 1,
-                                    speed: 450,
-                                }}
-                                className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col back face ${isFlipped ? '' : 'rotate-y-180'}`}>
-                                <p className="text-[#264653] text-[15px] text-center">{description}</p>
-                            </div>
+                <motion.div
+                    className={`h-full transform transition-transform duration-700}`}
+                    variants={flipVariant}
+                    animate={isFlipped ? "back" : "front"}
+                >
+                    {isFlipped ? (
+                        <div
+                            options={{
+                                max: 45,
+                                scale: 1,
+                                speed: 450,
+                            }}
+                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col back face ${isFlipped ? '' : 'rotate-y-180'}`}>
+                            <p className="text-[#264653] text-[15px] text-center">{description}</p>
+                        </div>
 
-                        ) : (
-                            <div
-                                options={{
-                                    max: 45,
-                                    scale: 1,
-                                    speed: 450,
-                                }}
-                                className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col front face ${isFlipped ? 'rotate-y-180' : ''}`}>
-                                <img src={icon} alt={title} className="w-16 h-16 object-contain mb-4"/>
-                                <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
-                            </div>
-                        )}
-                    </motion.div>
+                    ) : (
+                        <div
+                            options={{
+                                max: 45,
+                                scale: 1,
+                                speed: 450,
+                            }}
+                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col front face ${isFlipped ? 'rotate-y-180' : ''}`}>
+                            <img src={icon} alt={title} className="w-16 h-16 object-contain mb-4"/>
+                            <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
+                        </div>
+                    )}
+                </motion.div>
 
             </motion.div>
         </Tilt>

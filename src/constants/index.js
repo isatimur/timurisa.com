@@ -1,35 +1,29 @@
 import {
     atconsult,
     atos,
-    backend,
-    spring,
-    aws,
     be,
     carrent,
-    creator,
-    css,
     docker,
     ebt,
     figma,
     git,
-    html,
-    ids, java8,
+    ids,
+    java8,
     javascript,
-    jobit, kotlin,
+    jobit,
+    kotlin,
     kubanen,
+    kubernetes,
     megafon,
-    mobile,
     mongodb,
     nodejs,
     reactjs,
     redux,
+    spring,
     tailwind,
     threejs,
     tripguide,
     typescript,
-    web,
-    kubernetes,
-
 } from "../assets";
 
 export const navLinks = [
@@ -77,13 +71,13 @@ const services = [
 
 const technologies = [
     {
-      name: "Java",
-      icon: java8,
+        name: "Java",
+        icon: java8,
     },
-      {
-          name: "Kotlin",
-          icon: kotlin,
-      },
+    {
+        name: "Kotlin",
+        icon: kotlin,
+    },
     // {
     //     name: "HTML 5",
     //     icon: html,

@@ -1,4 +1,4 @@
-import { JavaCanvas, BallCanvas, WorkStationCanvas, StarsCanvas } from './canvas';
+import {BallCanvas, JavaCanvas, StarsCanvas, WorkStationCanvas} from './canvas';
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import About from "./About";
@@ -11,17 +11,17 @@ import CanvasLoader from "./Loader";
 
 
 export {
-  Hero,
-  Navbar,
-  About,
-  Tech,
-  Experience,
-  Works,
-  Feedbacks,
-  Contact,
-  CanvasLoader,
-  JavaCanvas,
-  BallCanvas, 
-  WorkStationCanvas,
-  StarsCanvas
+    Hero,
+    Navbar,
+    About,
+    Tech,
+    Experience,
+    Works,
+    Feedbacks,
+    Contact,
+    CanvasLoader,
+    JavaCanvas,
+    BallCanvas,
+    WorkStationCanvas,
+    StarsCanvas
 };
