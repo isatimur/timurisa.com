@@ -29,17 +29,17 @@ const Contact = () => {
         try {
 
             const result = await emailjs.sendForm(
-                process.env.REACT_APP_EMAILJS_SERVICE_ID,
-                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+                import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID,
                 formRef.current,
-                process.env.REACT_APP_EMAILJS_USER_ID
+                import.meta.env.VITE_REACT_APP_EMAILJS_USER_ID
             );
             console.log(result.text);
-            alert("Message sent successfully!");
+            // alert("Message sent successfully!");
             setForm({ name: "", email: "", message: "" });
         } catch (error) {
             console.error("Failed to send message: ", error);
-            alert("Failed to send message, please try again later.");
+            // alert("Failed to send message, please try again later.");
         }
 
         setLoading(false);
