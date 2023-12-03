@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import Tilt from "react-tilt";
 import {motion} from "framer-motion";
 
@@ -19,6 +19,7 @@ const flipVariant = {
 };
 
 const ServiceCard = ({title, icon, description}) => {
+    const ref = useRef(null);
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleDoubleClick = (e) => {

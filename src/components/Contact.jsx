@@ -18,51 +18,33 @@ const Contact = () => {
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        const {target} = e;
-        const {name, value} = target;
-
-        setForm({
-            ...form,
-            [name]: value,
-        });
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        emailjs
-            .send(
-                import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-                {
-                    from_name: form.name,
-                    to_name: "Top Java Mastery",
-                    from_email: form.email,
-                    to_email: "isatimur.it@gmail.com",
-                    message: form.message,
-                },
-                import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-            )
-            .then(
-                () => {
-                    setLoading(false);
-                    alert("Thank you. I will get back to you as soon as possible.");
+        try {
 
-                    setForm({
-                        name: "",
-                        email: "",
-                        message: "",
-                    });
-                },
-                (error) => {
-                    setLoading(false);
-                    console.error(error);
-
-                    alert("Ahh, something went wrong. Please try again.");
-                }
+            const result = await emailjs.sendForm(
+                process.env.REACT_APP_EMAILJS_SERVICE_ID,
+                process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+                formRef.current,
+                process.env.REACT_APP_EMAILJS_USER_ID
             );
+            console.log(result.text);
+            alert("Message sent successfully!");
+            setForm({ name: "", email: "", message: "" });
+        } catch (error) {
+            console.error("Failed to send message: ", error);
+            alert("Failed to send message, please try again later.");
+        }
+
+        setLoading(false);
     };
+
 
     return (
         <div
@@ -70,10 +52,10 @@ const Contact = () => {
         >
             <motion.div
                 variants={slideIn("left", "tween", 0.2, 1)}
-                className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+                className='flex-[0.75] bg-[#0e1117] p-8 rounded-2xl'
             >
-                <p className={styles.sectionSubText}>Get in touch</p>
-                <h3 className={styles.sectionHeadText}>Contact.</h3>
+                <p className={`${styles.sectionSubText} text-[#ffd60a]`}>Get in touch</p>
+                <h3 className={`${styles.sectionHeadText} text-white`}>Contact.</h3>
 
                 <form
                     ref={formRef}
@@ -116,7 +98,10 @@ const Contact = () => {
 
                     <button
                         type='submit'
-                        className='bg-primary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+                        className={`bg-[#ffd60a] py-3 px-8 rounded-xl outline-none w-fit text-black font-bold shadow-md ${
+                            loading ? "cursor-not-allowed" : ""
+                        }`}
+                        disabled={loading}
                     >
                         {loading ? "Sending..." : "Send"}
                     </button>
