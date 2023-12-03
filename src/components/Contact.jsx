@@ -34,9 +34,7 @@ const Contact = () => {
                 formRef.current,
                 import.meta.env.VITE_REACT_APP_EMAILJS_USER_ID
             );
-            console.log(import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID)
-            console.log(import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID)
-            console.log(import.meta.env.VITE_REACT_APP_EMAILJS_USER_ID)
+
             console.log(result.text);
             // alert("Message sent successfully!");
             setForm({ name: "", email: "", message: "" });
