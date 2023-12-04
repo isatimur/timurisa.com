@@ -32,6 +32,7 @@ import atos from "./company/atos.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import book from "./book.jpeg"
 
 import ocp from "./badges/ocpj8.png";
 import oca from "./badges/ocaj8.png";
@@ -51,6 +52,7 @@ export {
     css,
     docker,
     figma,
+    book,
     git,
     kubernetes,
     aws,
