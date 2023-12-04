@@ -1,6 +1,14 @@
 import {BrowserRouter} from "react-router-dom";
 
 import {About, Contact, Experience, Hero, Navbar, StarsCanvas, Tech} from "./components";
+import Badges from "./components/Badges.jsx";
+import {Component} from "react";
+
+class MyBook extends Component {
+    render() {
+        return null;
+    }
+}
 
 const App = () => {
     return (
@@ -16,6 +24,8 @@ const App = () => {
                     <Tech/>
                     {/*<Works />*/}
                     {/*<Feedbacks />*/}
+                    <Badges />
+                    <MyBook />
                 </main>
                 <footer>
                     <Contact/>

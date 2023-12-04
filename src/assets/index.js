@@ -33,6 +33,15 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
+import ocp from "./badges/ocpj8.png";
+import oca from "./badges/ocaj8.png";
+import rab from "./badges/reactive-architecture-building-scalable-systems-level-2.png";
+import cqrs from "./badges/reactive-architecture-cqrs-and-event-sourcing-level-2.png";
+import distr from "./badges/reactive-architecture-distributed-messaging-patterns-level-2.png";
+import ddd from "./badges/reactive-architecture-domain-driven-design-level-2.png";
+import introreactive from "./badges/reactive-architecture-introduction-to-reactive-systems-level-2.png";
+import reactive from "./badges/reactive-architecture-reactive-microservices-level-2.png";
+
 export {
     logo,
     web,
@@ -67,4 +76,12 @@ export {
     carrent,
     jobit,
     tripguide,
+    ocp,
+    oca,
+    rab,
+    cqrs,
+    distr,
+    ddd,
+    introreactive,
+    reactive
 };
