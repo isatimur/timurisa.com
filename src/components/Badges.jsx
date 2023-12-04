@@ -37,7 +37,7 @@ const Badges = () => {
             </motion.div>
             <div className='mt-20 flex flex-wrap gap-10'>
                 {badges.map((badge, index) => (
-                    <BadgeCard key={badge.title} index={index} {...badge} />
+                    <BadgeCard key={badge.icon} index={index} {...badge} />
                 ))}
             </div>
         </>
