@@ -44,6 +44,10 @@ export const navLinks = [
         title: "Work",
     },
     {
+        id: "badges",
+        title: "Badges"
+    },
+    {
         id: "book",
         title: "My book"
     },
@@ -80,17 +84,20 @@ const badges = [
     {
         title: "Oracle - Certification Professional Java 8",
         icon: ocp,
+        name: "Oracle - Certification Professional Java 8",
         link: "https://www.credly.com/badges/c0c5a3e2-f0f9-42a8-8ac0-cb9674b70013/public_url"
     },
     {
         title: "Oracle - Certification Associate Java 8",
         icon: oca,
+        name: "Oracle - Certification Associate Java 8",
         link: "https://www.credly.com/badges/aaeb7ddf-99d5-4585-b6f4-b3d6e482f5ae/public_url"
 
     },
     {
         title: "Lightbend - Reactive Architecture",
         icon: introreactive,
+        name: "Introduction to Reactive",
         link: "https://www.credly.com/badges/ceb4828c-6b2f-4aa4-917d-3b933413f1f7/public_url"
 
     },
@@ -98,24 +105,28 @@ const badges = [
 
         title: "Lightbend - Reactive Architecture",
         icon: reactive,
+        name: "Reactive Microservices",
         link: "https://www.credly.com/badges/ebcd2cbe-4c92-4f22-b1ee-aa58e5653535/public_url"
 
     }, {
 
         title: "Lightbend - Reactive Architecture",
         icon: ddd,
+        name: "Domain Driven Design",
         link: "https://www.credly.com/badges/c3fb2973-186f-4347-a101-7c6900b52a5c/public_url"
 
     },
     {
         title: "Lightbend - Reactive Architecture",
         icon: distr,
+        name: "Distributed Messaging",
         link: "https://www.credly.com/badges/52c502ac-04b5-4201-937a-b659578ee065/public_url"
 
     },
     {
         title: "Lightbend - Reactive Architecture",
         icon: rab,
+        name: "Building Scalable Systems",
         link: "https://www.credly.com/badges/6aed39d9-779a-49da-8a5c-6bddc2b6ff52/public_url"
 
     },
@@ -123,6 +134,7 @@ const badges = [
 
         title: "Lightbend - Reactive Architecture",
         icon: cqrs,
+        name: "CQRS and Event Sourcing",
         link: "https://www.credly.com/badges/d4a27579-3cc7-4366-850f-526b1bdda3d1/public_url"
     },
 

@@ -10,13 +10,13 @@ export const textVariant = (delay) => {
             transition: {
                 type: "spring",
                 duration: 1.25,
-                delay: delay,
+                delay: delay || 0,
             },
         },
     };
 };
 
-export const fadeIn = (direction, type, delay, duration) => {
+export const fadeIn = (direction, type, delay=0, duration) => {
     return {
         hidden: {
             x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
@@ -37,7 +37,7 @@ export const fadeIn = (direction, type, delay, duration) => {
     };
 };
 
-export const zoomIn = (delay, duration) => {
+export const zoomIn = (delay =0, duration) => {
     return {
         hidden: {
             scale: 0,
@@ -56,7 +56,7 @@ export const zoomIn = (delay, duration) => {
     };
 };
 
-export const slideIn = (direction, type, delay, duration) => {
+export const slideIn = (direction, type, delay=0, duration) => {
     return {
         hidden: {
             x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,

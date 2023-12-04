@@ -19,8 +19,8 @@ const Hero = () => {
                         Hi, I'm <span className='text-[#2A9D8F]'>Timur Isachenko</span>
                     </h1>
                     <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-                        Innovator in Technical Leadership &amp; Architectural Design <br className='sm:block hidden'/>
-                        Blending Advanced Technology with Strategic Vision in Software Development
+                        <span className="bg-primary">Innovator</span> <span className="bg-primary">in</span> <span className="bg-primary">Technical</span> <span className="bg-primary">Leadership</span> &amp; <span className="bg-primary">Architectural</span> <span className="bg-primary">Design</span> <br className='sm:block hidden'/>
+                        <span className="bg-primary">Blending</span> <span className="bg-primary">Advanced</span> <span className="bg-primary">Technology</span> <span className="bg-primary">with</span> <span className="bg-primary">Strategic</span> <span className="bg-primary">Vision</span> <span className="bg-primary">in</span> <span className="bg-primary">Software</span> <span className="bg-primary">Development</span>
                     </p>
                 </div>
             </div>

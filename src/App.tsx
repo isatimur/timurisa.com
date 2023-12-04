@@ -11,6 +11,7 @@ const App = () => {
                     backgroundImage: "url(" + `${bg.src}` + ")",
                     width: "100%",
                     backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
                     backgroundSize: "cover"
                 }}>
                     <Navbar/>
@@ -20,10 +21,10 @@ const App = () => {
                     <About/>
                     <Experience/>
                     <Tech/>
-                    {/*<Works />*/}
-                    {/*<Feedbacks />*/}
                     <Badges/>
                     <MyBook/>
+                    {/*<Works />*/}
+                    {/*<Feedbacks />*/}
                 </main>
                 <footer>
                     <Contact/>
