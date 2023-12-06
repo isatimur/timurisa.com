@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import Tilt from "react-tilt";
 import {motion} from "framer-motion";
 
-import {styles} from "../styles";
+import {styles} from "../styles.js";
 import {services} from "../constants";
 import {SectionWrapper} from "../hoc";
 import {fadeIn, textVariant} from "../utils/motion";
@@ -108,7 +108,7 @@ const ServiceCard = ({title, icon, description}) => {
                                 speed: 450,
                             }}
                             className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col front face ${isFlipped ? 'rotate-y-180' : ''}`}>
-                            <img src={icon} alt={title} className="w-16 h-16 object-contain mb-4"/>
+                            <img src={icon.src} alt={title} className="w-16 h-16 object-contain mb-4"/>
                             <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
                         </div>
                     )}

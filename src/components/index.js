@@ -7,6 +7,8 @@ import Experience from "./Experience";
 import Works from "./Works";
 import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
+import Badges from "./Badges.jsx";
+import MyBook from "./MyBook.jsx";
 import CanvasLoader from "./Loader";
 
 
@@ -19,6 +21,8 @@ export {
     Works,
     Feedbacks,
     Contact,
+    Badges,
+    MyBook,
     CanvasLoader,
     JavaCanvas,
     BallCanvas,

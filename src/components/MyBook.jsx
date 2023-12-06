@@ -4,7 +4,7 @@ import {SectionWrapper} from "../hoc";
 import {textVariant} from "../utils/motion";
 import Tilt from "react-tilt";
 import {styles} from "../styles.js";
-import {book, github} from "../assets"
+import {book, github} from "../../public/assets"
 
 
 const MyBook = () => {
@@ -20,7 +20,7 @@ const MyBook = () => {
             </motion.div>
             <div className="flex justify-center items-center"> {/* Flex container to center contents */}
                 <Tilt ref={tiltRef} key={"title"} options={{ max: 25 }}>
-                    <img src={book} alt="Book Cover" className="object-contain mb-4" />
+                    <img src={book.src} alt="Book Cover" className="object-contain mb-4" />
                 </Tilt>
             </div>
         </>

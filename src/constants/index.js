@@ -32,7 +32,7 @@ import {
     threejs,
     tripguide,
     typescript
-} from "../assets";
+} from "../../public/assets";
 
 export const navLinks = [
     {

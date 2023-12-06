@@ -1,7 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: ["./src/**/*.{js,jsx}"],
-    mode: "jit",
+import type {Config} from 'tailwindcss'
+
+const config: Config = {
+    content: [
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
     theme: {
         extend: {
             colors: {
@@ -22,10 +25,9 @@ module.exports = {
             screens: {
                 xs: "450px",
             },
-            backgroundImage: {
-                "hero-pattern": "url('/src/assets/bghero.jpeg')",
-            },
         },
+
     },
     plugins: [],
-};
+}
+export default config
