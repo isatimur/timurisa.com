@@ -1,16 +1,18 @@
 import {BrowserRouter} from "react-router-dom";
 
-import {About, Contact, Experience, Hero, Navbar, StarsCanvas, Tech} from "./components";
-import Badges from "./components/Badges.jsx";
-import {Component} from "react";
-import MyBook from "./components/MyBook.jsx";
-
+import {About, Badges, Contact, Experience, Hero, MyBook, Navbar, StarsCanvas, Tech} from "./components";
+import bg from "../app/bghero.jpeg";
 
 const App = () => {
     return (
         <BrowserRouter>
             <div className='relative z-0 bg-primary'>
-                <header className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+                <header style={{
+                    backgroundImage: "url(" + `${bg.src}` + ")",
+                    width: "100%",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover"
+                }}>
                     <Navbar/>
                     <Hero/>
                 </header>
@@ -20,8 +22,8 @@ const App = () => {
                     <Tech/>
                     {/*<Works />*/}
                     {/*<Feedbacks />*/}
-                    <Badges />
-                    <MyBook />
+                    <Badges/>
+                    <MyBook/>
                 </main>
                 <footer>
                     <Contact/>

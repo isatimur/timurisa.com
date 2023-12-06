@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
-import {styles} from "../styles";
+import {styles} from "../styles.js";
 import {navLinks} from "../constants";
-import {close, logo, menu} from "../assets";
+import {close, logo, menu} from "../../public/assets";
 
 const Navbar = () => {
     const [active, setActive] = useState("");
@@ -38,7 +38,7 @@ const Navbar = () => {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    <img src={logo} alt='logo' className='w-9 h-9 object-contain'/>
+                    <img src={logo.src} alt='logo' className='w-9 h-9 object-contain'/>
                     <p className='text-white text-[18px] font-bold cursor-pointer flex '>
                         Tim Isa &nbsp;
                         <span className='sm:block hidden'> | Java Mastery</span>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
                 <div className='sm:hidden flex flex-1 justify-end items-center'>
                     <img
-                        src={toggle ? close : menu}
+                        src={toggle ? close.src : menu.src}
                         alt='menu'
                         className='w-[28px] h-[28px] object-contain'
                         onClick={() => setToggle(!toggle)}

@@ -19,7 +19,7 @@ const BadgeCard = ({title, icon, link}) => {
                     speed: 450,
                 }}
                 className={`rounded-[20px] py-5 px-12 min-h-[250px] flex justify-evenly items-center flex-col front face`}>
-                <a href={link}><img src={icon} className="object-contain mb-4"/></a>
+                <a href={link}><img src={icon.src} className="object-contain mb-4"/></a>
                 <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
             </div>
 
@@ -37,7 +37,7 @@ const Badges = () => {
             </motion.div>
             <div className='mt-20 flex flex-wrap gap-10'>
                 {badges.map((badge, index) => (
-                    <BadgeCard key={badge.icon} index={index} {...badge} />
+                    <BadgeCard key={index} index={index} {...badge} />
                 ))}
             </div>
         </>
