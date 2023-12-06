@@ -20,7 +20,7 @@ const MyBook = () => {
             </motion.div>
             <div className="flex justify-center items-center"> {/* Flex container to center contents */}
                 <Tilt ref={tiltRef} key={"title"} options={{ max: 25 }}>
-                    <img src={book.src} alt="Book Cover" className="object-contain mb-4" />
+                    <img src={book.src} width="100%" height="h-full" alt="Book Cover" className="object-contain mb-4" />
                 </Tilt>
             </div>
         </>
