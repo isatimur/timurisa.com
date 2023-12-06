@@ -35,7 +35,7 @@ const Badges = () => {
                 </p>
                 <h2 className={`${styles.sectionHeadText} text-center`}>Licenses & certifications</h2>
             </motion.div>
-            <div className='mt-20 flex flex-wrap gap-10'>
+            <div className='mt-20 flex flex-wrap gap-10 justify-center items-center'>
                 {badges.map((badge, index) => (
                     <BadgeCard key={index} index={index} {...badge} />
                 ))}
