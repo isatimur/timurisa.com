@@ -3,13 +3,13 @@ import {
     atos,
     be,
     carrent,
-    cqrs,
+    cqrs, css,
     ddd,
     distr,
     docker,
     ebt,
     figma,
-    git,
+    git, html,
     ids,
     introreactive,
     java8,
@@ -22,7 +22,7 @@ import {
     mongodb,
     nodejs,
     oca,
-    ocp,
+    ocp, postgres,
     rab,
     reactive,
     reactjs,
@@ -149,14 +149,6 @@ const technologies = [
         name: "Kotlin",
         icon: kotlin,
     },
-    // {
-    //     name: "HTML 5",
-    //     icon: html,
-    // },
-    // {
-    //     name: "CSS 3",
-    //     icon: css,
-    // },
     {
         name: "JavaScript",
         icon: javascript,
@@ -170,8 +162,8 @@ const technologies = [
         icon: reactjs,
     },
     {
-        name: "Redux Toolkit",
-        icon: redux,
+        name: "Spring",
+        icon: spring,
     },
     {
         name: "Tailwind CSS",
@@ -194,8 +186,8 @@ const technologies = [
         icon: git,
     },
     {
-        name: "figma",
-        icon: figma,
+        name: "postgres",
+        icon: postgres,
     },
     {
         name: "docker",
