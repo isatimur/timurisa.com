@@ -1,22 +1,22 @@
 import Image from "next/image";
 
-interface EmptyProps {
+interface BlogProps {
     label: string;
+    url: string;
 }
 
-export const Empty = ({
-                          label
-                      }: EmptyProps) => {
+export const Blog = ({
+                          label,
+                            url
+                      }: BlogProps) => {
     return (
         <div className="h-full p-20 flex flex-col items-center justify-center">
             <div className="relative h-72 w-72">
-                <Image src="/bghero.jpeg" fill alt="Empty"/>
+                <Image src="/assets/logo.svg" fill alt="Empty" />
             </div>
             <p className="text-muted-foreground text-sm text-center">
-                {label}
+                <a href={url}>{label}</a>
             </p>
         </div>
     );
 };
-
-export default Empty

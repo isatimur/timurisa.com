@@ -1,23 +1,28 @@
-"use client"
-import {useRouter} from "next/navigation";
+import Link from "next/link";
+import {getAllPosts} from "../../../../lib/api.ts";
 
-export default function BlogPage() {
+export default async function BlogPage() {
 
-    const router = useRouter();
+    const posts = await getAllPosts()
 
     return (
         <div>
-            <div className="mb-8 space-y-4">
-                <h2 className="text-2xl md:text-4xl font-bold text-center">Talk and Practice | Passion to code</h2>
-                <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-                    Professional blog about interesting topics
-                </p>
-            </div>
-            <div className="px-4 md:px-20 lg:px-32 space-y-4">
+            <h1>My blog</h1>
 
-            </div>
-
+            <h2>All posts:</h2>
+            <ul>
+                {posts.map(post => {
+                    const {id, date, title} = post
+                    return (
+                        <li key={id}>
+                            <Link href={`/blog/posts/${id}`}>
+                                {date} - {title}
+                            </Link>
+                        </li>
+                    )
+                })}
+            </ul>
         </div>
+    );
 
-    )
 }

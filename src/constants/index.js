@@ -259,29 +259,28 @@ const experiences = [
         ],
     },
     {
-        title: "Solution Architect | Fullstack engineer",
+        title: "Tech Lead/Solution Architect/Contractor",
         company_name: "EastBanc Technologies",
         icon: ebt,
         iconBg: "#1c2f35",
         date: "June 2022 - Present",
         points: [
-            "Working on developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility."
+            "Project for Glorify Bank: Played the role of Solution Architect focusing on brokerage integration with DriveWealth, and integrating AWS SQS events to Kafka. Also developed a notification service using Azure Cloud.",
+            "Project for Red Cross: Contributed as a Java Developer, leading the payment migration from CyberSource to Braintree Paypal.",
+            "Discovery Grant Management System for IRS: Functioned as a Technical Lead, overseeing the Grant Management System project development.",
+            "Development of MVP for Grant Management System for IRS: Worked as a Technical Lead, utilizing technologies such as Kotlin, Java 17, JOOQ, PlantUML, and Springboot Webflux."
         ],
     },
     {
-        title: "Technical Leader / Solution Architect",
+        title: "Team Lead / Solution Architect",
         company_name: "IDS, Remotely",
         icon: ids,
         iconBg: "#f9bb5a",
         date: "Nov 2022 - Present",
         points: [
-            "Leading the development of a comprehensive billing system tailored for the betting and gambling industry, focusing on robustness and scalability.",
-            "Implementing cutting-edge technologies including Kotlin, Spring Cloud API Gateway, MongoDB, and Kubernetes to ensure high performance and reliability.",
-            "Collaborating with international teams to align development with business goals and user needs, ensuring effective solutions across various markets.",
-            "Directing a team of skilled developers and engineers, fostering a culture of innovation, continuous learning, and quality-driven development.",
-            "Overseeing the entire project lifecycle, from initial concept and design to deployment and post-launch support, ensuring timely delivery and customer satisfaction."
+            "Leading a team of developers in the creation and implementation of a microservice-based Billing product, built entirely from the ground up.",
+            "Spearheading the integration of various payment systems, implementing a Single Sign-On (SSO) solution, and crafting a bespoke API Gateway utilizing the Spring Cloud Gateway framework.",
+            "Technical Stack: Proficiency in Kotlin, Java 11 and above, JOOQ, SpringBoot, Webflux, Postgres, R2DBC, Spring Cloud Gateway, Keycloak, Kafka, and related technologies."
         ],
     },
 ];
