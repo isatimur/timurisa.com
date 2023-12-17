@@ -18,8 +18,8 @@ const Contact = () => {
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+        const {name, value} = e.target;
+        setForm({...form, [name]: value});
     };
 
     const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ const Contact = () => {
 
             console.log(result.text);
             // alert("Message sent successfully!");
-            setForm({ name: "", email: "", message: "" });
+            setForm({name: "", email: "", message: ""});
         } catch (error) {
             console.error("Failed to send message: ", error);
             // alert("Failed to send message, please try again later.");

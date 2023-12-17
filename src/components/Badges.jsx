@@ -3,7 +3,7 @@ import React, {useRef} from "react";
 import {motion} from "framer-motion";
 import {styles} from "../styles.js";
 import {badges} from "../constants";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
 import {SectionWrapper} from "../hoc";
 import {textVariant} from "../utils/motion";
 

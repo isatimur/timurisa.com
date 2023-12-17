@@ -1,5 +1,3 @@
-import {markdownToHtml} from "../utils/markdown";
-
 const BlogPost = ({title, content, imageUrl, tags, author, date}) => {
     return (
         <article className="blog-post justify-center">

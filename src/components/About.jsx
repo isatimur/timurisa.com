@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
-import Tilt from "react-tilt";
+import React, {useRef, useState} from "react";
+import Tilt  from "react-parallax-tilt";
 import {motion} from "framer-motion";
 
 import {styles} from "../styles.js";
@@ -21,7 +21,7 @@ const flipVariant = {
 const ServiceCard = ({title, icon, description}) => {
     const cardRef = useRef(null);
     const tiltRef = useRef(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
     const [isFlipped, setIsFlipped] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
     const [mouseSpeed, setMouseSpeed] = useState(5);
@@ -43,7 +43,7 @@ const ServiceCard = ({title, icon, description}) => {
             const newY = e.clientY - rect.top - 25;
             const speed = Math.sqrt(Math.pow(newX - mousePosition.x, 2) + Math.pow(newY - mousePosition.y, 2));
 
-            setMousePosition({ x: newX, y: newY });
+            setMousePosition({x: newX, y: newY});
             setMouseSpeed(speed);
             // Calculate circle size based on speed
             const newCircleSize = Math.max(25, Math.min(12, 10 - mouseSpeed / 50));
@@ -53,7 +53,7 @@ const ServiceCard = ({title, icon, description}) => {
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => {
         setIsHovering(false);
-        setMousePosition({ x: 0, y: 0 }); // Reset position
+        setMousePosition({x: 0, y: 0}); // Reset position
     };
 
     return (
@@ -65,7 +65,7 @@ const ServiceCard = ({title, icon, description}) => {
                         onDoubleClick={handleDoubleClick}
                         variants={fadeIn("right", "spring", title * 0.5, 0.75)}
                         className='relative h-full bg-burnt-orange p-[1px] rounded-[20px] shadow-card'
-                        style={{ userSelect: "none" }}
+                        style={{userSelect: "none"}}
             >
                 {isHovering && (
                     <motion.span
@@ -80,8 +80,8 @@ const ServiceCard = ({title, icon, description}) => {
                             border: '1px solid', // Set the border
                             borderColor: 'currentColor', // Use the current text color
                         }}
-                        animate={{ scale: [1, 1.5, 1] }}
-                        transition={{ repeat: Infinity, duration: 2, type: "spring" }}
+                        animate={{scale: [1, 1.5, 1]}}
+                        transition={{repeat: Infinity, duration: 2, type: "spring"}}
                     />
                 )}
                 <motion.div
