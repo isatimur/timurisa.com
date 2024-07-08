@@ -1,3 +1,5 @@
+import Image from "next/image";
+import React from "react";
 const BlogPost = ({title, content, imageUrl, tags, author, date}) => {
     return (
         <article className="blog-post justify-center">
@@ -8,7 +10,7 @@ const BlogPost = ({title, content, imageUrl, tags, author, date}) => {
                     {tags.map(tag => <span key={tag} className="blog-post-tag">{tag}</span>)}
                 </div>
                 <figure className="blog-post-media">
-                    <img src={imageUrl} alt={title}/>
+                    <Image width="100%" height="100%" src={imageUrl} alt={title}/>
                 </figure>
             </header>
             <div className="blog-post-content" dangerouslySetInnerHTML={{__html: content}}/>

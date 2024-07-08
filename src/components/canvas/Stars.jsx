@@ -42,4 +42,6 @@ const StarsCanvas = () => {
     );
 };
 
+Stars.displayName = 'Stars';
+StarsCanvas.displayName = 'StarsCanvas';
 export default StarsCanvas;

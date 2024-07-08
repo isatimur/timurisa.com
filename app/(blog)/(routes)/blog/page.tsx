@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAllPosts } from '../../../../lib/api';
+import Image from "next/image";
 
 export default async function BlogPage() {
     const posts = await getAllPosts();
@@ -20,7 +21,7 @@ export default async function BlogPage() {
                                 <Link href={`/blog/posts/${id}`}>
                                     <div className="block">
                                         <div className="h-80 mb-4 rounded-lg overflow-hidden">
-                                            <img src={image} alt={title} className="w-full h-full object-cover"/>
+                                            <Image src={image} alt={title} className="w-full h-full object-cover"/>
                                         </div>
                                         <h3 className="text-2xl font-semibold mb-2 text-gray-800">{title}</h3>
                                         <p className="text-gray-500">{date}</p>
@@ -45,7 +46,7 @@ export default async function BlogPage() {
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold mb-4">About the Author</h3>
                         <div className="flex items-center space-x-4">
-                            <img src="/assets/avatar-modified.jpg" alt="Author" className="w-16 h-16 rounded-full" />
+                            <Image width="16" height="16" src="/assets/avatar-modified.jpg" alt="Author" className="w-16 h-16 rounded-full" />
                             <div>
                                 <h4 className="text-lg font-semibold">Timur Isachenko</h4>
                                 <p className="text-gray-500">Software Engineer</p>
@@ -53,8 +54,8 @@ export default async function BlogPage() {
                         </div>
                         <p className="text-gray-600 mt-4">Timur Isachenko is a seasoned software engineer with a passion for Java and Kotlin. He has been developing enterprise-level applications for over a decade and is excited to share his knowledge and insights with the community.</p>
                         <div className="flex space-x-4 mt-4">
-                            <Link href="https://www.linkedin.com/in/timur-isachenko/"><img src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
-                            <Link href="https://github.com/isatimur"><img src="/assets/iconmonstr-github-1.svg" alt="GitHub" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
+                            <Link href="https://www.linkedin.com/in/timur-isachenko/"><Image src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" width="6" height="6" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
+                            <Link href="https://github.com/isatimur"><Image src="/assets/iconmonstr-github-1.svg" alt="GitHub"  width="6" height="6" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
                         </div>
                     </div>
                 </aside>

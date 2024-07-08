@@ -1,5 +1,7 @@
 import React from "react";
 import {motion} from "framer-motion";
+import Image from "next/image";
+
 
 import {styles} from "../styles.js";
 import {SectionWrapper} from "../hoc";
@@ -33,8 +35,10 @@ const FeedbackCard = ({
                     </p>
                 </div>
 
-                <img
+                <Image
                     src={image}
+                    width="10"
+                    height="10"
                     alt={`feedback_by-${name}`}
                     className='w-10 h-10 rounded-full object-cover'
                 />

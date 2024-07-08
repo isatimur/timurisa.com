@@ -63,5 +63,7 @@ const BlackHoleCanvas = () => {
         </Canvas>
     );
 };
+BlackHole.displayName = 'BlackHole';
+BlackHoleCanvas.displayName = 'BlackHoleCanvas';
 
 export default BlackHoleCanvas;

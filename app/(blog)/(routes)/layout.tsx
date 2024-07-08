@@ -1,5 +1,7 @@
 import '../../globals.css';
 import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
 
 export const metadata = {
     title: 'Timur Isachenko | Tech Lead | Solution Architect',
@@ -30,11 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <p className="text-gray-600">© 2024 Timur Isachenko. All rights reserved.</p>
                     <div className="flex justify-center space-x-4 mt-4">
                         <Link href="https://www.linkedin.com/in/timur-isachenko/" className="text-gray-600 hover:text-gray-900">
-                            <img src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform" />
+                            <Image src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform" />
                         </Link>
-                        <a href="https://github.com/isatimur" className="text-gray-600 hover:text-gray-900">
-                            <img src="/assets/iconmonstr-github-1.svg" alt="GitHub" className="w-6 h-6 hover:scale-110 transition-transform" />
-                        </a>
+                        <Link href="https://github.com/isatimur" className="text-gray-600 hover:text-gray-900">
+                            <Image src="/assets/iconmonstr-github-1.svg" alt="GitHub" className="w-6 h-6 hover:scale-110 transition-transform" />
+                        </Link>
                     </div>
                 </div>
             </footer>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAllPosts, getPostById } from '../../../../../../lib/api';
 import Link from "next/link";
+import Image from "next/image";
 
 export async function generateMetadata({ params: { id } }: { params: { id: string } }) {
     const { title } = await getPostById(id);
@@ -23,14 +24,14 @@ export default async function PostPage({ params: { id } }: { params: { id: strin
             </header>
             <main className="mt-8 prose mx-auto">
                 <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-                    <img src={image} alt={title} className="w-full h-auto object-cover" />
+                    <Image src={image} alt={title} className="w-full h-auto object-cover" />
                 </div>
                 <p className="text-gray-600 text-lg">{short}</p>
                 <div className="mt-4" dangerouslySetInnerHTML={{ __html: html }} />
             </main>
             <footer className="mt-12 bg-white shadow-md p-6 rounded-lg">
                 <div className="flex items-center space-x-4">
-                    <img src="/assets/avatar-modified.jpg" alt="Author" className="w-16 h-16 rounded-full" />
+                    <Image src="/assets/avatar-modified.jpg" alt="Author" className="w-16 h-16 rounded-full" />
                     <div>
                         <h4 className="text-lg font-semibold">Timur Isachenko</h4>
                         <p className="text-gray-500">Software Engineer</p>
@@ -38,8 +39,8 @@ export default async function PostPage({ params: { id } }: { params: { id: strin
                 </div>
                 <p className="text-gray-600 mt-4">Timur Isachenko is a seasoned software engineer with a passion for Java and Kotlin. He has been developing enterprise-level applications for over a decade and is excited to share his knowledge and insights with the community.</p>
                 <div className="flex space-x-4 mt-4">
-                    <Link href="https://www.linkedin.com/in/timur-isachenko/"><img src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
-                    <Link href="https://github.com/isatimur"><img src="/assets/iconmonstr-github-1.svg" alt="GitHub" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
+                    <Link href="https://www.linkedin.com/in/timur-isachenko/"><Image width="6" height="6" src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform"/></Link>
+                    <Link href="https://github.com/isatimur"><Image width="6" height="6" src="/assets/iconmonstr-github-1.svg" alt="GitHub" className="w-6 h-6 hover:scale-110 transition-transform"/></Link>
                 </div>
             </footer>
         </article>

@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {styles} from "../styles.js";
 import {navLinks} from "../constants";
 import {close, logo, menu} from "../../public/assets";
+import Image from "next/image";
 
 const Navbar = () => {
     const [active, setActive] = useState("");
@@ -38,7 +39,7 @@ const Navbar = () => {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    <img src={logo.src} alt='logo' className='w-9 h-9 object-contain'/>
+                    <Image src={logo.src} width="9" height="9" alt='logo' className='w-9 h-9 object-contain'/>
                     <p className='text-white text-[18px] font-bold cursor-pointer flex '>
                         Timur Isa &nbsp;
                         <span className='sm:block hidden'> | Passion to code</span>
@@ -60,9 +61,11 @@ const Navbar = () => {
                 </ul>
 
                 <div className='sm:hidden flex flex-1 justify-end items-center'>
-                    <img
+                    <Image
                         src={toggle ? close.src : menu.src}
                         alt='menu'
+                        width="28"
+                        height="28"
                         className='w-[28px] h-[28px] object-contain'
                         onClick={() => setToggle(!toggle)}
                     />

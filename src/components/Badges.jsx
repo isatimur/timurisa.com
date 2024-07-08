@@ -6,6 +6,7 @@ import {badges} from "../constants";
 import Tilt from "react-parallax-tilt";
 import {SectionWrapper} from "../hoc";
 import {textVariant} from "../utils/motion";
+import Image from "next/image";
 
 const BadgeCard = ({title, icon, link, name}) => {
     const tiltRef = useRef(null);
@@ -20,7 +21,7 @@ const BadgeCard = ({title, icon, link, name}) => {
                     speed: 450,
                 }}
                 className={`rounded-[20px] py-5 px-12 min-h-[250px] flex justify-evenly items-center flex-col front face`}>
-                <a href={link} name={name}><img src={icon.src} alt={name} className="object-contain mb-4"/></a>
+                <a href={link} name={name}><Image src={icon.src} alt={name} width="250" height="250" className="object-contain mb-4"/></a>
                 <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
             </motion.div>
 

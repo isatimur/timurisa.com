@@ -3,6 +3,7 @@ import {Canvas} from "@react-three/fiber";
 import {OrbitControls, Preload, useGLTF} from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
+import StarsCanvas from "./Stars";
 
 const WorkStation = ({isMobile}) => {
     const macbookpro = useGLTF("./mac_book_pro/mac.gltf")
@@ -75,5 +76,8 @@ const WorkStationCanvas = () => {
         </Canvas>
     );
 };
+
+WorkStation.displayName = 'WorkStation';
+WorkStationCanvas.displayName = 'WorkStationCanvas';
 
 export default WorkStationCanvas;

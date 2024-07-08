@@ -1,18 +1,18 @@
 import React, {Suspense, useMemo, useRef, useState} from "react";
 import {Canvas, useFrame} from "@react-three/fiber";
-import {Decal, Float, OrbitControls, Preload, useTexture,} from "@react-three/drei";
+import {Decal, Float, OrbitControls, Preload, useTexture} from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
+/* eslint-disable react/display-name */
 const Ball = ({imgUrl, floatSpeed}) => {
-
     const meshRef = useRef();
     const [decal] = useTexture([imgUrl]);
     const [speed, setSpeed] = useState(3.0);
     const Geometry = useMemo(
         () => () => <sphereGeometry args={[5, 32]}/>,
         []
-    )
+    );
 
     // Handle mouse over and out events
     const handleMouseOver = () => setSpeed(20.0);
@@ -24,19 +24,21 @@ const Ball = ({imgUrl, floatSpeed}) => {
             meshRef.current.rotation.y += delta * speed;
         }
     });
+
     return (
         <Float speed={floatSpeed} rotationIntensity={10} floatIntensity={7}>
             <ambientLight intensity={0.55}/>
             <directionalLight position={[0, 0, 0.5]}/>
-            <mesh castShadow
-                  receiveShadow
-                  scale={2.0}
-                  onPointerOver={handleMouseOver}
-                  onPointerOut={handleMouseOut}>
-                <sphereGeometry args={[1, 32]}/>
-                <meshStandardMaterial
-                    color='#fff'
-                />
+            <mesh
+                castShadow
+                receiveShadow
+                scale={2.0}
+                onPointerOver={handleMouseOver}
+                onPointerOut={handleMouseOut}
+                ref={meshRef}
+            >
+                <Geometry/>
+                <meshStandardMaterial color='#fff'/>
                 <Decal
                     position={[0, 0, 1]}
                     rotation={[2 * Math.PI, 0, 6.25]}
@@ -51,13 +53,12 @@ const Ball = ({imgUrl, floatSpeed}) => {
                     map={decal}
                     flatShading
                 />
-
-
             </mesh>
         </Float>
     );
 };
 
+/* eslint-disable react/display-name */
 const BallCanvas = ({icon}) => {
     // Speed state for the Float component
     const [floatSpeed, setFloatSpeed] = useState(3.0);
@@ -71,6 +72,7 @@ const BallCanvas = ({icon}) => {
     const handleMouseLeave = () => {
         setFloatSpeed(3.0); // Reset to default speed
     };
+
     return (
         <Canvas
             frameloop='demand'
@@ -82,12 +84,14 @@ const BallCanvas = ({icon}) => {
             <Suspense fallback={<CanvasLoader/>}>
                 <OrbitControls enableZoom={false} autoRotateSpeed={5} autoRotate/>
                 <Ball imgUrl={icon} floatSpeed={floatSpeed}/>
-                {/*<Stars/>*/}
             </Suspense>
-
             <Preload all/>
         </Canvas>
     );
 };
+
+// Adding displayName for better debugging and readability
+Ball.displayName = 'Ball';
+BallCanvas.displayName = 'BallCanvas';
 
 export default BallCanvas;
