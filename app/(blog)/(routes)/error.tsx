@@ -1,13 +1,13 @@
 "use client";
 
-
-
-import {Empty} from "../../../src/components/Empty";
+import { Empty } from "../../../src/components/Empty";
 
 const Error = () => {
     return (
-        <Empty label="Something went wrong." />
+        <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
+            <Empty label="Something went wrong." />
+        </div>
     );
-}
+};
 
-export default Error
+export default Error;

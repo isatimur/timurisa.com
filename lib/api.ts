@@ -8,8 +8,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
-// import rehypeShiki from '@leafac/rehype-shiki'
-// import * as shiki from 'shiki'
+import rehypeShiki from '@leafac/rehype-shiki'
+import * as shiki from 'shiki'
 
 // memoize/cache the creation of the markdown parser, this sped up the
 // building of the blog from ~60s->~10s
@@ -20,9 +20,9 @@ async function getParserPre() {
         .use(remarkParse)
         .use(remarkRehype)
         .use(remarkGfm)
-        // .use(rehypeShiki, {
-        //     highlighter: await shiki.getHighlighter({ theme: 'poimandres' }),
-        // })
+        .use(rehypeShiki, {
+            highlighter: await shiki.getHighlighter({ theme: 'poimandres' }),
+        })
         .use(rehypeStringify)
         .use(rehypeSlug)
         .use(rehypeAutolinkHeadings, {
@@ -62,6 +62,9 @@ export async function getPostById(id: string) {
         id: realId,
         date: `${data.date?.toISOString().slice(0, 10)}`,
         html: html.value.toString(),
+        short: data.short,
+        image: data.image,
+
     }
 }
 

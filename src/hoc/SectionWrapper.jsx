@@ -4,7 +4,7 @@ import {styles} from "../styles.js";
 import {staggerContainer} from "../utils/motion";
 
 const StarWrapper = (Component, idName) =>
-    function HOC() {
+    (function HOC() {
         return (
             <motion.section
                 variants={staggerContainer()}
@@ -20,6 +20,6 @@ const StarWrapper = (Component, idName) =>
                 <Component/>
             </motion.section>
         );
-    };
+    });
 
 export default StarWrapper;
