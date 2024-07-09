@@ -1,9 +1,12 @@
 import {BrowserRouter} from "react-router-dom";
 
-import {About, Badges, Contact, Experience, Hero, MyBook, Navbar, StarsCanvas, Tech} from "./components";
+import {About, Badges, Contact, Experience, Hero, MyBook, Navbar, StarsCanvas,
+    // Tech
+} from "./components";
 import bg from "../app/bghero.jpeg";
 import {useEffect, useState} from "react";
 import FloatingButton from "./components/FloatingButton";
+// import Works from "./components/Works";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -45,7 +48,7 @@ const App = () => {
                 <main>
                     <About/>
                     <Experience/>
-                    <Tech/>
+                    {/*<Tech/>*/}
                     <Badges/>
                     <MyBook/>
                     {/*<Works />*/}

@@ -49,8 +49,6 @@ const ProjectCard = ({
                                 alt='source code'
                                 layout='fill'
                                 objectFit='contain'
-                                width={20} // Explicitly set width and height
-                                height={20}
                                 className='w-1/2 h-1/2 object-contain'
                             />
                         </div>

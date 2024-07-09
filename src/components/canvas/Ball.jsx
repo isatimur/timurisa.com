@@ -1,6 +1,6 @@
 import React, {Suspense, useMemo, useRef, useState} from "react";
 import {Canvas, useFrame} from "@react-three/fiber";
-import {Decal, Float, OrbitControls, Preload, useTexture} from "@react-three/drei";
+import {Decal, Float, OrbitControls, Preload, useTexture,} from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
@@ -9,10 +9,6 @@ const Ball = ({imgUrl, floatSpeed}) => {
     const meshRef = useRef();
     const [decal] = useTexture([imgUrl]);
     const [speed, setSpeed] = useState(3.0);
-    const Geometry = useMemo(
-        () => () => <sphereGeometry args={[5, 32]}/>,
-        []
-    );
 
     // Handle mouse over and out events
     const handleMouseOver = () => setSpeed(20.0);
@@ -37,8 +33,10 @@ const Ball = ({imgUrl, floatSpeed}) => {
                 onPointerOut={handleMouseOut}
                 ref={meshRef}
             >
-                <Geometry/>
-                <meshStandardMaterial color='#fff'/>
+                <icosahedronGeometry args={[1, 1]}/>
+                <meshStandardMaterial
+                    color='#fff'
+                />
                 <Decal
                     position={[0, 0, 1]}
                     rotation={[2 * Math.PI, 0, 6.25]}
