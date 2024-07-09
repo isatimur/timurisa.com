@@ -7,11 +7,11 @@ export default async function BlogPage() {
 
     return (
         <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
-            <header className="relative text-center py-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-md">
+            <aside className="relative text-center py-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-md">
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <h1 className="relative text-5xl font-bold mb-4">Passion to Code</h1>
                 <p className="relative text-lg">Sharing my journey and insights on coding, technology, and development.</p>
-            </header>
+            </aside>
             <main className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2 space-y-8">
                     {posts.map(post => {
@@ -21,7 +21,7 @@ export default async function BlogPage() {
                                 <Link href={`/blog/posts/${id}`}>
                                     <div className="block">
                                         <div className="h-80 mb-4 rounded-lg overflow-hidden">
-                                            <Image src={image} alt={title} className="w-full h-full object-cover"/>
+                                            <img src={image} alt={title} className="w-full h-full object-cover"/>
                                         </div>
                                         <h3 className="text-2xl font-semibold mb-2 text-gray-800">{title}</h3>
                                         <p className="text-gray-500">{date}</p>
@@ -53,10 +53,6 @@ export default async function BlogPage() {
                             </div>
                         </div>
                         <p className="text-gray-600 mt-4">Timur Isachenko is a seasoned software engineer with a passion for Java and Kotlin. He has been developing enterprise-level applications for over a decade and is excited to share his knowledge and insights with the community.</p>
-                        <div className="flex space-x-4 mt-4">
-                            <Link href="https://www.linkedin.com/in/timur-isachenko/"><Image src="/assets/iconmonstr-linkedin-3.svg" alt="LinkedIn" width="6" height="6" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
-                            <Link href="https://github.com/isatimur"><Image src="/assets/iconmonstr-github-1.svg" alt="GitHub"  width="6" height="6" className="w-6 h-6 hover:scale-110 transition-transform" /></Link>
-                        </div>
                     </div>
                 </aside>
             </main>
