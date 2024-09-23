@@ -5,6 +5,7 @@ import { textVariant } from "../utils/motion";
 import Tilt from "react-parallax-tilt";
 import { styles } from "../styles.js";
 import { book, book2 } from "../../public/assets"
+import Image from "next/image";
 
 
 const MyBook = () => {
@@ -21,10 +22,10 @@ const MyBook = () => {
             </motion.div>
             <div className="flex justify-center items-center space-x-4"> {/* Add space between the books */}
                 <Tilt ref={tiltRef1} key={"title1"} options={{ max: 25 }}>
-                    <img src={book.src} width="100%" height="h-full" alt="Book Cover 1" className="object-contain mb-4" />
+                    <Image src={book.src} width="100%" height="h-full" alt="Book Cover 1" className="object-contain mb-4" />
                 </Tilt>
                 <Tilt ref={tiltRef2} key={"title2"} options={{ max: 25 }}>
-                    <img src={book2.src} width="100%" height="h-full" alt="Book Cover 2" className="object-contain mb-4" />
+                    <Image src={book2.src} width="100%" height="h-full" alt="Book Cover 2" className="object-contain mb-4" />
                 </Tilt>
             </div>
         </>

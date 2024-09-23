@@ -10,7 +10,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@leafac/rehype-shiki": "^2.2.1",
-    "@react-three/drei": "^9.56.24",
+    "@react-three/drei": "^9.112.0",
     "@react-three/fiber": "^8.11.1",
     "emailjs-com": "^3.2.0",
     "eslint": "^8.57.0",
@@ -39,7 +39,7 @@
     "shiki": "^0.11.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.149.0",
+    "three": "^0.168.0",
     "unified": "^11.0.5"
   },
   "devDependencies": {
