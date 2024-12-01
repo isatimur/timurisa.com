@@ -20,12 +20,30 @@ const MyBook = () => {
                 </p>
                 <h2 className={`${styles.sectionHeadText} text-center`}>My books</h2> {/* Update heading to plural */}
             </motion.div>
-            <div className="flex justify-center items-center space-x-4"> {/* Add space between the books */}
+            <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
                 <Tilt ref={tiltRef1} key={"title1"} options={{ max: 25 }}>
-                    <Image src={book.src} width="100%" height="h-full" alt="Book Cover 1" className="object-contain mb-4" />
+                    <a href="https://a.co/d/4rVYpcH" target="_blank" rel="noopener noreferrer"
+                        className="block hover:opacity-80 transition-opacity">
+                        <Image
+                            src={book.src}
+                            width={400}
+                            height={550}
+                            alt="High Performance in-memory computing with Apache Ignite"
+                            className="object-contain shadow-lg rounded-lg"
+                        />
+                    </a>
                 </Tilt>
                 <Tilt ref={tiltRef2} key={"title2"} options={{ max: 25 }}>
-                    <Image src={book2.src} width="100%" height="h-full" alt="Book Cover 2" className="object-contain mb-4" />
+                    <a href="https://a.co/d/a7kqMqW" target="_blank" rel="noopener noreferrer"
+                        className="block hover:opacity-80 transition-opacity">
+                        <Image
+                            src={book2.src}
+                            width={400}
+                            height={550}
+                            alt="Generative AI with Local LLM"
+                            className="object-contain shadow-lg rounded-lg"
+                        />
+                    </a>
                 </Tilt>
             </div>
         </>

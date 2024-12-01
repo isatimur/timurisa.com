@@ -266,7 +266,8 @@ const experiences = [
             "Project for Glorify Bank: Played the role of Solution Architect focusing on brokerage integration with DriveWealth, and integrating AWS SQS events to Kafka. Also developed a notification service using Azure Cloud.",
             "Project for Red Cross: Contributed as a Java Developer, leading the payment migration from CyberSource to Braintree Paypal.",
             "Discovery Grant Management System for IRS: Functioned as a Technical Lead, overseeing the Grant Management System project development.",
-            "Development of MVP for Grant Management System for IRS: Worked as a Technical Lead, utilizing technologies such as Kotlin, Java 17, JOOQ, PlantUML, and Springboot Webflux."
+            "Development of MVP for Grant Management System for IRS: Worked as a Technical Lead, utilizing technologies such as Kotlin, Java 17, JOOQ, PlantUML, and Springboot Webflux.",
+            "StandupAI Project: Currently working on an AI-driven platform matching companies with government contracts, leveraging advanced machine learning and natural language processing technologies."
         ],
     },
     {
@@ -274,10 +275,10 @@ const experiences = [
         company_name: "IDS, Remotely",
         icon: ids,
         iconBg: "#f9bb5a",
-        date: "Nov 2022 - Present",
+        date: "Nov 2022 - Sept 2024",
         points: [
-            "Leading a team of developers in the creation and implementation of a microservice-based Billing product, built entirely from the ground up.",
-            "Spearheading the integration of various payment systems, implementing a Single Sign-On (SSO) solution, and crafting a bespoke API Gateway utilizing the Spring Cloud Gateway framework.",
+            "Led a team of developers in the creation and implementation of a microservice-based Billing product, built entirely from the ground up.",
+            "Spearheaded the integration of various payment systems, implementing a Single Sign-On (SSO) solution, and crafting a bespoke API Gateway utilizing the Spring Cloud Gateway framework.",
             "Technical Stack: Proficiency in Kotlin, Java 11 and above, JOOQ, SpringBoot, Webflux, Postgres, R2DBC, Spring Cloud Gateway, Keycloak, Kafka, and related technologies."
         ],
     },

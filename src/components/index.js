@@ -1,4 +1,4 @@
-import {BallCanvas, JavaCanvas, StarsCanvas, WorkStationCanvas} from './canvas';
+import {BallCanvas, StarsCanvas, WorkStationCanvas} from './canvas';
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import About from "./About";
@@ -24,7 +24,6 @@ export {
     Badges,
     MyBook,
     CanvasLoader,
-    JavaCanvas,
     BallCanvas,
     WorkStationCanvas,
     StarsCanvas

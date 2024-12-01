@@ -6,6 +6,7 @@ const nextConfig = {
         domains: [
             "lh3.googleusercontent.com",
             "googleusercontent.com",
+            "cdn.sanity.io"
             // "oaidalleapiprodscus.blob.core.windows.net",
             // "cdn.openai.com"
         ]

@@ -1,14 +1,18 @@
 import React, {Suspense, useEffect, useState} from "react";
 import {Canvas} from "@react-three/fiber";
 import {OrbitControls, Preload, useGLTF} from "@react-three/drei";
-
+import ErrorBoundary from "../ErrorBoundary";
 import CanvasLoader from "../Loader";
 import StarsCanvas from "./Stars";
 
 const WorkStation = ({isMobile}) => {
     const macbookpro = useGLTF("./mac_book_pro/mac.gltf")
+    if (!macbookpro.scene) {
+        return null;
+    }
+    
     return (
-        <mesh>
+        <group>
             <hemisphereLight intensity={0.15} groundColor='yellow'/>
             <spotLight
                 position={[-20, 50, 10]}
@@ -26,12 +30,13 @@ const WorkStation = ({isMobile}) => {
                 rotation={[-0.0, 1, -0.01]}
             />
 
-        </mesh>
+        </group>
     );
 };
 
 const WorkStationCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // Add a listener for changes to the screen size
@@ -54,26 +59,32 @@ const WorkStationCanvas = () => {
         };
     }, []);
 
-    return (
-        <Canvas
-            frameloop='demand'
-            shadows
-            dpr={[1, 2]}
-            camera={{position: [20, 3, 5], fov: 25}}
-            gl={{preserveDrawingBuffer: true}}
-        >
-            <Suspense fallback={<CanvasLoader/>}>
-                <OrbitControls
-                    enableZoom={false}
-                    enablePan={false}
-                    maxPolarAngle={Math.PI / 2}
-                    minPolarAngle={Math.PI / 2}
-                />
-                <WorkStation isMobile={isMobile}/>
-            </Suspense>
+    if (error) {
+        return <div>Error loading 3D content</div>;
+    }
 
-            <Preload all/>
-        </Canvas>
+    return (
+        <ErrorBoundary onError={(error) => setError(error)}>
+            <Canvas
+                frameloop='demand'
+                shadows
+                dpr={[1, 2]}
+                camera={{position: [20, 3, 5], fov: 25}}
+                gl={{preserveDrawingBuffer: true}}
+            >
+                <Suspense fallback={<CanvasLoader/>}>
+                    <OrbitControls
+                        enableZoom={false}
+                        enablePan={false}
+                        maxPolarAngle={Math.PI / 2}
+                        minPolarAngle={Math.PI / 2}
+                    />
+                    <WorkStation isMobile={isMobile}/>
+                </Suspense>
+
+                <Preload all/>
+            </Canvas>
+        </ErrorBoundary>
     );
 };
 
