@@ -11,7 +11,7 @@ import { CalendarIcon, ClockIcon, TagIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import createImageUrlBuilder from '@sanity/image-url';
 import { NavBar } from '@/components/NavBar';
-import { Brain, ShoppingCart , Linkedin } from 'lucide-react';
+import { Brain, ShoppingCart, Linkedin } from 'lucide-react';
 
 interface Post {
     _id: string;
@@ -84,7 +84,7 @@ const Footer = () => {
     ];
 
     const socialLinks = [
-        { 
+        {
             name: 'GitHub',
             href: 'https://github.com/isatimur',
             icon: (props: any) => (
@@ -99,7 +99,7 @@ const Footer = () => {
     return (
         <footer className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white shadow-lg mt-auto">
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"></div>
-            
+
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Section */}
@@ -120,7 +120,7 @@ const Footer = () => {
                     {/* Quick Links */}
                     <div className="flex flex-wrap gap-4 items-center justify-center">
                         {quickLinks.map((link) => (
-                            <Link 
+                            <Link
                                 key={link.name}
                                 href={link.href}
                                 className="text-blue-200 hover:text-white transition-all duration-200"
@@ -128,7 +128,7 @@ const Footer = () => {
                                 {link.name}
                             </Link>
                         ))}
-                        <Button 
+                        <Button
                             variant="ghost"
                             className="text-blue-200 hover:text-white hover:bg-white/10"
                             onClick={() => window.open("https://leanpub.com/quickstartwithai", "_blank")}
@@ -141,7 +141,7 @@ const Footer = () => {
                     {/* Social Links */}
                     <div className="flex justify-center md:justify-end items-center space-x-4">
                         {socialLinks.map((link) => (
-                            <Link 
+                            <Link
                                 key={link.name}
                                 href={link.href}
                                 target="_blank"

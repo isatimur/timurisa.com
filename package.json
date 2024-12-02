@@ -33,7 +33,7 @@
     "emailjs-com": "^3.2.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.0.4",
-    "framer-motion": "^9.0.7",
+    "framer-motion": "^9.1.7",
     "gray-matter": "^4.0.3",
     "icons-react": "^3.7.1",
     "lucide-react": "^0.462.0",
