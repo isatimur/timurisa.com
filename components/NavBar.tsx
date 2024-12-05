@@ -11,7 +11,8 @@ import { cn } from "@/lib/utils"
 
 const allNavLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' },
+    { name: 'Books', href: '/book' }
 
 ]
 export function NavBar() {

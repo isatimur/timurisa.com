@@ -468,3 +468,23 @@ footer a:hover {
     font-style: italic;
     font-size: 0.9rem;
 }
+
+.floating-button-item {
+    @apply bg-white/90 hover:bg-white p-3 rounded-full shadow-lg cursor-pointer 
+    transition-all duration-300 hover:scale-110 relative backdrop-blur-sm;
+}
+
+.tooltip {
+    @apply absolute right-16 top-1/2 -translate-y-1/2 
+    bg-black/80 text-white px-3 py-1.5 rounded-lg 
+    opacity-0 transition-opacity duration-300 whitespace-nowrap
+    text-sm font-medium;
+}
+
+.floating-button-item:hover .tooltip {
+    @apply opacity-100;
+}
+
+.floating-button-item:hover {
+    @apply shadow-xl;
+}

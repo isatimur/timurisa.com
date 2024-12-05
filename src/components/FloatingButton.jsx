@@ -4,11 +4,27 @@ import Image from "next/image";
 
 const FloatingButton = () => {
     return (
-        <div className="floating-button">
+        <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
             <Link href="/blog">
-                <div className="block">
-                    <Image width="48" height="48" src="/assets/blog-svgrepo-com.svg"  alt="Go to Blog"/>
-                    <span className="tooltip">Go to Blog</span>
+                <div className="floating-button-item">
+                    <Image
+                        width="48"
+                        height="48"
+                        src="/assets/blog-svgrepo-com.svg"
+                        alt="Go to Blog"
+                    />
+                    <span className="tooltip">Blog</span>
+                </div>
+            </Link>
+            <Link href="/book">
+                <div className="floating-button-item">
+                    <Image
+                        width="48"
+                        height="48"
+                        src="/assets/book-computer-hardware-svgrepo-com.svg"
+                        alt="Go to Books"
+                    />
+                    <span className="tooltip">Books</span>
                 </div>
             </Link>
         </div>

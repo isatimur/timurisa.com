@@ -20,6 +20,7 @@ const Footer = () => {
     const quickLinks = [
         { name: 'Home', href: '/' },
         { name: 'Blog', href: '/blog' },
+        { name: 'Book', href: '/book' },
     ];
 
     const socialLinks = [

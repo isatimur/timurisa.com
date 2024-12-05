@@ -6,6 +6,7 @@ import {About, Badges, Contact, Experience, Hero, MyBook, Navbar, StarsCanvas,
 import bg from "../app/bghero.jpeg";
 import {useEffect, useState} from "react";
 import FloatingButton from "./components/FloatingButton";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 // import Works from "./components/Works";
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
                 </main>
                 <footer>
                     <Contact/>
+                    <CookieConsent/>
                 </footer>
                 {!isMobile ? <StarsCanvas/> : "" }
             </div>
