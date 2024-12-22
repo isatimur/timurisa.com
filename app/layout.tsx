@@ -9,13 +9,39 @@ export const metadata: Metadata = {
         default: 'Timur Isachenko | Tech Lead | Solution Architect',
         template: '%s | Timur Isachenko'
     },
-    description: 'Portfolio and full information about my work, passion, contributions, achievements, awards and hobbies',
-    keywords: ['Tech Lead', 'Solution Architect', 'Software Development', 'Web Development', 'Technology'],
+    description: 'Tech Lead and Solution Architect specializing in high-performance computing with Apache Ignite, Generative AI, and distributed systems. Author of technical books and expert in AI implementation.',
+    keywords: [
+        'Tech Lead', 
+        'Solution Architect', 
+        'Apache Ignite', 
+        'Generative AI', 
+        'Local LLM', 
+        'High Performance Computing',
+        'Software Development',
+        'Web Development',
+        'Technology'
+    ],
     authors: [{ name: 'Timur Isachenko', url: 'https://timurisa.com' }],
     creator: 'Timur Isachenko',
     publisher: 'Timur Isachenko',
     alternates: {
         canonical: '/',
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://timurisa.com',
+        siteName: 'Timur Isachenko',
+        title: 'Timur Isachenko | Tech Lead & Solution Architect',
+        description: 'Portfolio and full information about my work, passion, contributions, achievements, awards and hobbies',
+        images: [
+            {
+                url: 'https://timurisa.com/apple-icon.png',
+                width: 180,
+                height: 180,
+                alt: 'Timur Isachenko Profile'
+            }
+        ]
     },
     robots: {
         index: true,
@@ -27,7 +53,7 @@ export const metadata: Metadata = {
             'max-image-preview': 'large',
             'max-snippet': -1,
         },
-    },
+    }
 }
 export default function RootLayout({
     children,

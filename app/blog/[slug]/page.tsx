@@ -110,6 +110,29 @@ const Footer = () => {
     );
 };
 
+const generateArticleSchema = (post: any) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.mainImage ? createImageUrlBuilder(client).image(post.mainImage).url() : null,
+    datePublished: post.publishedAt,
+    author: {
+        '@type': 'Person',
+        name: post.authorName,
+        url: 'https://timurisa.com'
+    },
+    publisher: {
+        '@type': 'Organization',
+        name: 'Timur Isachenko',
+        url: 'https://timurisa.com',
+        logo: {
+            '@type': 'ImageObject',
+            url: 'https://timurisa.com/apple-icon.png'
+        }
+    }
+});
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = params;
 
@@ -172,6 +195,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             .url()
         : null;
 
+    const articleSchema = generateArticleSchema(post);
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
             <Head>
@@ -180,6 +205,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <meta property="og:title" content={post.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:image" content={mainImageUrl} />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+                />
             </Head>
 
             <NavBar />

@@ -7,12 +7,14 @@ type ChangeFreq = 'weekly' | 'daily' | 'monthly' | 'always' | 'hourly' | 'yearly
 async function getBlogPosts() {
     const query = groq`*[_type == "post"] {
         "slug": slug.current,
-        _updatedAt
+        _updatedAt,
+        title,
+        publishedAt
     }`
     const posts = await client.fetch(query)
-    return posts.map((post: { slug: string; _updatedAt: string }) => ({
+    return posts.map((post: { slug: string; _updatedAt: string; publishedAt: string }) => ({
         url: `https://timurisa.com/blog/${post.slug}`,
-        lastModified: new Date(post._updatedAt),
+        lastModified: new Date(post._updatedAt || post.publishedAt),
         changeFrequency: 'weekly' as ChangeFreq,
         priority: 0.7,
     }))
@@ -36,12 +38,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/about`,
+            url: `${baseUrl}/book`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as ChangeFreq,
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/#about`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as ChangeFreq,
             priority: 0.6,
-        },
-        // Add other main pages here
+        }
     ]
 
     const staticPages = [
