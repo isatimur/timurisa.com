@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { CalendarIcon, ClockIcon, TagIcon } from 'lucide-react';
+import { CalendarIcon, ClockIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import createImageUrlBuilder from '@sanity/image-url';
 import { NavBar } from '@/components/NavBar';
@@ -38,24 +38,26 @@ const SearchBar = ({
     handleSearch: () => void
 }) => {
     return (
-        <div className="relative max-w-xl mx-auto mb-8">
-            <div className="relative">
+        <div className="relative max-w-xl mx-auto mb-12">
+            <div className="relative group">
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                     placeholder="Search articles..."
-                    className="w-full px-4 py-3 pl-12 rounded-lg border 
-                    border-gray-200 focus:border-blue-500 focus:ring-2 
-                    focus:ring-blue-200 transition-all duration-200 
-                    bg-white/80 backdrop-blur-sm shadow-sm
-                    placeholder:text-gray-400 text-gray-700"
+                    className="w-full px-6 py-4 pl-12 rounded-2xl border-2 
+                    border-gray-100 focus:border-blue-500 focus:ring-2 
+                    focus:ring-blue-200 transition-all duration-300 
+                    bg-white/90 backdrop-blur-sm shadow-sm
+                    placeholder:text-gray-400 text-gray-700 text-lg
+                    group-hover:border-blue-300"
                 />
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center 
-                    pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center 
+                    pointer-events-none transition-colors duration-300
+                    group-hover:text-blue-500">
                     <svg
-                        className="h-5 w-5 text-gray-400"
+                        className="h-6 w-6 text-gray-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -68,10 +70,6 @@ const SearchBar = ({
                         />
                     </svg>
                 </div>
-            </div>
-            <div className="absolute inset-0 -z-10 blur-xl 
-                bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 
-                opacity-50 rounded-lg">
             </div>
         </div>
     );
@@ -220,70 +218,114 @@ export default function BlogPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
             <NavBar />
-            <main className="container mx-auto px-4 py-8 flex-grow">
+            <main className="container mx-auto px-4 py-12 flex-grow">
+                {/* Hero Section */}
+                <div className="text-center mb-16">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                        Latest Articles
+                    </h1>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Explore in-depth articles about technology, programming, and software development.
+                    </p>
+                </div>
+
                 <SearchBar
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}
                     handleSearch={handleSearch}
                 />
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {posts.map((post) => (
-                        <Card key={post._id} className="overflow-hidden">
-                            <Image
-                                alt={post.title}
-                                className="object-cover w-full h-48"
-                                height={200}
-                                src={createImageUrlBuilder(client).image(post.mainImage).height(200).width(400).url()}
-                                width={400}
-                            />
-                            <CardHeader>
-                                <CardTitle>{post.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-gray-600">{post.excerpt}</p>
-                                <div className="flex items-center mt-4 space-x-4 text-sm text-gray-500">
-                                    <div className="flex items-center">
-                                        <CalendarIcon className="w-4 h-4 mr-1" />
-                                        <span>{format(new Date(post.publishedAt), 'MMM dd, yyyy')}</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <ClockIcon className="w-4 h-4 mr-1" />
-                                        <span>{post.estimatedReadingTime} min read</span>
+                        <Link 
+                            href={`/blog/${post.slug.current}`}
+                            key={post._id}
+                            className="group"
+                        >
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl 
+                                transition-all duration-300 h-full flex flex-col">
+                                <div className="relative overflow-hidden">
+                                    <Image
+                                        alt={post.title}
+                                        className="object-cover w-full h-56 group-hover:scale-105 
+                                            transition-transform duration-500"
+                                        height={224}
+                                        src={createImageUrlBuilder(client).image(post.mainImage)
+                                            .height(224).width(400).url()}
+                                        width={400}
+                                    />
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 
+                                        bg-gradient-to-t from-black/60 to-transparent">
+                                        <div className="flex flex-wrap gap-2">
+                                            {post.categories?.map((category) => (
+                                                <span
+                                                    key={category}
+                                                    className="px-3 py-1 text-xs font-medium text-white 
+                                                        bg-blue-500/80 rounded-full backdrop-blur-sm"
+                                                >
+                                                    {category}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-wrap mt-2">
-                                    {post.categories?.map((category) => (
-                                        <span
-                                            key={category}
-                                            className="inline-flex items-center px-2 py-1 mr-2 mt-2 text-xs font-medium text-blue-800 bg-blue-100 rounded"
-                                        >
-                                            <TagIcon className="w-3 h-3 mr-1" />
-                                            {category}
+
+                                <CardHeader>
+                                    <CardTitle className="text-xl group-hover:text-blue-600 
+                                        transition-colors duration-300">
+                                        {post.title}
+                                    </CardTitle>
+                                </CardHeader>
+
+                                <CardContent className="flex-grow">
+                                    <p className="text-gray-600 line-clamp-3">{post.excerpt}</p>
+                                </CardContent>
+
+                                <CardFooter className="border-t border-gray-100 bg-gray-50/50">
+                                    <div className="flex items-center justify-between w-full text-sm text-gray-500">
+                                        <div className="flex items-center space-x-4">
+                                            <span className="flex items-center">
+                                                <CalendarIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                                {format(new Date(post.publishedAt), 'MMM dd, yyyy')}
+                                            </span>
+                                            <span className="flex items-center">
+                                                <ClockIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                                {post.estimatedReadingTime} min read
+                                            </span>
+                                        </div>
+                                        <span className="text-blue-600 font-medium group-hover:translate-x-1 
+                                            transition-transform duration-300">
+                                            Read more →
                                         </span>
-                                    ))}
-                                </div>
-                            </CardContent>
-                            <CardFooter>
-                                <Button asChild>
-                                    <Link href={`/blog/${post.slug.current}`}>Read More</Link>
-                                </Button>
-                            </CardFooter>
-                        </Card>
+                                    </div>
+                                </CardFooter>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
+
                 {hasMore && (
-                    <div className="mt-12 text-center">
-                        <Button variant="outline" onClick={handleLoadMore} className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                    <div className="mt-16 text-center">
+                        <Button 
+                            variant="outline" 
+                            onClick={handleLoadMore} 
+                            className="px-8 py-6 text-lg border-2 border-blue-600 
+                                text-blue-600 hover:bg-blue-50 transition-all duration-300"
+                        >
                             Load More Articles
                         </Button>
                     </div>
                 )}
+                
                 {posts.length === 0 && (
-                    <p className="text-center text-gray-500 mt-8">No articles found.</p>
+                    <div className="text-center py-16">
+                        <p className="text-xl text-gray-500">No articles found.</p>
+                    </div>
                 )}
-                <p className="text-center text-gray-500 mt-4">
+                
+                <p className="text-center text-gray-500 mt-8">
                     Showing {posts.length} of {totalPosts} articles
                 </p>
             </main>

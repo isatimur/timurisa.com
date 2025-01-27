@@ -215,20 +215,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             <main className="container mx-auto px-4 py-12">
                 {/* Back to blog link */}
-                <div className="animate-fade-in">
+                <div className="animate-fade-in max-w-4xl mx-auto">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8 
-                                group transition-all duration-300"
+                        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-12
+                                group transition-all duration-300 text-lg"
                     >
-                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Back to Blog
+                        <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-2 transition-transform" />
+                        Back to Articles
                     </Link>
                 </div>
 
                 {/* Article Header */}
                 <header className="max-w-4xl mx-auto mb-16 animate-fade-in-up">
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-3 mb-8">
                         {post.categories?.map((category: string) => (
                             <span
                                 key={category}
@@ -241,18 +241,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         ))}
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
+                    <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
                                  bg-clip-text text-transparent mb-8 leading-tight">
                         {post.title}
                     </h1>
 
                     {post.excerpt && (
-                        <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                        <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
                             {post.excerpt}
                         </p>
                     )}
 
-                    <div className="flex flex-wrap items-center justify-between gap-6">
+                    <div className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm
+                                 border border-gray-100">
                         <div className="flex items-center space-x-6">
                             {authorImageUrl && (
                                 <div className="relative">
@@ -261,7 +262,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         width={80}
                                         height={80}
                                         alt={post.authorName}
-                                        className="w-14 h-14 rounded-full object-cover border-2 border-white 
+                                        className="w-16 h-16 rounded-full object-cover border-2 border-white 
                                                  shadow-md hover:shadow-lg transition-shadow duration-300"
                                     />
                                     <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 
@@ -269,12 +270,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 </div>
                             )}
                             <div>
-                                <div className="font-medium text-gray-900 mb-1">
+                                <div className="font-medium text-gray-900 mb-1 text-lg">
                                     {post.authorName || 'Unknown Author'}
                                 </div>
-                                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                                <div className="flex items-center space-x-6 text-sm text-gray-500">
                                     <span className="flex items-center">
-                                        <CalendarIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                        <CalendarIcon className="w-4 h-4 mr-2 text-gray-400" />
                                         {new Date(post.publishedAt).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'long',
@@ -282,17 +283,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         })}
                                     </span>
                                     <span className="flex items-center">
-                                        <ClockIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                        <ClockIcon className="w-4 h-4 mr-2 text-gray-400" />
                                         {readingTime} min read
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        {/* 
-                        <div className="flex items-center space-x-3">
-                            <ShareButton url={`/blog/${params.slug}`} title={post.title} />
-                            <BookmarkButton slug={params.slug} />
-                        </div> */}
                     </div>
                 </header>
 
@@ -317,7 +313,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                   prose-img:rounded-xl prose-img:shadow-xl
                                   prose-headings:font-bold prose-p:leading-relaxed
                                   prose-pre:bg-gray-900 prose-pre:shadow-lg
-                                  prose-code:text-blue-600
+                                  prose-code:text-blue-600 prose-strong:text-gray-900
+                                  prose-blockquote:border-blue-500
+                                  prose-blockquote:bg-blue-50 prose-blockquote:py-2
+                                  prose-blockquote:px-4 prose-blockquote:rounded-r-lg
                                   animate-fade-in-up [animation-delay:400ms]">
                     <EnhancedCleanArticle {...post} />
                 </article>
