@@ -2,7 +2,7 @@ import { groq } from 'next-sanity';
 import { client } from '@/sanity/lib/client';
 import EnhancedCleanArticle from '@/components/EnhancedCleanArticle';
 import createImageUrlBuilder from '@sanity/image-url';
-import Head from 'next/head';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { NavBar } from '@/components/NavBar';
 import Image from 'next/image';
 import { CalendarIcon, ClockIcon, ArrowLeft, Brain, ShoppingCart, Linkedin } from 'lucide-react';
@@ -15,6 +15,74 @@ interface BlogPostPageProps {
         slug: string;
     };
 }
+
+// Query for metadata
+const metadataQuery = groq`*[_type == "post" && slug.current == $slug][0]{
+    title,
+    mainImage,
+    excerpt,
+    "authorName": author->name,
+    publishedAt
+}`;
+
+export async function generateMetadata(
+    { params }: BlogPostPageProps,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { slug } = params;
+    const post = await client.fetch(metadataQuery, { slug });
+
+    if (!post) {
+        // Optionally handle not found post for metadata, e.g., return default metadata
+        // For now, assuming post will be found if page is rendered
+        return {
+            title: "Post Not Found",
+            description: "This blog post could not be found.",
+        };
+    }
+
+    const mainImageUrl = post.mainImage ? createImageUrlBuilder(client)
+        .image(post.mainImage)
+        .width(1200)
+        .height(630) // Corrected to 630 for standard OG
+        .format('webp')
+        .url() : 'https://timurisa.com/apple-icon.png'; // Fallback image
+
+    const previousImages = (await parent).openGraph?.images || [];
+
+    return {
+        title: { default: post.title, template: `%s | Timur Isachenko Blog` },
+        description: post.excerpt || `${post.title} by ${post.authorName || 'Timur Isachenko'}`,
+        authors: post.authorName ? [{ name: post.authorName, url: 'https://timurisa.com' }] : [{ name: 'Timur Isachenko', url: 'https://timurisa.com' }],
+        openGraph: {
+            title: post.title,
+            description: post.excerpt || `${post.title} by ${post.authorName || 'Timur Isachenko'}`,
+            url: `https://timurisa.com/blog/${slug}`,
+            siteName: 'Timur Isachenko Blog',
+            images: [
+                {
+                    url: mainImageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+                ...previousImages, // Include images from parent metadata if any
+            ],
+            locale: 'en_US',
+            type: 'article',
+            publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+            authors: post.authorName ? [post.authorName] : ['Timur Isachenko'],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.excerpt || `Read the article "${post.title}" by ${post.authorName || 'Timur Isachenko'} on my blog.`,
+            images: [mainImageUrl], 
+        },
+        // The JSON-LD script will be handled in the page component directly
+    };
+}
+
 
 const Footer = () => {
     const quickLinks = [
@@ -199,17 +267,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-            <Head>
-                <title>{post.title} | Timur Isachenko Blog</title>
-                <meta name="description" content={post.excerpt || `${post.title} by ${post.authorName}`} />
-                <meta property="og:title" content={post.title} />
-                <meta property="og:type" content="article" />
-                <meta property="og:image" content={mainImageUrl} />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-                />
-            </Head>
+            {/* JSON-LD Script Tag */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+                id="article-schema" // Added an id for clarity, not strictly necessary
+            />
 
             <NavBar />
 

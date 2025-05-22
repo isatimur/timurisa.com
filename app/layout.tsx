@@ -64,14 +64,9 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta property="og:title" content="Timur Isachenko | Tech Lead | Solution Architect" />
-                <meta property="og:description" content="Portfolio and full information about my work, passion, contributions, achievements, awards and hobbies" />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://timurisa.com" />
-                <meta property="og:image" content="https://timurisa.com/apple-icon.png" />
             </head>
             <body>
-                <div id="root">{children}</div>
+                {children}
             </body>
             <GoogleAnalytics gaId="G-EJLVH2G7G2" />
         </html>
