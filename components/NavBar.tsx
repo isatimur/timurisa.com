@@ -65,7 +65,8 @@ export function NavBar() {
                 <Sheet open={isOpen} onOpenChange={setIsOpen}>
                     <SheetTrigger asChild className="md:hidden">
                         <Button variant="ghost" size="icon" className="hover:bg-cyan-500/10">
-                            <span className="sr-only bg-secondary"><Menu className="h-6 w-6 text-cyan-400" aria-hidden="true" /></span>
+                            <Menu className="h-6 w-6 text-cyan-400" aria-hidden="true" />
+                            <span className="sr-only">Open menu</span>
                         </Button>
                     </SheetTrigger>
                     <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-950 border-l border-cyan-500/20">
