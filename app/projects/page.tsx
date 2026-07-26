@@ -9,7 +9,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Briefcase, Calendar, ChevronRight, Layers, Rocket, ExternalLink } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, Layers, Rocket, ExternalLink, Chrome, Sparkles } from 'lucide-react';
 import { projects } from '@/src/constants';
 
 interface Project {
@@ -26,15 +26,19 @@ interface Project {
 
 const typedProjects = projects as unknown as Project[];
 
-const CATEGORIES = ['All Projects', ...Array.from(new Set(typedProjects.map((p) => p.category)))];
+const CHROME_EXTENSION_NAME = 'Daily Affirmations';
+const chromeExtension = typedProjects.find((p) => p.name === CHROME_EXTENSION_NAME);
+const gridProjects = typedProjects.filter((p) => p.name !== CHROME_EXTENSION_NAME);
+
+const CATEGORIES = ['All Projects', ...Array.from(new Set(gridProjects.map((p) => p.category)))];
 
 export default function ProjectsPage() {
     const [activeCategory, setActiveCategory] = useState('All Projects');
     const [selected, setSelected] = useState<Project | null>(null);
 
     const filteredProjects = useMemo(() => {
-        if (activeCategory === 'All Projects') return typedProjects;
-        return typedProjects.filter((p) => p.category === activeCategory);
+        if (activeCategory === 'All Projects') return gridProjects;
+        return gridProjects.filter((p) => p.category === activeCategory);
     }, [activeCategory]);
 
     return (
@@ -54,6 +58,36 @@ export default function ProjectsPage() {
                         brokerage integrations, and Olympic-scale infrastructure.
                     </p>
                 </div>
+
+                {chromeExtension && (
+                    <div className="max-w-4xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl cyber-glass border border-emerald-500/30 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 px-3 py-1 text-[10px] font-mono tracking-widest text-emerald-300 bg-emerald-500/10 border-l border-b border-emerald-500/30 rounded-bl-xl">
+                            FEATURED
+                        </div>
+                        <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                            <Chrome className="w-8 h-8 text-emerald-400" />
+                        </div>
+                        <div className="flex-1 text-center sm:text-left">
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono mb-2">
+                                <Sparkles className="w-3.5 h-3.5" />
+                                <span>LIVE ON THE CHROME WEB STORE</span>
+                            </div>
+                            <h2 className="text-2xl font-bold text-white mb-1">{chromeExtension.name}</h2>
+                            <p className="text-slate-400 text-sm font-light max-w-xl">
+                                {chromeExtension.description}
+                            </p>
+                        </div>
+                        <a
+                            href={chromeExtension.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-sm shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
+                        >
+                            <Chrome className="w-4 h-4" />
+                            Add to Chrome
+                        </a>
+                    </div>
+                )}
 
                 <div className="flex flex-wrap justify-center gap-2.5 mb-12">
                     {CATEGORIES.map((cat) => (

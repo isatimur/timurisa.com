@@ -461,7 +461,7 @@ const projects = [
             "Part of a self-directed 25-microSaaS build challenge to ship small, focused products quickly.",
         ],
         tags: ["Chrome Extension", "JavaScript"],
-        link: "https://daily-affirmation.today",
+        link: "https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle",
     },
     {
         name: "Archigram",
