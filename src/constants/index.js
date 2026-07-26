@@ -486,6 +486,22 @@ const projects = [
             { type: "web", label: "Web App", url: "https://archigram.me" },
         ],
     },
+    {
+        name: "From Copilot to Colleague",
+        company_name: "AI Engineer Press",
+        date: "2026 - Present",
+        category: "Side Projects & Tools",
+        description:
+            "With Daniel Mohanrao. A source-anchored, evolving online book on AI engineering, where every claim links to the exact conference-talk video and timestamp it came from.",
+        points: [
+            "Drawn from 881 AI Engineer conference talks, with 199 source anchors backing 54 claims.",
+            "Public, machine-readable claims ledger and chapter drafts, with chapters graded by a panel of rival open models.",
+        ],
+        tags: ["AI Engineering", "Source-Anchored Research", "Open Access"],
+        platforms: [
+            { type: "web", label: "Read Online", url: "https://fromcopilottocolleague.com" },
+        ],
+    },
 ];
 
 export {services, badges, technologies, experiences, testimonials, projects};
