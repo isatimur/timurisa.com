@@ -9,11 +9,11 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles, Github } from 'lucide-react';
 import { projects } from '@/src/constants';
 
 interface Platform {
-    type: 'web' | 'chrome' | 'ios' | 'android';
+    type: 'web' | 'chrome' | 'ios' | 'android' | 'github';
     label: string;
     url: string;
 }
@@ -35,6 +35,7 @@ const PLATFORM_ICONS: Record<Platform['type'], typeof Chrome> = {
     chrome: Chrome,
     ios: Apple,
     android: Smartphone,
+    github: Github,
 };
 
 const typedProjects = projects as unknown as Project[];

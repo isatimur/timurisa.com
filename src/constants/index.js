@@ -502,6 +502,138 @@ const projects = [
             { type: "web", label: "Read Online", url: "https://fromcopilottocolleague.com" },
         ],
     },
+    {
+        name: "Claims Ledger",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "Source-anchored claims verification for docs, code, and AI agent decisions — CI fails the build when a cited source goes stale, so no claim ships without evidence.",
+        points: [
+            "Published as npm packages (@claims-ledger/edt, @claims-ledger/ledger-core) with a working demo and CI badges.",
+            "The verification engine behind the claims ledger used to fact-check From Copilot to Colleague.",
+        ],
+        tags: ["CI/CD", "Verification", "npm", "Developer Tools"],
+        platforms: [
+            { type: "web", label: "Demo", url: "https://isatimur.github.io/claims-ledger" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/claims-ledger" },
+        ],
+    },
+    {
+        name: "Personal Assistant",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A self-hosted, modular AI assistant running as a Telegram bot — multi-provider LLM support, a plugin architecture, and a nightly self-learning reflection loop.",
+        points: [
+            "Built with Kotlin coroutines in a ports-and-adapters architecture, with plugin JARs for Shell, Web, GitHub, Jira, and Linear.",
+            "Uses SQLite with FTS5 for memory and runs a nightly reflection loop to improve its own responses over time.",
+        ],
+        tags: ["Kotlin", "LLM", "Telegram Bot", "Self-Hosted"],
+        platforms: [
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/personal-assistant" },
+        ],
+    },
+    {
+        name: "Book Mash",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A multi-judge measurement engine for book manuscripts — six independent judges score prose on craft and epistemic dimensions, producing a JSON ledger and report.",
+        points: [
+            "First consumer of the tool is From Copilot to Colleague, whose chapters are graded by a panel of rival open models.",
+            "Outputs a structured, machine-readable scoring ledger rather than a single opaque rating.",
+        ],
+        tags: ["AI Evaluation", "Publishing Tools"],
+        platforms: [
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/book-mash" },
+        ],
+    },
+    {
+        name: "De-Slop",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A Claude Code skill that detects AI-sounding prose, rewrites it into writing with a real point of view, self-scores against a rubric, and iterates to a bar.",
+        points: [
+            "Flags hollow spans instead of fabricating claims, preserving meaning while removing filler.",
+            "Packaged as a portable Claude Code skill usable across any project.",
+        ],
+        tags: ["Claude Code", "AI Agents", "Writing Tools"],
+        platforms: [
+            { type: "web", label: "Web App", url: "https://de-slop-ai.vercel.app" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/de-slop" },
+        ],
+    },
+    {
+        name: "Excalidraw Skill Pack",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A universal skill pack that lets AI coding agents — Claude Code, Cursor, Codex, Gemini CLI, and any MCP-compatible agent — generate Excalidraw diagrams.",
+        points: [
+            "Works across multiple agent platforms via a shared, portable skill definition.",
+            "Lets an agent argue visually by producing real, editable Excalidraw files instead of static images.",
+        ],
+        tags: ["Excalidraw", "AI Agents", "Diagramming", "MCP"],
+        platforms: [
+            { type: "web", label: "Web App", url: "https://excalidraw-skill-pack.vercel.app" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/excalidraw-skill-pack" },
+        ],
+    },
+    {
+        name: "Presentation MD",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "Turns rough notes into schema-validated slide decks, exporting to PPTX, Keynote, or Google Slides — packaged as both an agent skill and an MCP server.",
+        points: [
+            "Validates deck structure against a schema before export, catching malformed slides early.",
+            "Ships as an MCP server so any MCP-compatible AI agent can generate presentations directly.",
+        ],
+        tags: ["MCP", "AI Agents", "Presentations"],
+        platforms: [
+            { type: "web", label: "Web App", url: "https://presentation-skill-pack.vercel.app" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/presentation-md" },
+        ],
+    },
+    {
+        name: "Remotion Skill Pack",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "Lets AI coding agents author Remotion video compositions as structured specs that render to real .mp4 files.",
+        points: [
+            "Defines a scene-by-scene composition spec that Remotion's renderer turns into production-ready video.",
+            "Extends the same 'agent authors structured spec, tool renders real output' pattern used across the skill-pack series.",
+        ],
+        tags: ["Remotion", "AI Agents", "Video"],
+        platforms: [
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/remotion-skill-pack" },
+        ],
+    },
+    {
+        name: "Improve Claude by 1M",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A marketplace of high-leverage Claude Code plugins — generator and verifier bundles with deterministic engines, gated by a CI quality check.",
+        points: [
+            "Pairs each generator plugin with an independent verifier so output quality is checked, not assumed.",
+            "CI quality gate blocks plugins that don't meet the bar before they ship into the marketplace.",
+        ],
+        tags: ["Claude Code", "AI Agents", "CI/CD"],
+        platforms: [
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/improve-claude-by-1M" },
+        ],
+    },
 ];
 
 export {services, badges, technologies, experiences, testimonials, projects};
