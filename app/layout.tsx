@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -73,15 +73,6 @@ export const metadata: Metadata = {
         description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 15+ years.',
         images: ['/apple-icon.png']
     },
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        viewportFit: 'cover',
-    },
-    themeColor: [
-        { media: '(prefers-color-scheme: light)', color: '#030712' },
-        { media: '(prefers-color-scheme: dark)', color: '#030712' },
-    ],
     robots: {
         index: true,
         follow: true,
@@ -93,6 +84,16 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
+};
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover',
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#030712' },
+        { media: '(prefers-color-scheme: dark)', color: '#030712' },
+    ],
 };
 
 export default function RootLayout({

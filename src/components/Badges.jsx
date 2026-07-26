@@ -5,7 +5,7 @@ import { badges } from "../constants";
 import Tilt from "react-parallax-tilt";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { ShieldCheck, ExternalLink, Award } from "lucide-react";
+import { ShieldCheck, ExternalLink } from "lucide-react";
 
 const BadgeCard = ({ title, icon, link, name, index }) => {
     const tiltRef = useRef(null);

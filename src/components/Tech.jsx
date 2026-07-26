@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
 import { textVariant, fadeIn } from "../utils/motion";
-import { Cpu, Code, Database, Cloud, Terminal } from "lucide-react";
 
 const CATEGORIES = [
     { id: 'all', label: 'All Stack' },

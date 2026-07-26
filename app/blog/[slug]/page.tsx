@@ -11,9 +11,9 @@ import Link from 'next/link';
 export const revalidate = 60;
 
 interface BlogPostPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 const Footer = () => {
@@ -134,7 +134,7 @@ const generateArticleSchema = (post: any) => ({
 });
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const { slug } = params;
+    const { slug } = await params;
 
     const query = groq`*[_type == "post" && slug.current == $slug][0]{
         title,

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Cpu, Menu, X, Terminal, ShieldCheck, Sparkles, BookOpen } from 'lucide-react'
+import { Cpu, Menu, X, Sparkles } from 'lucide-react'
 
 interface NavbarProps {
     onOpenAiAgent?: () => void

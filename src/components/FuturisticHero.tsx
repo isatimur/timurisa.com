@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Sparkles, Terminal, ChevronRight, BookOpen, ShieldCheck, Award, Layers, ArrowUpRight } from 'lucide-react'
+import { Sparkles, ChevronRight, BookOpen, Layers } from 'lucide-react'
 
 interface HeroProps {
     onOpenAiAgent?: () => void

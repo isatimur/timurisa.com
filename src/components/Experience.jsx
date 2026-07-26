@@ -1,11 +1,10 @@
 'use client';
 import React from "react";
 import { motion } from "framer-motion";
-import { styles } from "../styles.js";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { Briefcase, Calendar, ChevronRight, Award, Building2 } from "lucide-react";
+import { Calendar, ChevronRight } from "lucide-react";
 
 const ExperienceCard = ({ experience, index }) => {
     return (

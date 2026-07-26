@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Bot, Terminal, Sparkles, X, Send, Cpu, Zap, Volume2, VolumeX, Code, CheckCircle2, ShieldCheck } from 'lucide-react'
+import { Bot, Terminal, X, Send, Cpu, Zap, Volume2, VolumeX, Code, ShieldCheck } from 'lucide-react'
 
 interface Message {
     id: string
@@ -67,8 +67,17 @@ const TIMUR_STACK = {
     }
 }
 
-export const TimurAiAgent: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false)
+interface TimurAiAgentProps {
+    isOpen?: boolean
+    onOpen?: () => void
+    onClose?: () => void
+}
+
+export const TimurAiAgent: React.FC<TimurAiAgentProps> = ({ isOpen: controlledIsOpen, onOpen, onClose }) => {
+    const [internalIsOpen, setInternalIsOpen] = useState(false)
+    const isOpen = controlledIsOpen ?? internalIsOpen
+    const openAgent = onOpen ?? (() => setInternalIsOpen(true))
+    const closeAgent = onClose ?? (() => setInternalIsOpen(false))
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 'init-1',
@@ -98,7 +107,7 @@ export const TimurAiAgent: React.FC = () => {
             gain.connect(ctx.destination)
             osc.start()
             osc.stop(ctx.currentTime + 0.08)
-        } catch (e) {
+        } catch {
             // Audio ignore
         }
     }
@@ -160,7 +169,11 @@ export const TimurAiAgent: React.FC = () => {
             <div className="fixed bottom-6 right-6 z-50">
                 <button
                     onClick={() => {
-                        setIsOpen(!isOpen)
+                        if (isOpen) {
+                            closeAgent()
+                        } else {
+                            openAgent()
+                        }
                         playBeep()
                     }}
                     className="relative group flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-medium shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 active:scale-95 transition-all duration-300 border border-cyan-400/30"
@@ -205,7 +218,7 @@ export const TimurAiAgent: React.FC = () => {
                                     {soundEnabled ? <Volume2 className="w-4 h-4 text-cyan-400" /> : <VolumeX className="w-4 h-4" />}
                                 </button>
                                 <button
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={closeAgent}
                                     className="p-2 text-slate-400 hover:text-white hover:bg-rose-500/20 rounded-xl transition"
                                 >
                                     <X className="w-5 h-5" />
