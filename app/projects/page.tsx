@@ -9,8 +9,14 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Briefcase, Calendar, ChevronRight, Layers, Rocket, ExternalLink, Chrome, Sparkles } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles } from 'lucide-react';
 import { projects } from '@/src/constants';
+
+interface Platform {
+    type: 'web' | 'chrome' | 'ios' | 'android';
+    label: string;
+    url: string;
+}
 
 interface Project {
     name: string;
@@ -21,14 +27,21 @@ interface Project {
     description: string;
     points: string[];
     tags: string[];
-    link?: string;
+    platforms?: Platform[];
 }
+
+const PLATFORM_ICONS: Record<Platform['type'], typeof Chrome> = {
+    web: Globe,
+    chrome: Chrome,
+    ios: Apple,
+    android: Smartphone,
+};
 
 const typedProjects = projects as unknown as Project[];
 
-const CHROME_EXTENSION_NAME = 'Daily Affirmations';
-const chromeExtension = typedProjects.find((p) => p.name === CHROME_EXTENSION_NAME);
-const gridProjects = typedProjects.filter((p) => p.name !== CHROME_EXTENSION_NAME);
+const SIDE_PROJECTS_CATEGORY = 'Side Projects & Tools';
+const sideProjects = typedProjects.filter((p) => p.category === SIDE_PROJECTS_CATEGORY);
+const gridProjects = typedProjects.filter((p) => p.category !== SIDE_PROJECTS_CATEGORY);
 
 const CATEGORIES = ['All Projects', ...Array.from(new Set(gridProjects.map((p) => p.category)))];
 
@@ -59,33 +72,69 @@ export default function ProjectsPage() {
                     </p>
                 </div>
 
-                {chromeExtension && (
-                    <div className="max-w-4xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl cyber-glass border border-emerald-500/30 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 px-3 py-1 text-[10px] font-mono tracking-widest text-emerald-300 bg-emerald-500/10 border-l border-b border-emerald-500/30 rounded-bl-xl">
-                            FEATURED
+                {sideProjects.length > 0 && (
+                    <div className="max-w-5xl mx-auto mb-16">
+                        <div className="flex items-center gap-2 justify-center mb-6">
+                            <Sparkles className="w-4 h-4 text-emerald-400" />
+                            <h2 className="text-sm font-mono uppercase tracking-widest text-emerald-300">
+                                Side Projects & Tools
+                            </h2>
                         </div>
-                        <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                            <Chrome className="w-8 h-8 text-emerald-400" />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {sideProjects.map((project) => (
+                                <div
+                                    key={project.name}
+                                    className="p-6 rounded-2xl cyber-glass border border-emerald-500/20 cyber-glass-hover flex flex-col"
+                                >
+                                    <button
+                                        onClick={() => setSelected(project)}
+                                        className="text-left flex flex-col flex-grow group"
+                                    >
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                                                <Rocket className="w-5 h-5 text-emerald-400" />
+                                            </div>
+                                            <div className="min-w-0">
+                                                <div className="text-emerald-300 font-mono text-xs truncate">{project.company_name}</div>
+                                                <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
+                                                    <Calendar className="w-3 h-3" />
+                                                    {project.date}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-emerald-300 transition-colors">
+                                            {project.name}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-grow font-light">
+                                            {project.description}
+                                        </p>
+                                        <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-mono group-hover:gap-2 transition-all mb-4">
+                                            View Details <ChevronRight className="w-3.5 h-3.5" />
+                                        </span>
+                                    </button>
+
+                                    {project.platforms && project.platforms.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 pt-4 border-t border-emerald-500/10">
+                                            {project.platforms.map((platform) => {
+                                                const Icon = PLATFORM_ICONS[platform.type];
+                                                return (
+                                                    <a
+                                                        key={platform.url}
+                                                        href={platform.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono hover:bg-emerald-500/20 transition-colors"
+                                                    >
+                                                        <Icon className="w-3.5 h-3.5" />
+                                                        {platform.label}
+                                                    </a>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
-                        <div className="flex-1 text-center sm:text-left">
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono mb-2">
-                                <Sparkles className="w-3.5 h-3.5" />
-                                <span>LIVE ON THE CHROME WEB STORE</span>
-                            </div>
-                            <h2 className="text-2xl font-bold text-white mb-1">{chromeExtension.name}</h2>
-                            <p className="text-slate-400 text-sm font-light max-w-xl">
-                                {chromeExtension.description}
-                            </p>
-                        </div>
-                        <a
-                            href={chromeExtension.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-sm shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
-                        >
-                            <Chrome className="w-4 h-4" />
-                            Add to Chrome
-                        </a>
                     </div>
                 )}
 
@@ -217,15 +266,24 @@ export default function ProjectsPage() {
                                 ))}
                             </div>
 
-                            {selected.link && (
-                                <a
-                                    href={selected.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 text-sm font-mono pt-2"
-                                >
-                                    Visit Live Site <ExternalLink className="w-3.5 h-3.5" />
-                                </a>
+                            {selected.platforms && selected.platforms.length > 0 && (
+                                <div className="flex flex-wrap gap-2 pt-2">
+                                    {selected.platforms.map((platform) => {
+                                        const Icon = PLATFORM_ICONS[platform.type];
+                                        return (
+                                            <a
+                                                key={platform.url}
+                                                href={platform.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-sm font-mono hover:opacity-90 transition-opacity"
+                                            >
+                                                <Icon className="w-4 h-4" />
+                                                {platform.label}
+                                            </a>
+                                        );
+                                    })}
+                                </div>
                             )}
                         </>
                     )}

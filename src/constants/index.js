@@ -441,13 +441,17 @@ const projects = [
         date: "2026",
         category: "Side Projects & Tools",
         description:
-            "A visual timezone overlap tool and scheduler for distributed teams — a world clock showing day/night cycles and working hours across every team location at once, with an AI-powered meeting time finder.",
+            "The visual operating system for distributed teams — a timezone grid showing every teammate's day/night and work cycles at a glance, with a Golden Hour Finder that scores fairness across everyone's schedule to suggest meeting times nobody has to take at 3 AM.",
         points: [
-            "Built an AI-assisted meeting time finder that surfaces optimal scheduling windows across time zones.",
-            "Integrates with Google Calendar, Outlook, and Slack for exporting and sharing proposed meeting times.",
+            "Golden Hour Finder analyzes work hours, sleep schedules, and fairness across all participants to surface the best meeting times.",
+            "Native iOS app built entirely in SwiftUI, works fully offline with no account, no cloud sync, and no tracking.",
+            "Web app integrates with Google Calendar, Outlook, and Slack for exporting and sharing proposed meeting times.",
         ],
-        tags: ["Scheduling", "AI", "Distributed Teams"],
-        link: "https://zonelyte.com",
+        tags: ["Scheduling", "SwiftUI", "iOS", "Distributed Teams"],
+        platforms: [
+            { type: "web", label: "Web App", url: "https://zonelyte.com" },
+            { type: "ios", label: "App Store", url: "https://apps.apple.com/us/app/zonelyte/id6759605788" },
+        ],
     },
     {
         name: "Daily Affirmations",
@@ -461,7 +465,9 @@ const projects = [
             "Part of a self-directed 25-microSaaS build challenge to ship small, focused products quickly.",
         ],
         tags: ["Chrome Extension", "JavaScript"],
-        link: "https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle",
+        platforms: [
+            { type: "chrome", label: "Chrome Web Store", url: "https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle" },
+        ],
     },
     {
         name: "Archigram",
@@ -475,7 +481,9 @@ const projects = [
             "Targeted at engineers who need to communicate system design quickly without hand-drawing diagrams.",
         ],
         tags: ["AI", "Diagramming", "Developer Tools"],
-        link: "https://archigram.me",
+        platforms: [
+            { type: "web", label: "Web App", url: "https://archigram.me" },
+        ],
     },
 ];
 
