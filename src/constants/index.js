@@ -447,10 +447,11 @@ const projects = [
             "Native iOS app built entirely in SwiftUI, works fully offline with no account, no cloud sync, and no tracking.",
             "Web app integrates with Google Calendar, Outlook, and Slack for exporting and sharing proposed meeting times.",
         ],
-        tags: ["Scheduling", "SwiftUI", "iOS", "Distributed Teams"],
+        tags: ["Scheduling", "SwiftUI", "iOS", "Chrome Extension", "Distributed Teams"],
         platforms: [
             { type: "web", label: "Web App", url: "https://zonelyte.com" },
             { type: "ios", label: "App Store", url: "https://apps.apple.com/us/app/zonelyte/id6759605788" },
+            { type: "chrome", label: "Chrome Extension", url: "https://chromewebstore.google.com/detail/zonelyte-%E2%80%94-best-meeting-t/ofedhcncoglkknickaohkfkllhgihelm" },
         ],
     },
     {
