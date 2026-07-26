@@ -65,7 +65,7 @@ const ServiceCard = ({title, icon, description}) => {
                         onMouseLeave={handleMouseLeave}
                         onDoubleClick={handleDoubleClick}
                         variants={fadeIn("right", "spring", title * 0.5, 0.75)}
-                        className="relative h-full bg-burnt-orange p-[1px] rounded-[20px] shadow-card"
+                        className="relative h-full rounded-[20px] cyber-glass border border-cyan-500/20 cyber-glass-hover overflow-hidden"
                         style={{userSelect: "none"}}
             >
                 {isHovering && (
@@ -92,24 +92,14 @@ const ServiceCard = ({title, icon, description}) => {
                 >
                     {isFlipped ? (
                         <div
-                            options={{
-                                max: 45,
-                                scale: 1,
-                                speed: 450,
-                            }}
-                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col back face ${isFlipped ? '' : 'rotate-y-180'}`}>
-                            <p className="text-[#264653] text-[15px] text-center">{description}</p>
+                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col ${isFlipped ? '' : 'rotate-y-180'}`}>
+                            <p className="text-slate-300 text-[15px] text-center font-light">{description}</p>
                         </div>
 
                     ) : (
                         <div
-                            options={{
-                                max: 45,
-                                scale: 1,
-                                speed: 450,
-                            }}
-                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col front face ${isFlipped ? 'rotate-y-180' : ''}`}>
-                            <Image src={icon.src} alt={title} width="16" height="16" className="w-16 h-16 object-contain mb-4"/>
+                            className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col ${isFlipped ? 'rotate-y-180' : ''}`}>
+                            <Image src={icon.src} alt={title} width="16" height="16" className="w-16 h-16 object-contain mb-4 drop-shadow-[0_0_12px_rgba(0,240,255,0.3)]"/>
                             <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
                         </div>
                     )}
