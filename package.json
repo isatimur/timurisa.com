@@ -17,15 +17,12 @@
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
-    "@react-three/drei": "^9.119.0",
-    "@react-three/fiber": "8.15.11",
     "@sanity/cli": "3.65.1",
     "@sanity/icons": "3.5.0",
     "@sanity/image-url": "1.1.0",
     "@sanity/presentation": "1.19.1",
     "@sanity/vision": "3.65.1",
     "@sanity/visual-editing": "2.10.2",
-    "@types/three": "0.158.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "easymde": "^2.21.0",
@@ -45,8 +42,7 @@
     "sharp": "^0.35.3",
     "styled-components": "^6.4.4",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7",
-    "three": "^0.168.0"
+    "tailwindcss-animate": "^1.0.7"
   },
   "engines": {
     "node": "24.x"
