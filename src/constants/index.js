@@ -603,6 +603,23 @@ const projects = [
         ],
     },
     {
+        name: "Slide Deck Benchmark",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Developer Tools & AI Agents",
+        description:
+            "A bake-off of 7 slide-deck generation skills run against the same real-world brief — scored on brand fidelity, design, completeness, and cost, with downloadable decks and a side-by-side comparator.",
+        points: [
+            "Evaluates 7 competing slide-generation approaches on identical inputs rather than relying on a single tool's self-reported quality.",
+            "Ships the actual generated decks alongside the scores, so the comparison is directly checkable, not just a number.",
+        ],
+        tags: ["AI Evaluation", "Benchmarking", "Presentations"],
+        platforms: [
+            { type: "web", label: "Web App", url: "https://swiirl-deck-benchmark.vercel.app" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/slide-deck.md" },
+        ],
+    },
+    {
         name: "Remotion Skill Pack",
         company_name: "Independent",
         date: "2026 - Present",
