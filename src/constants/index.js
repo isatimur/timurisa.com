@@ -436,6 +436,23 @@ const projects = [
         tags: ["Java", "XSLT", "Oracle", "GWT"],
     },
     {
+        name: "Swiirl: The Game",
+        company_name: "Built with a team",
+        date: "2026",
+        category: "Side Projects & Tools",
+        description:
+            "A narrative side-scrolling platformer built for fun with a team — guide Swiirl through Community Park collecting real community insights while dodging corporate obstacles, delivered as a satirical take on business decision-making.",
+        points: [
+            "Five levels, each with a different corporate-archetype boss (Hot-Take Hank, Middle Manager Mike, VP of Vibes, The Algorithm, The CEO).",
+            "Polished platformer feel: variable jump height, coyote time, jump buffering, and double-jump, with hand-rendered animation from official character sheets.",
+        ],
+        tags: ["Game Dev", "Team Project", "For Fun"],
+        platforms: [
+            { type: "web", label: "Play the Game", url: "https://swiirly-game.vercel.app" },
+            { type: "github", label: "GitHub", url: "https://github.com/isatimur/swiirly-game" },
+        ],
+    },
+    {
         name: "Zonelyte",
         company_name: "Independent",
         date: "2026",
@@ -616,7 +633,6 @@ const projects = [
         tags: ["AI Evaluation", "Benchmarking", "Presentations"],
         platforms: [
             { type: "web", label: "Web App", url: "https://swiirl-deck-benchmark.vercel.app" },
-            { type: "github", label: "GitHub", url: "https://github.com/isatimur/slide-deck.md" },
         ],
     },
     {
