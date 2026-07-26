@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
 import { textVariant, fadeIn } from "../utils/motion";
+import Image from "next/image";
 
 const CATEGORIES = [
     { id: 'all', label: 'All Stack' },
@@ -65,11 +66,13 @@ const Tech = () => {
                         variants={fadeIn("up", "spring", index * 0.05, 0.5)}
                         className="p-5 rounded-2xl cyber-glass border border-cyan-500/15 cyber-glass-hover flex flex-col items-center justify-center text-center group cursor-pointer"
                     >
-                        <div className="w-14 h-14 mb-3 flex items-center justify-center p-2 rounded-xl bg-slate-900/80 border border-slate-800 group-hover:border-cyan-500/40 group-hover:scale-110 transition-all">
-                            <img
-                                src={tech.icon.src}
+                        <div className="relative w-14 h-14 mb-3 flex items-center justify-center p-2 rounded-xl bg-slate-900/80 border border-slate-800 group-hover:border-cyan-500/40 group-hover:scale-110 transition-all">
+                            <Image
+                                src={tech.icon}
                                 alt={tech.name}
-                                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.2)]"
+                                fill
+                                sizes="56px"
+                                className="object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.2)]"
                             />
                         </div>
                         <span className="text-white text-xs font-mono font-bold tracking-wider group-hover:text-cyan-300 transition-colors">

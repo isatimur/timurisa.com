@@ -7,6 +7,7 @@ import Tilt from "react-parallax-tilt";
 import Link from "next/link";
 import { book, book2 } from "../../public/assets";
 import { BookOpen, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const MyBook = () => {
     const tiltRef1 = useRef(null);
@@ -34,10 +35,10 @@ const MyBook = () => {
                     className="p-8 rounded-3xl cyber-glass border border-cyan-500/20 cyber-glass-hover flex flex-col md:flex-row items-center gap-6 group"
                 >
                     <Tilt ref={tiltRef1} options={{ max: 25 }} className="w-48 shrink-0">
-                        <img
-                            src={book.src}
+                        <Image
+                            src={book}
                             alt="High Performance In-Memory Computing with Apache Ignite"
-                            className="w-full rounded-xl shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 object-cover"
+                            className="w-full h-auto rounded-xl shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 object-cover"
                         />
                     </Tilt>
 
@@ -72,10 +73,10 @@ const MyBook = () => {
                     className="p-8 rounded-3xl cyber-glass-violet border border-purple-500/20 cyber-glass-hover flex flex-col md:flex-row items-center gap-6 group"
                 >
                     <Tilt ref={tiltRef2} options={{ max: 25 }} className="w-48 shrink-0">
-                        <img
-                            src={book2.src}
+                        <Image
+                            src={book2}
                             alt="Generative AI with Local LLM"
-                            className="w-full rounded-xl shadow-2xl shadow-purple-500/20 border border-purple-500/30 object-cover"
+                            className="w-full h-auto rounded-xl shadow-2xl shadow-purple-500/20 border border-purple-500/30 object-cover"
                         />
                     </Tilt>
 

@@ -6,6 +6,7 @@ import Tilt from "react-parallax-tilt";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
 import { ShieldCheck, ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 const BadgeCard = ({ title, icon, link, name, index }) => {
     const tiltRef = useRef(null);
@@ -21,9 +22,11 @@ const BadgeCard = ({ title, icon, link, name, index }) => {
                 </div>
 
                 <a href={link} target="_blank" rel="noopener noreferrer" className="block my-4 transform group-hover:scale-110 transition-transform">
-                    <img 
-                        src={icon.src} 
-                        alt={name} 
+                    <Image
+                        src={icon}
+                        alt={name}
+                        width={96}
+                        height={96}
                         className="w-24 h-24 object-contain drop-shadow-[0_0_15px_rgba(0,240,255,0.3)]"
                     />
                 </a>

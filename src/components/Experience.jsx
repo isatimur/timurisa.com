@@ -5,6 +5,7 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
 import { Calendar, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const ExperienceCard = ({ experience, index }) => {
     return (
@@ -14,11 +15,13 @@ const ExperienceCard = ({ experience, index }) => {
         >
             {/* Left Column: Company Icon & Timeline Meta */}
             <div className="flex items-center gap-4 shrink-0 lg:w-64">
-                <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-cyan-500/30 p-2.5 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                    <img
-                        src={experience.icon.src}
+                <div className="relative w-14 h-14 rounded-2xl bg-slate-900 border border-cyan-500/30 p-2.5 flex items-center justify-center shadow-lg shadow-cyan-500/10">
+                    <Image
+                        src={experience.icon}
                         alt={experience.company_name}
-                        className="w-full h-full object-contain"
+                        fill
+                        sizes="56px"
+                        className="object-contain"
                     />
                 </div>
                 <div>
