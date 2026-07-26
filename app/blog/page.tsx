@@ -11,7 +11,7 @@ import { CalendarIcon, ClockIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import createImageUrlBuilder from '@sanity/image-url';
 import { NavBar } from '@/components/NavBar';
-import { Brain, ShoppingCart, Linkedin } from 'lucide-react';
+import { Cpu, ShoppingCart, Linkedin } from 'lucide-react';
 
 interface Post {
     _id: string;
@@ -46,18 +46,18 @@ const SearchBar = ({
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                     placeholder="Search articles..."
-                    className="w-full px-6 py-4 pl-12 rounded-2xl border-2 
-                    border-gray-100 focus:border-blue-500 focus:ring-2 
-                    focus:ring-blue-200 transition-all duration-300 
-                    bg-white/90 backdrop-blur-sm shadow-sm
-                    placeholder:text-gray-400 text-gray-700 text-lg
-                    group-hover:border-blue-300"
+                    className="w-full px-6 py-4 pl-12 rounded-2xl border-2
+                    border-slate-800 focus:border-cyan-500/50 focus:ring-2
+                    focus:ring-cyan-500/20 transition-all duration-300
+                    bg-slate-900/80 backdrop-blur-sm shadow-sm
+                    placeholder:text-slate-500 text-slate-200 text-lg
+                    group-hover:border-cyan-500/30"
                 />
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center 
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center
                     pointer-events-none transition-colors duration-300
-                    group-hover:text-blue-500">
+                    group-hover:text-cyan-400">
                     <svg
-                        className="h-6 w-6 text-gray-400"
+                        className="h-6 w-6 text-slate-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -95,22 +95,22 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white shadow-lg mt-auto">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"></div>
+        <footer className="relative bg-slate-950 border-t border-cyan-500/10 text-white shadow-lg mt-auto">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
 
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Section */}
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <div className="p-1.5 bg-white/10 rounded-lg backdrop-blur-sm">
-                                <Brain className="h-5 w-5 text-blue-300" />
+                            <div className="p-1.5 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                                <Cpu className="h-5 w-5 text-cyan-400" />
                             </div>
-                            <h3 className="text-lg font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent py-1">
-                                Timur Isachenko
+                            <h3 className="text-lg font-bold text-white font-mono py-1">
+                                TIMUR<span className="text-cyan-400">.AI</span>
                             </h3>
                         </div>
-                        <p className="text-sm text-blue-100">
+                        <p className="text-sm text-slate-400">
                             Exploring technology and sharing knowledge through detailed articles and tutorials.
                         </p>
                     </div>
@@ -121,14 +121,14 @@ const Footer = () => {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-blue-200 hover:text-white transition-all duration-200"
+                                className="text-slate-400 hover:text-cyan-400 transition-all duration-200"
                             >
                                 {link.name}
                             </Link>
                         ))}
                         <Button
                             variant="ghost"
-                            className="text-blue-200 hover:text-white hover:bg-white/10"
+                            className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10"
                             onClick={() => window.open("https://leanpub.com/quickstartwithai", "_blank")}
                         >
                             <ShoppingCart className="mr-2 h-4 w-4" />
@@ -143,13 +143,13 @@ const Footer = () => {
                                 key={link.name}
                                 href={link.href}
                                 target="_blank"
-                                className="p-2 bg-white/10 rounded-lg hover:bg-white/20 text-blue-200 
-                                         hover:text-white transition-all duration-300 backdrop-blur-sm
+                                className="p-2 bg-cyan-500/10 rounded-lg hover:bg-cyan-500/20 text-slate-300
+                                         hover:text-cyan-300 transition-all duration-300
                                          group relative"
                             >
                                 <link.icon className="h-5 w-5" />
-                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 
-                                               bg-white text-blue-900 text-xs px-2 py-1 rounded 
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2
+                                               bg-slate-900 border border-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded
                                                opacity-0 group-hover:opacity-100 transition-all duration-300">
                                     {link.name}
                                 </span>
@@ -159,8 +159,8 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-6 border-t border-white/10 text-center">
-                    <p className="text-blue-200/80 text-sm">
+                <div className="pt-6 border-t border-slate-800 text-center">
+                    <p className="text-slate-500 text-sm">
                         &copy; {new Date().getFullYear()} Timur Isachenko. All rights reserved.
                     </p>
                 </div>
@@ -218,15 +218,15 @@ export default function BlogPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen flex flex-col bg-[#030712] bg-grid-pattern">
             <NavBar />
             <main className="container mx-auto px-4 py-12 flex-grow">
                 {/* Hero Section */}
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text-cyber">
                         Latest Articles
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-xl text-slate-400 max-w-2xl mx-auto">
                         Explore in-depth articles about technology, programming, and software development.
                     </p>
                 </div>
@@ -244,26 +244,26 @@ export default function BlogPage() {
                             key={post._id}
                             className="group"
                         >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl 
+                            <Card className="overflow-hidden cyber-glass border border-cyan-500/20 cyber-glass-hover
                                 transition-all duration-300 h-full flex flex-col">
                                 <div className="relative overflow-hidden">
                                     <Image
                                         alt={post.title}
-                                        className="object-cover w-full h-56 group-hover:scale-105 
+                                        className="object-cover w-full h-56 group-hover:scale-105
                                             transition-transform duration-500"
                                         height={224}
                                         src={createImageUrlBuilder(client).image(post.mainImage)
                                             .height(224).width(400).url()}
                                         width={400}
                                     />
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 
-                                        bg-gradient-to-t from-black/60 to-transparent">
+                                    <div className="absolute bottom-0 left-0 right-0 p-4
+                                        bg-gradient-to-t from-black/70 to-transparent">
                                         <div className="flex flex-wrap gap-2">
                                             {post.categories?.map((category) => (
                                                 <span
                                                     key={category}
-                                                    className="px-3 py-1 text-xs font-medium text-white 
-                                                        bg-blue-500/80 rounded-full backdrop-blur-sm"
+                                                    className="px-3 py-1 text-xs font-medium text-cyan-100
+                                                        bg-cyan-500/30 border border-cyan-400/30 rounded-full backdrop-blur-sm"
                                                 >
                                                     {category}
                                                 </span>
@@ -273,29 +273,29 @@ export default function BlogPage() {
                                 </div>
 
                                 <CardHeader>
-                                    <CardTitle className="text-xl group-hover:text-blue-600 
+                                    <CardTitle className="text-xl text-white group-hover:text-cyan-400
                                         transition-colors duration-300">
                                         {post.title}
                                     </CardTitle>
                                 </CardHeader>
 
                                 <CardContent className="flex-grow">
-                                    <p className="text-gray-600 line-clamp-3">{post.excerpt}</p>
+                                    <p className="text-slate-400 line-clamp-3">{post.excerpt}</p>
                                 </CardContent>
 
-                                <CardFooter className="border-t border-gray-100 bg-gray-50/50">
-                                    <div className="flex items-center justify-between w-full text-sm text-gray-500">
+                                <CardFooter className="border-t border-slate-800 bg-slate-900/50">
+                                    <div className="flex items-center justify-between w-full text-sm text-slate-500">
                                         <div className="flex items-center space-x-4">
                                             <span className="flex items-center">
-                                                <CalendarIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                                <CalendarIcon className="w-4 h-4 mr-1.5 text-slate-500" />
                                                 {format(new Date(post.publishedAt), 'MMM dd, yyyy')}
                                             </span>
                                             <span className="flex items-center">
-                                                <ClockIcon className="w-4 h-4 mr-1.5 text-gray-400" />
+                                                <ClockIcon className="w-4 h-4 mr-1.5 text-slate-500" />
                                                 {post.estimatedReadingTime} min read
                                             </span>
                                         </div>
-                                        <span className="text-blue-600 font-medium group-hover:translate-x-1 
+                                        <span className="text-cyan-400 font-medium group-hover:translate-x-1
                                             transition-transform duration-300">
                                             Read more →
                                         </span>
@@ -308,24 +308,24 @@ export default function BlogPage() {
 
                 {hasMore && (
                     <div className="mt-16 text-center">
-                        <Button 
-                            variant="outline" 
-                            onClick={handleLoadMore} 
-                            className="px-8 py-6 text-lg border-2 border-blue-600 
-                                text-blue-600 hover:bg-blue-50 transition-all duration-300"
+                        <Button
+                            variant="outline"
+                            onClick={handleLoadMore}
+                            className="px-8 py-6 text-lg border-2 border-cyan-500/40 bg-cyan-500/5
+                                text-cyan-300 hover:bg-cyan-500/15 transition-all duration-300"
                         >
                             Load More Articles
                         </Button>
                     </div>
                 )}
-                
+
                 {posts.length === 0 && (
                     <div className="text-center py-16">
-                        <p className="text-xl text-gray-500">No articles found.</p>
+                        <p className="text-xl text-slate-500">No articles found.</p>
                     </div>
                 )}
-                
-                <p className="text-center text-gray-500 mt-8">
+
+                <p className="text-center text-slate-500 mt-8">
                     Showing {posts.length} of {totalPosts} articles
                 </p>
             </main>

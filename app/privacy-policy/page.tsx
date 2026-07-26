@@ -11,10 +11,10 @@ export default function PrivacyPolicyPage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
             <NavBar />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
+                <h1 className="text-4xl font-bold mb-8 text-white">Privacy Policy</h1>
                 <div className="prose prose-lg">
                     <p>Last updated: {formattedDate}</p>
                     
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
                     <p>If you have any questions about this Privacy Policy, please contact us:</p>
                     <ul className="list-disc pl-6 space-y-2">
                         <li>By email: [Your Email]</li>
-                        <li>By visiting our contact page: <a href="/contact" className="text-blue-600 hover:underline">Contact Form</a></li>
+                        <li>By visiting our contact page: <a href="/contact" className="text-cyan-400 hover:underline">Contact Form</a></li>
                     </ul>
                 </div>
             </main>

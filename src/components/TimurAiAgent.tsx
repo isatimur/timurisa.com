@@ -18,6 +18,16 @@ const PRESET_PROMPTS = [
     "🛠️ What is Timur's core technology stack?"
 ]
 
+const renderFormattedText = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g)
+    return parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={i} className="font-semibold text-white">{part.slice(2, -2)}</strong>
+        }
+        return <React.Fragment key={i}>{part}</React.Fragment>
+    })
+}
+
 const AI_KNOWLEDGE_BASE: Record<string, { reply: string; code?: string }> = {
     "architecture": {
         reply: "Timur Isachenko is a Principal Solution Architect & Team Lead with over 15 years of hands-on experience building mission-critical, microservice-based enterprise platforms. He has spearheaded teams of 20+ engineers, designed cloud-native event-driven architectures with Kafka and Spring Cloud, and managed financial/banking integrations.",
@@ -258,7 +268,7 @@ export const TimurAiAgent: React.FC<TimurAiAgentProps> = ({ isOpen: controlledIs
                                             : 'bg-slate-900/90 border border-cyan-500/20 text-slate-200 rounded-bl-none shadow-md'
                                     }`}>
                                         <div className="whitespace-pre-line leading-relaxed">
-                                            {msg.text}
+                                            {renderFormattedText(msg.text)}
                                         </div>
 
                                         {msg.codeSnippet && (

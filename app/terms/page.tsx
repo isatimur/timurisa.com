@@ -11,10 +11,10 @@ export default function TermsPage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
             <NavBar />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8">Terms and Conditions</h1>
+                <h1 className="text-4xl font-bold mb-8 text-white">Terms and Conditions</h1>
                 <div className="prose prose-lg">
                     <p>Last updated: {formattedDate}</p>
                     
@@ -60,7 +60,7 @@ export default function TermsPage() {
                     <p>We reserve the right to modify these terms at any time. Please review these terms periodically for changes.</p>
 
                     <h2 className="text-2xl font-semibold mt-8 mb-4">9. Contact Information</h2>
-                    <p>If you have any questions about these Terms, please contact us through our <a href="/contact" className="text-blue-600 hover:underline">contact page</a>.</p>
+                    <p>If you have any questions about these Terms, please contact us through our <a href="/contact" className="text-cyan-400 hover:underline">contact page</a>.</p>
                 </div>
             </main>
         </div>

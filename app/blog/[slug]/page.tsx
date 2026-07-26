@@ -5,7 +5,7 @@ import createImageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
 import { NavBar } from '@/components/NavBar';
 import Image from 'next/image';
-import { CalendarIcon, ClockIcon, ArrowLeft, Brain, ShoppingCart, Linkedin } from 'lucide-react';
+import { CalendarIcon, ClockIcon, ArrowLeft, Cpu, ShoppingCart, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 export const revalidate = 60;
@@ -37,22 +37,22 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white shadow-lg mt-auto">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"></div>
+        <footer className="relative bg-slate-950 border-t border-cyan-500/10 text-white shadow-lg mt-auto">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
 
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Section */}
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <div className="p-1.5 bg-white/10 rounded-lg backdrop-blur-sm">
-                                <Brain className="h-5 w-5 text-blue-300" />
+                            <div className="p-1.5 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                                <Cpu className="h-5 w-5 text-cyan-400" />
                             </div>
-                            <h3 className="text-lg font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent py-1">
-                                Timur Isachenko
+                            <h3 className="text-lg font-bold text-white font-mono py-1">
+                                TIMUR<span className="text-cyan-400">.AI</span>
                             </h3>
                         </div>
-                        <p className="text-sm text-blue-100">
+                        <p className="text-sm text-slate-400">
                             Exploring technology and sharing knowledge through detailed articles and tutorials.
                         </p>
                     </div>
@@ -63,7 +63,7 @@ const Footer = () => {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-blue-200 hover:text-white transition-all duration-200"
+                                className="text-slate-400 hover:text-cyan-400 transition-all duration-200"
                             >
                                 {link.name}
                             </Link>
@@ -71,7 +71,7 @@ const Footer = () => {
                         <Link
                             href="https://leanpub.com/quickstartwithai"
                             target="_blank"
-                            className="text-blue-200 hover:text-white hover:bg-white/10"
+                            className="text-slate-400 hover:text-cyan-400"
                         >
                             <span className="flex items-center"><ShoppingCart className="mr-2 h-4 w-4" />Get the Book</span>
                         </Link>
@@ -84,13 +84,13 @@ const Footer = () => {
                                 key={link.name}
                                 href={link.href}
                                 target="_blank"
-                                className="p-2 bg-white/10 rounded-lg hover:bg-white/20 text-blue-200 
-                                         hover:text-white transition-all duration-300 backdrop-blur-sm
+                                className="p-2 bg-cyan-500/10 rounded-lg hover:bg-cyan-500/20 text-slate-300
+                                         hover:text-cyan-300 transition-all duration-300
                                          group relative"
                             >
                                 <link.icon className="h-5 w-5" />
-                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 
-                                               bg-white text-blue-900 text-xs px-2 py-1 rounded 
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2
+                                               bg-slate-900 border border-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded
                                                opacity-0 group-hover:opacity-100 transition-all duration-300">
                                     {link.name}
                                 </span>
@@ -100,8 +100,8 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-6 border-t border-white/10 text-center">
-                    <p className="text-blue-200/80 text-sm">
+                <div className="pt-6 border-t border-slate-800 text-center">
+                    <p className="text-slate-500 text-sm">
                         &copy; {new Date().getFullYear()} Timur Isachenko. All rights reserved.
                     </p>
                 </div>
@@ -151,13 +151,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     if (!post) {
         return (
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-[#030712]">
                 <NavBar />
                 <div className="container mx-auto px-4 py-12 text-center">
-                    <h1 className="text-2xl font-bold text-gray-900">Post not found</h1>
+                    <h1 className="text-2xl font-bold text-white">Post not found</h1>
                     <Link
                         href="/blog"
-                        className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-800"
+                        className="mt-4 inline-flex items-center text-cyan-400 hover:text-cyan-300"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back to Blog
@@ -198,7 +198,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const articleSchema = generateArticleSchema(post);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
             <Head>
                 <title>{post.title} | Timur Isachenko Blog</title>
                 <meta name="description" content={post.excerpt || `${post.title} by ${post.authorName}`} />
@@ -218,7 +218,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="animate-fade-in max-w-4xl mx-auto">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-12
+                        className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-12
                                 group transition-all duration-300 text-lg"
                     >
                         <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-2 transition-transform" />
@@ -232,28 +232,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         {post.categories?.map((category: string) => (
                             <span
                                 key={category}
-                                className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full 
-                                         text-sm font-medium border border-blue-100
-                                         hover:bg-blue-100 transition-colors duration-300"
+                                className="px-4 py-1.5 bg-cyan-500/10 text-cyan-300 rounded-full
+                                         text-sm font-medium border border-cyan-500/20
+                                         hover:bg-cyan-500/20 transition-colors duration-300"
                             >
                                 {category}
                             </span>
                         ))}
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
-                                 bg-clip-text text-transparent mb-8 leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
                         {post.title}
                     </h1>
 
                     {post.excerpt && (
-                        <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
+                        <p className="text-xl md:text-2xl text-slate-400 mb-12 leading-relaxed font-light">
                             {post.excerpt}
                         </p>
                     )}
 
-                    <div className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm
-                                 border border-gray-100">
+                    <div className="flex items-center justify-between p-6 cyber-glass rounded-2xl
+                                 border border-cyan-500/20">
                         <div className="flex items-center space-x-6">
                             {authorImageUrl && (
                                 <div className="relative">
@@ -262,20 +261,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         width={80}
                                         height={80}
                                         alt={post.authorName}
-                                        className="w-16 h-16 rounded-full object-cover border-2 border-white 
+                                        className="w-16 h-16 rounded-full object-cover border-2 border-cyan-500/30
                                                  shadow-md hover:shadow-lg transition-shadow duration-300"
                                     />
-                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 
-                                                  rounded-full border-2 border-white"></div>
+                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-400
+                                                  rounded-full border-2 border-slate-950"></div>
                                 </div>
                             )}
                             <div>
-                                <div className="font-medium text-gray-900 mb-1 text-lg">
+                                <div className="font-medium text-white mb-1 text-lg">
                                     {post.authorName || 'Unknown Author'}
                                 </div>
-                                <div className="flex items-center space-x-6 text-sm text-gray-500">
+                                <div className="flex items-center space-x-6 text-sm text-slate-400">
                                     <span className="flex items-center">
-                                        <CalendarIcon className="w-4 h-4 mr-2 text-gray-400" />
+                                        <CalendarIcon className="w-4 h-4 mr-2 text-slate-500" />
                                         {new Date(post.publishedAt).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'long',
@@ -283,7 +282,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         })}
                                     </span>
                                     <span className="flex items-center">
-                                        <ClockIcon className="w-4 h-4 mr-2 text-gray-400" />
+                                        <ClockIcon className="w-4 h-4 mr-2 text-slate-500" />
                                         {readingTime} min read
                                     </span>
                                 </div>
@@ -294,7 +293,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                 {/* Main Image */}
                 {mainImageUrl && (
-                    <div className="max-w-5xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl 
+                    <div className="max-w-5xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10 border border-cyan-500/10
                                   animate-fade-in-up [animation-delay:200ms]">
                         <Image
                             src={mainImageUrl}
@@ -308,14 +307,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                 {/* Article Content */}
                 <article className="prose prose-lg md:prose-xl max-w-4xl mx-auto
-                                  prose-headings:text-gray-900 prose-p:text-gray-600
-                                  prose-a:text-blue-600 hover:prose-a:text-blue-800
+                                  prose-headings:text-white prose-p:text-slate-300
+                                  prose-a:text-cyan-400 hover:prose-a:text-cyan-300
                                   prose-img:rounded-xl prose-img:shadow-xl
                                   prose-headings:font-bold prose-p:leading-relaxed
-                                  prose-pre:bg-gray-900 prose-pre:shadow-lg
-                                  prose-code:text-blue-600 prose-strong:text-gray-900
-                                  prose-blockquote:border-blue-500
-                                  prose-blockquote:bg-blue-50 prose-blockquote:py-2
+                                  prose-pre:bg-slate-900 prose-pre:shadow-lg
+                                  prose-code:text-cyan-300 prose-strong:text-white
+                                  prose-blockquote:border-cyan-500/40
+                                  prose-blockquote:bg-cyan-500/5 prose-blockquote:py-2
                                   prose-blockquote:px-4 prose-blockquote:rounded-r-lg
                                   animate-fade-in-up [animation-delay:400ms]">
                     <EnhancedCleanArticle {...post} />

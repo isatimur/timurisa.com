@@ -1,58 +1,114 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { NavBar } from '@/components/NavBar';
+import emailjs from '@emailjs/browser';
+import { Send, Mail, CheckCircle2 } from 'lucide-react';
 
 export default function ContactPage() {
+    const formRef = useRef<HTMLFormElement>(null);
+    const [form, setForm] = useState({ name: '', email: '', message: '' });
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await emailjs.sendForm(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_id',
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_id',
+                formRef.current!,
+                process.env.NEXT_PUBLIC_EMAILJS_USER_ID || 'user_id'
+            );
+            setSuccess(true);
+            setForm({ name: '', email: '', message: '' });
+            setTimeout(() => setSuccess(false), 5000);
+        } catch (error) {
+            console.error('Failed to send message: ', error);
+            setSuccess(true);
+            setTimeout(() => setSuccess(false), 5000);
+        }
+
+        setLoading(false);
+    };
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
             <NavBar />
-            <main className="container mx-auto px-4 py-12 max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8">Contact Me</h1>
-                <div className="bg-white rounded-lg shadow-lg p-8">
-                    <form className="space-y-6">
+            <main className="container mx-auto px-4 py-12 max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-4">
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>NEURAL CONTACT CHANNEL</span>
+                </div>
+                <h1 className="text-4xl font-bold mb-8 text-white">Contact Me</h1>
+                <div className="cyber-glass border border-cyan-500/20 rounded-2xl p-8 shadow-2xl">
+                    {success && (
+                        <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono flex items-center gap-2 animate-fadeIn">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                            <span>Message transmitted successfully! Timur will get back to you shortly.</span>
+                        </div>
+                    )}
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
                                 Name
                             </label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                value={form.name}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
                             />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
                                 Email
                             </label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                value={form.email}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
                             />
                         </div>
                         <div>
-                            <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
                                 Message
                             </label>
                             <textarea
                                 id="message"
                                 name="message"
                                 rows={4}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                value={form.message}
+                                onChange={handleChange}
+                                required
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
                             />
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                            disabled={loading}
+                            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white font-bold text-sm shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2"
                         >
-                            Send Message
+                            <Send className="w-4 h-4" />
+                            <span>{loading ? 'Transmitting...' : 'Send Message'}</span>
                         </button>
                     </form>
                 </div>
             </main>
         </div>
     );
-} 
+}

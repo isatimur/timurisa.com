@@ -49,18 +49,18 @@ a {
 }
 .prose {
     max-width: 100%;
-    color: #2d3748;
+    color: #cbd5e1;
 }
 .prose h1, .prose h2, .prose h3 {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    color: #1a202c;
+    color: #f8fafc;
 }
 .prose p {
     margin-bottom: 1.25rem;
     line-height: 1.7;
-    color: #4a5568;
+    color: #cbd5e1;
 }
 .header {
     text-align: center;

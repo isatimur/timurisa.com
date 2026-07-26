@@ -44,7 +44,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  console.log(isClient);
+  void isClient;
 
   const components: PortableTextComponents = {
     types: {
@@ -53,9 +53,9 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
         const imageUrl = builder.image(asset).url();
         if (!imageUrl) {
           return (
-            <div className="bg-gray-200 p-4 rounded-md">
-              <p className="text-red-500">Image not available</p>
-              <p className="text-sm text-gray-600">Alt text: {alt || 'No alt text provided'}</p>
+            <div className="bg-slate-800 p-4 rounded-md">
+              <p className="text-red-400">Image not available</p>
+              <p className="text-sm text-slate-400">Alt text: {alt || 'No alt text provided'}</p>
             </div>
           );
         }
@@ -68,17 +68,17 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
                 alt={alt || ''}
                 width={customSize?.width || 800}
                 height={customSize?.height || 600}
-                className="rounded-lg"
+                className="rounded-lg border border-cyan-500/10"
               />
             </div>
-            {caption && <figcaption className="text-center text-sm mt-2 text-gray-600">{caption}</figcaption>}
+            {caption && <figcaption className="text-center text-sm mt-2 text-slate-500">{caption}</figcaption>}
           </figure>
         );
       },
       code: ({ value }: { value: CodeBlock }) => (
         <div className="my-4">
           {value.filename && (
-            <div className="bg-gray-200 px-4 py-2 rounded-t-md text-sm font-mono">
+            <div className="bg-slate-800 text-slate-300 px-4 py-2 rounded-t-md text-sm font-mono">
               {value.filename}
             </div>
           )}
@@ -110,16 +110,16 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
         return <h4 id={`heading-${_key}`} className="text-xl font-bold my-2">{children}</h4>;
       },
       normal: ({ children }) => <p className="my-4">{children}</p>,
-      blockquote: ({ children }) => <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">{children}</blockquote>,
+      blockquote: ({ children }) => <blockquote className="border-l-4 border-cyan-500/30 pl-4 italic my-4 text-slate-400">{children}</blockquote>,
     },
     marks: {
-      strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+      strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
       em: ({ children }) => <em className="italic">{children}</em>,
-      code: ({ children }) => <code className="bg-gray-100 rounded px-1">{children}</code>,
+      code: ({ children }) => <code className="bg-slate-800 text-cyan-300 rounded px-1">{children}</code>,
       link: ({ value, children }) => {
         const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
         return (
-          <a href={value?.href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className="text-blue-500 hover:underline">
+          <a href={value?.href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className="text-cyan-400 hover:underline">
             {children}
           </a>
         );

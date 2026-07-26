@@ -14,4 +14,4 @@ export default function PrivacyPolicyLayout({
     children: React.ReactNode
 }) {
     return children;
-} 2 
+} 

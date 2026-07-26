@@ -39,7 +39,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => 
                 <a
                     key={heading.id}
                     href={`#${heading.id}`}
-                    className={`block py-2 px-3 rounded-md transition-colors hover:bg-gray-100 ${heading.level > 2 ? `ml-${(heading.level - 2) * 4}` : ''
+                    className={`block py-2 px-3 rounded-md transition-colors text-slate-400 hover:text-cyan-300 hover:bg-cyan-500/10 ${heading.level > 2 ? `ml-${(heading.level - 2) * 4}` : ''
                         }`}
                 >
                     {heading.text}

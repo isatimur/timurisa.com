@@ -4,7 +4,7 @@ import React from 'react';
 import { NavBar } from '@/components/NavBar';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, BookOpen, Star, Brain } from 'lucide-react';
+import { ShoppingCart, BookOpen, Star, Cpu } from 'lucide-react';
 import { book, book2 } from '../../public/assets';
 import Link from 'next/link';
 import { Linkedin, Globe } from 'lucide-react';
@@ -30,22 +30,22 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white shadow-lg mt-auto">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"></div>
+        <footer className="relative bg-slate-950 border-t border-cyan-500/10 text-white shadow-lg mt-auto">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
 
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Section */}
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <div className="p-1.5 bg-white/10 rounded-lg backdrop-blur-sm">
-                                <Brain className="h-5 w-5 text-blue-300" />
+                            <div className="p-1.5 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                                <Cpu className="h-5 w-5 text-cyan-400" />
                             </div>
-                            <h3 className="text-lg font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent py-1">
-                                Timur Isachenko
+                            <h3 className="text-lg font-bold text-white font-mono py-1">
+                                TIMUR<span className="text-cyan-400">.AI</span>
                             </h3>
                         </div>
-                        <p className="text-sm text-blue-100">
+                        <p className="text-sm text-slate-400">
                             Exploring technology and sharing knowledge through detailed articles and tutorials.
                         </p>
                     </div>
@@ -56,14 +56,14 @@ const Footer = () => {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-blue-200 hover:text-white transition-all duration-200"
+                                className="text-slate-400 hover:text-cyan-400 transition-all duration-200"
                             >
                                 {link.name}
                             </Link>
                         ))}
                         <Button
                             variant="ghost"
-                            className="text-blue-200 hover:text-white hover:bg-white/10"
+                            className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10"
                             onClick={() => window.open("https://leanpub.com/quickstartwithai", "_blank")}
                         >
                             <ShoppingCart className="mr-2 h-4 w-4" />
@@ -78,13 +78,13 @@ const Footer = () => {
                                 key={link.name}
                                 href={link.href}
                                 target="_blank"
-                                className="p-2 bg-white/10 rounded-lg hover:bg-white/20 text-blue-200 
-                                         hover:text-white transition-all duration-300 backdrop-blur-sm
+                                className="p-2 bg-cyan-500/10 rounded-lg hover:bg-cyan-500/20 text-slate-300
+                                         hover:text-cyan-300 transition-all duration-300
                                          group relative"
                             >
                                 <link.icon className="h-5 w-5" />
-                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 
-                                               bg-white text-blue-900 text-xs px-2 py-1 rounded 
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2
+                                               bg-slate-900 border border-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded
                                                opacity-0 group-hover:opacity-100 transition-all duration-300">
                                     {link.name}
                                 </span>
@@ -94,8 +94,8 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-6 border-t border-white/10 text-center">
-                    <p className="text-blue-200/80 text-sm">
+                <div className="pt-6 border-t border-slate-800 text-center">
+                    <p className="text-slate-500 text-sm">
                         &copy; {new Date().getFullYear()} Timur Isachenko. All rights reserved.
                     </p>
                 </div>
@@ -148,57 +148,57 @@ const BookPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
             <NavBar />
             <main className="container mx-auto px-4 py-12">
-                <h1 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                <h1 className="text-4xl font-bold text-center mb-12 gradient-text-cyber">
                     My Published Books
                 </h1>
 
                 <div className="space-y-16 py-4">
                     {books.map((book, index) => (
-                        <section key={index} className="bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row gap-8">
+                        <section key={index} className="cyber-glass border border-cyan-500/20 rounded-2xl p-8 flex flex-col md:flex-row gap-8">
                             <div className="md:w-1/3">
                                 <Image
                                     src={book.image.src}
                                     width={400}
                                     height={550}
                                     alt={book.title}
-                                    className="rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                                    className="rounded-lg shadow-2xl shadow-cyan-500/10 border border-cyan-500/20 hover:shadow-cyan-500/20 transition-shadow"
                                 />
                             </div>
                             <div className="md:w-2/3 space-y-6">
-                                <h2 className="text-3xl font-bold text-gray-800">{book.title}</h2>
+                                <h2 className="text-3xl font-bold text-white">{book.title}</h2>
                                 {book.rating > 0 && (
                                     <div className="flex items-center space-x-2">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i}
-                                                className={`w-5 h-5 ${i < Math.floor(book.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                                                className={`w-5 h-5 ${i < Math.floor(book.rating) ? 'text-amber-400 fill-current' : 'text-slate-700'}`}
                                             />
                                         ))}
-                                        <span className="text-gray-600">({book.rating})</span>
+                                        <span className="text-slate-400">({book.rating})</span>
                                     </div>
                                 )}
 
-                                <p className="text-gray-600 text-lg leading-relaxed">
+                                <p className="text-slate-300 text-lg leading-relaxed font-light">
                                     {book.description}
                                 </p>
 
-                                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                                <div className="grid grid-cols-2 gap-4 text-sm text-slate-400">
                                     <div>
-                                        <strong>Published:</strong> {book.publishDate}
+                                        <strong className="text-slate-200">Published:</strong> {book.publishDate}
                                     </div>
                                     <div>
-                                        <strong>Publisher:</strong> {book.publisher}
+                                        <strong className="text-slate-200">Publisher:</strong> {book.publisher}
                                     </div>
                                     <div>
-                                        <strong>Pages:</strong> {book.pages}
+                                        <strong className="text-slate-200">Pages:</strong> {book.pages}
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h3 className="text-xl font-semibold text-gray-800">Key Features:</h3>
-                                    <ul className="list-disc list-inside space-y-2 text-gray-600">
+                                    <h3 className="text-xl font-semibold text-white">Key Features:</h3>
+                                    <ul className="list-disc list-inside space-y-2 text-slate-300">
                                         {book.features.map((feature, i) => (
                                             <li key={i}>{feature}</li>
                                         ))}
@@ -210,7 +210,7 @@ const BookPage = () => {
                                         <Button
                                             onClick={() => handleBookPurchase(book.leanpubLink)}
                                             variant="outline"
-                                            className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                                            className="border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
                                         >
                                             <BookOpen className="mr-2 h-4 w-4" />
                                             Get on Leanpub
@@ -218,16 +218,16 @@ const BookPage = () => {
                                     )}
                                     <Button
                                         onClick={() => handleBookPurchase(book.amazonLink)}
-                                        className="bg-orange-500 hover:bg-orange-600"
+                                        className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
                                     >
                                         <ShoppingCart className="mr-2 h-4 w-4" />
                                         Buy on Amazon
                                     </Button>
                                     {book.websiteLink && (
-                                        <Button 
+                                        <Button
                                             onClick={() => handleBookPurchase(book.websiteLink)}
                                             variant="outline"
-                                            className="border-green-600 text-green-600 hover:bg-green-50"
+                                            className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20 hover:text-emerald-200"
                                         >
                                             <Globe className="mr-2 h-4 w-4" />
                                             Visit Website
