@@ -14,6 +14,7 @@ const CATEGORIES = [
     { id: 'database', label: 'Databases & Storage' }
 ];
 
+/* eslint-disable react/display-name */
 const Tech = () => {
     const [activeFilter, setActiveFilter] = useState('all');
 

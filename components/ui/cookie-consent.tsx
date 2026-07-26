@@ -25,10 +25,10 @@ export function CookieConsent() {
         <div className="fixed bottom-0 left-0 right-0 bg-white bg-opacity-70 backdrop-blur-md shadow-lg py-1.5 px-4 z-50 border-t border-blue-100">
             <div className="container mx-auto flex items-center justify-between">
                 <p className="text-xs sm:text-sm text-gray-600 flex-grow mr-4">
-                    We use cookies to enhance your experience. By continuing, you agree to our use of cookies. <a href="https://en.wikipedia.org/wiki/HTTP_cookie" className="text-blue-500 hover:text-blue-600">More info</a>
+                    We use cookies to enhance your experience. By continuing, you agree to our use of cookies. <a href="https://en.wikipedia.org/wiki/HTTP_cookie" className="text-primary hover:text-primary/80">More info</a>
                 </p>
                 <div className="flex items-center space-x-4">
-                    <Button onClick={acceptCookies} className="bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm py-1 px-3">
+                    <Button onClick={acceptCookies} className="bg-primary hover:bg-primary/80 text-white text-xs sm:text-sm py-1 px-3">
                         Accept
                     </Button>
                     <button onClick={() => setShowConsent(false)} className="text-gray-400 hover:text-blue-500">

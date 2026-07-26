@@ -4,6 +4,99 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.7s ease-out forwards;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+}
+a {
+    text-decoration: none;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.prose {
+    max-width: 100%;
+    color: #2d3748;
+}
+.prose h1, .prose h2, .prose h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+.prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+    color: #4a5568;
+}
+.header {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+.header p {
+    font-size: 1.25rem;
+    color: #718096;
+}
+/*footer {*/
+/*    text-align: center;*/
+/*    padding: 2rem 0;*/
+/*    background-color: #fff;*/
+/*    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);*/
+/*}*/
+footer p {
+    font-size: 1rem;
+    color: #718096;
+}
+footer a {
+    font-size: 1rem;
+    color: #718096;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+footer a:hover {
+    color: #2d3748;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -132,6 +225,68 @@ code, pre, .font-mono {
     pointer-events: none;
 }
 
+.floating-button {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background-color: #f4a261; /* A bright color to stand out */
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: floating 3s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(-10px);
+    }
+    100% {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+.floating-button:hover {
+    transform: translateY(-50%) scale(1.1);
+    background-color: #f4a261; /* A different shade to indicate hover */
+}
+
+.floating-button svg {
+    width: 40px;
+    height: 40px;
+    fill: #ffffff;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.floating-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 .hash-span {
     margin-top: -100px;
     padding-bottom: 100px;
@@ -161,4 +316,66 @@ code, pre, .font-mono {
         --ring: 191 100% 50%;
         --radius: 0.75rem;
     }
+}
+.blog-post {
+    color: #000;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.blog-post-header {
+    margin-bottom: 20px;
+}
+
+.blog-post-media img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.blog-post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.blog-post-tag {
+    background-color: #eee;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-right: 5px;
+}
+
+.blog-post-content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.blog-post-footer {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.floating-button-item {
+    @apply bg-white/90 hover:bg-white p-3 rounded-full shadow-lg cursor-pointer 
+    transition-all duration-300 hover:scale-110 relative backdrop-blur-sm;
+}
+
+.tooltip {
+    @apply absolute right-16 top-1/2 -translate-y-1/2 
+    bg-black/80 text-white px-3 py-1.5 rounded-lg 
+    opacity-0 transition-opacity duration-300 whitespace-nowrap
+    text-sm font-medium;
+}
+
+.floating-button-item:hover .tooltip {
+    @apply opacity-100;
+}
+
+.floating-button-item:hover {
+    @apply shadow-xl;
 }

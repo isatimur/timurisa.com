@@ -12,12 +12,17 @@ import Tech from "./components/Tech";
 import Badges from "./components/Badges";
 import MyBook from "./components/MyBook";
 import Contact from "./components/Contact";
+import FloatingButton from "./components/FloatingButton";
 
 const App = () => {
     const [isAiAgentOpen, setIsAiAgentOpen] = useState(false);
 
     const handleOpenAiAgent = () => {
         setIsAiAgentOpen(true);
+    };
+
+    const handleCloseAiAgent = () => {
+        setIsAiAgentOpen(false);
     };
 
     return (
@@ -51,8 +56,14 @@ const App = () => {
                 </div>
             </footer>
 
+            <FloatingButton />
+
             {/* Interactive Timur AI Agent Modal & Trigger */}
-            <TimurAiAgent />
+            <TimurAiAgent
+                isOpen={isAiAgentOpen}
+                onOpen={handleOpenAiAgent}
+                onClose={handleCloseAiAgent}
+            />
         </div>
     );
 };

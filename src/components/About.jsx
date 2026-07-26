@@ -6,6 +6,7 @@ import {styles} from "../styles.js";
 import {services} from "../constants";
 import {SectionWrapper} from "../hoc";
 import {fadeIn, textVariant} from "../utils/motion";
+import Image from "next/image";
 
 const flipVariant = {
     front: {
@@ -57,14 +58,14 @@ const ServiceCard = ({title, icon, description}) => {
     };
 
     return (
-        <Tilt ref={tiltRef} key={title} className='xs:w-[250px] w-full' options={{max: 25}}>
+        <Tilt ref={tiltRef} key={title} className="xs:w-[250px] w-full" options={{max: 25}}>
             <motion.div id="interactiveDiv" ref={cardRef}
                         onMouseMove={handleMouseMove}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                         onDoubleClick={handleDoubleClick}
                         variants={fadeIn("right", "spring", title * 0.5, 0.75)}
-                        className='relative h-full bg-burnt-orange p-[1px] rounded-[20px] shadow-card'
+                        className="relative h-full bg-burnt-orange p-[1px] rounded-[20px] shadow-card"
                         style={{userSelect: "none"}}
             >
                 {isHovering && (
@@ -108,7 +109,7 @@ const ServiceCard = ({title, icon, description}) => {
                                 speed: 450,
                             }}
                             className={`rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col front face ${isFlipped ? 'rotate-y-180' : ''}`}>
-                            <img src={icon.src} alt={title} className="w-16 h-16 object-contain mb-4"/>
+                            <Image src={icon.src} alt={title} width="16" height="16" className="w-16 h-16 object-contain mb-4"/>
                             <h3 className="w-full text-white text-[20px] font-bold text-center">{title}</h3>
                         </div>
                     )}

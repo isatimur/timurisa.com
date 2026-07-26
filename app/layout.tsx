@@ -19,28 +19,31 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://timurisachenko.com'),
+    metadataBase: new URL('https://timurisa.com'),
     title: {
-        default: "Timur Isachenko - Software Engineer & Technical Writer",
+        default: "Timur Isachenko | Principal Solution Architect & AI System Engineer",
         template: "%s | Timur Isachenko"
     },
-    description: "Personal blog and portfolio of Timur Isachenko. Writing about software engineering, AI development, and technical insights from industry experience.",
+    description: "Principal Solution Architect and AI System Engineer specializing in reactive systems, microservices, and generative AI. 15+ years scaling systems for the Sochi 2014 Olympics, Sberbank, and enterprise platforms.",
     keywords: [
         "Timur Isachenko",
+        "Solution Architect",
+        "Tech Lead",
+        "AI System Engineer",
         "software engineer",
         "technical writer",
         "web development",
         "AI development",
-        "programming blog",
+        "Apache Ignite",
+        "Generative AI",
+        "reactive systems",
+        "microservices",
         "software architecture",
-        "tech articles",
-        "engineering blog",
         "full-stack development",
         "React development",
         "TypeScript",
         "Next.js",
-        "machine learning",
-        "software engineering blog"
+        "machine learning"
     ],
     alternates: {
         canonical: 'https://timurisa.com'
@@ -48,26 +51,27 @@ export const metadata: Metadata = {
     authors: [
         { name: "Timur Isachenko", url: "https://timurisa.com" }
     ],
+    creator: 'Timur Isachenko',
+    publisher: 'Timur Isachenko',
     openGraph: {
         type: 'website',
         locale: 'en_US',
         url: 'https://timurisa.com',
         siteName: 'Timur Isachenko',
-        title: 'Timur Isachenko - Software Engineer & Technical Writer',
-        description: 'Personal blog and portfolio showcasing software engineering projects and technical writing.',
+        title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
+        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 15+ years.',
         images: [{
-            url: '/og-image.jpg',
-            width: 1200,
-            height: 630,
+            url: '/apple-icon.png',
+            width: 180,
+            height: 180,
             alt: 'Timur Isachenko - Portfolio and Blog'
         }]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Timur Isachenko - Software Engineer & Technical Writer',
-        description: 'Software engineering insights and technical writing from industry experience.',
-        creator: '@TimurIsachenko', // Replace with actual Twitter handle if available
-        images: ['/og-image.jpg']
+        title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
+        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 15+ years.',
+        images: ['/apple-icon.png']
     },
     viewport: {
         width: 'device-width',
@@ -75,8 +79,8 @@ export const metadata: Metadata = {
         viewportFit: 'cover',
     },
     themeColor: [
-        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-        { media: '(prefers-color-scheme: dark)', color: '#000000' },
+        { media: '(prefers-color-scheme: light)', color: '#030712' },
+        { media: '(prefers-color-scheme: dark)', color: '#030712' },
     ],
     robots: {
         index: true,
@@ -110,7 +114,7 @@ export default function RootLayout({
                     {children}
                 </main>
                 <CookieConsent />
-                <GoogleAnalytics gaId="" />
+                <GoogleAnalytics gaId="G-EJLVH2G7G2" />
             </body>
         </html>
     );
