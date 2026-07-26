@@ -5,7 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, BookOpen, Star, Cpu } from 'lucide-react';
-import { book, book2 } from '../../public/assets';
+import { book, book2, book3 } from '../../public/assets';
 import Link from 'next/link';
 import { Linkedin, Globe } from 'lucide-react';
 
@@ -106,6 +106,22 @@ const Footer = () => {
 
 const BookPage = () => {
     const books = [
+        {
+            title: "From Copilot to Colleague",
+            image: book3,
+            description: "With Daniel Mohanrao. A source-anchored book on AI engineering: how AI systems move from assistants that suggest, to copilots that collaborate in real time, to delegates trusted with full, reviewable tasks. Every claim links to the exact conference-talk video and timestamp it came from.",
+            readOnlineLink: "https://fromcopilottocolleague.com",
+            publishDate: "2026",
+            publisher: "AI Engineer Press",
+            pages: "10 chapters",
+            rating: 0,
+            features: [
+                "199 source anchors linking claims to precise conference-talk timestamps",
+                "Drawn from 881 AI Engineer conference talks",
+                "Three-tier claim support levels (strong, moderate, tentative)",
+                "Public, machine-readable claims ledger and chapter drafts"
+            ]
+        },
         {
             title: "Generative AI with Local LLM",
             image: book2,
@@ -216,13 +232,15 @@ const BookPage = () => {
                                             Get on Leanpub
                                         </Button>
                                     )}
-                                    <Button
-                                        onClick={() => handleBookPurchase(book.amazonLink)}
-                                        className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
-                                    >
-                                        <ShoppingCart className="mr-2 h-4 w-4" />
-                                        Buy on Amazon
-                                    </Button>
+                                    {book.amazonLink && (
+                                        <Button
+                                            onClick={() => handleBookPurchase(book.amazonLink)}
+                                            className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
+                                        >
+                                            <ShoppingCart className="mr-2 h-4 w-4" />
+                                            Buy on Amazon
+                                        </Button>
+                                    )}
                                     {book.websiteLink && (
                                         <Button
                                             onClick={() => handleBookPurchase(book.websiteLink)}
@@ -231,6 +249,15 @@ const BookPage = () => {
                                         >
                                             <Globe className="mr-2 h-4 w-4" />
                                             Visit Website
+                                        </Button>
+                                    )}
+                                    {book.readOnlineLink && (
+                                        <Button
+                                            onClick={() => handleBookPurchase(book.readOnlineLink)}
+                                            className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
+                                        >
+                                            <BookOpen className="mr-2 h-4 w-4" />
+                                            Read Online
                                         </Button>
                                     )}
                                 </div>

@@ -435,6 +435,48 @@ const projects = [
         ],
         tags: ["Java", "XSLT", "Oracle", "GWT"],
     },
+    {
+        name: "Zonelyte",
+        company_name: "Independent",
+        date: "2026",
+        category: "Side Projects & Tools",
+        description:
+            "A visual timezone overlap tool and scheduler for distributed teams — a world clock showing day/night cycles and working hours across every team location at once, with an AI-powered meeting time finder.",
+        points: [
+            "Built an AI-assisted meeting time finder that surfaces optimal scheduling windows across time zones.",
+            "Integrates with Google Calendar, Outlook, and Slack for exporting and sharing proposed meeting times.",
+        ],
+        tags: ["Scheduling", "AI", "Distributed Teams"],
+        link: "https://zonelyte.com",
+    },
+    {
+        name: "Daily Affirmations",
+        company_name: "Chrome Extension",
+        date: "2025 - Present",
+        category: "Side Projects & Tools",
+        description:
+            "A Chrome extension that transforms every new tab into a source of daily inspiration, surfacing a fresh affirmation each time you open a tab.",
+        points: [
+            "Built and shipped as a Chrome new-tab extension from an empty repository.",
+            "Part of a self-directed 25-microSaaS build challenge to ship small, focused products quickly.",
+        ],
+        tags: ["Chrome Extension", "JavaScript"],
+        link: "https://daily-affirmation.today",
+    },
+    {
+        name: "Archigram",
+        company_name: "Independent",
+        date: "2026 - Present",
+        category: "Side Projects & Tools",
+        description:
+            "An AI architecture diagram generator for engineers — turns a plain-language system description into a clean, shareable architecture diagram.",
+        points: [
+            "Built an AI pipeline that converts natural-language system descriptions into structured diagrams.",
+            "Targeted at engineers who need to communicate system design quickly without hand-drawing diagrams.",
+        ],
+        tags: ["AI", "Diagramming", "Developer Tools"],
+        link: "https://archigram.me",
+    },
 ];
 
 export {services, badges, technologies, experiences, testimonials, projects};

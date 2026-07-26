@@ -5,13 +5,14 @@ import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
 import Tilt from "react-parallax-tilt";
 import Link from "next/link";
-import { book, book2 } from "../../public/assets";
-import { BookOpen, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
+import { book, book2, book3 } from "../../public/assets";
+import { BookOpen, ExternalLink, Sparkles, ArrowRight, Cpu } from "lucide-react";
 import Image from "next/image";
 
 const MyBook = () => {
     const tiltRef1 = useRef(null);
     const tiltRef2 = useRef(null);
+    const tiltRef3 = useRef(null);
 
     return (
         <div className="relative">
@@ -21,7 +22,7 @@ const MyBook = () => {
                     Published <span className="gradient-text-cyber">Engineering Works</span>
                 </h2>
                 <p className="text-slate-400 max-w-2xl mx-auto mt-4 text-sm font-light">
-                    Deep dives into high-performance computing, in-memory data grids, and generative AI implementation.
+                    Deep dives into high-performance computing, in-memory data grids, generative AI implementation, and AI engineering practice.
                 </p>
             </motion.div>
 
@@ -98,6 +99,46 @@ const MyBook = () => {
                         </div>
                         <span className="inline-flex items-center gap-1.5 text-purple-300 text-xs font-mono group-hover:gap-2.5 transition-all">
                             View on Amazon <ExternalLink className="w-3.5 h-3.5" />
+                        </span>
+                    </div>
+                </motion.a>
+
+                {/* Book Card 3 */}
+                <motion.a
+                    href="https://fromcopilottocolleague.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variants={fadeIn("up", "spring", 0.5, 0.75)}
+                    className="lg:col-span-2 p-8 rounded-3xl cyber-glass border border-amber-500/20 cyber-glass-hover flex flex-col md:flex-row items-center gap-6 group"
+                >
+                    <Tilt ref={tiltRef3} options={{ max: 25 }} className="w-48 shrink-0">
+                        <Image
+                            src={book3}
+                            alt="From Copilot to Colleague: How AI Engineering Turns Models into Dependable Systems"
+                            className="w-full h-auto rounded-xl shadow-2xl shadow-amber-500/20 border border-amber-500/30 object-cover"
+                        />
+                    </Tilt>
+
+                    <div className="flex-1 text-left">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-mono mb-3">
+                            <Cpu className="w-3.5 h-3.5 text-amber-400" />
+                            <span>EVOLVING ONLINE BOOK</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 leading-snug">
+                            From Copilot to Colleague
+                        </h3>
+                        <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                            With Daniel Mohanrao. A source-anchored book on AI engineering: how AI systems move from assistants
+                            that suggest, to copilots that collaborate in real time, to delegates trusted with full, reviewable
+                            tasks — every claim linked to the exact conference-talk timestamp it came from.
+                        </p>
+                        <div className="flex flex-wrap gap-2 text-[11px] font-mono text-amber-300 mb-2">
+                            <span className="px-2 py-1 rounded bg-slate-900 border border-slate-800">AI Engineering</span>
+                            <span className="px-2 py-1 rounded bg-slate-900 border border-slate-800">Source-Anchored Research</span>
+                            <span className="px-2 py-1 rounded bg-slate-900 border border-slate-800">Open Access</span>
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-amber-300 text-xs font-mono group-hover:gap-2.5 transition-all">
+                            Read Online <ExternalLink className="w-3.5 h-3.5" />
                         </span>
                     </div>
                 </motion.a>

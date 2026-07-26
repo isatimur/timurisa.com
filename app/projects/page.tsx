@@ -9,7 +9,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Briefcase, Calendar, ChevronRight, Layers } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, Layers, Rocket, ExternalLink } from 'lucide-react';
 import { projects } from '@/src/constants';
 
 interface Project {
@@ -17,10 +17,11 @@ interface Project {
     company_name: string;
     date: string;
     category: string;
-    icon: StaticImageData;
+    icon?: StaticImageData;
     description: string;
     points: string[];
     tags: string[];
+    link?: string;
 }
 
 const typedProjects = projects as unknown as Project[];
@@ -79,13 +80,17 @@ export default function ProjectsPage() {
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="relative w-12 h-12 rounded-xl bg-slate-900 border border-cyan-500/30 p-2 flex items-center justify-center shrink-0">
-                                    <Image
-                                        src={project.icon}
-                                        alt={project.company_name}
-                                        fill
-                                        sizes="48px"
-                                        className="object-contain p-2"
-                                    />
+                                    {project.icon ? (
+                                        <Image
+                                            src={project.icon}
+                                            alt={project.company_name}
+                                            fill
+                                            sizes="48px"
+                                            className="object-contain p-2"
+                                        />
+                                    ) : (
+                                        <Rocket className="w-5 h-5 text-cyan-400" />
+                                    )}
                                 </div>
                                 <div className="min-w-0">
                                     <div className="text-cyan-300 font-mono text-xs truncate">{project.company_name}</div>
@@ -129,13 +134,17 @@ export default function ProjectsPage() {
                             <DialogHeader>
                                 <div className="flex items-center gap-3 mb-2">
                                     <div className="relative w-10 h-10 rounded-lg bg-slate-900 border border-cyan-500/30 p-1.5 flex items-center justify-center shrink-0">
-                                        <Image
-                                            src={selected.icon}
-                                            alt={selected.company_name}
-                                            fill
-                                            sizes="40px"
-                                            className="object-contain p-1.5"
-                                        />
+                                        {selected.icon ? (
+                                            <Image
+                                                src={selected.icon}
+                                                alt={selected.company_name}
+                                                fill
+                                                sizes="40px"
+                                                className="object-contain p-1.5"
+                                            />
+                                        ) : (
+                                            <Rocket className="w-4 h-4 text-cyan-400" />
+                                        )}
                                     </div>
                                     <div>
                                         <div className="text-cyan-300 font-mono text-xs">{selected.company_name}</div>
@@ -173,6 +182,17 @@ export default function ProjectsPage() {
                                     </span>
                                 ))}
                             </div>
+
+                            {selected.link && (
+                                <a
+                                    href={selected.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 text-sm font-mono pt-2"
+                                >
+                                    Visit Live Site <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                            )}
                         </>
                     )}
                 </DialogContent>

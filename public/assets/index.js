@@ -35,6 +35,7 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import book from "./book.jpeg"
 import book2 from "./book-cover.webp"
+import book3 from "./from-copilot-to-colleague.png"
 import ocp from "./badges/ocpj8.png";
 import oca from "./badges/ocaj8.png";
 import rab from "./badges/reactive-architecture-building-scalable-systems-level-2.png";
@@ -55,6 +56,7 @@ export {
     figma,
     book,
     book2,
+    book3,
     git,
     postgres,
     kubernetes,
