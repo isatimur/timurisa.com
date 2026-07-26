@@ -31,6 +31,7 @@ export const FuturisticNavbar: React.FC<NavbarProps> = ({ onOpenAiAgent }) => {
         { label: 'Badges', href: '#badges' },
         { label: 'My Book', href: '#book' },
         { label: 'Contact', href: '#contact' },
+        { label: 'Projects', href: '/projects' },
         { label: 'Blog', href: '/blog' }
     ]
 

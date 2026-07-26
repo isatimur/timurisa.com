@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Sparkles, ChevronRight, BookOpen, Layers } from 'lucide-react'
+import { Sparkles, ChevronRight, BookOpen, Layers, FolderGit2 } from 'lucide-react'
 
 interface HeroProps {
     onOpenAiAgent?: () => void
@@ -49,6 +49,14 @@ export const FuturisticHero: React.FC<HeroProps> = ({ onOpenAiAgent }) => {
                     >
                         <Layers className="w-5 h-5 text-cyan-400" />
                         <span>Explore Experience</span>
+                    </a>
+
+                    <a
+                        href="/projects"
+                        className="flex items-center gap-2 px-7 py-4 rounded-2xl cyber-glass border border-amber-500/30 text-amber-200 hover:text-white hover:border-amber-500/50 font-semibold text-base transition-all duration-300 hover:scale-105"
+                    >
+                        <FolderGit2 className="w-5 h-5 text-amber-400" />
+                        <span>Projects</span>
                     </a>
 
                     <a

@@ -2,7 +2,6 @@ import {
     atconsult,
     atos,
     be,
-    carrent,
     cqrs,
     ddd,
     distr,
@@ -13,7 +12,6 @@ import {
     introreactive,
     java8,
     javascript,
-    jobit,
     kotlin,
     kubanen,
     kubernetes,
@@ -28,7 +26,6 @@ import {
     spring,
     tailwind,
     threejs,
-    tripguide,
     typescript
 } from "../../public/assets";
 
@@ -313,67 +310,130 @@ const testimonials = [
 
 const projects = [
     {
-        name: "Car Rent",
+        name: "StandupAI",
+        company_name: "EastBanc Technologies",
+        date: "2024 - Present",
+        category: "AI & Machine Learning",
+        icon: ebt,
         description:
-            "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient...",
-        tags: [
-            {
-                name: "react",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "mongodb",
-                color: "green-text-gradient",
-            },
-            {
-                name: "tailwind",
-                color: "pink-text-gradient",
-            },
+            "An AI-driven platform matching companies with government contracts, leveraging machine learning and natural language processing to surface high-fit opportunities from thousands of federal solicitations.",
+        points: [
+            "Applies NLP to parse and rank federal solicitation text against a company's capabilities profile.",
+            "Built on Kotlin and Java 17 services deployed alongside the firm's existing microservice platform.",
         ],
-        image: carrent,
-        source_code_link: "https://github.com/",
+        tags: ["AI/ML", "NLP", "Kotlin", "Java 17"],
     },
     {
-        name: "Job IT",
+        name: "IRS Grant Management System",
+        company_name: "EastBanc Technologies",
+        date: "2023 - 2024",
+        category: "Government",
+        icon: ebt,
         description:
-            "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available...",
-        tags: [
-            {
-                name: "react",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "restapi",
-                color: "green-text-gradient",
-            },
-            {
-                name: "scss",
-                color: "pink-text-gradient",
-            },
+            "Technical Lead across the Discovery and MVP phases of a federal Grant Management System for the IRS, translating complex compliance requirements into a reactive service architecture.",
+        points: [
+            "Led discovery and MVP delivery as Technical Lead on a federally regulated program.",
+            "Built on Kotlin, Java 17, JOOQ, and Spring WebFlux, with PlantUML for architecture documentation.",
         ],
-        image: jobit,
-        source_code_link: "https://github.com/",
+        tags: ["Kotlin", "Java 17", "JOOQ", "Spring WebFlux"],
     },
     {
-        name: "Trip Guide",
+        name: "Glorify Bank Brokerage Integration",
+        company_name: "EastBanc Technologies",
+        date: "2022 - 2023",
+        category: "FinTech",
+        icon: ebt,
         description:
-            "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-        tags: [
-            {
-                name: "nextjs",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "supabase",
-                color: "green-text-gradient",
-            },
-            {
-                name: "css",
-                color: "pink-text-gradient",
-            },
+            "Solution Architect for brokerage integration with DriveWealth, bridging AWS SQS events into Kafka and building a notification service on Azure Cloud for real-time trade updates.",
+        points: [
+            "Designed the event bridge from AWS SQS to Kafka for brokerage transaction events.",
+            "Built a standalone notification service on Azure Cloud for real-time account activity.",
         ],
-        image: tripguide,
-        source_code_link: "https://github.com/",
+        tags: ["AWS SQS", "Kafka", "Azure", "DriveWealth API"],
+    },
+    {
+        name: "Red Cross Payment Migration",
+        company_name: "EastBanc Technologies",
+        date: "2022",
+        category: "FinTech",
+        icon: ebt,
+        description:
+            "Led the migration of donation payment processing from CyberSource to Braintree/PayPal, ensuring a clean cutover for a high-volume nonprofit payment platform.",
+        points: [
+            "Owned the end-to-end payment processor migration as lead Java developer.",
+            "Coordinated cutover to minimize disruption to live donation processing.",
+        ],
+        tags: ["Java", "CyberSource", "Braintree", "PayPal"],
+    },
+    {
+        name: "IDS Reactive Billing Platform",
+        company_name: "IDS",
+        date: "2022 - 2024",
+        category: "FinTech",
+        icon: ids,
+        description:
+            "Team Lead and Solution Architect building a microservice-based billing product from the ground up — a custom Spring Cloud API Gateway, Keycloak SSO, Kafka event streaming, and reactive R2DBC data access.",
+        points: [
+            "Led a team building the billing platform's architecture from an empty repository.",
+            "Integrated multiple payment providers behind a bespoke Spring Cloud Gateway with Keycloak SSO.",
+        ],
+        tags: ["Kotlin", "Spring WebFlux", "R2DBC", "Kafka", "Keycloak"],
+    },
+    {
+        name: "Enterprise Education Platform",
+        company_name: "Business Environment",
+        date: "2017 - 2022",
+        category: "EdTech",
+        icon: be,
+        description:
+            "Head Architect leading a 20-engineer team building a microservices-based education platform, including payment processing and webhook integrations for third-party partners.",
+        points: [
+            "Scaled from Senior Developer to Head Architect over a five-year engagement.",
+            "Directed a 20-person engineering team across multiple concurrent project tracks.",
+        ],
+        tags: ["Play Framework", "MyBatis", "PostgreSQL", "Microservices"],
+    },
+    {
+        name: "Sberbank.ru Platform Redevelopment",
+        company_name: "AT-Consulting",
+        date: "2014 - 2017",
+        category: "Enterprise Modernization",
+        icon: atconsult,
+        description:
+            "Led integration of React widgets with the Java backend during Sberbank.ru's migration to the BackBase platform, resolving a critical UC2GET blocker that unblocked the full rollout.",
+        points: [
+            "Bridged React front-end widgets with the existing Java backend for one of Russia's largest banking sites.",
+            "Diagnosed and resolved a UC2GET integration issue that was blocking the migration.",
+        ],
+        tags: ["React", "Java", "BackBase"],
+    },
+    {
+        name: "Sochi 2014 Olympics IT Infrastructure",
+        company_name: "Atos",
+        date: "2012 - 2014",
+        category: "Olympics & Infrastructure",
+        icon: atos,
+        description:
+            "Supported mission-critical IT infrastructure for the Sochi 2014 Olympic and Paralympic Games, building automation for package deployment and Identity Management — earning two Silver Accolade Awards.",
+        points: [
+            "Provided third-level support and incident/problem management for Games-time IT infrastructure.",
+            "Built an automated Identity Management system and a package deployment integration script, each recognized with a Silver Accolade Award.",
+        ],
+        tags: ["Identity Management", "Automation", "Incident Management"],
+    },
+    {
+        name: "Legacy Java Modernization",
+        company_name: "JSC Kuban Energo",
+        date: "2009 - 2012",
+        category: "Enterprise Modernization",
+        icon: kubanen,
+        description:
+            "Migrated internal enterprise reporting tools from the Struts framework to Google Web Toolkit (GWT), modernizing a Java 1.6-era codebase while maintaining Oracle/XSQL data integrations.",
+        points: [
+            "Advanced from Junior Java Developer to Senior Specialist over the engagement.",
+            "Migrated internal Struts applications to GWT while preserving XSLT/XML/Oracle data flows.",
+        ],
+        tags: ["Java", "XSLT", "Oracle", "GWT"],
     },
 ];
 
