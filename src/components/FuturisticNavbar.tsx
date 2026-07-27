@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Cpu, Menu, X, Sparkles } from 'lucide-react'
+import { Cpu, Menu, X, Sparkles, ArrowUp } from 'lucide-react'
 
 interface NavbarProps {
     onOpenAiAgent?: () => void
@@ -11,34 +11,59 @@ interface NavbarProps {
 export const FuturisticNavbar: React.FC<NavbarProps> = ({ onOpenAiAgent }) => {
     const [scrolled, setScrolled] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setScrolled(true)
-            } else {
-                setScrolled(false)
-            }
-        }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    const [scrollProgress, setScrollProgress] = useState(0)
+    const [activeSection, setActiveSection] = useState('')
 
     const navItems = [
-        { label: 'About', href: '#about' },
-        { label: 'Experience', href: '#work' },
-        { label: 'Tech Stack', href: '#tech' },
-        { label: 'Badges', href: '#badges' },
-        { label: 'My Book', href: '#book' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'About', href: '#about', id: 'about' },
+        { label: 'Experience', href: '#work', id: 'work' },
+        { label: 'Tech Stack', href: '#tech', id: 'tech' },
+        { label: 'Badges', href: '#badges', id: 'badges' },
+        { label: 'My Book', href: '#book', id: 'book' },
+        { label: 'Contact', href: '#contact', id: 'contact' },
         { label: 'Projects', href: '/projects' },
         { label: 'Blog', href: '/blog' }
     ]
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20)
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight
+            setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0)
+        }
+        window.addEventListener('scroll', handleScroll)
+        handleScroll()
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    useEffect(() => {
+        const sectionIds = navItems.filter((item) => item.id).map((item) => item.id as string)
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id)
+                    }
+                })
+            },
+            { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+        )
+        sectionIds.forEach((id) => {
+            const el = document.getElementById(id)
+            if (el) observer.observe(el)
+        })
+        return () => observer.disconnect()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
+        <>
         <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
             scrolled ? 'py-3 cyber-glass bg-slate-950/80 border-b border-cyan-500/20 shadow-xl' : 'py-5 bg-transparent'
         }`}>
+            {/* Scroll Progress Indicator */}
+            <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-[width] duration-150 ease-out" style={{ width: `${scrollProgress}%` }} />
+
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 
                 {/* Logo & Status Badge */}
@@ -57,15 +82,23 @@ export const FuturisticNavbar: React.FC<NavbarProps> = ({ onOpenAiAgent }) => {
 
                 {/* Desktop Navigation Links */}
                 <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-                    {navItems.map((item, idx) => (
-                        <a
-                            key={idx}
-                            href={item.href}
-                            className="text-slate-300 hover:text-cyan-400 transition-colors font-mono tracking-wide hover:neon-text-cyan"
-                        >
-                            {item.label}
-                        </a>
-                    ))}
+                    {navItems.map((item, idx) => {
+                        const isActive = !!item.id && item.id === activeSection
+                        return (
+                            <a
+                                key={idx}
+                                href={item.href}
+                                className={`relative py-1 transition-colors font-mono tracking-wide ${
+                                    isActive ? 'text-cyan-400 neon-text-cyan' : 'text-slate-300 hover:text-cyan-400 hover:neon-text-cyan'
+                                }`}
+                            >
+                                {item.label}
+                                {isActive && (
+                                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
+                                )}
+                            </a>
+                        )
+                    })}
                 </nav>
 
                 {/* AI Agent Quick Trigger & Mobile Toggle */}
@@ -115,6 +148,17 @@ export const FuturisticNavbar: React.FC<NavbarProps> = ({ onOpenAiAgent }) => {
                 </div>
             )}
         </header>
+
+        <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+            className={`fixed bottom-6 left-6 z-40 p-3 rounded-2xl cyber-glass border border-cyan-500/30 text-cyan-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all duration-300 ${
+                scrollProgress > 15 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+            }`}
+        >
+            <ArrowUp className="w-5 h-5" />
+        </button>
+        </>
     )
 }
 

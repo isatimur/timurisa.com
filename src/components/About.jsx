@@ -122,12 +122,9 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                With over 14 years of experience as a Solution Architect and Software Developer, I've mastered the art
-                of crafting robust, scalable software solutions using Java, JavaScript, and a myriad of modern
-                frameworks like Spring, PlayFramework, React, Node.js, and Three.js. My passion lies in solving complex
-                problems and creating user-centric applications that stand the test of time. I'm all about turning
-                ambitious ideas into real-life products, with a keen eye for detail and a relentless drive for
-                excellence.
+                17 years as a Solution Architect and Software Developer, building with Java, JavaScript, Spring,
+                Play Framework, React, Node.js, and Three.js — from Olympic infrastructure and banking platforms
+                to the reactive microservices and AI systems I work on now.
             </motion.p>
 
             <div className='mt-20 flex flex-wrap gap-10 justify-center'>
