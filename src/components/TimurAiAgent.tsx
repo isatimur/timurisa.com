@@ -326,7 +326,7 @@ export const TimurAiAgent: React.FC<TimurAiAgentProps> = ({ isOpen: controlledIs
                                 onChange={e => setInput(e.target.value)}
                                 onKeyDown={e => e.key === 'Enter' && handleSend()}
                                 placeholder="Ask TIMUR AI about system architecture, Java 21, Kafka..."
-                                className="flex-1 bg-slate-900/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition font-sans"
+                                className="flex-1 bg-slate-900/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 transition font-sans"
                             />
                             <button
                                 onClick={() => handleSend()}

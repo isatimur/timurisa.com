@@ -10,6 +10,7 @@ export default function ContactPage() {
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -19,6 +20,7 @@ export default function ContactPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError(false);
 
         try {
             await emailjs.sendForm(
@@ -30,10 +32,9 @@ export default function ContactPage() {
             setSuccess(true);
             setForm({ name: '', email: '', message: '' });
             setTimeout(() => setSuccess(false), 5000);
-        } catch (error) {
-            console.error('Failed to send message: ', error);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 5000);
+        } catch (err) {
+            console.error('Failed to send message: ', err);
+            setError(true);
         }
 
         setLoading(false);
@@ -55,6 +56,11 @@ export default function ContactPage() {
                             <span>Message transmitted successfully! Timur will get back to you shortly.</span>
                         </div>
                     )}
+                    {error && (
+                        <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono flex items-center gap-2 animate-fadeIn">
+                            <span>Transmission failed. Please reach out via <a href="https://linkedin.com/in/timur-isachenko" target="_blank" rel="noopener noreferrer" className="underline hover:text-rose-200">LinkedIn</a> instead.</span>
+                        </div>
+                    )}
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
@@ -67,7 +73,7 @@ export default function ContactPage() {
                                 value={form.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition"
                             />
                         </div>
                         <div>
@@ -81,7 +87,7 @@ export default function ContactPage() {
                                 value={form.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition"
                             />
                         </div>
                         <div>
@@ -95,7 +101,7 @@ export default function ContactPage() {
                                 value={form.message}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none transition"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition"
                             />
                         </div>
                         <button

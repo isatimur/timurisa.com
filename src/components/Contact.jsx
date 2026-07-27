@@ -177,6 +177,7 @@ const Contact = () => {
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -186,6 +187,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setError(false);
 
         try {
             await emailjs.sendForm(
@@ -197,10 +199,9 @@ const Contact = () => {
             setSuccess(true);
             setForm({ name: "", email: "", message: "" });
             setTimeout(() => setSuccess(false), 5000);
-        } catch (error) {
-            console.error("Failed to send message: ", error);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 5000);
+        } catch (err) {
+            console.error("Failed to send message: ", err);
+            setError(true);
         }
 
         setLoading(false);
@@ -233,6 +234,11 @@ const Contact = () => {
                             <span>Message transmitted successfully! Timur will get back to you shortly.</span>
                         </div>
                     )}
+                    {error && (
+                        <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono flex items-center gap-2 animate-fadeIn">
+                            <span>Transmission failed. Please reach out via <a href="https://linkedin.com/in/timur-isachenko" target="_blank" rel="noopener noreferrer" className="underline hover:text-rose-200">LinkedIn</a> instead.</span>
+                        </div>
+                    )}
 
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                         <div>
@@ -244,7 +250,7 @@ const Contact = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="e.g. Sarah Connor"
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none transition font-sans"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 transition font-sans"
                             />
                         </div>
 
@@ -257,7 +263,7 @@ const Contact = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="e.g. sarah@cyberdyne.com"
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none transition font-sans"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 transition font-sans"
                             />
                         </div>
 
@@ -270,7 +276,7 @@ const Contact = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="Describe your architecture requirements or project scope..."
-                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none transition font-sans"
+                                className="w-full bg-slate-950/80 border border-slate-800 focus:border-cyan-500/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 transition font-sans"
                             />
                         </div>
 
