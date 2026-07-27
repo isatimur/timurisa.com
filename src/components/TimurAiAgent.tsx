@@ -30,7 +30,7 @@ const renderFormattedText = (text: string) => {
 
 const AI_KNOWLEDGE_BASE: Record<string, { reply: string; code?: string }> = {
     "architecture": {
-        reply: "Timur Isachenko is a Principal Solution Architect & Team Lead with over 15 years of hands-on experience building mission-critical, microservice-based enterprise platforms. He has spearheaded teams of 20+ engineers, designed cloud-native event-driven architectures with Kafka and Spring Cloud, and managed financial/banking integrations.",
+        reply: "Timur Isachenko is currently **AI CTO at Swiirl**, and a Principal Solution Architect & Team Lead with over 15 years of hands-on experience building mission-critical, microservice-based enterprise platforms. He has spearheaded teams of 20+ engineers, designed cloud-native event-driven architectures with Kafka and Spring Cloud, and managed financial/banking integrations.",
         code: `// Sample Reactive Architecture Blueprint (Spring WebFlux + JOOQ)
 @Configuration
 public class ReactiveBillingConfig {
@@ -74,6 +74,16 @@ const TIMUR_STACK = {
     dataCloud: ["PostgreSQL", "Kafka", "AWS", "Kubernetes"],
     frontend: ["React.js", "Next.js 15", "TypeScript", "Tailwind CSS"]
 };`
+    },
+    "current": {
+        reply: "Timur is currently **AI CTO at Swiirl**, a platform that facilitates consent-first, permissioned conversations between enterprise brands and communities — replacing surveys and ads with authentic, compensated consumer insights. He leads AI engineering there and co-authored **From Copilot to Colleague** with Swiirl's CEO, Daniel Mohanrao.",
+        code: `// Swiirl: consent-first brand-community insights
+interface SwiirlConversation {
+    community: CommunityGroup
+    brand: EnterpriseBrand
+    consent: "permissioned"
+    compensation: "paid, not extracted"
+}`
     }
 }
 
@@ -152,7 +162,9 @@ export const TimurAiAgent: React.FC<TimurAiAgentProps> = ({ isOpen: controlledIs
             let responseObj = AI_KNOWLEDGE_BASE["architecture"]
             const lower = text.toLowerCase()
 
-            if (lower.includes("scale") || lower.includes("project") || lower.includes("built") || lower.includes("work")) {
+            if (lower.includes("swiirl") || lower.includes("current") || lower.includes("cto") || lower.includes("now") || lower.includes("today")) {
+                responseObj = AI_KNOWLEDGE_BASE["current"]
+            } else if (lower.includes("scale") || lower.includes("project") || lower.includes("built") || lower.includes("work")) {
                 responseObj = AI_KNOWLEDGE_BASE["scale"]
             } else if (lower.includes("cert") || lower.includes("book") || lower.includes("badge") || lower.includes("oracle")) {
                 responseObj = AI_KNOWLEDGE_BASE["certifications"]

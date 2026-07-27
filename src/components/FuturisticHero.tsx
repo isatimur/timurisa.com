@@ -29,7 +29,7 @@ export const FuturisticHero: React.FC<HeroProps> = ({ onOpenAiAgent }) => {
 
                 {/* Subtitle */}
                 <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mb-10 leading-relaxed font-light">
-                    Principal Solution Architect, Team Lead, and Java/Reactive Systems Pioneer. Speared mission-critical billing engines, Sochi 2014 Olympics IT infrastructure, and banking integrations for global enterprises.
+                    AI CTO at Swiirl, Principal Solution Architect, and Java/Reactive Systems Pioneer. Spearheaded mission-critical billing engines, Sochi 2014 Olympics IT infrastructure, and banking integrations for global enterprises.
                 </p>
 
                 {/* Call to Action Buttons */}
