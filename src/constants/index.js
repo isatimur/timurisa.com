@@ -280,6 +280,15 @@ const experiences = [
         ],
     },
     {
+        title: "CTO",
+        company_name: "Proffer.ae",
+        date: "June 2025 - December 2025",
+        points: [
+            "Led technology for an AI-powered real estate platform that removes traditional agent commissions from Dubai's property market — buyers get cashback or pay a flat 1% fee, sellers list and sell commission-free.",
+            "Built the platform as a full transaction system rather than a listing portal, handling paperwork and compliance with Dubai Land Department regulations.",
+        ],
+    },
+    {
         title: "AI CTO",
         company_name: "Swiirl",
         date: "2026 - Present",
