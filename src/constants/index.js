@@ -279,6 +279,15 @@ const experiences = [
             "Technical Stack: Proficiency in Kotlin, Java 11 and above, JOOQ, SpringBoot, Webflux, Postgres, R2DBC, Spring Cloud Gateway, Keycloak, Kafka, and related technologies."
         ],
     },
+    {
+        title: "AI CTO",
+        company_name: "Swiirl",
+        date: "2026 - Present",
+        points: [
+            "Leads AI engineering for a platform that facilitates consent-first, permissioned conversations between enterprise brands and communities, replacing surveys and ads with authentic, compensated consumer insights.",
+            "Co-authored From Copilot to Colleague with Swiirl CEO Daniel Mohanrao, a source-anchored book on AI engineering practice.",
+        ],
+    },
 ];
 
 const testimonials = [

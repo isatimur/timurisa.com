@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { Calendar, ChevronRight } from "lucide-react";
+import { Calendar, ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 const ExperienceCard = ({ experience, index }) => {
@@ -16,13 +16,17 @@ const ExperienceCard = ({ experience, index }) => {
             {/* Left Column: Company Icon & Timeline Meta */}
             <div className="flex items-center gap-4 shrink-0 lg:w-64">
                 <div className="relative w-14 h-14 rounded-2xl bg-slate-900 border border-cyan-500/30 p-2.5 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                    <Image
-                        src={experience.icon}
-                        alt={experience.company_name}
-                        fill
-                        sizes="56px"
-                        className="object-contain"
-                    />
+                    {experience.icon ? (
+                        <Image
+                            src={experience.icon}
+                            alt={experience.company_name}
+                            fill
+                            sizes="56px"
+                            className="object-contain"
+                        />
+                    ) : (
+                        <Sparkles className="w-6 h-6 text-cyan-400" />
+                    )}
                 </div>
                 <div>
                     <h4 className="text-cyan-300 font-bold text-base font-mono">{experience.company_name}</h4>
