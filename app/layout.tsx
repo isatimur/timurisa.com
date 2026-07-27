@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         default: "Timur Isachenko | Principal Solution Architect & AI System Engineer",
         template: "%s | Timur Isachenko"
     },
-    description: "Principal Solution Architect and AI System Engineer specializing in reactive systems, microservices, and generative AI. 15+ years scaling systems for the Sochi 2014 Olympics, Sberbank, and enterprise platforms.",
+    description: "Principal Solution Architect and AI System Engineer specializing in reactive systems, microservices, and generative AI. 17+ years scaling systems for the Sochi 2014 Olympics, Sberbank, and enterprise platforms.",
     keywords: [
         "Timur Isachenko",
         "Solution Architect",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: 'https://timurisa.com',
         siteName: 'Timur Isachenko',
         title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
-        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 15+ years.',
+        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 17+ years.',
         images: [{
             url: '/apple-icon.png',
             width: 180,
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary',
         title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
-        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 15+ years.',
+        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 17+ years.',
         images: ['/apple-icon.png']
     },
     robots: {

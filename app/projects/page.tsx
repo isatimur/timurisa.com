@@ -68,7 +68,7 @@ export default function ProjectsPage() {
                         Projects & Case Studies
                     </h1>
                     <p className="text-xl text-slate-400 max-w-2xl mx-auto font-light">
-                        Real systems shipped over 15+ years — reactive billing platforms, federal grant systems,
+                        Real systems shipped over 17+ years — reactive billing platforms, federal grant systems,
                         brokerage integrations, and Olympic-scale infrastructure.
                     </p>
                 </div>

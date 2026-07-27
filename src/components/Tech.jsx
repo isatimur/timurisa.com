@@ -37,7 +37,7 @@ const Tech = () => {
                     Quantum <span className="gradient-text-cyber">Tech Ecosystem</span>
                 </h2>
                 <p className="text-slate-400 max-w-xl mx-auto mt-3 text-sm font-light">
-                    Enterprise languages, cloud infrastructure, reactive frameworks, and databases — in production for 15+ years.
+                    Enterprise languages, cloud infrastructure, reactive frameworks, and databases — in production for 17+ years.
                 </p>
             </motion.div>
 

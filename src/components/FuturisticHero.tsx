@@ -71,7 +71,7 @@ export const FuturisticHero: React.FC<HeroProps> = ({ onOpenAiAgent }) => {
                 {/* Key Metrics HUD Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
                     <div className="p-5 rounded-2xl cyber-glass border border-cyan-500/20 text-center cyber-glass-hover">
-                        <div className="text-3xl font-extrabold text-white mb-1 font-mono tracking-wider gradient-text-cyber">15+ Yrs</div>
+                        <div className="text-3xl font-extrabold text-white mb-1 font-mono tracking-wider gradient-text-cyber">17+ Yrs</div>
                         <div className="text-xs text-slate-400 uppercase font-mono">Architecture & Dev</div>
                     </div>
                     <div className="p-5 rounded-2xl cyber-glass border border-purple-500/20 text-center cyber-glass-hover">
