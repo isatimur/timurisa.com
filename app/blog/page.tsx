@@ -247,15 +247,21 @@ export default function BlogPage() {
                             <Card className="overflow-hidden cyber-glass border border-cyan-500/20 cyber-glass-hover
                                 transition-all duration-300 h-full flex flex-col">
                                 <div className="relative overflow-hidden">
-                                    <Image
-                                        alt={post.title}
-                                        className="object-cover w-full h-56 group-hover:scale-105
-                                            transition-transform duration-500"
-                                        height={224}
-                                        src={createImageUrlBuilder(client).image(post.mainImage)
-                                            .height(224).width(400).url()}
-                                        width={400}
-                                    />
+                                    {post.mainImage ? (
+                                        <Image
+                                            alt={post.title}
+                                            className="object-cover w-full h-56 group-hover:scale-105
+                                                transition-transform duration-500"
+                                            height={224}
+                                            src={createImageUrlBuilder(client).image(post.mainImage)
+                                                .height(224).width(400).url()}
+                                            width={400}
+                                        />
+                                    ) : (
+                                        <div className="w-full h-56 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-black border-b border-cyan-500/10">
+                                            <Cpu className="w-10 h-10 text-cyan-500/40" />
+                                        </div>
+                                    )}
                                     <div className="absolute bottom-0 left-0 right-0 p-4
                                         bg-gradient-to-t from-black/70 to-transparent">
                                         <div className="flex flex-wrap gap-2">

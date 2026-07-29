@@ -179,12 +179,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }, 0);
     const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-    const mainImageUrl = createImageUrlBuilder(client)
-        .image(post.mainImage)
-        .width(1200)
-        .height(600)
-        .format('webp')
-        .url();
+    const mainImageUrl = post.mainImage
+        ? createImageUrlBuilder(client)
+            .image(post.mainImage)
+            .width(1200)
+            .height(600)
+            .format('webp')
+            .url()
+        : null;
 
     const authorImageUrl = post.authorImage
         ? createImageUrlBuilder(client)
@@ -204,7 +206,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <meta name="description" content={post.excerpt || `${post.title} by ${post.authorName}`} />
                 <meta property="og:title" content={post.title} />
                 <meta property="og:type" content="article" />
-                <meta property="og:image" content={mainImageUrl} />
+                {mainImageUrl && <meta property="og:image" content={mainImageUrl} />}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
