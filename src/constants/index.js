@@ -212,7 +212,7 @@ const experiences = [
         iconBg: "#f9bb5a",
         date: "June 2012 - May 2014",
         points: [
-            "Worked on critical IT infrastructure for the Sochi 2014 Olympics and Paralympics.",
+            "Worked on critical IT infrastructure for the Sochi 2014 Olympics and Paralympics, progressing from CGS Systems Specialist into concurrent TOC Duty Manager duties for the Games.",
             "Played a key role in third-level support, change management, configuration management, incident management, and problem management.",
             "Received two silver Accolade Awards for developing an integration script to improve package deployment and an automated Identity Management system."
         ],
@@ -236,9 +236,11 @@ const experiences = [
         iconBg: "#f9bb5a",
         date: "Sept 2014 - Sept 2017",
         points: [
-            "Contributed to the redevelopment of Sberbank.ru on the BackBase platform.",
+            "Contributed to the redevelopment of Sberbank.ru on the BackBase platform, progressing from Fullstack Developer to Expert.",
             "Successfully led the integration of React widgets with Java backend, demonstrating full-stack development expertise.",
-            "Played a pivotal role in solving a complex issue with the UC2GET component which was crucial for migrating the current Sberbank.ru to the new engine."
+            "Played a pivotal role in solving a complex issue with the UC2GET component which was crucial for migrating the current Sberbank.ru to the new engine.",
+            "Delivered Spring Security integration with Backbase and Oracle Access Manager, and led a small mobile team building a WebRTC video client-registration proof of concept.",
+            "Additional projects across the AT-Consulting portfolio: API development for Tele2, integration monitoring for Rosreestr, Java EE performance optimization for Natalie Tours, NDC API development for Aeroflot, mobile/video-KYC backend for altyn-i.kz, and an HR portal for trudvsem.ru."
         ],
     },
     {
@@ -250,6 +252,8 @@ const experiences = [
         points: [
             "Led the development of an educational platform using microservices architecture, leveraging Play Framework and MyBatis with Postgres.",
             "Spearheaded a team of 20, implementing numerous system integrations, including payment solutions and webhooks.",
+            "Worked closely with Sberbank's Corporate Architecture Department to keep the platform aligned with enterprise standards.",
+            "Helped extend the platform into a new multi-tenant offering, run as a BaaS-style tenant for a new business line.",
             "Promoted to Team Leader, then Technical Leader, overseeing multiple project directions."
         ],
     },
@@ -260,11 +264,12 @@ const experiences = [
         iconBg: "#1c2f35",
         date: "June 2022 - Present",
         points: [
-            "Project for Glorify Bank: Played the role of Solution Architect focusing on brokerage integration with DriveWealth, and integrating AWS SQS events to Kafka. Also developed a notification service using Azure Cloud.",
+            "Project for Glorify Bank: Played the role of Solution Architect focusing on brokerage integration with DriveWealth, and integrating AWS SQS events to Kafka. Introduced idempotent APIs, retry/backoff, and audit logging to harden the money-movement paths. Also developed a notification service using Azure Cloud.",
             "Project for Red Cross: Contributed as a Java Developer, leading the payment migration from CyberSource to Braintree Paypal.",
             "Discovery Grant Management System for IRS: Functioned as a Technical Lead, overseeing the Grant Management System project development.",
             "Development of MVP for Grant Management System for IRS: Worked as a Technical Lead, utilizing technologies such as Kotlin, Java 17, JOOQ, PlantUML, and Springboot Webflux.",
-            "StandupAI Project: Currently working on an AI-driven platform matching companies with government contracts, leveraging advanced machine learning and natural language processing technologies."
+            "StandupAI Project: AI-driven platform matching companies with government contracts. Produced the reference architecture and deployment model, and resolved critical reliability issues in containerization, message handling, and configuration hardening.",
+            "epaCUBE Performance Assessment: Profiled critical jobs and database paths, proposed indexing/partitioning and schema-normalization strategies, and authored a remediation plan that reduced bottlenecks in long-running workloads."
         ],
     },
     {
@@ -274,7 +279,7 @@ const experiences = [
         iconBg: "#f9bb5a",
         date: "Nov 2022 - Sept 2024",
         points: [
-            "Led a team of developers in the creation and implementation of a microservice-based Billing product, built entirely from the ground up.",
+            "Led a team of developers in the creation and implementation of a microservice-based billing product for betting and gambling platforms, built entirely from the ground up.",
             "Spearheaded the integration of various payment systems, implementing a Single Sign-On (SSO) solution, and crafting a bespoke API Gateway utilizing the Spring Cloud Gateway framework.",
             "Technical Stack: Proficiency in Kotlin, Java 11 and above, JOOQ, SpringBoot, Webflux, Postgres, R2DBC, Spring Cloud Gateway, Keycloak, Kafka, and related technologies."
         ],
