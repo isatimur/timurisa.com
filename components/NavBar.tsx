@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 const allNavLinks = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Writing & Research', href: '/blog' },
     { name: 'Books', href: '/book' }
 
 ]

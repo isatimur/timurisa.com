@@ -22,7 +22,7 @@ export const FuturisticNavbar: React.FC<NavbarProps> = ({ onOpenAiAgent }) => {
         { label: 'My Book', href: '#book', id: 'book' },
         { label: 'Contact', href: '#contact', id: 'contact' },
         { label: 'Projects', href: '/projects' },
-        { label: 'Blog', href: '/blog' }
+        { label: 'Writing & Research', href: '/blog' }
     ]
 
     useEffect(() => {

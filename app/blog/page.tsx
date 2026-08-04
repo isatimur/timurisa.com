@@ -78,7 +78,7 @@ const SearchBar = ({
 const Footer = () => {
     const quickLinks = [
         { name: 'Home', href: '/' },
-        { name: 'Blog', href: '/blog' },
+        { name: 'Writing & Research', href: '/blog' },
     ];
 
     const socialLinks = [
@@ -224,10 +224,10 @@ export default function BlogPage() {
                 {/* Hero Section */}
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text-cyber">
-                        Latest Articles
+                        Writing &amp; Research
                     </h1>
                     <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-                        Explore in-depth articles about technology, programming, and software development.
+                        Notes on AI engineering, distributed systems, and the products I build along the way.
                     </p>
                 </div>
 

@@ -21,15 +21,16 @@ const geistMono = localFont({
 export const metadata: Metadata = {
     metadataBase: new URL('https://timurisa.com'),
     title: {
-        default: "Timur Isachenko | Principal Solution Architect & AI System Engineer",
+        default: "Timur Isachenko | AI CTO & Principal Solution Architect",
         template: "%s | Timur Isachenko"
     },
-    description: "Principal Solution Architect and AI System Engineer specializing in reactive systems, microservices, and generative AI. 17+ years scaling systems for the Sochi 2014 Olympics, Sberbank, and enterprise platforms.",
+    description: "AI CTO and Principal Solution Architect building AI-native products and the reactive, high-scale systems behind them. 17+ years scaling systems for the Sochi 2014 Olympics, Sberbank, and enterprise platforms.",
     keywords: [
         "Timur Isachenko",
+        "AI CTO",
         "Solution Architect",
         "Tech Lead",
-        "AI System Engineer",
+        "AI Systems Architect",
         "software engineer",
         "technical writer",
         "web development",
@@ -58,8 +59,8 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: 'https://timurisa.com',
         siteName: 'Timur Isachenko',
-        title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
-        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 17+ years.',
+        title: 'Timur Isachenko | AI CTO & Principal Solution Architect',
+        description: 'AI CTO and Principal Solution Architect: AI-native products, reactive systems, and high-scale platforms built over 17+ years.',
         images: [{
             url: '/apple-icon.png',
             width: 180,
@@ -69,8 +70,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary',
-        title: 'Timur Isachenko | Principal Solution Architect & AI System Engineer',
-        description: 'Portfolio and engineering showcase: reactive systems, microservices, and AI-powered products built over 17+ years.',
+        title: 'Timur Isachenko | AI CTO & Principal Solution Architect',
+        description: 'AI CTO and Principal Solution Architect: AI-native products, reactive systems, and high-scale platforms built over 17+ years.',
         images: ['/apple-icon.png']
     },
     robots: {

@@ -19,7 +19,7 @@ export const FuturisticHero: React.FC<HeroProps> = ({ onOpenAiAgent }) => {
                 {/* HUD Pill Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full cyber-glass border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-widest uppercase mb-8 shadow-lg shadow-cyan-500/10">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                    <span>TIMUR ISACHENKO // SYSTEM ARCHITECT v2026</span>
+                    <span>TIMUR ISACHENKO // AI CTO & SOLUTION ARCHITECT</span>
                 </div>
 
                 {/* Main Hero Headline */}
