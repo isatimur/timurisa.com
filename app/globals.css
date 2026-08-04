@@ -122,6 +122,38 @@ code, pre, .font-mono {
     border-radius: 2px;
 }
 
+.case-study {
+    --case-accent: #22d3ee;
+}
+
+.case-study .case-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--case-accent);
+}
+
+.case-study .case-title {
+    background-image: linear-gradient(90deg, var(--case-accent), #f8fafc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.case-study .case-rule {
+    border-color: color-mix(in srgb, var(--case-accent) 35%, transparent);
+}
+
+.case-study .case-card {
+    border-color: color-mix(in srgb, var(--case-accent) 30%, transparent);
+    background-color: color-mix(in srgb, var(--case-accent) 8%, #030712);
+}
+
+.case-study .case-bullet {
+    background-color: var(--case-accent);
+}
+
 /* Custom Futuristic Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
