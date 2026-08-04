@@ -122,7 +122,7 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                17 years as a Solution Architect and Software Developer, building with Java, JavaScript, Spring,
+                17+ years as a Solution Architect and Software Developer, building with Java, JavaScript, Spring,
                 Play Framework, React, Node.js, and Three.js — from Olympic infrastructure and banking platforms
                 to the reactive microservices and AI systems I work on now.
             </motion.p>

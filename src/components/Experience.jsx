@@ -1,13 +1,17 @@
 'use client';
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { Calendar, ChevronRight, Sparkles } from "lucide-react";
+import { Calendar, ChevronDown, ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 const ExperienceCard = ({ experience, index }) => {
+    const [expanded, setExpanded] = useState(false);
+    const [firstPoint, ...restPoints] = experience.points;
+    const hasMore = restPoints.length > 0;
+
     return (
         <motion.div
             variants={fadeIn("up", "spring", index * 0.1, 0.75)}
@@ -44,13 +48,29 @@ const ExperienceCard = ({ experience, index }) => {
                 </h3>
 
                 <ul className="space-y-2.5 text-slate-300 text-sm font-light">
-                    {experience.points.map((point, i) => (
+                    <li className="flex items-start gap-2.5">
+                        <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">{firstPoint}</span>
+                    </li>
+                    {expanded && restPoints.map((point, i) => (
                         <li key={i} className="flex items-start gap-2.5">
                             <ChevronRight className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                             <span className="leading-relaxed">{point}</span>
                         </li>
                     ))}
                 </ul>
+
+                {hasMore && (
+                    <button
+                        type="button"
+                        onClick={() => setExpanded((v) => !v)}
+                        aria-expanded={expanded}
+                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+                        {expanded ? 'Show less' : `Show ${restPoints.length} more`}
+                    </button>
+                )}
             </div>
         </motion.div>
     );

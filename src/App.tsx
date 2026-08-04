@@ -9,6 +9,7 @@ import { TimurAiAgent } from "./components/TimurAiAgent";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Tech from "./components/Tech";
+import SelectedWork from "./components/SelectedWork";
 import Badges from "./components/Badges";
 import MyBook from "./components/MyBook";
 import Contact from "./components/Contact";
@@ -43,6 +44,7 @@ const App = () => {
                 <About />
                 <Experience />
                 <Tech />
+                <SelectedWork />
                 <Badges />
                 <MyBook />
             </main>
@@ -50,9 +52,8 @@ const App = () => {
             {/* Footer / Contact Section */}
             <footer className="relative z-10 border-t border-cyan-500/10 py-16 bg-slate-950/60 backdrop-blur-lg">
                 <Contact />
-                <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-slate-500">
+                <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-center text-xs font-mono text-slate-500">
                     <p>© 2026 Timur Isachenko. All rights reserved.</p>
-                    <p className="text-cyan-400/80">Architecting High-Performance Futures</p>
                 </div>
             </footer>
 
