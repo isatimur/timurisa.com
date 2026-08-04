@@ -69,37 +69,57 @@ Content will be filled in one project at a time as Timur supplies real specifics
 follow-up structured fill-in list) — not fabricated, not generated generically. Until an
 entry has real content, its page is not built/linked.
 
-## Visual atmosphere (lightweight, not bespoke art)
+## Visual design
 
-Each flagship gets one accent color and a mood gradient in its hero banner, inside the
-site's existing dark cyber-glass aesthetic (no new global theme):
+Grounded in what's already live sitewide, not a new look bolted on: `#030712` base,
+Space Grotesk for display type, JetBrains Mono for labels/eyebrows, cyber-glass cards,
+grid-pattern background. The case studies extend this system with one signature device
+and a per-project accent.
 
-| Case study | Accent |
-|---|---|
-| Sochi 2014 Olympics | icy blue/white |
-| Sberbank / UC2GET | deep green/gold |
-| IDS Reactive Billing | amber/gold (ledger tone) |
-| Business Environment | indigo/violet |
-| IRS Grant Management System | navy/slate (federal tone) |
-| From Copilot to Colleague | cyan (matches existing site/blog brand) |
+**Signature device — "Case File" framing.** Timur's actual background is
+support/incident/architecture work (Sochi: "third-level support," "incident management";
+IDS: reactive billing; IRS: compliance). Each case study is framed as an incident/ops
+report using that real vocabulary instead of generic numbered sections:
 
-Implemented as a per-page CSS gradient + accent token, not custom illustration — cheap to
-build, still gives each page a distinct feel.
+```
+CASE_FILE // SOCHI-2014.LOG
+ROLE: Third-Level Support Engineer · Atos · 2012–2014 · ★ Silver Accolade ×2
+```
+
+Section eyebrows, identical across all six pages: `SITREP` (Situation) → `ROOT_CAUSE`
+(Problem) → `EXEC_LOG` (Approach) → `INCIDENT` (Pitfalls) → `RESOLUTION` (Outcome) →
+`DEBRIEF` (Lessons).
+
+**Per-project signal color** — the "own atmosphere" mechanism. One accent per page,
+grounded in something real about that project, not an arbitrary color wheel:
+
+| Case study | Accent | Why |
+|---|---|---|
+| Sochi 2014 Olympics | `#38BDF8` ice-blue + `#94A3B8` silver | Winter Games, the Silver Accolade itself |
+| Sberbank / UC2GET | `#16A34A` deep green | Sberbank's actual brand green |
+| IDS Reactive Billing | `#F59E0B` amber | ledger/invoice tone |
+| Business Environment | `#8B5CF6` violet | the scale-up from dev to Head Architect |
+| IRS Grant Management System | `#1E40AF` navy | federal/compliance tone |
+| From Copilot to Colleague | `#22D3EE` cyan | the site's own brand — this story is home turf |
 
 ## Page template
 
-1. Hero — project name, company, role, timeframe, accent badge, one-line hook
-2. The Situation
-3. The Problem
-4. The Approach (with tech-stack callouts)
-5. Pitfalls & What Broke
-6. Outcome
-7. Lessons Learned (with book tie-in callout where relevant)
+Single-column, ~740px reading width (matches blog prose), read top to bottom like a
+long-form piece — not a dashboard of cards:
+
+1. Hero — back-to-projects link, `CASE_FILE` stamp, project name (Space Grotesk,
+   signal-color gradient), role/company/timeframe/awards line, one-line hook
+2. `SITREP` — The Situation
+3. `ROOT_CAUSE` — The Problem
+4. `EXEC_LOG` — The Approach (with tech-stack callouts)
+5. `INCIDENT` — Pitfalls & What Broke
+6. `RESOLUTION` — Outcome
+7. `DEBRIEF` — Lessons Learned (with book-chapter citation callout where `bookTieIn` exists)
 8. Footer — tags, back-to-projects link
 
 Sections reveal on scroll via Framer Motion (already a project dependency, same pattern as
-the existing `app/template.tsx` page-transition wrapper) for polish, without introducing a
-new interaction paradigm (no tabs/stepper).
+the existing `app/template.tsx` page-transition wrapper), each triggering once, respecting
+`prefers-reduced-motion`. No tabs, no stepper — a scroll-read.
 
 ## Error handling
 
