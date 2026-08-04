@@ -1,15 +1,5 @@
-'use client'
-import dynamic from 'next/dynamic'
-
-const App = dynamic(() => import('../src/App.tsx'), {
-  ssr: false,
-  loading: () => null
-})
+import App from '../src/App'
 
 export default function Page() {
-  return (
-    <div suppressHydrationWarning>
-      <App/>
-    </div>
-  )
+  return <App />
 }
