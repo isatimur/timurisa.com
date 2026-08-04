@@ -24,7 +24,7 @@ export const FuturisticHero: React.FC<HeroProps> = ({ onOpenAiAgent }) => {
 
                 {/* Main Hero Headline */}
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                    Architecting <span className="gradient-text-cyber">Next-Gen Enterprise</span> Systems & AI Infrastructure
+                    Architecting <span className="gradient-text-cyber">Enterprise</span> Systems & AI Infrastructure
                 </h1>
 
                 {/* Subtitle */}
