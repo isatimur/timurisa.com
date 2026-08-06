@@ -14,6 +14,7 @@ import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe
 import { projects } from '@/src/constants';
 import { getCaseStudyByProjectRef, hasCaseStudyContent } from '@/src/constants/caseStudies';
 import { getCategoryTheme } from '@/src/constants/categoryThemes';
+import { getProjectSlug } from '@/src/constants/projectPages';
 
 interface Platform {
     type: 'web' | 'chrome' | 'ios' | 'android' | 'github';
@@ -120,15 +121,16 @@ export default function ProjectsPage() {
                                             </span>
                                         </button>
 
-                                        {caseStudy && hasCaseStudyContent(caseStudy) && (
-                                            <Link
-                                                href={`/projects/${caseStudy.slug}`}
-                                                className="mb-4 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80"
-                                                style={{ color: caseStudy.accent.primary }}
-                                            >
-                                                Read the Full Story <ArrowUpRight className="w-3.5 h-3.5" />
-                                            </Link>
-                                        )}
+                                        <Link
+                                            href={`/projects/${getProjectSlug(project)}`}
+                                            className={`mb-4 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80 ${
+                                                caseStudy && hasCaseStudyContent(caseStudy) ? '' : 'text-emerald-400'
+                                            }`}
+                                            style={caseStudy && hasCaseStudyContent(caseStudy) ? { color: caseStudy.accent.primary } : undefined}
+                                        >
+                                            {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
+                                            <ArrowUpRight className="w-3.5 h-3.5" />
+                                        </Link>
 
                                         {project.platforms && project.platforms.length > 0 && (
                                             <div className="flex flex-wrap gap-2 pt-4 border-t border-emerald-500/10">
@@ -255,15 +257,14 @@ export default function ProjectsPage() {
                                     </span>
                                 </button>
 
-                                {caseStudy && hasCaseStudyContent(caseStudy) && (
-                                    <Link
-                                        href={`/projects/${caseStudy.slug}`}
-                                        className="mt-4 pt-4 border-t border-white/10 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80"
-                                        style={{ color: caseStudy.accent.primary }}
-                                    >
-                                        Read the Full Story <ArrowUpRight className="w-3.5 h-3.5" />
-                                    </Link>
-                                )}
+                                <Link
+                                    href={`/projects/${getProjectSlug(project)}`}
+                                    className="mt-4 pt-4 border-t border-white/10 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80"
+                                    style={{ color: caseStudy && hasCaseStudyContent(caseStudy) ? caseStudy.accent.primary : theme.accent }}
+                                >
+                                    {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
+                                    <ArrowUpRight className="w-3.5 h-3.5" />
+                                </Link>
                             </div>
                         );
                     })}
