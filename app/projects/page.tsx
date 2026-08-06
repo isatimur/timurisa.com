@@ -13,6 +13,7 @@ import {
 import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles, Github, ArrowUpRight } from 'lucide-react';
 import { projects } from '@/src/constants';
 import { getCaseStudyByProjectRef, hasCaseStudyContent } from '@/src/constants/caseStudies';
+import { getCategoryTheme } from '@/src/constants/categoryThemes';
 
 interface Platform {
     type: 'web' | 'chrome' | 'ios' | 'android' | 'github';
@@ -156,36 +157,51 @@ export default function ProjectsPage() {
                 )}
 
                 <div className="flex flex-wrap justify-center gap-2.5 mb-12">
-                    {CATEGORIES.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
-                            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
-                                activeCategory === cat
-                                    ? 'bg-cyan-500 text-black font-bold shadow-lg shadow-cyan-500/30'
-                                    : 'cyber-glass text-slate-300 hover:text-cyan-300 hover:border-cyan-500/30 border border-cyan-500/10'
-                            }`}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+                    {CATEGORIES.map((cat) => {
+                        const isActive = activeCategory === cat;
+                        const accent = cat === 'All Projects' ? '#22D3EE' : getCategoryTheme(cat).accent;
+                        return (
+                            <button
+                                key={cat}
+                                onClick={() => setActiveCategory(cat)}
+                                className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
+                                    isActive
+                                        ? 'font-bold text-black shadow-lg'
+                                        : 'cyber-glass text-slate-300 border hover:text-white'
+                                }`}
+                                style={
+                                    isActive
+                                        ? { backgroundColor: accent, boxShadow: `0 10px 25px -10px ${accent}80` }
+                                        : { borderColor: `${accent}33` }
+                                }
+                            >
+                                {cat}
+                            </button>
+                        );
+                    })}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {filteredProjects.map((project) => {
                         const caseStudy = getCaseStudyByProjectRef(project.name);
+                        const theme = getCategoryTheme(project.category);
+                        const CategoryIcon = theme.Icon;
 
                         return (
                             <div
                                 key={project.name}
-                                className="p-6 rounded-2xl cyber-glass border border-cyan-500/20 cyber-glass-hover flex flex-col group"
+                                className="p-6 rounded-2xl cyber-glass cyber-glass-hover flex flex-col group transition-colors"
+                                style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${theme.accent}33` }}
                             >
                                 <button
                                     onClick={() => setSelected(project)}
                                     className="text-left flex flex-col flex-grow"
                                 >
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="relative w-12 h-12 rounded-xl bg-slate-900 border border-cyan-500/30 p-2 flex items-center justify-center shrink-0">
+                                        <div
+                                            className="relative w-12 h-12 rounded-xl bg-slate-900 p-2 flex items-center justify-center shrink-0"
+                                            style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${theme.accent}4d` }}
+                                        >
                                             {project.icon ? (
                                                 <Image
                                                     src={project.icon}
@@ -195,11 +211,11 @@ export default function ProjectsPage() {
                                                     className="object-contain p-2"
                                                 />
                                             ) : (
-                                                <Rocket className="w-5 h-5 text-cyan-400" />
+                                                <CategoryIcon className="w-5 h-5" style={{ color: theme.accent }} />
                                             )}
                                         </div>
                                         <div className="min-w-0">
-                                            <div className="text-cyan-300 font-mono text-xs truncate">{project.company_name}</div>
+                                            <div className="font-mono text-xs truncate" style={{ color: theme.accent }}>{project.company_name}</div>
                                             <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
                                                 <Calendar className="w-3 h-3" />
                                                 {project.date}
@@ -207,7 +223,12 @@ export default function ProjectsPage() {
                                         </div>
                                     </div>
 
-                                    <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-cyan-300 transition-colors">
+                                    <div className="inline-flex items-center gap-1.5 mb-2 text-[10px] font-mono uppercase tracking-wider" style={{ color: theme.accent }}>
+                                        <CategoryIcon className="w-3 h-3" />
+                                        {project.category}
+                                    </div>
+
+                                    <h3 className="text-lg font-bold text-white mb-2 leading-snug transition-colors">
                                         {project.name}
                                     </h3>
                                     <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-grow font-light">
@@ -218,14 +239,18 @@ export default function ProjectsPage() {
                                         {project.tags.slice(0, 3).map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-2 py-1 text-[10px] font-mono rounded bg-slate-900 border border-slate-800 text-cyan-300"
+                                                className="px-2 py-1 text-[10px] font-mono rounded bg-slate-900"
+                                                style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${theme.accent}33`, color: theme.accent }}
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <span className="inline-flex items-center gap-1 text-cyan-400 text-xs font-mono group-hover:gap-2 transition-all">
+                                    <span
+                                        className="inline-flex items-center gap-1 text-xs font-mono group-hover:gap-2 transition-all"
+                                        style={{ color: theme.accent }}
+                                    >
                                         View Details <ChevronRight className="w-3.5 h-3.5" />
                                     </span>
                                 </button>
@@ -251,7 +276,10 @@ export default function ProjectsPage() {
                         <>
                             <DialogHeader>
                                 <div className="flex items-center gap-3 mb-2">
-                                    <div className="relative w-10 h-10 rounded-lg bg-slate-900 border border-cyan-500/30 p-1.5 flex items-center justify-center shrink-0">
+                                    <div
+                                        className="relative w-10 h-10 rounded-lg bg-slate-900 p-1.5 flex items-center justify-center shrink-0"
+                                        style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${getCategoryTheme(selected.category).accent}4d` }}
+                                    >
                                         {selected.icon ? (
                                             <Image
                                                 src={selected.icon}
@@ -261,11 +289,14 @@ export default function ProjectsPage() {
                                                 className="object-contain p-1.5"
                                             />
                                         ) : (
-                                            <Rocket className="w-4 h-4 text-cyan-400" />
+                                            (() => {
+                                                const SelectedIcon = getCategoryTheme(selected.category).Icon;
+                                                return <SelectedIcon className="w-4 h-4" style={{ color: getCategoryTheme(selected.category).accent }} />;
+                                            })()
                                         )}
                                     </div>
                                     <div>
-                                        <div className="text-cyan-300 font-mono text-xs">{selected.company_name}</div>
+                                        <div className="font-mono text-xs" style={{ color: getCategoryTheme(selected.category).accent }}>{selected.company_name}</div>
                                         <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
                                             <Calendar className="w-3 h-3" />
                                             {selected.date}
