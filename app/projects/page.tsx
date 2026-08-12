@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { NavBar } from '@/components/NavBar';
 import {
     Dialog,
@@ -15,6 +16,10 @@ import { projects } from '@/src/constants';
 import { getCaseStudyByProjectRef, hasCaseStudyContent } from '@/src/constants/caseStudies';
 import { getCategoryTheme } from '@/src/constants/categoryThemes';
 import { getProjectSlug } from '@/src/constants/projectPages';
+import { BlurWords } from '@/src/components/effects/BlurWords';
+import { TiltCard } from '@/src/components/effects/TiltCard';
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 interface Platform {
     type: 'web' | 'chrome' | 'ios' | 'android' | 'github';
@@ -69,7 +74,7 @@ export default function ProjectsPage() {
                         <span>ENGINEERING PORTFOLIO</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-cyber">
-                        Projects & Case Studies
+                        <BlurWords text="Projects & Case Studies" />
                     </h1>
                     <p className="text-xl text-slate-400 max-w-2xl mx-auto font-light">
                         Real systems shipped over 17+ years — reactive billing platforms, federal grant systems,
@@ -86,13 +91,20 @@ export default function ProjectsPage() {
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {sideProjects.map((project) => {
+                            {sideProjects.map((project, index) => {
                                 const caseStudy = getCaseStudyByProjectRef(project.name);
 
                                 return (
-                                    <div
+                                    <motion.div
                                         key={project.name}
-                                        className="p-6 rounded-2xl cyber-glass border border-emerald-500/20 cyber-glass-hover flex flex-col"
+                                        initial={{ opacity: 0, y: 24 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.2 }}
+                                        transition={{ duration: 0.5, ease: EASE, delay: (index % 4) * 0.07 }}
+                                    >
+                                    <TiltCard
+                                        maxTilt={4}
+                                        className="p-6 rounded-2xl cyber-glass border border-emerald-500/20 cyber-glass-hover flex flex-col h-full"
                                     >
                                         <button
                                             onClick={() => setSelected(project)}
@@ -151,7 +163,8 @@ export default function ProjectsPage() {
                                                 })}
                                             </div>
                                         )}
-                                    </div>
+                                    </TiltCard>
+                                    </motion.div>
                                 );
                             })}
                         </div>
@@ -184,15 +197,22 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    {filteredProjects.map((project) => {
+                    {filteredProjects.map((project, index) => {
                         const caseStudy = getCaseStudyByProjectRef(project.name);
                         const theme = getCategoryTheme(project.category);
                         const CategoryIcon = theme.Icon;
 
                         return (
-                            <div
+                            <motion.div
                                 key={project.name}
-                                className="p-6 rounded-2xl cyber-glass cyber-glass-hover flex flex-col group transition-colors"
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.5, ease: EASE, delay: (index % 6) * 0.06 }}
+                            >
+                            <TiltCard
+                                maxTilt={5}
+                                className="p-6 rounded-2xl cyber-glass cyber-glass-hover flex flex-col group transition-colors h-full"
                                 style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${theme.accent}33` }}
                             >
                                 <button
@@ -265,7 +285,8 @@ export default function ProjectsPage() {
                                     {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
                                     <ArrowUpRight className="w-3.5 h-3.5" />
                                 </Link>
-                            </div>
+                            </TiltCard>
+                            </motion.div>
                         );
                     })}
                 </div>
