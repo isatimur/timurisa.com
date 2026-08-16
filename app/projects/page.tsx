@@ -5,13 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { NavBar } from '@/components/NavBar';
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-} from '@/components/ui/dialog';
-import { Briefcase, Calendar, ChevronRight, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles, Github, ArrowUpRight } from 'lucide-react';
+import { Calendar, Layers, Rocket, Chrome, Apple, Globe, Smartphone, Sparkles, Github, ArrowUpRight } from 'lucide-react';
 import { projects } from '@/src/constants';
 import { getCaseStudyByProjectRef, hasCaseStudyContent } from '@/src/constants/caseStudies';
 import { getCategoryTheme } from '@/src/constants/categoryThemes';
@@ -57,7 +51,6 @@ const CATEGORIES = ['All Projects', ...Array.from(new Set(gridProjects.map((p) =
 
 export default function ProjectsPage() {
     const [activeCategory, setActiveCategory] = useState('All Projects');
-    const [selected, setSelected] = useState<Project | null>(null);
 
     const filteredProjects = useMemo(() => {
         if (activeCategory === 'All Projects') return gridProjects;
@@ -106,9 +99,9 @@ export default function ProjectsPage() {
                                         maxTilt={4}
                                         className="p-6 rounded-2xl cyber-glass border border-emerald-500/20 cyber-glass-hover flex flex-col h-full"
                                     >
-                                        <button
-                                            onClick={() => setSelected(project)}
-                                            className="text-left flex flex-col flex-grow group"
+                                        <Link
+                                            href={`/projects/${getProjectSlug(project)}`}
+                                            className="text-left flex flex-col flex-grow group mb-4"
                                         >
                                             <div className="flex items-center gap-3 mb-4">
                                                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
@@ -128,20 +121,15 @@ export default function ProjectsPage() {
                                             <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-grow font-light">
                                                 {project.description}
                                             </p>
-                                            <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-mono group-hover:gap-2 transition-all mb-4">
-                                                View Details <ChevronRight className="w-3.5 h-3.5" />
+                                            <span
+                                                className={`inline-flex items-center gap-1.5 text-xs font-mono group-hover:gap-2 transition-all ${
+                                                    caseStudy && hasCaseStudyContent(caseStudy) ? '' : 'text-emerald-400'
+                                                }`}
+                                                style={caseStudy && hasCaseStudyContent(caseStudy) ? { color: caseStudy.accent.primary } : undefined}
+                                            >
+                                                {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
+                                                <ArrowUpRight className="w-3.5 h-3.5" />
                                             </span>
-                                        </button>
-
-                                        <Link
-                                            href={`/projects/${getProjectSlug(project)}`}
-                                            className={`mb-4 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80 ${
-                                                caseStudy && hasCaseStudyContent(caseStudy) ? '' : 'text-emerald-400'
-                                            }`}
-                                            style={caseStudy && hasCaseStudyContent(caseStudy) ? { color: caseStudy.accent.primary } : undefined}
-                                        >
-                                            {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
-                                            <ArrowUpRight className="w-3.5 h-3.5" />
                                         </Link>
 
                                         {project.platforms && project.platforms.length > 0 && (
@@ -215,8 +203,8 @@ export default function ProjectsPage() {
                                 className="p-6 rounded-2xl cyber-glass cyber-glass-hover flex flex-col group transition-colors h-full"
                                 style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${theme.accent}33` }}
                             >
-                                <button
-                                    onClick={() => setSelected(project)}
+                                <Link
+                                    href={`/projects/${getProjectSlug(project)}`}
                                     className="text-left flex flex-col flex-grow"
                                 >
                                     <div className="flex items-center gap-3 mb-4">
@@ -270,20 +258,12 @@ export default function ProjectsPage() {
                                     </div>
 
                                     <span
-                                        className="inline-flex items-center gap-1 text-xs font-mono group-hover:gap-2 transition-all"
-                                        style={{ color: theme.accent }}
+                                        className="inline-flex items-center gap-1.5 text-xs font-mono group-hover:gap-2 transition-all"
+                                        style={{ color: caseStudy && hasCaseStudyContent(caseStudy) ? caseStudy.accent.primary : theme.accent }}
                                     >
-                                        View Details <ChevronRight className="w-3.5 h-3.5" />
+                                        {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
+                                        <ArrowUpRight className="w-3.5 h-3.5" />
                                     </span>
-                                </button>
-
-                                <Link
-                                    href={`/projects/${getProjectSlug(project)}`}
-                                    className="mt-4 pt-4 border-t border-white/10 inline-flex items-center gap-1.5 text-xs font-mono transition-colors hover:opacity-80"
-                                    style={{ color: caseStudy && hasCaseStudyContent(caseStudy) ? caseStudy.accent.primary : theme.accent }}
-                                >
-                                    {caseStudy && hasCaseStudyContent(caseStudy) ? 'Read the Full Story' : 'View Project Page'}
-                                    <ArrowUpRight className="w-3.5 h-3.5" />
                                 </Link>
                             </TiltCard>
                             </motion.div>
@@ -292,91 +272,6 @@ export default function ProjectsPage() {
                 </div>
             </main>
 
-            <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-                <DialogContent className="cyber-glass border border-cyan-500/20 max-w-xl bg-slate-950/95">
-                    {selected && (
-                        <>
-                            <DialogHeader>
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div
-                                        className="relative w-10 h-10 rounded-lg bg-slate-900 p-1.5 flex items-center justify-center shrink-0"
-                                        style={{ borderWidth: 1, borderStyle: 'solid', borderColor: `${getCategoryTheme(selected.category).accent}4d` }}
-                                    >
-                                        {selected.icon ? (
-                                            <Image
-                                                src={selected.icon}
-                                                alt={selected.company_name}
-                                                fill
-                                                sizes="40px"
-                                                className="object-contain p-1.5"
-                                            />
-                                        ) : (
-                                            (() => {
-                                                const SelectedIcon = getCategoryTheme(selected.category).Icon;
-                                                return <SelectedIcon className="w-4 h-4" style={{ color: getCategoryTheme(selected.category).accent }} />;
-                                            })()
-                                        )}
-                                    </div>
-                                    <div>
-                                        <div className="font-mono text-xs" style={{ color: getCategoryTheme(selected.category).accent }}>{selected.company_name}</div>
-                                        <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
-                                            <Calendar className="w-3 h-3" />
-                                            {selected.date}
-                                        </div>
-                                    </div>
-                                </div>
-                                <DialogTitle className="text-2xl font-bold text-white">
-                                    {selected.name}
-                                </DialogTitle>
-                            </DialogHeader>
-
-                            <p className="text-slate-300 leading-relaxed font-light">
-                                {selected.description}
-                            </p>
-
-                            <ul className="space-y-2.5">
-                                {selected.points.map((point, i) => (
-                                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
-                                        <Briefcase className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className="flex flex-wrap gap-2 pt-2">
-                                {selected.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="px-2.5 py-1 text-xs font-mono rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {selected.platforms && selected.platforms.length > 0 && (
-                                <div className="flex flex-wrap gap-2 pt-2">
-                                    {selected.platforms.map((platform) => {
-                                        const Icon = PLATFORM_ICONS[platform.type];
-                                        return (
-                                            <a
-                                                key={platform.url}
-                                                href={platform.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-sm font-mono hover:opacity-90 transition-opacity"
-                                            >
-                                                <Icon className="w-4 h-4" />
-                                                {platform.label}
-                                            </a>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </>
-                    )}
-                </DialogContent>
-            </Dialog>
         </div>
     );
 }
