@@ -97,12 +97,13 @@ export default async function ProjectPage({ params }: PageProps) {
     }
 
     const { project } = resolution;
-    const accentStyle = { '--case-accent': getProjectAccent(project) } as CSSProperties;
+    const accent = getProjectAccent(project);
+    const accentStyle = { '--case-accent': accent } as CSSProperties;
 
     return (
         <div className="case-study min-h-screen bg-[#030712] bg-grid-pattern" style={accentStyle}>
             <NavBar />
-            <ProjectBrief project={project} />
+            <ProjectBrief project={project} accent={accent} />
         </div>
     );
 }

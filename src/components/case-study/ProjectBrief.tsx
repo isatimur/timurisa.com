@@ -5,11 +5,13 @@ import { getCategoryTheme } from '@/src/constants/categoryThemes';
 import { PLATFORM_ICONS } from '@/src/constants/platformIcons';
 import type { ProjectRecord } from '@/src/constants/projectPages';
 import { getProjectSlug } from '@/src/constants/projectPages';
+import { getProjectCenterpiece } from '@/src/constants/projectCenterpieces';
 
-export function ProjectBrief({ project }: { project: ProjectRecord }) {
+export function ProjectBrief({ project, accent }: { project: ProjectRecord; accent: string }) {
     const slug = getProjectSlug(project);
     const category = getCategoryTheme(project.category);
     const CategoryIcon = category.Icon;
+    const centerpiece = getProjectCenterpiece(project.name, accent);
 
     return (
         <>
@@ -47,12 +49,30 @@ export function ProjectBrief({ project }: { project: ProjectRecord }) {
                 </p>
             </header>
 
-            <main className="max-w-[740px] mx-auto px-4 pb-24">
-                {project.points.length > 0 && (
-                    <CaseStudySection eyebrow="HIGHLIGHTS" heading="What It Does" items={project.points} />
+            <main className={centerpiece ? 'px-4 pb-24' : 'max-w-[740px] mx-auto px-4 pb-24'}>
+                {centerpiece ? (
+                    <>
+                        {project.points.length > 0 && (
+                            <div className="max-w-[640px] mb-4">
+                                <CaseStudySection eyebrow="01 / 02" heading="What It Does" items={project.points} />
+                            </div>
+                        )}
+
+                        <section className="case-rule border-t pt-10 pb-10 max-w-5xl mx-auto">
+                            <div className="case-eyebrow mb-3 text-center">02 / 02</div>
+                            <h2 className="text-2xl font-bold text-white mb-10 text-center">The Topology</h2>
+                            {centerpiece}
+                        </section>
+                    </>
+                ) : (
+                    project.points.length > 0 && (
+                        <div className="max-w-[740px] mx-auto">
+                            <CaseStudySection eyebrow="HIGHLIGHTS" heading="What It Does" items={project.points} />
+                        </div>
+                    )
                 )}
 
-                <footer className="case-rule pt-10 mt-2 border-t flex flex-wrap items-center justify-between gap-4">
+                <footer className="case-rule pt-10 mt-2 border-t flex flex-wrap items-center justify-between gap-4 max-w-[740px] mx-auto">
                     <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
                             <span
