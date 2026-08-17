@@ -60,8 +60,8 @@ export function ProjectBrief({ project, accent }: { project: ProjectRecord; acce
 
                         <section className="case-rule border-t pt-10 pb-10 max-w-5xl mx-auto">
                             <div className="case-eyebrow mb-3 text-center">02 / 02</div>
-                            <h2 className="text-2xl font-bold text-white mb-10 text-center">The Topology</h2>
-                            {centerpiece}
+                            <h2 className="text-2xl font-bold text-white mb-10 text-center">{centerpiece.heading}</h2>
+                            {centerpiece.node}
                         </section>
                     </>
                 ) : (

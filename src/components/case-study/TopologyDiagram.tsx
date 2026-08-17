@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 
-type Node = {
+export type TopologyNode = {
     id: string;
     x: number;
     y: number;
@@ -12,14 +12,13 @@ type Node = {
     subtitle?: string;
 };
 
-type Edge = {
+export type TopologyEdge = {
     from: string;
     to: string;
     path: string;
-    label?: string;
 };
 
-const NODES: Node[] = [
+const IDS_NODES: TopologyNode[] = [
     { id: 'client', x: 20, y: 170, w: 150, h: 64, title: 'Client Apps' },
     {
         id: 'gateway',
@@ -44,7 +43,7 @@ const NODES: Node[] = [
     { id: 'postgres', x: 740, y: 140, w: 150, h: 56, title: 'PostgreSQL', subtitle: 'via R2DBC' },
 ];
 
-const EDGES: Edge[] = [
+const IDS_EDGES: TopologyEdge[] = [
     { from: 'client', to: 'gateway', path: 'M 170 202 L 220 202' },
     { from: 'gateway', to: 'billing', path: 'M 430 190 C 460 190, 450 112, 480 112' },
     { from: 'gateway', to: 'payments', path: 'M 430 214 C 460 214, 450 292, 480 292' },
@@ -52,17 +51,26 @@ const EDGES: Edge[] = [
     { from: 'billing', to: 'postgres', path: 'M 690 130 C 715 130, 715 168, 740 168' },
 ];
 
-export function TopologyDiagram({ accent = '#F59E0B' }: { accent?: string }) {
+type TopologyDiagramProps = {
+    accent?: string;
+    nodes?: TopologyNode[];
+    edges?: TopologyEdge[];
+    viewBox?: string;
+    ariaLabel?: string;
+};
+
+export function TopologyDiagram({
+    accent = '#F59E0B',
+    nodes = IDS_NODES,
+    edges = IDS_EDGES,
+    viewBox = '0 0 920 340',
+    ariaLabel = 'Architecture: Client Apps flow through an API Gateway secured by Keycloak SSO to a Kotlin/Spring WebFlux Billing Service, which fans out to Payment Providers, Kafka event streaming, and PostgreSQL via R2DBC.',
+}: TopologyDiagramProps) {
     const prefersReducedMotion = useReducedMotion();
 
     return (
-        <svg
-            viewBox="0 0 920 340"
-            className="w-full h-auto"
-            role="img"
-            aria-label="Architecture: Client Apps flow through an API Gateway secured by Keycloak SSO to a Kotlin/Spring WebFlux Billing Service, which fans out to Payment Providers, Kafka event streaming, and PostgreSQL via R2DBC."
-        >
-            {EDGES.map((edge, i) => (
+        <svg viewBox={viewBox} className="w-full h-auto" role="img" aria-label={ariaLabel}>
+            {edges.map((edge, i) => (
                 <motion.path
                     key={`${edge.from}-${edge.to}`}
                     d={edge.path}
@@ -77,7 +85,7 @@ export function TopologyDiagram({ accent = '#F59E0B' }: { accent?: string }) {
                 />
             ))}
 
-            {NODES.map((node, i) => (
+            {nodes.map((node, i) => (
                 <motion.g
                     key={node.id}
                     initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
