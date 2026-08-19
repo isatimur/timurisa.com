@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { TopologyDiagram, type TopologyNode, type TopologyEdge } from '@/src/components/case-study/TopologyDiagram';
 import { StatFunnel } from '@/src/components/case-study/StatFunnel';
+import { BeforeAfter } from '@/src/components/case-study/BeforeAfter';
+import { GoldenHourGrid } from '@/src/components/case-study/GoldenHourGrid';
 
 const GLORIFY_NODES: TopologyNode[] = [
     { id: 'drivewealth', x: 10, y: 80, w: 160, h: 64, title: 'DriveWealth', subtitle: 'Brokerage API' },
@@ -51,6 +53,34 @@ const PROJECT_CENTERPIECES: Record<string, Centerpiece> = {
                 ]}
             />
         ),
+    },
+    'Legacy Java Modernization': {
+        heading: 'The Migration',
+        render: (accent) => (
+            <BeforeAfter
+                accent={accent}
+                before={{
+                    eyebrow: 'Before',
+                    title: 'Struts + JSP',
+                    subtitle: 'Java 1.6-era codebase',
+                    chips: ['Struts', 'JSP'],
+                }}
+                after={{
+                    eyebrow: 'After',
+                    title: 'Google Web Toolkit',
+                    subtitle: 'Modernized front end',
+                    chips: ['GWT', 'Java'],
+                }}
+                preserved={{
+                    label: 'Preserved Throughout the Rewrite',
+                    chips: ['Oracle', 'XSLT', 'XML'],
+                }}
+            />
+        ),
+    },
+    Zonelyte: {
+        heading: 'The Golden Hour',
+        render: (accent) => <GoldenHourGrid accent={accent} />,
     },
 };
 
