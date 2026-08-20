@@ -3,6 +3,7 @@ import { TopologyDiagram, type TopologyNode, type TopologyEdge } from '@/src/com
 import { StatFunnel } from '@/src/components/case-study/StatFunnel';
 import { BeforeAfter } from '@/src/components/case-study/BeforeAfter';
 import { GoldenHourGrid } from '@/src/components/case-study/GoldenHourGrid';
+import { IdsWorldLazy } from '@/src/components/case-study/IdsWorldLazy';
 
 const GLORIFY_NODES: TopologyNode[] = [
     { id: 'drivewealth', x: 10, y: 80, w: 160, h: 64, title: 'DriveWealth', subtitle: 'Brokerage API' },
@@ -27,7 +28,7 @@ type Centerpiece = {
 const PROJECT_CENTERPIECES: Record<string, Centerpiece> = {
     'IDS Reactive Billing Platform': {
         heading: 'The Topology',
-        render: (accent) => <TopologyDiagram accent={accent} />,
+        render: (accent) => <IdsWorldLazy accent={accent} />,
     },
     'Glorify Bank Brokerage Integration': {
         heading: 'The Event Path',
