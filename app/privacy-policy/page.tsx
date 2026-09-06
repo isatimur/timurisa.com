@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { NavBar } from '@/components/NavBar';
+import { SiteFooter } from '@/components/SiteFooter';
 
 export default function PrivacyPolicyPage() {
     const formattedDate = new Date().toLocaleDateString('en-US', {
@@ -11,9 +12,9 @@ export default function PrivacyPolicyPage() {
     });
 
     return (
-        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
+        <div className="portfolio site-shell">
             <NavBar />
-            <main className="container mx-auto px-4 py-12 max-w-4xl">
+            <main className="site-main legal-main">
                 <h1 className="text-4xl font-bold mb-8 text-white">Privacy Policy</h1>
                 <div className="prose prose-lg">
                     <p>Last updated: {formattedDate}</p>
@@ -54,7 +55,7 @@ export default function PrivacyPolicyPage() {
                         <li>By visiting our contact page: <a href="/contact" className="text-cyan-400 hover:underline">Contact Form</a></li>
                     </ul>
                 </div>
-            </main>
+            </main><SiteFooter/>
         </div>
     );
 } 

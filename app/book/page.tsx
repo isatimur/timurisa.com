@@ -1,274 +1,188 @@
-'use client';
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { NavBar } from "@/components/NavBar";
+import { SiteFooter } from "@/components/SiteFooter";
+import { book, book2, book3 } from "../../public/assets";
+export default function BookPage() {
+  const books = [
+    {
+      title: "From Copilot to Colleague",
+      image: book3,
+      description:
+        "With Daniel Mohanrao. A source-anchored book on AI engineering: how AI systems move from assistants that suggest, to copilots that collaborate in real time, to delegates trusted with full, reviewable tasks. Every claim links to the exact conference-talk video and timestamp it came from.",
+      readOnlineLink: "https://fromcopilottocolleague.com",
+      publishDate: "2026",
+      publisher: "AI Engineer Press",
+      pages: "10 chapters",
+      rating: 0,
+      features: [
+        "199 source anchors linking claims to precise conference-talk timestamps",
+        "Drawn from 881 AI Engineer conference talks",
+        "Three-tier claim support levels (strong, moderate, tentative)",
+        "Public, machine-readable claims ledger and chapter drafts",
+      ],
+    },
+    {
+      title: "Generative AI with Local LLM",
+      image: book2,
+      description:
+        "Explore the world of Generative AI and Large Language Models (LLMs) with this practical guide. Learn how to implement and deploy LLMs locally, understanding the fundamentals of AI model training and optimization.",
+      amazonLink: "https://a.co/d/a7kqMqW",
+      leanpubLink: "https://leanpub.com/quickstartwithai",
+      websiteLink: "https://quickstartgenai.com",
+      publishDate: "2024",
+      publisher: "Self-published",
+      pages: "304",
+      rating: 0,
+      features: [
+        "Introduction to Large Language Models",
+        "Local LLM deployment strategies",
+        "Practical AI implementation guides",
+        "Performance optimization techniques",
+      ],
+    },
+    {
+      title: "High Performance in-memory computing with Apache Ignite",
+      image: book,
+      description:
+        "Master the power of in-memory computing with Apache Ignite. This comprehensive guide walks you through building scalable, high-performance applications using distributed caching, SQL queries, and real-time processing.",
+      amazonLink: "https://a.co/d/4rVYpcH",
+      publishDate: "2017",
+      publisher: "Lulu Publishing",
+      pages: "380",
+      rating: 3.3,
+      features: [
+        "In-depth coverage of Apache Ignite architecture",
+        "Practical examples of distributed computing",
+        "Performance optimization techniques",
+        "Real-world use cases and implementations",
+      ],
+    },
+  ];
 
-import React from 'react';
-import { NavBar } from '@/components/NavBar';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart, BookOpen, Star, Cpu } from 'lucide-react';
-import { book, book2, book3 } from '../../public/assets';
-import Link from 'next/link';
-import { Linkedin, Globe } from 'lucide-react';
-
-
-const Footer = () => {
-    const quickLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Blog', href: '/blog' },
-    ];
-
-    const socialLinks = [
-        {
-            name: 'GitHub',
-            href: 'https://github.com/isatimur',
-            icon: (props: any) => (
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" {...props}>
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
-            )
-        },
-        { name: 'LinkedIn', href: 'https://linkedin.com/in/timur-isachenko', icon: Linkedin },
-    ];
-
-    return (
-        <footer className="relative bg-slate-950 border-t border-cyan-500/10 text-white shadow-lg mt-auto">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
-
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {/* Brand Section */}
-                    <div className="space-y-4">
-                        <div className="flex items-center space-x-3">
-                            <div className="p-1.5 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
-                                <Cpu className="h-5 w-5 text-cyan-400" />
-                            </div>
-                            <h3 className="text-lg font-bold text-white font-mono py-1">
-                                TIMUR<span className="text-cyan-400">.AI</span>
-                            </h3>
-                        </div>
-                        <p className="text-sm text-slate-400">
-                            Exploring technology and sharing knowledge through detailed articles and tutorials.
-                        </p>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div className="flex flex-wrap gap-4 items-center justify-center">
-                        {quickLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-slate-400 hover:text-cyan-400 transition-all duration-200"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                        <Button
-                            variant="ghost"
-                            className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10"
-                            onClick={() => window.open("https://leanpub.com/quickstartwithai", "_blank")}
-                        >
-                            <ShoppingCart className="mr-2 h-4 w-4" />
-                            Get the Book
-                        </Button>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="flex justify-center md:justify-end items-center space-x-4">
-                        {socialLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                target="_blank"
-                                className="p-2 bg-cyan-500/10 rounded-lg hover:bg-cyan-500/20 text-slate-300
-                                         hover:text-cyan-300 transition-all duration-300
-                                         group relative"
-                            >
-                                <link.icon className="h-5 w-5" />
-                                <span className="absolute -top-8 left-1/2 -translate-x-1/2
-                                               bg-slate-900 border border-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded
-                                               opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                    {link.name}
-                                </span>
-                            </Link>
-                        ))}
-                    </div>
+  return (
+    <div className="portfolio site-shell">
+      <NavBar />
+      <main className="site-main">
+        <header className="page-intro intro-split">
+          <div>
+            <h1>
+              From practice.
+              <br />
+              <span>Onto the page.</span>
+            </h1>
+            <p>
+              Books on AI engineering and distributed systems. The ideas,
+              patterns, and lessons behind the work.
+            </p>
+          </div>
+          <div className="intro-aside">
+            <p>
+              For the curious.
+              <br />
+              For the builders.
+              <br />
+              For the next hard problem.
+            </p>
+            <Link href="/blog" className="text-action">
+              Read my articles <ArrowUpRight size={16} />
+            </Link>
+          </div>
+        </header>
+        <div className="publication-list">
+          {books.map((b, i) => (
+            <section className="publication" key={b.title}>
+              <div className={`publication-stage publication-stage-${i}`}>
+                <div className="physical-book">
+                  <Image
+                    src={b.image}
+                    alt={`${b.title} cover`}
+                    width={330}
+                    height={460}
+                    priority={i === 0}
+                  />
                 </div>
-
-                {/* Bottom Bar */}
-                <div className="pt-6 border-t border-slate-800 text-center">
-                    <p className="text-slate-500 text-sm">
-                        &copy; {new Date().getFullYear()} Timur Isachenko. All rights reserved.
-                    </p>
+                <span>
+                  {b.publishDate} / {b.publisher}
+                </span>
+              </div>
+              <div className="publication-copy">
+                <h2>{b.title}</h2>
+                <p>{b.description}</p>
+                <div className="publication-facts">
+                  <span>{b.publishDate}</span>
+                  <span>{b.publisher}</span>
+                  <span>
+                    {b.pages}
+                    {b.pages.includes("chapters") ? "" : " pages"}
+                  </span>
                 </div>
-            </div>
-        </footer>
-    );
-};
-
-const BookPage = () => {
-    const books = [
-        {
-            title: "From Copilot to Colleague",
-            image: book3,
-            description: "With Daniel Mohanrao. A source-anchored book on AI engineering: how AI systems move from assistants that suggest, to copilots that collaborate in real time, to delegates trusted with full, reviewable tasks. Every claim links to the exact conference-talk video and timestamp it came from.",
-            readOnlineLink: "https://fromcopilottocolleague.com",
-            publishDate: "2026",
-            publisher: "AI Engineer Press",
-            pages: "10 chapters",
-            rating: 0,
-            features: [
-                "199 source anchors linking claims to precise conference-talk timestamps",
-                "Drawn from 881 AI Engineer conference talks",
-                "Three-tier claim support levels (strong, moderate, tentative)",
-                "Public, machine-readable claims ledger and chapter drafts"
-            ]
-        },
-        {
-            title: "Generative AI with Local LLM",
-            image: book2,
-            description: "Explore the world of Generative AI and Large Language Models (LLMs) with this practical guide. Learn how to implement and deploy LLMs locally, understanding the fundamentals of AI model training and optimization.",
-            amazonLink: "https://a.co/d/a7kqMqW",
-            leanpubLink: "https://leanpub.com/quickstartwithai",
-            websiteLink: "https://quickstartgenai.com",
-            publishDate: "2024",
-            publisher: "Self-published",
-            pages: "304",
-            rating: 0,
-            features: [
-                "Introduction to Large Language Models",
-                "Local LLM deployment strategies",
-                "Practical AI implementation guides",
-                "Performance optimization techniques"
-            ]
-        },
-        {
-            title: "High Performance in-memory computing with Apache Ignite",
-            image: book,
-            description: "Master the power of in-memory computing with Apache Ignite. This comprehensive guide walks you through building scalable, high-performance applications using distributed caching, SQL queries, and real-time processing.",
-            amazonLink: "https://a.co/d/4rVYpcH",
-            publishDate: "2017",
-            publisher: "Lulu Publishing",
-            pages: "380",
-            rating: 3.3,
-            features: [
-                "In-depth coverage of Apache Ignite architecture",
-                "Practical examples of distributed computing",
-                "Performance optimization techniques",
-                "Real-world use cases and implementations"
-            ]
-        }
-
-    ];
-
-    const handleBookPurchase = (link: string) => {
-        window.open(link, "_blank", "noopener,noreferrer");
-    };
-
-    return (
-        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
-            <NavBar />
-            <main className="container mx-auto px-4 py-12">
-                <h1 className="text-4xl font-bold text-center mb-12 gradient-text-cyber">
-                    My Published Books
-                </h1>
-
-                <div className="space-y-16 py-4">
-                    {books.map((book, index) => (
-                        <section key={index} className="cyber-glass border border-cyan-500/20 rounded-2xl p-8 flex flex-col md:flex-row gap-8">
-                            <div className="md:w-1/3">
-                                <Image
-                                    src={book.image.src}
-                                    width={400}
-                                    height={550}
-                                    alt={book.title}
-                                    className="rounded-lg shadow-2xl shadow-cyan-500/10 border border-cyan-500/20 hover:shadow-cyan-500/20 transition-shadow"
-                                />
-                            </div>
-                            <div className="md:w-2/3 space-y-6">
-                                <h2 className="text-3xl font-bold text-white">{book.title}</h2>
-                                {book.rating > 0 && (
-                                    <div className="flex items-center space-x-2">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star key={i}
-                                                className={`w-5 h-5 ${i < Math.floor(book.rating) ? 'text-amber-400 fill-current' : 'text-slate-700'}`}
-                                            />
-                                        ))}
-                                        <span className="text-slate-400">({book.rating})</span>
-                                    </div>
-                                )}
-
-                                <p className="text-slate-300 text-lg leading-relaxed font-light">
-                                    {book.description}
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-4 text-sm text-slate-400">
-                                    <div>
-                                        <strong className="text-slate-200">Published:</strong> {book.publishDate}
-                                    </div>
-                                    <div>
-                                        <strong className="text-slate-200">Publisher:</strong> {book.publisher}
-                                    </div>
-                                    <div>
-                                        <strong className="text-slate-200">Pages:</strong> {book.pages}
-                                    </div>
-                                </div>
-
-                                <div className="space-y-4">
-                                    <h3 className="text-xl font-semibold text-white">Key Features:</h3>
-                                    <ul className="list-disc list-inside space-y-2 text-slate-300">
-                                        {book.features.map((feature, i) => (
-                                            <li key={i}>{feature}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <div className="flex flex-wrap gap-4">
-                                    {book.leanpubLink && (
-                                        <Button
-                                            onClick={() => handleBookPurchase(book.leanpubLink)}
-                                            variant="outline"
-                                            className="border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
-                                        >
-                                            <BookOpen className="mr-2 h-4 w-4" />
-                                            Get on Leanpub
-                                        </Button>
-                                    )}
-                                    {book.amazonLink && (
-                                        <Button
-                                            onClick={() => handleBookPurchase(book.amazonLink)}
-                                            className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
-                                        >
-                                            <ShoppingCart className="mr-2 h-4 w-4" />
-                                            Buy on Amazon
-                                        </Button>
-                                    )}
-                                    {book.websiteLink && (
-                                        <Button
-                                            onClick={() => handleBookPurchase(book.websiteLink)}
-                                            variant="outline"
-                                            className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20 hover:text-emerald-200"
-                                        >
-                                            <Globe className="mr-2 h-4 w-4" />
-                                            Visit Website
-                                        </Button>
-                                    )}
-                                    {book.readOnlineLink && (
-                                        <Button
-                                            onClick={() => handleBookPurchase(book.readOnlineLink)}
-                                            className="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white"
-                                        >
-                                            <BookOpen className="mr-2 h-4 w-4" />
-                                            Read Online
-                                        </Button>
-                                    )}
-                                </div>
-                            </div>
-                        </section>
+                <details>
+                  <summary>
+                    Inside the book <span>+</span>
+                  </summary>
+                  <ul>
+                    {b.features.map((f) => (
+                      <li key={f}>{f}</li>
                     ))}
+                  </ul>
+                </details>
+                <div className="publication-actions">
+                  {b.readOnlineLink && (
+                    <a
+                      className="primary-action"
+                      href={b.readOnlineLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read online <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {b.amazonLink && (
+                    <a
+                      className="primary-action"
+                      href={b.amazonLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Get the book <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {b.leanpubLink && (
+                    <a
+                      className="text-action"
+                      href={b.leanpubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Leanpub <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {b.websiteLink && (
+                    <a
+                      className="text-action"
+                      href={b.websiteLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book website <ArrowUpRight size={16} />
+                    </a>
+                  )}
                 </div>
-            </main>
-            <Footer />
+              </div>
+            </section>
+          ))}
         </div>
-    );
-};
-
-export default BookPage;
+        <div className="page-next">
+          <p>More ideas, between the books.</p>
+          <Link href="/blog">
+            Notes from the work.
+            <ArrowRight />
+          </Link>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}

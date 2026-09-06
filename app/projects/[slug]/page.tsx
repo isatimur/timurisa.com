@@ -1,109 +1,163 @@
-import type { Metadata } from 'next';
-import type { CSSProperties } from 'react';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { NavBar } from '@/components/NavBar';
-import { CaseFileHeader } from '@/src/components/case-study/CaseFileHeader';
-import { CaseStudySection } from '@/src/components/case-study/CaseStudySection';
-import { BookTieIn } from '@/src/components/case-study/BookTieIn';
-import { ProjectBrief } from '@/src/components/case-study/ProjectBrief';
-import { getAllProjectSlugs, getProjectAccent, resolveProjectPage } from '@/src/constants/projectPages';
+import type { Metadata } from "next";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ProjectArtwork } from "@/components/ProjectArtwork";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { NavBar } from "@/components/NavBar";
+import { BookTieIn } from "@/src/components/case-study/BookTieIn";
+import { ProjectBrief } from "@/src/components/case-study/ProjectBrief";
+import {
+  getAllProjectSlugs,
+  resolveProjectPage,
+} from "@/src/constants/projectPages";
 
 type PageProps = {
-    params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-    return getAllProjectSlugs().map((slug) => ({ slug }));
+  return getAllProjectSlugs().map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const resolution = resolveProjectPage(slug);
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const resolution = resolveProjectPage(slug);
 
-    if (!resolution) {
-        return { title: 'Project Not Found' };
-    }
+  if (!resolution) {
+    return { title: "Project Not Found" };
+  }
 
-    if (resolution.kind === 'case-study') {
-        const { caseStudy } = resolution;
-        const title = `${caseStudy.projectRef} — Case Study | Timur Isachenko`;
-        return {
-            title,
-            description: caseStudy.hook,
-            openGraph: { title, description: caseStudy.hook },
-            twitter: { card: 'summary_large_image', title, description: caseStudy.hook },
-        };
-    }
-
-    const { project } = resolution;
-    const title = `${project.name} — Project | Timur Isachenko`;
+  if (resolution.kind === "case-study") {
+    const { caseStudy } = resolution;
+    const title = `${caseStudy.projectRef} — Case Study | Timur Isachenko`;
     return {
+      title,
+      description: caseStudy.hook,
+      openGraph: { title, description: caseStudy.hook },
+      twitter: {
+        card: "summary_large_image",
         title,
-        description: project.description,
-        openGraph: { title, description: project.description },
-        twitter: { card: 'summary_large_image', title, description: project.description },
+        description: caseStudy.hook,
+      },
     };
+  }
+
+  const { project } = resolution;
+  const title = `${project.name} — Project | Timur Isachenko`;
+  return {
+    title,
+    description: project.description,
+    openGraph: { title, description: project.description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: project.description,
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-    const { slug } = await params;
-    const resolution = resolveProjectPage(slug);
-
-    if (!resolution) {
-        notFound();
-    }
-
-    if (resolution.kind === 'case-study') {
-        const { caseStudy } = resolution;
-        const accentStyle = { '--case-accent': caseStudy.accent.primary } as CSSProperties;
-
-        return (
-            <div className="case-study min-h-screen bg-[#030712] bg-grid-pattern" style={accentStyle}>
-                <NavBar />
-                <CaseFileHeader caseStudy={caseStudy} />
-
-                <main className="max-w-[740px] mx-auto px-4 pb-24">
-                    <CaseStudySection eyebrow="SITREP" heading="The Situation" paragraph={caseStudy.situation} />
-                    <CaseStudySection eyebrow="ROOT_CAUSE" heading="The Problem" paragraph={caseStudy.problem} />
-                    <CaseStudySection eyebrow="EXEC_LOG" heading="The Approach" items={caseStudy.approach} />
-                    <CaseStudySection eyebrow="INCIDENT" heading="Pitfalls & What Broke" items={caseStudy.pitfalls} />
-                    <CaseStudySection eyebrow="RESOLUTION" heading="Outcome" paragraph={caseStudy.outcome} />
-                    <CaseStudySection eyebrow="DEBRIEF" heading="Lessons Learned" items={caseStudy.lessons} />
-
-                    {caseStudy.bookTieIn && <BookTieIn tieIn={caseStudy.bookTieIn} />}
-
-                    <footer className="case-rule pt-10 mt-2 border-t flex flex-wrap items-center justify-between gap-4">
-                        <div className="flex flex-wrap gap-2">
-                            {caseStudy.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="px-2.5 py-1 text-xs font-mono rounded-full bg-white/5 border border-white/10 text-slate-300"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                        <Link
-                            href="/projects"
-                            className="text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors"
-                        >
-                            ← Back to all projects
-                        </Link>
-                    </footer>
-                </main>
-            </div>
-        );
-    }
-
-    const { project } = resolution;
-    const accent = getProjectAccent(project);
-    const accentStyle = { '--case-accent': accent } as CSSProperties;
-
+  const { slug } = await params;
+  const resolution = resolveProjectPage(slug);
+  if (!resolution) notFound();
+  if (resolution.kind === "brief")
     return (
-        <div className="case-study min-h-screen bg-[#030712] bg-grid-pattern" style={accentStyle}>
-            <NavBar />
-            <ProjectBrief project={project} accent={accent} />
-        </div>
+      <div className="portfolio site-shell case-study">
+        <NavBar />
+        <ProjectBrief project={resolution.project} accent="#ff7b42" />
+        <SiteFooter />
+      </div>
     );
+  const { caseStudy: c } = resolution;
+  const sections = [
+    { id: "situation", heading: "The situation", paragraph: c.situation },
+    { id: "problem", heading: "The problem", paragraph: c.problem },
+    { id: "approach", heading: "The approach", items: c.approach },
+    { id: "pitfalls", heading: "What broke. What changed.", items: c.pitfalls },
+    { id: "outcome", heading: "The outcome", paragraph: c.outcome },
+    { id: "lessons", heading: "What I learned", items: c.lessons },
+  ];
+  return (
+    <div className="portfolio site-shell case-study">
+      <NavBar />
+      <main className="site-main">
+        <header className="detail-intro">
+          <Link className="text-action back-link" href="/projects">
+            <ArrowLeft size={16} />
+            All projects
+          </Link>
+          <h1>{c.projectRef}</h1>
+          <p>{c.hook}</p>
+          <div className="detail-facts">
+            <div>
+              <span>Role</span>
+              <strong>{c.role}</strong>
+            </div>
+            <div>
+              <span>Company</span>
+              <strong>{c.company}</strong>
+            </div>
+            <div>
+              <span>Timeframe</span>
+              <strong>{c.timeframe}</strong>
+            </div>
+            {c.awards && (
+              <div>
+                <span>Recognition</span>
+                <strong>{c.awards}</strong>
+              </div>
+            )}
+          </div>
+        </header>
+        <div className="detail-art">
+          <ProjectArtwork index={slug.length} />
+          <span>Architecture in practice</span>
+        </div>
+        <div className="case-layout">
+          <aside className="case-navigation">
+            <p>Inside the project</p>
+            <nav aria-label="Case study sections">
+              {sections.map((s) => (
+                <a href={`#${s.id}`} key={s.id}>
+                  {s.heading}
+                </a>
+              ))}
+            </nav>
+          </aside>
+          <div className="case-content">
+            {sections.map((s) => (
+              <section id={s.id} className="case-chapter" key={s.id}>
+                <h2>{s.heading}</h2>
+                {s.paragraph && <p>{s.paragraph}</p>}
+                {s.items && (
+                  <ul>
+                    {s.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+            {c.bookTieIn && <BookTieIn tieIn={c.bookTieIn} />}
+            <div className="project-tags">
+              {c.tags.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="page-next">
+          <p>There’s more behind the work.</p>
+          <Link href="/projects">
+            Explore another project.
+            <ArrowUpRight />
+          </Link>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  );
 }

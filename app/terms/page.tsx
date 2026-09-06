@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { NavBar } from '@/components/NavBar';
+import { SiteFooter } from '@/components/SiteFooter';
 
 export default function TermsPage() {
     const formattedDate = new Date().toLocaleDateString('en-US', {
@@ -11,9 +12,9 @@ export default function TermsPage() {
     });
 
     return (
-        <div className="min-h-screen bg-[#030712] bg-grid-pattern">
+        <div className="portfolio site-shell">
             <NavBar />
-            <main className="container mx-auto px-4 py-12 max-w-4xl">
+            <main className="site-main legal-main">
                 <h1 className="text-4xl font-bold mb-8 text-white">Terms and Conditions</h1>
                 <div className="prose prose-lg">
                     <p>Last updated: {formattedDate}</p>
@@ -62,7 +63,7 @@ export default function TermsPage() {
                     <h2 className="text-2xl font-semibold mt-8 mb-4">9. Contact Information</h2>
                     <p>If you have any questions about these Terms, please contact us through our <a href="/contact" className="text-cyan-400 hover:underline">contact page</a>.</p>
                 </div>
-            </main>
+            </main><SiteFooter/>
         </div>
     );
 } 

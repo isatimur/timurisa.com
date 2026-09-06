@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T23:16:02.407086+00:00",
+  "title": "Design System: Timur Isachenko",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "book-cover",
+        "value": "17px 21px 24px #0007",
+        "purpose": "Dimensional book artwork."
+      },
+      {
+        "name": "billing-plate",
+        "value": "8px 12px 25px #0003",
+        "purpose": "Layered project illustration."
+      },
+      {
+        "name": "assistant-dialog",
+        "value": "0 24px 70px #0007",
+        "purpose": "Modal separation."
+      },
+      {
+        "name": "cookie-notice",
+        "value": "0 8px 24px #0004",
+        "purpose": "Floating consent surface."
+      },
+      {
+        "name": "publication-cover",
+        "value": "22px 30px 30px #0006",
+        "purpose": "Physical book illustration."
+      }
+    ],
+    "motion": [
+      {
+        "name": "action",
+        "value": "background 0.2s, transform 0.2s",
+        "purpose": "Primary action hover."
+      },
+      {
+        "name": "book",
+        "value": "transform 0.5s",
+        "purpose": "Cover straightens on hover."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Disable CSS motion; sculpture starts paused."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "640px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1000px"
+      },
+      {
+        "name": "wide-min",
+        "value": "1600px"
+      },
+      {
+        "name": "site-tablet-max",
+        "value": "1050px"
+      },
+      {
+        "name": "site-mobile-max",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "description": "Primary action from the homepage.",
+      "html": "<button class=\"ds-primary\">Explore my work \u2193</button>",
+      "css": ".ds-primary{font:550 14px Geist,sans-serif;padding:16px 22px;background:#f0eee7;color:#181b17;border:0;border-radius:5px;cursor:pointer;transition:background .2s,transform .2s}.ds-primary:hover{background:#ff7b42;transform:translateY(-2px)}.ds-primary:focus-visible{outline:2px solid #ff7b42;outline-offset:6px}",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "description": "Text action from the homepage.",
+      "html": "<button class=\"ds-text\">Ask my AI assistant \u2197</button>",
+      "css": ".ds-text{font:14px Geist,sans-serif;background:none;color:#f0eee7;border:0;cursor:pointer}.ds-text:hover{color:#ff7b42}.ds-text:focus-visible{outline:2px solid #ff7b42;outline-offset:6px}",
+      "refersTo": "button-text"
+    },
+    {
+      "name": "Contact navigation action",
+      "kind": "nav",
+      "description": "Contact navigation action from the homepage.",
+      "html": "<a class=\"ds-contact\" href=\"/contact\">Let\u2019s talk \u2197</a>",
+      "css": ".ds-contact{display:inline-flex;gap:20px;font:14px Geist,sans-serif;text-decoration:none;color:#f0eee7;border:1px solid #575a51;padding:12px 18px;border-radius:6px}.ds-contact:hover{background:#f0eee7;color:#141615}.ds-contact:focus-visible{outline:2px solid #ff7b42;outline-offset:6px}"
+    },
+    {
+      "name": "Project tag",
+      "kind": "chip",
+      "description": "Project tag from the homepage.",
+      "html": "<span class=\"ds-tag\">Architecture</span>",
+      "css": ".ds-tag{display:inline-block;font:10px Geist,sans-serif;color:#d0d3c9;border:1px solid #42453f;padding:4px 8px;border-radius:4px}"
+    },
+    {
+      "name": "Career disclosure",
+      "kind": "custom",
+      "description": "Career disclosure from the homepage.",
+      "html": "<details class=\"ds-career\"><summary>Engineering experience <span>+</span></summary><p>Architecture, delivery, and leadership.</p></details>",
+      "css": ".ds-career{font:14px Geist,sans-serif;color:#a7aaa2;border-bottom:1px solid #353833}.ds-career summary{display:flex;justify-content:space-between;list-style:none;padding:25px 0;cursor:pointer;color:#f0eee7}.ds-career[open] summary span{transform:rotate(45deg)}.ds-career summary:focus-visible{outline:2px solid #ff7b42;outline-offset:6px}"
+    },
+    {
+      "name": "Book stage",
+      "kind": "card",
+      "description": "Book stage from the homepage.",
+      "html": "<div class=\"ds-stage\"><span>Book cover stage</span></div>",
+      "css": ".ds-stage{display:grid;place-items:center;height:330px;border-radius:8px;background:#1e211e;color:#a7aaa2;font:14px Geist,sans-serif}",
+      "refersTo": "book-stage"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "description": "Underline search used on project and journal collections.",
+      "html": "<label class=\"ds-search\"><input aria-label=\"Search\" placeholder=\"Find a project\u2026\"></label>",
+      "css": ".ds-search{display:flex;padding:10px 0;border-bottom:1px solid #666b60}.ds-search input{width:100%;background:transparent;border:0;color:#f0eee7;font:14px Geist,sans-serif;outline:none}.ds-search:focus-within{border-color:#ff7b42}.ds-search input::placeholder{color:#a7aaa2}"
+    },
+    {
+      "name": "Category filter",
+      "kind": "chip",
+      "description": "Pressed state marks the selected collection category.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All projects</button>",
+      "css": ".ds-filter{padding:10px 14px;font:12px Geist,sans-serif;border:1px solid #353833;border-radius:5px;color:#a7aaa2;background:transparent;cursor:pointer}.ds-filter:hover{border-color:#a7aaa2;color:#f0eee7}.ds-filter[aria-pressed=\"true\"]{background:#f0eee7;color:#141615;border-color:#f0eee7}.ds-filter:focus-visible{outline:2px solid #ff7b42;outline-offset:6px}"
+    },
+    {
+      "name": "Contact field",
+      "kind": "input",
+      "description": "Labeled square-corner underline field.",
+      "html": "<label class=\"ds-field\">Your name<input placeholder=\"Name\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:15px;font:14px Geist,sans-serif;color:#f0eee7}.ds-field input{background:transparent;color:#f0eee7;border:0;border-bottom:1px solid #656b5d;border-radius:0;padding:10px 0 16px;font:15px/1.7 Geist,sans-serif}.ds-field input::placeholder{color:#a7aaa2}.ds-field input:focus{outline:none;border-color:#ff7b42}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Architectural sculpture study",
+    "overview": "Approved architectural homepage world extended across collections, articles, case studies, books, contact, legal states, and the portfolio assistant. Charcoal, warm Geist typography, orange accents, and dimensional artwork. Extracted from implementation without browser verification.",
+    "keyCharacteristics": [
+      "Shared charcoal and orange identity",
+      "Distinct collection and reading layouts",
+      "Dimensional artwork and restrained overlays"
+    ],
+    "rules": [
+      {
+        "name": "Artwork carries depth",
+        "body": "Keep illustration shadows on artwork and covers rather than ordinary page containers.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do retain keyboard controls, focus outlines, reduced motion, and fallback artwork.",
+      "Do preserve existing destinations."
+    ],
+    "donts": [
+      "Do not present illustrative geometry as live system evidence.",
+      "Do not flatten reading and contact layouts into a uniform card grid."
+    ]
+  }
+}
