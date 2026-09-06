@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -30,33 +31,9 @@ export async function generateMetadata({
     return { title: "Project Not Found" };
   }
 
-  if (resolution.kind === "case-study") {
-    const { caseStudy } = resolution;
-    const title = `${caseStudy.projectRef} — Case Study | Timur Isachenko`;
-    return {
-      title,
-      description: caseStudy.hook,
-      openGraph: { title, description: caseStudy.hook },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description: caseStudy.hook,
-      },
-    };
-  }
-
-  const { project } = resolution;
-  const title = `${project.name} — Project | Timur Isachenko`;
-  return {
-    title,
-    description: project.description,
-    openGraph: { title, description: project.description },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: project.description,
-    },
-  };
+  const title = resolution.kind === "case-study" ? `${resolution.caseStudy.projectRef} — Case Study` : `${resolution.project.name} — Project`;
+  const description = resolution.kind === "case-study" ? resolution.caseStudy.hook : resolution.project.description;
+  return pageMetadata(`/projects/${slug}`, title, description);
 }
 
 export default async function ProjectPage({ params }: PageProps) {

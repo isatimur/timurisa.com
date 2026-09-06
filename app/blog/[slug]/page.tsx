@@ -1,3 +1,4 @@
+import { pageMetadata, person, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
@@ -20,7 +21,11 @@ interface BlogPostPageProps {
 
 const generateArticleSchema = (post: any) => ({
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
+  "@id": `${SITE_URL}/blog/${post.slug}#article`,
+  mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+  url: `${SITE_URL}/blog/${post.slug}`,
+  dateModified: post._updatedAt || post.publishedAt,
   headline: post.title,
   description: post.excerpt,
   image: post.mainImage
@@ -29,18 +34,10 @@ const generateArticleSchema = (post: any) => ({
   datePublished: post.publishedAt,
   author: {
     "@type": "Person",
-    name: post.authorName,
-    url: "https://timurisa.com",
+    name: post.authorName || "Timur Isachenko",
+    ...(!post.authorName || post.authorName === "Timur Isachenko" ? { "@id": person["@id"], url: SITE_URL } : {}),
   },
-  publisher: {
-    "@type": "Organization",
-    name: "Timur Isachenko",
-    url: "https://timurisa.com",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://timurisa.com/apple-icon.png",
-    },
-  },
+  publisher: person,
 });
 
 export async function generateMetadata({
@@ -49,7 +46,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   const post = await client.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]{ title, excerpt, mainImage }`,
+    groq`*[_type == "post" && slug.current == $slug][0]{ title, excerpt, mainImage, publishedAt, _updatedAt, "authorName": author->name, "summary": pt::text(body) }`,
     { slug },
   );
 
@@ -57,8 +54,8 @@ export async function generateMetadata({
     return { title: "Post Not Found | Timur Isachenko" };
   }
 
-  const title = `${post.title} | Timur Isachenko`;
-  const description = post.excerpt || post.title;
+  const title = post.title;
+  const description = post.excerpt || post.summary?.replace(/\s+/g, " ").trim().slice(0, 160) || post.title;
   const imageUrl = post.mainImage
     ? createImageUrlBuilder(client)
         .image(post.mainImage)
@@ -67,22 +64,26 @@ export async function generateMetadata({
         .url()
     : undefined;
 
+  const base = pageMetadata(`/blog/${slug}`, title, description);
   return {
-    title,
-    description,
+    ...base,
     openGraph: {
+      ...base.openGraph,
+      publishedTime: post.publishedAt,
+      modifiedTime: post._updatedAt,
+      authors: [post.authorName || "Timur Isachenko"],
       title,
       description,
       type: "article",
       images: imageUrl
         ? [{ url: imageUrl, width: 1200, height: 630 }]
-        : undefined,
+        : [{ url: "/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: imageUrl ? [imageUrl] : undefined,
+      images: imageUrl ? [imageUrl] : ["/opengraph-image"],
     },
   };
 }
@@ -92,6 +93,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const query = groq`*[_type == "post" && slug.current == $slug][0]{
         title,
+        "slug": slug.current,
+        _updatedAt,
         mainImage,
         body,
         "authorName": author->name,
@@ -108,12 +111,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const wordsPerMinute = 200;
-  const wordCount = post.body.reduce((count: number, block: any) => {
+  const wordCount = (post.body || []).reduce((count: number, block: any) => {
     if (block._type === "block" && block.children) {
       return (
         count +
         block.children.reduce((childCount: number, child: any) => {
-          return childCount + child.text.split(" ").length;
+          return childCount + (child.text || "").split(/\s+/).filter(Boolean).length;
         }, 0)
       );
     }
@@ -201,6 +204,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="article-reader">
           <EnhancedCleanArticle {...post} />
         </div>
+        {(!post.authorName || post.authorName === "Timur Isachenko") && <section className="case-chapter" aria-label="About the author">
+          <h2>About the author</h2>
+          <p>Timur Isachenko is an AI CTO and Principal Solution Architect working on AI-native products and distributed systems. Explore his <Link href="/projects">engineering projects</Link> and <Link href="/book">technical books</Link>, or read more <Link href="/#about">about his experience</Link>.</p>
+        </section>}
         <div className="page-next">
           <p>Keep following your curiosity.</p>
           <Link href="/blog">

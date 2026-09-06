@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/JsonLd";
+import { person, SITE_URL } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
@@ -63,6 +65,13 @@ export default function BookPage() {
 
   return (
     <div className="portfolio site-shell">
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: books.map((b, i) => ({
+        "@type": "ListItem", position: i + 1, item: { "@type": "Book", "@id": `${SITE_URL}/book#book-${i + 1}`,
+          name: b.title, description: b.description, author: person, datePublished: b.publishDate,
+          url: b.readOnlineLink || b.websiteLink || b.amazonLink,
+          image: `${SITE_URL}${typeof b.image === "string" ? b.image : b.image.src}`,
+        },
+      })) }} />
       <NavBar />
       <main className="site-main">
         <header className="page-intro intro-split">

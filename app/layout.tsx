@@ -48,9 +48,6 @@ export const metadata: Metadata = {
         "Next.js",
         "machine learning"
     ],
-    alternates: {
-        canonical: 'https://timurisa.com'
-    },
     authors: [
         { name: "Timur Isachenko", url: "https://timurisa.com" }
     ],
@@ -64,17 +61,17 @@ export const metadata: Metadata = {
         title: 'Timur Isachenko | AI CTO & Principal Solution Architect',
         description: 'AI CTO and Principal Solution Architect: AI-native products, reactive systems, and high-scale platforms built over 17+ years.',
         images: [{
-            url: '/apple-icon.png',
-            width: 180,
-            height: 180,
+            url: '/opengraph-image',
+            width: 1200,
+            height: 630,
             alt: 'Timur Isachenko - Portfolio and Blog'
         }]
     },
     twitter: {
-        card: 'summary',
+        card: 'summary_large_image',
         title: 'Timur Isachenko | AI CTO & Principal Solution Architect',
         description: 'AI CTO and Principal Solution Architect: AI-native products, reactive systems, and high-scale platforms built over 17+ years.',
-        images: ['/apple-icon.png']
+        images: ['/opengraph-image']
     },
     robots: {
         index: true,
@@ -114,9 +111,9 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
                 suppressHydrationWarning
             >
-                <main className="flex-grow">
+                <div className="flex-grow">
                     {children}
-                </main>
+                </div>
                 <CookieConsent />
                 <GoogleAnalytics gaId="G-EJLVH2G7G2" />
             </body>
