@@ -1,6 +1,6 @@
 import { pageMetadata, person, SITE_URL } from "@/lib/seo";
 import type { Metadata } from "next";
-import { groq } from "next-sanity";
+import { getPost, readingTime as calculateReadingTime, type Post } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import EnhancedCleanArticle from "@/components/EnhancedCleanArticle";
@@ -19,14 +19,15 @@ interface BlogPostPageProps {
   }>;
 }
 
-const generateArticleSchema = (post: any) => ({
+const generateArticleSchema = (post: Post) => ({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "@id": `${SITE_URL}/blog/${post.slug}#article`,
-  mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-  url: `${SITE_URL}/blog/${post.slug}`,
+  "@id": `${SITE_URL}/blog/${post.slug.current}#article`,
+  mainEntityOfPage: `${SITE_URL}/blog/${post.slug.current}`,
+  url: `${SITE_URL}/blog/${post.slug.current}`,
   dateModified: post._updatedAt || post.publishedAt,
   headline: post.title,
+  isBasedOn: post.source?.url,
   description: post.excerpt,
   image: post.mainImage
     ? createImageUrlBuilder(client).image(post.mainImage).url()
@@ -45,17 +46,14 @@ export async function generateMetadata({
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const post = await client.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]{ title, excerpt, mainImage, publishedAt, _updatedAt, "authorName": author->name, "summary": pt::text(body) }`,
-    { slug },
-  );
+  const post = await getPost(slug);
 
   if (!post) {
-    return { title: "Post Not Found | Timur Isachenko" };
+    return { title: "Post Not Found" };
   }
 
   const title = post.title;
-  const description = post.excerpt || post.summary?.replace(/\s+/g, " ").trim().slice(0, 160) || post.title;
+  const description = post.excerpt || post.body?.filter(block => block._type === "block").flatMap(block => block.children || []).map(child => child.text || "").join(" ").trim().slice(0, 160) || post.title;
   const imageUrl = post.mainImage
     ? createImageUrlBuilder(client)
         .image(post.mainImage)
@@ -91,38 +89,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
-  const query = groq`*[_type == "post" && slug.current == $slug][0]{
-        title,
-        "slug": slug.current,
-        _updatedAt,
-        mainImage,
-        body,
-        "authorName": author->name,
-        "authorImage": author->image,
-        publishedAt,
-        "categories": categories[]->title,
-        excerpt
-    }`;
-
-  const post = await client.fetch(query, { slug });
-
-  if (!post) {
-    notFound();
-  }
-
-  const wordsPerMinute = 200;
-  const wordCount = (post.body || []).reduce((count: number, block: any) => {
-    if (block._type === "block" && block.children) {
-      return (
-        count +
-        block.children.reduce((childCount: number, child: any) => {
-          return childCount + (child.text || "").split(/\s+/).filter(Boolean).length;
-        }, 0)
-      );
-    }
-    return count;
-  }, 0);
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+  const post = await getPost(slug);
+  if (!post) notFound();
+  const readingTime = calculateReadingTime(post.body || []);
 
   const mainImageUrl = post.mainImage
     ? createImageUrlBuilder(client)
@@ -184,7 +153,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </span>
             </div>
           </div>
-          {post.categories?.length > 0 && (
+          {post.source && <aside className="article-provenance" aria-label="Publication history">
+            <p>Originally published on <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.platform}</a> on <time dateTime={post.source.publishedAt}>{new Date(post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>. Edited for this blog on <time dateTime={post._updatedAt}>{new Date(post._updatedAt || post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>.</p>
+            <p>{post.source.editorialNote}</p>
+          </aside>}
+          {!!post.categories?.length && (
             <div className="article-categories">
               {post.categories.join(" / ")}
             </div>
@@ -202,7 +175,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
         <div className="article-reader">
-          <EnhancedCleanArticle {...post} />
+          <EnhancedCleanArticle title={post.title} body={post.body} />
         </div>
         {(!post.authorName || post.authorName === "Timur Isachenko") && <section className="case-chapter" aria-label="About the author">
           <h2>About the author</h2>

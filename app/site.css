@@ -1563,3 +1563,8 @@
     padding: 15px 20px;
   }
 }
+
+.portfolio .article-provenance { margin-top: 28px; padding: 20px 24px; border-left: 2px solid var(--accent, #ff7b42); background: rgba(255,255,255,.025); }
+.portfolio .article-provenance p { margin: 0; font-size: 14px; line-height: 1.7; color: #a7aaa2; }
+.portfolio .article-provenance p + p { margin-top: 8px; }
+.portfolio .article-provenance a { color: #f0eee7; text-decoration: underline; text-underline-offset: 3px; }

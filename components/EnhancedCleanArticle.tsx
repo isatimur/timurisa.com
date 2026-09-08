@@ -6,11 +6,6 @@ import { ArrowUp, ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
 interface ArticleProps {
   title: string;
-  authorName: string;
-  authorImage: string;
-  mainImage: any;
-  publishedAt: string;
-  readingTime: string;
   body: ContentBlock[];
 }
 export default function EnhancedCleanArticle({ title, body }: ArticleProps) {

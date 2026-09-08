@@ -1,0 +1,2513 @@
+[
+  {
+    "_id": "archive-building-zonelyte-with-ai-studio",
+    "title": "Building Zonelyte: from an AI prototype to a tool my team could use",
+    "slug": {
+      "current": "building-zonelyte-with-ai-studio"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-03-02T11:56:48.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "What building a timezone workspace taught me about AI prototyping, Firebase, early feedback, and the work between a demo and a product.",
+    "categories": [
+      "Product engineering",
+      "AI-assisted development",
+      "Firebase"
+    ],
+    "source": {
+      "title": "I Built a Timezone Tool for Distributed Teams Using Google AI Studio (The Free Lovable Nobody’s Talking About)",
+      "url": "https://medium.com/@isatimur_it/i-built-a-timezone-tool-for-distributed-teams-using-google-ai-studio-the-free-lovable-nobodys-daff28818a46",
+      "platform": "Medium",
+      "publishedAt": "2026-03-02T11:56:48.000Z",
+      "editorialNote": "Edited from my original build story. Pricing comparisons and the inconsistent model-release timeline have been removed; product details describe the original March 2026 account."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "My team works across three continents. Scheduling a call often meant opening several timezone tools, passing screenshots around, and asking people to check the calculation again. We could see what time it was in each city. Deciding when to meet still took a conversation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "That was the problem behind Zonelyte: a shared view of a team's working hours, with enough context to choose a meeting time together. The useful unit was the team, not the clock.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Start with a decision someone already makes",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "I had been sitting on the idea for months. It was the kind of small project that could easily remain a private repository forever. What changed was getting to a visual prototype quickly enough to use it while the problem was still fresh.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "I described a timezone grid to Google AI Studio: multiple cities, working hours shown through colour, and a way to highlight overlapping slots. In the original build, the first version took about 45 minutes. It used React, TypeScript, and Tailwind, and it looked coherent enough that I kept opening it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "That last detail mattered more than the speed. A prototype can be technically impressive and still tell you very little about whether anyone needs it. This one helped me perform a task I already had. It gave me a reason to return.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Keep the shared data model small",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "I had been using Supabase as my default for new projects. For Zonelyte, I tried Firebase. The core operation was simple: load a workspace, read its locations, and show changes to everyone looking at it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The original workspace model reflected that simplicity:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b9",
+        "language": "text",
+        "code": "workspaces/{shortId}\n  locations: [...]\n  name: string\n  createdAt: timestamp"
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Firestore's real-time updates fitted that interaction. I did not need a complex reporting model to answer the first product question. I needed a small shared document and a responsive view of it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "This was a choice for this workload, not a general verdict on databases. A product centred on relational queries might lead me somewhere else. The lesson was to choose around the operation the product performs most often, rather than reuse a default without questioning it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Add accounts where they create value",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "The first version had no authentication. A workspace could be shared through its URL without asking the team to create accounts. That made it easy to put the tool in front of colleagues.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "Saved personal presets introduced a different need. A person's favourite cities should follow them between devices and be available from the browser extension. That was a reason to add sign-in, without turning it into a requirement for the basic shared view.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "AI Studio generated the initial Google sign-in integration. I still had to handle the surrounding details: script-loading order, the credential exchange with Firebase, and popup behaviour. These were small pieces of the interface, but they determined whether the experience actually worked.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "Generating the outline was fast. Debugging those boundaries was where I learned the system. I would not describe the generated version as finished simply because the happy path looked convincing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "Put it in front of colleagues early",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b18s0",
+            "text": "When I shared a link with the team, people added their cities and responded with concrete requests. Could they drag across a range of times? Could they share the workspace without making everyone register? Could the colours be easier to distinguish in dark mode?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b19s0",
+            "text": "Those requests were more useful than a speculative roadmap. They came from someone trying to make an actual meeting happen.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b20s0",
+            "text": "The feedback shaped proposal slots, reinforced the no-account sharing flow, and led to another pass on the palette. It also exposed a mistake in my process: I had waited weeks to share something that could have produced useful feedback much earlier.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b21",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b21s0",
+            "text": "Change tools when the work changes",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b22s0",
+            "text": "As the codebase grew, I moved more of the work into Claude Code. The task was no longer simply to sketch a grid. It involved understanding existing components, changing several files together, and reasoning about state across the application.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b23s0",
+            "text": "AI Studio helped me explore the interface and reach a useful first version. Working inside the repository gave me a better place to handle refactoring, real-time synchronisation, the extension, and shared-workspace URLs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b24s0",
+            "text": "I found the combination more useful than expecting one workflow to cover every stage. The question was what context the next change required, and which environment made that context available.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b25",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b25s0",
+            "text": "A prototype is the beginning of the work",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b26s0",
+            "text": "By the time I wrote the original post, the product included shared workspaces, meeting proposals, calendar export, a Chrome extension, and a dark theme. The stack was React, TypeScript, Vite, Tailwind, and Firebase.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b27s0",
+            "text": "The first convincing prototype took less than an hour. Turning it into a product took months of evening work. Both statements are important. AI shortened the distance to something tangible; it did not remove the need to understand the system or observe people using it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b28",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b28s0",
+            "text": "If I started again, I would show the first usable version to colleagues sooner, keep the initial data model small, and choose each AI workflow around the stage of work. I would also be more precise about what “built” means. A generated screen, a working demo, and a tool someone depends on are different milestones.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b29",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b29l0",
+            "_type": "link",
+            "href": "https://zonelyte.com"
+          },
+          {
+            "_key": "b29l1",
+            "_type": "link",
+            "href": "/projects"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b29s0",
+            "text": "Explore Zonelyte",
+            "marks": [
+              "b29l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b29s1",
+            "text": ", or browse more of my ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b29s2",
+            "text": "engineering projects",
+            "marks": [
+              "b29l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b29s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-ai-progress-and-the-developers-living-through-it",
+    "title": "AI progress, and the developers living through it",
+    "slug": {
+      "current": "ai-progress-and-the-developers-living-through-it"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-01-06T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A revised personal reflection on AI-assisted development, career uncertainty, engineering judgment, and the distance between capability and dependable work.",
+    "categories": [
+      "AI engineering",
+      "Engineering leadership",
+      "Career"
+    ],
+    "source": {
+      "title": "AI, AI, AI, AI and it was good YearAI",
+      "url": "https://www.linkedin.com/pulse/ai-good-yearai-timur-isachenko-hilme",
+      "platform": "LinkedIn",
+      "publishedAt": "2026-01-06T00:00:00.000Z",
+      "editorialNote": "Revised from my January 2026 essay. Unsupported numerical claims, attributed quotations without sources, and broad predictions have been removed. Personal observations remain identified as personal observations."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "At the start of 2026, I did not want to write another list of model releases. I wanted to talk about what it felt like to work in software while the tools, expectations, and career conversations were changing around us.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "From Portugal, my experience of the job market did not resemble the optimism of every AI announcement. I saw competition for roles, pressure on salaries, and developers wondering how to position themselves. That was my observation, not a comprehensive labour-market study. It was still worth discussing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "The question behind my original essay remains useful: when the technology becomes more capable, what improves for the people using it?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Capability and a sustainable career are different questions",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "An assistant that can produce a useful first implementation changes the work. It can help someone explore an unfamiliar library, understand a repository, or turn an idea into a prototype. I have felt that change directly in my own projects.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "It does not follow that every developer becomes more productive by the same amount. A person who can recognise a good solution, diagnose an error, and define a useful test has a different relationship with generated code from someone who has to accept it on trust.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "That distinction worries me when I think about people entering the profession. If a team delegates its simpler tasks to an assistant, it still needs a way for junior engineers to learn how the system works. Removing the task without replacing the learning opportunity creates a problem that better code generation will not automatically solve.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Judgment becomes easier to see",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "When a first draft is cheap, decisions around it become more visible. Is this the right problem? What must remain true after the change? What evidence would convince us that it works? What should the system do when a dependency fails?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "These questions were always engineering questions. AI makes them harder to avoid. A convincing implementation can arrive before the team has agreed on the behaviour it actually needs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "I do not think the answer is to abandon programming knowledge. Understanding code is part of judging it. The practical shift is to connect that knowledge to requirements, architecture, review, and operations rather than treat typing speed as the main measure of contribution.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Generation does not settle verification",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "A code change can look tidy, pass a narrow test, and still misunderstand the product. It can also preserve the intended behaviour while introducing a permission mistake or an operational surprise.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "My concern is the gap between how quickly we can propose a change and how confidently we can accept it. Filling that gap takes explicit expectations, tests that exercise meaningful behaviour, and reviewers who understand the consequences of the change.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "The answer is not a blanket rule that every AI-generated line is suspect. Human-written changes need the same discipline. The difference is that a high volume of plausible output makes weak review habits more expensive.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "Competing globally does not require becoming generic",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "Remote work widened the set of people we can work with. AI tools also make some skills easier to access. That can feel threatening if a professional identity rests entirely on producing a familiar kind of implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "The response I find useful is specificity. Understand a domain. Learn where its systems fail. Become good at explaining tradeoffs and delivering a result someone can rely on. Show the decisions behind the work, not only a list of frameworks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b18s0",
+            "text": "This is an approach to developing a career, not a guarantee of employment. Geography, timing, company budgets, and personal circumstances still matter. Treating uncertainty as an individual failure would miss much of the problem.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b19s0",
+            "text": "Keep space for disagreement",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b20s0",
+            "text": "Using several assistants does not remove the need for independent thought. Agreement can be useful evidence, but it is not proof. If several outputs follow the same assumption, their consistency may hide the very question a reviewer should ask.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b21s0",
+            "text": "For architecture work, I want the alternative made explicit. What would make this choice wrong? What constraint would favour a different design? What evidence are we missing? Those questions turn a polished answer into something that can be examined.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b22",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b22s0",
+            "text": "Build a future we want to work in",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b23s0",
+            "text": "I think about these changes as an engineer and as a parent. Seeing several technological shifts within one lifetime is exciting. Constant adaptation can also be exhausting. Both reactions can be true.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b24s0",
+            "text": "I do not have a final answer for what AI will mean for every career. I do have a direction for my own work: use the tools, understand their boundaries, keep learning, and make the reasoning behind important decisions available to other people.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b25s0",
+            "text": "The measure of progress should include more than what a model can generate. It should include whether a team can trust the result, whether newcomers can learn, and whether the people doing the work have a sustainable place in it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b26s0",
+            "text": "That is the question I wanted to ask in January. It still seems more useful than another leaderboard.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-new-year-ideas-generator",
+    "title": "From a school charity market to a New Year’s Ideas Generator",
+    "slug": {
+      "current": "new-year-ideas-generator"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2024-12-29T16:50:12.156Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A paper box of celebration ideas became a small bilingual web app. A project note about preserving the human interaction that made the idea work.",
+    "categories": [
+      "Side projects",
+      "Next.js",
+      "Product design"
+    ],
+    "source": {
+      "title": "New Year’s Ideas Generator launch",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7279176894250442752/",
+      "platform": "LinkedIn",
+      "publishedAt": "2024-12-29T16:50:12.156Z",
+      "editorialNote": "Expanded from my original launch post. The stack and features describe the December 2024 release."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "At my children's school charity market, we had a small paper box filled with ideas for celebrating New Year. People picked an idea, received a sweet, and reacted to the surprise. It was a simple interaction, but it made people smile.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "I wanted to make a digital version of that experience. During evening coding sessions, I built a New Year's Ideas Generator: a small web app that offered a suggestion without asking people to plan the entire celebration first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Preserve the interaction that worked",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The paper version did not need instructions. Pick something from the box and see what you get. That clarity was the part worth carrying into the application.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "It would have been easy to turn the idea into a large planning tool. But a planning tool asks for decisions before it gives you anything. The original interaction did the opposite: it offered a starting point, and the person could decide what to do with it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "The app's purpose was to make that first step easy. The surprise mattered, and so did the ability to try again.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Add useful constraints without losing the playfulness",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Not every celebration idea suits every situation. Someone with a small budget or a quiet evening ahead should not have to keep rejecting elaborate suggestions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The release included filters for budgets and energy levels. It also supported English and Russian, reflecting the languages in our family. Sharing made it possible to pass an idea to someone else rather than leave it on one screen.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "These were modest features, but each helped preserve the original experience in a different setting. The filters made suggestions more relevant. The language choice made the interaction accessible to more of the people I had in mind. Sharing carried some of the social element of the market into the app.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Let the presentation serve the moment",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "I added animations and confetti because the interaction was about a celebration. A little movement made sense here. It was part of the response to receiving an idea, rather than a separate demonstration of what the interface could do.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The application used Next.js 14, TypeScript, and Tailwind CSS. I published it as a free, open-source project and made it usable across devices. Those are details of the original release, not a claim that this is the stack every small project should choose.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "A small project can have a clear reason to exist",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "My children were the first testers and the inspiration for the idea. The project started with something I had watched people enjoy, rather than a search for a feature list to implement.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "That is what I want to remember about it. Useful side projects do not always start with a large market or an elaborate plan. Sometimes they start with a small interaction that deserves to travel a little further.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "The challenge is to notice what made it work, then avoid burying that quality under the implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b17l0",
+            "_type": "link",
+            "href": "https://www.linkedin.com/feed/update/urn:li:activity:7279176894250442752/"
+          },
+          {
+            "_key": "b17l1",
+            "_type": "link",
+            "href": "/projects"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "See the original launch and project links",
+            "marks": [
+              "b17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s1",
+            "text": ", or explore more ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b17s2",
+            "text": "projects",
+            "marks": [
+              "b17l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-specifications-that-outlast-ai-models",
+    "title": "Specifications that outlast the model",
+    "slug": {
+      "current": "specifications-that-outlast-ai-models"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-07-03T20:33:00.203Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Models change quickly. A clear description of intended behaviour gives an engineering team something stable to build and review against.",
+    "categories": [
+      "AI engineering",
+      "Specifications",
+      "Architecture"
+    ],
+    "source": {
+      "title": "Chapter 10: what survives when models and tools turn over",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7478908677849116673/",
+      "platform": "LinkedIn",
+      "publishedAt": "2026-07-03T20:33:00.203Z",
+      "editorialNote": "Expanded from my short note on Chapter 10 of From Copilot to Colleague. The practical example below is an illustrative addition, not a reported project result."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "Chapter 10 of From Copilot to Colleague asks what survives when models and tools turn over. In my original note, I pointed to an idea from Al Harris and the Kiro team at AWS: use specifications to describe what a system should do, rather than prescribing every implementation detail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The attraction is practical. A model can change. A framework can change. The behaviour people rely on should remain something the team can describe and check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Make the intended behaviour inspectable",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "A request such as “improve the booking flow” leaves most of the important decisions unstated. It does not explain what is wrong, what success looks like, or which existing behaviours must be preserved.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "A specification can make those decisions available to the implementer and the reviewer. It should explain the trigger, the expected result, and the conditions under which the result must hold. It should also say which questions are still open.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "This does not require a large document. It requires enough precision that two people can discuss the same behaviour rather than imagine different versions of it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "An example: changing a meeting time",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Consider a scheduling tool. “Handle timezones correctly” is a reasonable intention, but a poor acceptance criterion. An implementer needs to know what the user is changing and what should stay fixed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "An illustrative requirement could be: when a participant changes their display timezone, the meeting keeps the same instant, while its displayed local time changes. Changing the timezone must not silently reschedule the meeting.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "That statement gives the team a behaviour to test. It leaves room to choose the date library and state-management approach. It also makes a review more concrete: did the implementation preserve the instant, or did it change the event?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Keep the specification close to the evidence",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "A specification is useful only while it describes the intended product. When a decision changes, the document and its checks should change with it. Otherwise, an assistant can follow the document accurately and still produce the wrong behaviour.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "I find it helpful to think of the specification as part of the working system: a place where intent can be reviewed, disagreements can be resolved, and tests can be connected to a reason.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "The goal is not to write enough prose to eliminate judgment. It is to give judgment something concrete to work with.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "Why this belongs at the end of the book",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "A book about AI engineering can become dated if all its value rests on the names of current tools. I want readers to leave with ways to reason about the work after those names change.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "Describing a desired outcome clearly is one of those habits. So is checking whether the delivered result matches it. Together, they make it easier to adopt a new assistant without handing it an undefined problem and hoping its interpretation is the right one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b17l0",
+            "_type": "link",
+            "href": "https://fromcopilottocolleague.com/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "Read From Copilot to Colleague",
+            "marks": [
+              "b17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s1",
+            "text": " for the source-backed discussion behind the book.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-local-ai-lessons-from-2024",
+    "title": "What local AI meant to my work at the end of 2024",
+    "slug": {
+      "current": "local-ai-lessons-from-2024"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2024-12-29T17:14:58.720Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A revised year-end note on government-contract projects, local language models, and choosing a useful workflow before choosing a model.",
+    "categories": [
+      "Local LLMs",
+      "AI engineering",
+      "Field notes"
+    ],
+    "source": {
+      "title": "2024 AI year-end reflection",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7279183129351737346/",
+      "platform": "LinkedIn",
+      "publishedAt": "2024-12-29T17:14:58.720Z",
+      "editorialNote": "Expanded from my December 2024 reflection. Absolute claims that local models automatically make data safe or reduce costs have been replaced with conditional tradeoffs."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "At the end of 2024, the AI work I was most excited about involved helping teams find opportunities in government contracting. It gave the technology a concrete purpose: support a difficult business task, rather than add a chat interface simply because one was possible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "I was also working with Shamim Bhuiyan on Generative AI with Local LLM. The book and the project work connected around a practical question: how can we make AI useful while staying deliberate about where data goes and how the system operates?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Start with the work, not the model",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Government-contract information is a good reminder that having access to text is not the same as making a useful decision. A team needs to understand whether an opportunity fits, what the requirements mean, and what deserves attention.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "A model may help with parts of that process. The quality of the overall workflow still depends on what information it receives, how its output is checked, and where a person makes the final decision.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "That is the perspective I wanted to carry into 2025: begin with a recurring problem and a useful output. Only then decide which model or agent workflow belongs in the solution.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Local execution is a design choice",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "In the original social post, I described local models as a way to protect data and reduce costs. That was too absolute. Local execution changes the available tradeoffs; it does not settle them automatically.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "Running inference locally can reduce reliance on an external inference provider. It also gives the team responsibility for the machine, the application, its access controls, and the other services connected to it. A local model does not make a networked application isolated by default.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "The cost question is similarly conditional. Hardware, utilisation, maintenance, and the quality needed for the task all matter. A comparison is useful when it covers the actual workflow, rather than only the price of one model call.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Learn by building a small complete workflow",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "The direction of the book was hands-on: give developers a way to work with local models and understand the surrounding application. A small complete example can teach more than an impressive but disconnected demonstration.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The useful questions are concrete. What data does the application need? What result does it return? Where can it be wrong? How will someone notice? What happens when it cannot complete the task?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "These questions give experimentation a purpose. They also make it easier to compare approaches, because the desired outcome stays stable while the implementation changes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "Keep the optimism, make the claims narrower",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "I ended 2024 enthusiastic about AI and the open-source work around it. I still want to preserve that enthusiasm in this archive. The revision is to be more careful about the promises attached to a deployment choice.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "Local language models are worth understanding because they create options. Whether those options improve a particular product depends on the constraints and the evidence from using it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b17l0",
+            "_type": "link",
+            "href": "/book"
+          },
+          {
+            "_key": "b17l1",
+            "_type": "link",
+            "href": "/projects"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "Explore the book",
+            "marks": [
+              "b17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s1",
+            "text": " and the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b17s2",
+            "text": "projects",
+            "marks": [
+              "b17l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s3",
+            "text": " behind these notes.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-returning-to-coauthoring-generative-ai",
+    "title": "Returning to coauthoring: from Apache Ignite to generative AI",
+    "slug": {
+      "current": "returning-to-coauthoring-generative-ai"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2024-09-10T10:01:06.065Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Seven years after our Apache Ignite book, Shamim Bhuiyan and I returned to writing together with a hands-on guide to building AI applications.",
+    "categories": [
+      "Books",
+      "Generative AI",
+      "Writing"
+    ],
+    "source": {
+      "title": "Getting Started with Generative AI announcement",
+      "url": "https://www.linkedin.com/posts/timur-isachenko_generativeai-ai-machinelearning-activity-7239211275266732032-rNFN",
+      "platform": "LinkedIn",
+      "publishedAt": "2024-09-10T10:01:06.065Z",
+      "editorialNote": "Edited from my original book announcement. The launch used the title Getting Started with Generative AI; the book is now presented on this site as Generative AI with Local LLM."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "In September 2024, I shared a milestone: Shamim Bhuiyan and I were writing together again, seven years after our book on Apache Ignite. I had missed the collaboration.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The new project was a hands-on guide to building AI applications. In the original announcement, I called it Getting Started with Generative AI. Readers of this website will find it under Generative AI with Local LLM.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "A different subject, a familiar collaboration",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Apache Ignite and local language models belong to different parts of the technical landscape. What connected the projects for me was the opportunity to turn engineering work into something another developer could learn from.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Writing together also meant sharing the work of explaining it. A technical idea can make sense in conversation and still need considerable care before it works on the page. Collaboration gives that explanation another reader while it is still being formed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "My original post was mostly an announcement and a thank-you. That remains the right centre of this note. The milestone was not simply adding another title to a list; it was returning to a working relationship I valued.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "A practical route into the subject",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "The book focuses on building with local language models, with material intended for developers who want to connect the concepts to applications. The accompanying website provides the current description and ways to find the book.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "I would rather point readers to that maintained information than preserve an old social-media announcement as if it were a current specification of every chapter or tool version.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "The original post also thanked colleagues who were sharing their own work on AI. That sense of exchange was part of the appeal: learning, building, and making the results available to other people.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Thank you to Shamim for the collaboration, and to the readers who have followed the work from distributed computing into AI.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b11l0",
+            "_type": "link",
+            "href": "/book"
+          },
+          {
+            "_key": "b11l1",
+            "_type": "link",
+            "href": "https://quickstartgenai.com/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "See the books",
+            "marks": [
+              "b11l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b11s1",
+            "text": " or visit the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b11s2",
+            "text": "Generative AI with Local LLM website",
+            "marks": [
+              "b11l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b11s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-generative-ai-book-russian-edition",
+    "title": "Our generative AI book reaches a Russian edition",
+    "slug": {
+      "current": "generative-ai-book-russian-edition"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2025-11-28T15:57:37.248Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A personal publishing milestone: the Russian edition of our book, copies arriving from Bombora, and the pleasure of sharing the work beyond its original audience.",
+    "categories": [
+      "Books",
+      "Writing",
+      "Generative AI"
+    ],
+    "source": {
+      "title": "Russian edition of our Generative AI book",
+      "url": "https://www.linkedin.com/posts/timur-isachenko_generativeai-llm-machinelearning-activity-7400201208717762561--GrW",
+      "platform": "LinkedIn",
+      "publishedAt": "2025-11-28T15:57:37.248Z",
+      "editorialNote": "Edited from my November 2025 announcement. Delivery and bookstore details are historical; this post does not describe current stock or availability."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "In November 2025, I shared that the Russian edition of our generative AI book had arrived from Bombora Publishers. My coauthor, Shamim Bhuiyan, was signing copies in Moscow. I was in Portugal, waiting for my own copy and following the delivery tracking.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "After spending so much time with a book as a working document, there is something satisfying about knowing that physical copies are making their way to readers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "A milestone beyond the manuscript",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The original announcement mentioned the book reaching Chitay-Gorod stores in Moscow. That was a snapshot of the launch, not a promise about where the book can be bought today.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "The part that mattered most to me was more personal. I hoped that one day I could visit a bookstore with my daughters and show them the work. A project that lives on a screen can be difficult to explain. A book on a shelf gives it a different kind of presence.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "I was also looking forward to signing copies for friends after my delivery arrived. These are small details beside the technical content, but they are part of what makes publishing memorable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Credit belongs to the collaboration",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "This was another moment to thank Shamim. The work reached this point through a shared effort, and I want the archive to keep that credit visible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The English-language book and its surrounding resources remain another route into the material. If you are looking for the current editions, follow the publisher and book links rather than rely on the availability described in a historical announcement.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b9l0",
+            "_type": "link",
+            "href": "/book"
+          },
+          {
+            "_key": "b9l1",
+            "_type": "link",
+            "href": "https://www.linkedin.com/posts/timur-isachenko_generativeai-llm-machinelearning-activity-7400201208717762561--GrW"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Explore our books",
+            "marks": [
+              "b9l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b9s1",
+            "text": ", or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b9s2",
+            "text": "read the original announcement",
+            "marks": [
+              "b9l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b9s3",
+            "text": " for the launch links.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-directus-translations-permissions",
+    "title": "Missing Directus translations? Check the related collection permissions",
+    "slug": {
+      "current": "directus-translations-permissions"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2025-08-08T11:23:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A debugging note from my Stack Overflow answer: separate the translation query from the permissions needed to read the related records.",
+    "categories": [
+      "Directus",
+      "APIs",
+      "Debugging"
+    ],
+    "source": {
+      "title": "Fetch items from Directus Api — my answer",
+      "url": "https://stackoverflow.com/a/79729693",
+      "platform": "Stack Overflow",
+      "publishedAt": "2025-08-08T11:23:00.000Z",
+      "editorialNote": "Expanded from my August 2025 answer, with an illustrative request and a link to current query documentation. Adapt collection and field names to your own schema; the example has not been executed against your Directus instance."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "I answered a Directus question in August 2025 after running into a problem retrieving translated article content. It looked like a query problem. The important discovery was that reading an article did not automatically establish access to the related translation records.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The lesson from that debugging session was simple: check the relationship and the permissions independently. A more elaborate request will not compensate for a related collection the requesting identity cannot read.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Isolate the smallest useful request",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Before combining nested fields and language filters, try to retrieve the translation record directly using the same identity as the failing request. In the example I was working with, the relevant collection was articles_translations.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "That gives you a smaller question to answer. Does the record exist? Is it linked to the expected article? Does its language value match the one being requested? Can this identity read the collection and the requested fields?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "If the direct request fails, there is little value in adding more complexity to the parent article query. Resolve the narrower problem first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Make the nested request explicit",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Once the underlying access works, ask for the fields you need and apply the language filter to the translations relationship. The following request illustrates that shape. Its collection and field names are examples, not a universal Directus schema.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b8",
+        "language": "bash",
+        "code": "curl --get 'https://your-directus.example/items/articles' \\\n  --header \"Authorization: Bearer $DIRECTUS_TOKEN\" \\\n  --data-urlencode 'fields=id,translations.title,translations.content' \\\n  --data-urlencode 'filter[id][_eq]=YOUR_ARTICLE_ID' \\\n  --data-urlencode 'deep[translations][_filter][languages_code][_eq]=ar-SA'"
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Here, the top-level filter selects an article, while the deep filter constrains the returned translations. The locale must match the value stored by your application. Do not assume that ar and ar-SA are interchangeable identifiers in the data.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b10l0",
+            "_type": "link",
+            "href": "https://directus.com/docs/guides/connect/query-parameters"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Directus documents field selection, filters, and nested query parameters in its ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b10s1",
+            "text": "query parameter guide",
+            "marks": [
+              "b10l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b10s2",
+            "text": ". Check that guide alongside your actual schema when adapting the request.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Fix the permission that is missing",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "In my original answer, querying the translation collection directly helped expose what was wrong. The lasting lesson is not to grant broad access until the response appears. It is to establish exactly which read permission is required by the operation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "Keep the identity consistent during the comparison. A successful administrator request does not explain why a request made by the application fails. Test the operation in the context that is actually producing the error.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "Keep the diagnosis separate from the final query",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b15s0",
+            "text": "There are two useful artefacts at the end of this exercise: a small request that demonstrates access to the translation, and the application request that returns the desired article content.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b16s0",
+            "text": "Keeping both makes the reasoning easier to revisit. If the behaviour changes later, you can determine whether the failure is in access, the relationship, or the shape of the request without starting the investigation from scratch.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b17l0",
+            "_type": "link",
+            "href": "https://stackoverflow.com/a/79729693"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b17s0",
+            "text": "Read my original answer on Stack Overflow",
+            "marks": [
+              "b17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b17s1",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { groq } from "next-sanity";
+import { useState } from "react";
 import { client } from "@/sanity/lib/client";
 import createImageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
@@ -8,73 +7,12 @@ import Link from "next/link";
 import { ArrowUpRight, Search, ArrowRight } from "lucide-react";
 import { NavBar } from "@/components/NavBar";
 import { SiteFooter } from "@/components/SiteFooter";
-export interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  mainImage?: { asset: { _ref: string } };
-  excerpt?: string;
-  publishedAt?: string;
-  estimatedReadingTime?: number;
-  categories?: string[];
-}
-const PAGE_SIZE = 6;
-const query = groq`{
-"posts": *[_type == "post" && defined(slug.current) && ($term == "" || title match $match || excerpt match $match)] | order(publishedAt desc) [$start...$end] {_id,title,slug,mainImage,excerpt,publishedAt,"estimatedReadingTime":round(length(pt::text(body))/5/200),"categories":categories[]->title},
-"total":count(*[_type == "post" && defined(slug.current) && ($term == "" || title match $match || excerpt match $match)])
-}`;
-export default function BlogIndex({ initialPosts, initialTotal }: { initialPosts: Post[]; initialTotal: number }) {
-  const [posts, setPosts] = useState<Post[]>(initialPosts),
-    [total, setTotal] = useState(initialTotal),
-    [input, setInput] = useState(""),
-    [term, setTerm] = useState(""),
-    [page, setPage] = useState(0),
-    [loading, setLoading] = useState(false),
-    [error, setError] = useState(false),
-    [retry, setRetry] = useState(0);
-  useEffect(() => {
-    if (!term && page === 0 && retry === 0) return;
-    let cancelled = false;
-    setLoading(true);
-    setError(false);
-    client
-      .fetch<{ posts: Post[]; total: number }>(query, {
-        term,
-        match: `*${term}*`,
-        start: page * PAGE_SIZE,
-        end: (page + 1) * PAGE_SIZE,
-      })
-      .then((result) => {
-        if (cancelled) return;
-        setPosts((prev) =>
-          page === 0
-            ? result.posts
-            : [
-                ...prev,
-                ...result.posts.filter(
-                  (p) => !prev.some((old) => old._id === p._id),
-                ),
-              ],
-        );
-        setTotal(result.total);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [term, page, retry]);
-  const search = (e: React.FormEvent) => {
-    e.preventDefault();
-    setPosts([]);
-    setPage(0);
-    setTerm(input.trim());
-    setRetry((n) => n + 1);
-  };
+import type { PostSummary } from "@/lib/posts";
+export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[] }) {
+  const [input, setInput] = useState("");
+  const [term, setTerm] = useState("");
+  const posts = initialPosts.filter(post => `${post.title} ${post.excerpt || ""} ${(post.categories || []).join(" ")}`.toLocaleLowerCase().includes(term.toLocaleLowerCase()));
+  const search = (event: React.FormEvent) => { event.preventDefault(); setTerm(input.trim()); };
   return (
     <div className="portfolio site-shell">
       <NavBar />
@@ -120,14 +58,6 @@ export default function BlogIndex({ initialPosts, initialTotal }: { initialPosts
               </button>
             </form>
           </div>
-          {loading && posts.length === 0 && (
-            <div className="journal-loading" role="status">
-              Opening the journal…
-              <div />
-              <div />
-              <div />
-            </div>
-          )}
           <div className="journal-grid">
             {posts.map((post, i) => (
               <Link
@@ -185,19 +115,7 @@ export default function BlogIndex({ initialPosts, initialTotal }: { initialPosts
               </Link>
             ))}
           </div>
-          {error && (
-            <div className="empty-state" role="alert">
-              <h2>The journal couldn’t load.</h2>
-              <p>Please try again. Your search is still here.</p>
-              <button
-                className="primary-action"
-                onClick={() => setRetry((n) => n + 1)}
-              >
-                Try again <ArrowRight size={16} />
-              </button>
-            </div>
-          )}
-          {!loading && !error && !posts.length && (
+          {!posts.length && (
             <div className="empty-state">
               <h2>No articles found.</h2>
               <p>Try a broader search, or browse the full journal.</p>
@@ -206,8 +124,6 @@ export default function BlogIndex({ initialPosts, initialTotal }: { initialPosts
                 onClick={() => {
                   setInput("");
                   setTerm("");
-                  setPage(0);
-                  setRetry((n) => n + 1);
                 }}
               >
                 Show all articles <ArrowRight size={16} />
@@ -217,18 +133,9 @@ export default function BlogIndex({ initialPosts, initialTotal }: { initialPosts
           {posts.length > 0 && (
             <div className="journal-pagination">
               <p role="status">
-                Showing {posts.length} of {total} articles
+                Showing {posts.length} of {initialPosts.length} articles
               </p>
-              {posts.length < total && !error && (
-                <button
-                  disabled={loading}
-                  className="primary-action"
-                  onClick={() => setPage((p) => p + 1)}
-                >
-                  {loading ? "Loading…" : "More to explore"}
-                  <ArrowRight size={16} />
-                </button>
-              )}
+
             </div>
           )}
         </section>

@@ -1,5 +1,6 @@
 """Check the production server's crawlable HTML: python3 scripts/check-seo.py [base]."""
 import json
+from pathlib import Path
 import sys
 import urllib.request
 import urllib.error
@@ -8,14 +9,20 @@ from html.parser import HTMLParser
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:3000'
 SITE = 'https://timurisa.com'
+archive_file = Path(__file__).resolve().parents[1] / 'content/posts/archive.json'
+archive = json.loads(archive_file.read_text()) if archive_file.exists() else []
+local_posts = {f"/blog/{post['slug']['current']}": post for post in archive}
+assert len(local_posts) == len(archive), 'Duplicate archive slug'
 class Page(HTMLParser):
     def __init__(self, html):
         super().__init__()
         self.canonicals, self.links, self.schemas, self.meta = [], [], [], {}
         self.title, self.in_title, self.schema = '', False, None
+        self.h1_count = 0
         self.feed(html)
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
+        if tag == 'h1': self.h1_count += 1
         if tag == 'link' and a.get('rel') == 'canonical': self.canonicals.append(a['href'])
         if tag == 'a': self.links.append(a.get('href', ''))
         if tag == 'meta': self.meta[a.get('name', a.get('property'))] = a.get('content')
@@ -43,7 +50,8 @@ for url in urls:
     path = url.removeprefix(SITE) or '/'
     response = get(path)
     assert response.status == 200
-    page = Page(response.read().decode())
+    html = response.read().decode()
+    page = Page(html)
     assert len(page.canonicals) == 1 and page.canonicals[0].rstrip('/') == url.rstrip('/'), (path, page.canonicals)
     assert page.title and page.title not in titles, (path, 'Duplicate title')
     assert page.title.count('Timur Isachenko') == 1, (path, page.title)
@@ -64,6 +72,19 @@ for url in urls:
         assert page.schemas[0]['@type'] == 'BlogPosting'
         assert page.schemas[0]['mainEntityOfPage'] == url
         assert page.schemas[0]['publisher']['@type'] == 'Person'
+    if path in local_posts:
+        expected = local_posts[path]
+        assert page.h1_count == 1, (path, 'Multiple top-level headings')
+        assert expected['source']['url'] in page.links, (path, 'Missing source link')
+        schema = page.schemas[0]
+        assert schema['isBasedOn'] == expected['source']['url']
+        assert schema['datePublished'] == expected['publishedAt']
+        assert schema['dateModified'] == expected['_updatedAt']
+        assert 'Publication history' in html and 'Edited for this blog' in html
+        keys = [block['_key'] for block in expected['body']]
+        assert len(keys) == len(set(keys)), (path, 'Duplicate block keys')
+        assert all(f'heading-{block["_key"]}' in html for block in expected['body'] if block.get('style') == 'h2')
+assert all(SITE + path in urls for path in local_posts), 'Archive missing from sitemap'
 for path in ['/definitely-not-a-page', '/projects/definitely-not-a-project', '/blog/definitely-not-a-post']:
     try:
         get(path)
