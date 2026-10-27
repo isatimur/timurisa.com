@@ -18,4 +18,4 @@ git -C "$root" add -- "$dest"
 git -C "$root" commit -m "Publish artifact: $slug" -- "$dest"
 git -C "$root" push origin HEAD
 
-echo "https://timurisa.com/a/$slug/"
+echo "https://timurisa.com/a/$slug"
