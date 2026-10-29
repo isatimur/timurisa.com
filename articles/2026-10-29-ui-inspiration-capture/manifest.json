@@ -1,0 +1,657 @@
+{
+  "title": "UI Inspiration Capture 2026-10-29",
+  "date": "2026-10-29",
+  "captureMethod": "Headless Chromium via Playwright, 1440x900, local video recorded with Playwright, motion frames extracted with ffmpeg, full-page PNG cropped into contiguous section images with sharp. Playwright replaced the Codex in-app browser for this run; Chrome was not used.",
+  "itemCount": 5,
+  "dedupeAgainst": [],
+  "motionStudyVideo": null,
+  "items": [
+    {
+      "title": "Linear: The product development system for teams and agents",
+      "creator": "Linear",
+      "sourceUrl": "https://linear.app",
+      "pageUrl": "https://linear.app",
+      "imageUrl": null,
+      "imageFile": "linear/still.png",
+      "videoFile": "linear/motion.mp4",
+      "fullPageImage": "linear/full-page.png",
+      "sectionImages": [
+        {
+          "section": "section-01-hero",
+          "file": "linear/sections/section-01-hero.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 0,
+          "yEnd": 2546,
+          "height": 2546,
+          "heading": ""
+        },
+        {
+          "section": "section-02",
+          "file": "linear/sections/section-02.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 2546,
+          "yEnd": 3782,
+          "height": 1236,
+          "heading": "Intake\nand integrations"
+        },
+        {
+          "section": "section-03",
+          "file": "linear/sections/section-03.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 3782,
+          "yEnd": 5021,
+          "height": 1239,
+          "heading": "Planning\nand monitoring"
+        },
+        {
+          "section": "section-04",
+          "file": "linear/sections/section-04.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 5021,
+          "yEnd": 6263,
+          "height": 1242,
+          "heading": "AI and\nautomations"
+        },
+        {
+          "section": "section-05",
+          "file": "linear/sections/section-05.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 6263,
+          "yEnd": 8226,
+          "height": 1963,
+          "heading": "Build, review,\nand ship"
+        },
+        {
+          "section": "section-06",
+          "file": "linear/sections/section-06.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 8226,
+          "yEnd": 9014,
+          "height": 788,
+          "heading": "SECTION"
+        },
+        {
+          "section": "section-07",
+          "file": "linear/sections/section-07.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 9014,
+          "yEnd": 9466,
+          "height": 452,
+          "heading": "Built for the future. Available today."
+        },
+        {
+          "section": "section-08-footer",
+          "file": "linear/sections/section-08-footer.png",
+          "sourceFullPage": "linear/full-page.png",
+          "yStart": 9466,
+          "yEnd": 9960,
+          "height": 494,
+          "heading": "Product"
+        }
+      ],
+      "motionFrames": [
+        "linear/motion-frames/01-hero-open.png",
+        "linear/motion-frames/02-hover-settled.png",
+        "linear/motion-frames/03-scroll-transition.png",
+        "linear/motion-frames/04-later-section.png",
+        "linear/motion-frames/05-return.png"
+      ],
+      "captureType": "live-website",
+      "viewport": "1440x900",
+      "capturedPageTitle": "Linear – The system for product development",
+      "metaDescription": "Purpose-built for planning and building products with AI agents.",
+      "typography": {
+        "body": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "headline": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "headlineSize": "64px"
+      },
+      "why": "A near-empty dark hero that lets one 64px-class headline and a cropped product window carry the page. The app UI sits half below the fold, so scrolling feels like pulling the product up into view.",
+      "pattern": "Dark, near-black canvas. Left-aligned two-line headline in Inter Variable, a single muted sentence, a tiny \"New / Loops\" link on the right, then a full-width product window that bleeds off the fold. Each later section pairs a short heading with a framed product visual.",
+      "interactionNotes": "Sticky transparent nav with a white pill \"Sign up\" button. Pastel testimonial cards (lavender, acid yellow) break the dark rhythm mid-page.",
+      "animationNotes": "The hero starts empty and fades the headline and mock in over about a second. After a few seconds the product window gains a floating agent panel on top of the issue view. On scroll, three outlined isometric icons (Purpose-built, Powered by agents, Designed for speed) fade in under a large grey statement line.",
+      "captureNotes": "Cookie or consent UI did not appear in the capture.",
+      "prompt": "Build a landing page for a developer product, using Linear's landing page as a reference for structure and restraint, not as a template to copy.\n\nCanvas and type: near-black background (#08090a range), off-white text, one variable sans (Inter Variable or similar). Hero headline is two lines, left-aligned, about 64px at 1440 wide, tight tracking (-0.03em), line-height 1.02. One supporting sentence in muted grey (60% white), 18px. Put one small \"New: <feature> →\" link at the far right of the same row.\n\nHero layout: nav is 72px tall, transparent with a 1px bottom border at 8% white. Headline starts about 200px below the nav. Below the copy, place a full-width product window (1320px max, 12px radius, 1px border at 10% white, inner panel 4% white). Let the window run past the fold by roughly 40% of its height so scrolling reveals it.\n\nSections after the hero: a short grey statement line (about 40px, 50% white) with three outlined line-art isometric icons under it, each with a one-line caption. Then four feature sections, each with a two-word eyebrow, a heading, a paragraph, and a framed UI visual. Insert one band of pastel testimonial cards (lavender and acid yellow, 24px radius, large quote in 28px, small avatar and role at the bottom). End with a quiet closing CTA and a multi-column footer.\n\nMotion: on load, fade the headline and window in with a 12px upward translate, 700ms, cubic-bezier(0.2, 0.7, 0.2, 1), staggered 120ms. After 3s, animate a small floating agent panel into the product window (scale 0.96 to 1, 400ms). On scroll, reveal sections with opacity and 16px translate once, never replay. Respect prefers-reduced-motion by removing translate and shortening fades to 150ms.\n\nResponsive: below 900px stack hero copy and drop the right-hand \"New\" link under the subtitle. Product window becomes full-bleed with 0 radius. Collapse the nav into a menu button.\n\nAvoid: gradients behind the headline, glowing borders, stock photography, more than one accent color, and any invented customer logos or metrics. Use placeholder product names and original copy."
+    },
+    {
+      "title": "Resend: Email for developers",
+      "creator": "Resend",
+      "sourceUrl": "https://resend.com",
+      "pageUrl": "https://resend.com",
+      "imageUrl": null,
+      "imageFile": "resend/still.png",
+      "videoFile": "resend/motion.mp4",
+      "fullPageImage": "resend/full-page.png",
+      "sectionImages": [
+        {
+          "section": "section-01-hero",
+          "file": "resend/sections/section-01-hero.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 0,
+          "yEnd": 1038,
+          "height": 1038,
+          "heading": "Email for\ndevelopers"
+        },
+        {
+          "section": "section-02",
+          "file": "resend/sections/section-02.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 1038,
+          "yEnd": 1605,
+          "height": 567,
+          "heading": "SECTION"
+        },
+        {
+          "section": "section-03",
+          "file": "resend/sections/section-03.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 1605,
+          "yEnd": 2901,
+          "height": 1296,
+          "heading": "Integrate tonight"
+        },
+        {
+          "section": "section-04",
+          "file": "resend/sections/section-04.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 2901,
+          "yEnd": 3867,
+          "height": 966,
+          "heading": "First-class\ndeveloper experience"
+        },
+        {
+          "section": "section-05",
+          "file": "resend/sections/section-05.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 3867,
+          "yEnd": 5225,
+          "height": 1358,
+          "heading": "Write using a delightful editor"
+        },
+        {
+          "section": "section-06",
+          "file": "resend/sections/section-06.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 5225,
+          "yEnd": 6125,
+          "height": 900,
+          "heading": "Go beyond editing"
+        },
+        {
+          "section": "section-07",
+          "file": "resend/sections/section-07.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 6125,
+          "yEnd": 7492,
+          "height": 1367,
+          "heading": "Develop emails using React"
+        },
+        {
+          "section": "section-08",
+          "file": "resend/sections/section-08.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 7492,
+          "yEnd": 9064,
+          "height": 1572,
+          "heading": "Reach humans, not spam folders"
+        },
+        {
+          "section": "section-09",
+          "file": "resend/sections/section-09.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 9064,
+          "yEnd": 10416,
+          "height": 1352,
+          "heading": "Everything in your control"
+        },
+        {
+          "section": "section-10",
+          "file": "resend/sections/section-10.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 10416,
+          "yEnd": 11102,
+          "height": 686,
+          "heading": "Beyond expectations"
+        },
+        {
+          "section": "section-11",
+          "file": "resend/sections/section-11.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 11102,
+          "yEnd": 11724,
+          "height": 622,
+          "heading": "Email reimagined.\nAvailable today."
+        },
+        {
+          "section": "section-12-footer",
+          "file": "resend/sections/section-12-footer.png",
+          "sourceFullPage": "resend/full-page.png",
+          "yStart": 11724,
+          "yEnd": 12320,
+          "height": 596,
+          "heading": "FOOTER"
+        }
+      ],
+      "motionFrames": [
+        "resend/motion-frames/01-hero-open.png",
+        "resend/motion-frames/02-hover-settled.png",
+        "resend/motion-frames/03-scroll-transition.png",
+        "resend/motion-frames/04-later-section.png",
+        "resend/motion-frames/05-return.png"
+      ],
+      "captureType": "live-website",
+      "viewport": "1440x900",
+      "capturedPageTitle": "Resend · Email for developers",
+      "metaDescription": "The best way to reach humans instead of spam folders. Deliver transactional and marketing emails at scale.",
+      "typography": {
+        "body": "inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "headline": "domaine, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "headlineSize": "96px"
+      },
+      "why": "A serif display headline on a black field is rare in developer tools and gives the brand a voice. A single dark 3D object stands in for the product without any screenshots in the first viewport.",
+      "pattern": "Black page with soft light sweeps. Display serif (Domaine) headline over Inter body, left-aligned, with a dark faceted cube on the right. Sections move through integrations, code samples, an editor, React templates, deliverability and a closing CTA.",
+      "interactionNotes": "Sticky nav with a blurred dark backdrop and dropdown menus. A row of language icons (Node.js, Serverless, Ruby, Python, PHP, CLI, Go, Rust, Java, Elixir, .NET, REST, SMTP) sits above a code sample with framework sub-tabs (Next.js, Remix, Nuxt and others). The capture did not click through them.",
+      "animationNotes": "The page opens on a brief white flash, then settles to black. The cube appears at the right after the headline is already readable. Section headings and code panels fade in as they enter the viewport.",
+      "captureNotes": "The first video frame is a white load flash, which is a loading artifact, not a design choice to copy.",
+      "prompt": "Design a developer-tool landing page inspired by Resend's dark, serif-led hero. Treat it as reference, not a template.\n\nTypography: pair a high-contrast display serif for headlines (Domaine, Canela, or Instrument Serif as a free option) with Inter for body and UI. Hero headline is two lines, about 88px at 1440, line-height 0.98, tight tracking, with a subtle white-to-grey vertical gradient fill. Body copy is 18px at 65% white.\n\nHero: pure black background with two very soft diagonal light sweeps (radial gradients at 6 to 10% white, blurred 80px). Left column: a small pill link with a thin multicolor border, the headline, two lines of subtext, then a primary button (dark grey fill, 1px border, 12px radius) and a ghost \"Documentation\" link. Right column: a single dark, faceted 3D object (render or WebGL cube) tilted about 20 degrees, lit from the top right, partly lost in shadow. Keep the object low contrast so the headline wins.\n\nSections in order: an \"Integrate tonight\" row of 13 icon buttons that switch a code panel; a \"developer experience\" intro with two small UI cards; an editor feature section; a React-templates section with a split code and preview; a deliverability section; a control and analytics section; a closing CTA; a footer. Code panels use a 1px border at 10% white, 16px radius, JetBrains Mono at 13px, muted syntax colors.\n\nMotion: nav blurs on scroll (backdrop-filter 12px). On load, fade the headline in over 800ms, then ease the 3D object in from 40px to the right over 1200ms. Code panels fade in with 12px upward travel when 20% visible. Icon row selection slides a 2px underline between items in 200ms. No white flash: set the page background to black in the HTML head.\n\nResponsive: below 960px stack the hero, put the object behind the headline at 40% opacity, and let the icon row scroll horizontally with snap.\n\nAvoid: neon accents, glassmorphism cards everywhere, stock illustrations, fake customer logos, and animated gradients that compete with the 3D object."
+    },
+    {
+      "title": "Raycast: Your shortcut to everything",
+      "creator": "Raycast",
+      "sourceUrl": "https://www.raycast.com",
+      "pageUrl": "https://www.raycast.com",
+      "imageUrl": null,
+      "imageFile": "raycast/still.png",
+      "videoFile": "raycast/motion.mp4",
+      "fullPageImage": "raycast/full-page.png",
+      "sectionImages": [
+        {
+          "section": "section-01-hero",
+          "file": "raycast/sections/section-01-hero.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 0,
+          "yEnd": 1191,
+          "height": 1191,
+          "heading": "Your shortcut to everything."
+        },
+        {
+          "section": "section-02",
+          "file": "raycast/sections/section-02.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 1191,
+          "yEnd": 2566,
+          "height": 1375,
+          "heading": "Take shortcuts, not detours."
+        },
+        {
+          "section": "section-03",
+          "file": "raycast/sections/section-03.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 2566,
+          "yEnd": 3286,
+          "height": 720,
+          "heading": "It’s not about saving time."
+        },
+        {
+          "section": "section-04",
+          "file": "raycast/sections/section-04.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 3286,
+          "yEnd": 4724,
+          "height": 1438,
+          "heading": "There’s an extension for that."
+        },
+        {
+          "section": "section-05",
+          "file": "raycast/sections/section-05.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 4724,
+          "yEnd": 6292,
+          "height": 1568,
+          "heading": "Meet your new virtual assistant"
+        },
+        {
+          "section": "section-06",
+          "file": "raycast/sections/section-06.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 6292,
+          "yEnd": 7392,
+          "height": 1100,
+          "heading": "Built for professionals like you."
+        },
+        {
+          "section": "section-07",
+          "file": "raycast/sections/section-07.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 7392,
+          "yEnd": 8535,
+          "height": 1143,
+          "heading": "Don't repeat yourself."
+        },
+        {
+          "section": "section-08",
+          "file": "raycast/sections/section-08.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 8535,
+          "yEnd": 9521,
+          "height": 986,
+          "heading": "DIV"
+        },
+        {
+          "section": "section-09",
+          "file": "raycast/sections/section-09.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 9521,
+          "yEnd": 10317,
+          "height": 796,
+          "heading": "Stay in the loop."
+        },
+        {
+          "section": "section-10",
+          "file": "raycast/sections/section-10.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 10317,
+          "yEnd": 13499,
+          "height": 3182,
+          "heading": "Build the perfect tools."
+        },
+        {
+          "section": "section-11",
+          "file": "raycast/sections/section-11.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 13499,
+          "yEnd": 14743,
+          "height": 1244,
+          "heading": "Take the short way."
+        },
+        {
+          "section": "section-12-footer",
+          "file": "raycast/sections/section-12-footer.png",
+          "sourceFullPage": "raycast/full-page.png",
+          "yStart": 14743,
+          "yEnd": 15983,
+          "height": 1240,
+          "heading": "DIV"
+        }
+      ],
+      "motionFrames": [
+        "raycast/motion-frames/01-hero-open.png",
+        "raycast/motion-frames/02-hover-settled.png",
+        "raycast/motion-frames/03-scroll-transition.png",
+        "raycast/motion-frames/04-later-section.png",
+        "raycast/motion-frames/05-return.png"
+      ],
+      "captureType": "live-website",
+      "viewport": "1440x900",
+      "capturedPageTitle": "Raycast - Your shortcut to everything",
+      "metaDescription": "A collection of powerful productivity tools all within an extendable launcher.",
+      "typography": {
+        "body": "Inter, \"Inter Fallback\", sans-serif",
+        "headline": "Inter, \"Inter Fallback\", sans-serif",
+        "headlineSize": "64px"
+      },
+      "why": "The hero is nearly all atmosphere: diagonal red light bands behind a centered headline. It signals speed and heat without a single UI screenshot, and the floating pill nav keeps the page feeling like an app.",
+      "pattern": "Centered composition on a deep charcoal background (rgb 7, 8, 10). 64px Inter headline, two-line subhead, a white download button and tiny monospace install hints. Twelve tall sections follow, each with a distinct visual world (keyboard, extension reel, AI bento, testimonials, grid, closing image).",
+      "interactionNotes": "Floating rounded nav pill with a white \"Download\" button. Install via Homebrew and Download V1 links in monospace under the hero button. A small outlined \"The Raycast Keyboard\" pill leads into the next section.",
+      "animationNotes": "The hero background fades in from nothing: the diagonal stripes appear pale pink, then deepen to saturated red over a few seconds, and the hero text scrolls over them. The headline uses a fade-in-up on load. On scroll the stripes slide away and a large \"Take shortcuts, not detours.\" line appears centered on black.",
+      "captureNotes": "The full video is longer than the others because the page is heavy and scrolled slowly in headless capture.",
+      "prompt": "Create a product landing page for a keyboard-driven desktop tool, taking cues from Raycast's atmospheric hero. Use it as reference only.\n\nCanvas: deep charcoal (#07080a). White text. Inter throughout, 64px semibold centered headline (two lines, tight tracking), 17px subhead at 90% white with a max width of 480px.\n\nHero: full-bleed animated background of 6 to 8 wide diagonal bands at about 35 degrees, soft-blurred edges with grain, color range crimson to pink with a few steel-blue edge lines. Bands sit behind the text, and text keeps a very soft shadow for legibility. Below the subhead, a white pill button \"Download for Mac\" with an Apple icon, then two tiny monospace lines in 50% white: system requirement and \"Install via Homebrew | Download V1\".\n\nNav: a floating rounded rectangle (16px radius, 1px border at 8% white, 70% black fill, backdrop blur) inset 120px from each side, with logo left, links centered, a white Download button right. It stays fixed on scroll.\n\nPage rhythm: twelve sections, each full-width with its own composition: a centered statement line, a horizontally scrolling reel of extension cards, a bento grid for AI features (one large cell, four small), a testimonial strip, a dense icon grid, a big closing image with a CTA, then the footer. Alternate dark with one slightly lighter band (#0d0e11) so the scroll has rhythm.\n\nMotion: on load, fade the headline up 16px over 700ms. Stripes fade from 0 to full over 2.5s and shift hue from pale pink to crimson while drifting 20px diagonally on a 12s loop. On scroll, stripes parallax at 0.6x speed and fade out by the end of the hero. Sections reveal once with opacity and 20px translate. The extension reel auto-scrolls and pauses on hover.\n\nResponsive: below 900px reduce the headline to 40px, hide nav links behind a menu button, and shrink the stripes to 4 bands. Provide a static stripe image for prefers-reduced-motion.\n\nAvoid: more than one hue family in the hero, text over busy areas without a shadow, stock photos, and any copied Raycast copy or logos."
+    },
+    {
+      "title": "Cursor: Your coding agent for building ambitious software",
+      "creator": "Cursor (Anysphere)",
+      "sourceUrl": "https://cursor.com",
+      "pageUrl": "https://cursor.com",
+      "imageUrl": null,
+      "imageFile": "cursor/still.png",
+      "videoFile": "cursor/motion.mp4",
+      "fullPageImage": "cursor/full-page.png",
+      "sectionImages": [
+        {
+          "section": "section-01-hero",
+          "file": "cursor/sections/section-01-hero.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 0,
+          "yEnd": 1138,
+          "height": 1138,
+          "heading": ""
+        },
+        {
+          "section": "section-02",
+          "file": "cursor/sections/section-02.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 1138,
+          "yEnd": 2187,
+          "height": 1049,
+          "heading": "Trusted every day by teams that build world-class software"
+        },
+        {
+          "section": "section-03",
+          "file": "cursor/sections/section-03.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 2187,
+          "yEnd": 2991,
+          "height": 804,
+          "heading": "Works autonomously, runs in parallel"
+        },
+        {
+          "section": "section-04",
+          "file": "cursor/sections/section-04.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 2991,
+          "yEnd": 3766,
+          "height": 775,
+          "heading": "In every tool, at every step"
+        },
+        {
+          "section": "section-05",
+          "file": "cursor/sections/section-05.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 3766,
+          "yEnd": 4518,
+          "height": 752,
+          "heading": "Hand work to AI teammates"
+        },
+        {
+          "section": "section-06",
+          "file": "cursor/sections/section-06.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 4518,
+          "yEnd": 5218,
+          "height": 700,
+          "heading": "The new way to build software."
+        },
+        {
+          "section": "section-07",
+          "file": "cursor/sections/section-07.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 5218,
+          "yEnd": 5957,
+          "height": 739,
+          "heading": "Stay on the frontier"
+        },
+        {
+          "section": "section-08",
+          "file": "cursor/sections/section-08.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 5957,
+          "yEnd": 6291,
+          "height": 334,
+          "heading": "Changelog"
+        },
+        {
+          "section": "section-09",
+          "file": "cursor/sections/section-09.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 6291,
+          "yEnd": 6985,
+          "height": 694,
+          "heading": "Cursor is an applied research team focused on building the f"
+        },
+        {
+          "section": "section-10",
+          "file": "cursor/sections/section-10.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 6985,
+          "yEnd": 7327,
+          "height": 342,
+          "heading": "Recent highlights"
+        },
+        {
+          "section": "section-11",
+          "file": "cursor/sections/section-11.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 7327,
+          "yEnd": 7673,
+          "height": 346,
+          "heading": "Try Cursor now."
+        },
+        {
+          "section": "section-12-footer",
+          "file": "cursor/sections/section-12-footer.png",
+          "sourceFullPage": "cursor/full-page.png",
+          "yStart": 7673,
+          "yEnd": 8199,
+          "height": 526,
+          "heading": "Product"
+        }
+      ],
+      "motionFrames": [
+        "cursor/motion-frames/01-hero-open.png",
+        "cursor/motion-frames/02-hover-settled.png",
+        "cursor/motion-frames/03-scroll-transition.png",
+        "cursor/motion-frames/04-later-section.png",
+        "cursor/motion-frames/05-return.png"
+      ],
+      "captureType": "live-website",
+      "viewport": "1440x900",
+      "capturedPageTitle": "AI Coding Agent for Building Ambitious Software | Cursor",
+      "metaDescription": "Built to make you extraordinarily productive, agents turn ideas into code. Accelerate development by handing off tasks to Cursor.",
+      "typography": {
+        "body": "CursorGothic, \"CursorGothic Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+        "headline": "CursorGothic, \"CursorGothic Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+        "headlineSize": "26px"
+      },
+      "why": "It breaks the dark-mode default of developer tools. A warm off-white page, a muted oil-painting backdrop and a layered product mock (desktop app plus CLI window) make the product look calm and tangible.",
+      "pattern": "Warm paper background, small left-aligned headline (about 28px) in CursorGothic, a dark primary button and a light secondary one. A wide painted-landscape panel holds overlapping app and CLI windows. Below: logo trust row, autonomy and tooling sections, a research-team block with a photograph, changelog, highlights, closing CTA, footer.",
+      "interactionNotes": "Hovering the mock highlights an element in the live preview and shows a small tag (for example \"InitialParagraph · span\"). Sticky light nav with a dark Download pill and an outlined Contact sales pill. A cookie banner overlaps the lower right of the hero.",
+      "animationNotes": "The product mock auto-plays: the left task list changes state, the chat shows a build in progress, and the window swaps to a \"Mission Control\" planning screen after several seconds. The CLI window overlaps from the lower right and scrolls its own text. Later sections reveal a blurred-focus photograph.",
+      "captureNotes": "The cookie banner overlaps the hero in the still and several motion frames; it is site chrome, not part of the design reference.",
+      "prompt": "Design a landing page for an AI coding agent that feels calm and editorial, using Cursor's light-mode hero as a reference, not a template.\n\nPalette: warm off-white page (#f7f7f4), near-black text (#26251e), a dark charcoal primary button, a light grey secondary button. One muted painterly image (soft landscape, low contrast) used only as a backdrop panel.\n\nType: a geometric grotesque (Inter Tight, or a custom face if available). Hero headline is small and confident: 28px, two lines, left-aligned, medium weight. Do not make it huge; the mock does the talking.\n\nHero layout: nav 52px with logo left, five links centered, \"Sign in\", an outlined \"Contact sales\" pill and a dark \"Download\" pill on the right. Headline starts 130px from the top. Under it, two buttons: \"Download for macOS\" (dark, with download icon) and \"Request a demo\" (light grey). Below, a 1300px wide, 16:7 panel with the painted backdrop and a centered 1080px app window (white, 10px radius, soft shadow) with three columns: task list, agent chat, live preview. Overlap a smaller CLI window (dark text on white) at the lower right.\n\nFurther sections: a quiet row of customer-logo placeholders; a \"works autonomously\" section with a cropped product visual; a tools-integration section; a team-and-research block with a blurred-focus photograph (use your own image) and a text link; a changelog list with dates; a three-card \"Recent highlights\" row; a closing \"Try it now\" CTA; footer.\n\nMotion: the app window cycles between two states every 8s (a build-landing-page task, then a planning screen) with a 300ms cross-fade and 8px slide. Hovering an element in the preview draws a 1px blue outline and a small blue tag. The CLI window types text lines at 40 characters per second, looping. On scroll, sections fade in once. Use a single easing: cubic-bezier(0.25, 0.1, 0.25, 1).\n\nResponsive: below 900px hide the CLI window, stack the three columns into a single tabbed view, and make the backdrop panel full-bleed.\n\nAvoid: dark mode, neon glows, gradients over the headline, busy backgrounds, fake benchmarks, and any copied copy or logos. Keep consent UI out of the design frame."
+    },
+    {
+      "title": "Framer: The pro website builder with a world-class design agent",
+      "creator": "Framer",
+      "sourceUrl": "https://www.framer.com",
+      "pageUrl": "https://www.framer.com",
+      "imageUrl": null,
+      "imageFile": "framer/still.png",
+      "videoFile": "framer/motion.mp4",
+      "fullPageImage": "framer/full-page.png",
+      "sectionImages": [
+        {
+          "section": "section-01-hero",
+          "file": "framer/sections/section-01-hero.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 0,
+          "yEnd": 1085,
+          "height": 1085,
+          "heading": ""
+        },
+        {
+          "section": "section-02",
+          "file": "framer/sections/section-02.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 1085,
+          "yEnd": 1421,
+          "height": 336,
+          "heading": "DIV"
+        },
+        {
+          "section": "section-03",
+          "file": "framer/sections/section-03.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 1421,
+          "yEnd": 2819,
+          "height": 1398,
+          "heading": "The website builder for shipping standout sites"
+        },
+        {
+          "section": "section-04",
+          "file": "framer/sections/section-04.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 2819,
+          "yEnd": 5936,
+          "height": 3117,
+          "heading": "Build your website together with agents"
+        },
+        {
+          "section": "section-05",
+          "file": "framer/sections/section-05.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 5936,
+          "yEnd": 7811,
+          "height": 1875,
+          "heading": "Not just vibes, a full platform"
+        },
+        {
+          "section": "section-06",
+          "file": "framer/sections/section-06.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 7811,
+          "yEnd": 9050,
+          "height": 1239,
+          "heading": "Shipped with Framer"
+        },
+        {
+          "section": "section-07",
+          "file": "framer/sections/section-07.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 9050,
+          "yEnd": 9869,
+          "height": 819,
+          "heading": "Trusted by teams shipping big sites"
+        },
+        {
+          "section": "section-08",
+          "file": "framer/sections/section-08.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 9869,
+          "yEnd": 11727,
+          "height": 1858,
+          "heading": "Built on a community that isn’t going anywhere"
+        },
+        {
+          "section": "section-09-footer",
+          "file": "framer/sections/section-09-footer.png",
+          "sourceFullPage": "framer/full-page.png",
+          "yStart": 11727,
+          "yEnd": 12365,
+          "height": 638,
+          "heading": "FOOTER"
+        }
+      ],
+      "motionFrames": [
+        "framer/motion-frames/01-hero-open.png",
+        "framer/motion-frames/02-hover-settled.png",
+        "framer/motion-frames/03-scroll-transition.png",
+        "framer/motion-frames/04-later-section.png",
+        "framer/motion-frames/05-return.png"
+      ],
+      "captureType": "live-website",
+      "viewport": "1440x900",
+      "capturedPageTitle": "Framer: Free website builder and AI design agent",
+      "metaDescription": "The free website builder with a design agent that takes you from idea to launch. Changes stay editable, with hosting, CMS, analytics, SEO, and AEO built in.",
+      "typography": {
+        "body": "sans-serif",
+        "headline": "\"GT Walsheim Medium\", \"GT Walsheim Medium Placeholder\", sans-serif",
+        "headlineSize": "54px"
+      },
+      "why": "The hero is one large rounded stage that plays short product vignettes, so a visitor sees a prompt, generated code, a 3D canvas and a CMS in the first scroll. The product is the proof.",
+      "pattern": "Black page, GT Walsheim Medium headline (about 56px) left-aligned with a white \"Get started for free\" button and a dark \"Download app\" button. A bordered 1200px stage with a blue glow cycles through demos. Below: customer-site strips, platform feature sections, a \"shipped with Framer\" showcase, trust logos, community section and a footer.",
+      "interactionNotes": "Sticky nav with dropdowns (Platform, Solutions, Resources) and a white \"Sign up\" pill. The stage shows typed prompts, a code card (ImageWheel.tsx), an interactive point-sphere and a CMS table with people cards. A \"New: Framer MCP →\" link sits at the right edge of the CTA row.",
+      "animationNotes": "The stage cycles through scenes: an empty \"Ask Framer…\" input with a glowing blue border, a prompt typed letter by letter (\"ask black homep|\"), a purple-bordered canvas with an animated point sphere, then a CMS grid with a blue frame. Customer-site cards slide horizontally in a strip.",
+      "captureNotes": "A cookie banner overlaps the lower left of the hero in the still and several frames; it is site chrome, not part of the reference.",
+      "prompt": "Build a website-builder landing page where the hero is a looping product stage. Use Framer's page as reference for the idea, not a template.\n\nPalette: pure black page, white text, one electric blue (#0055ff to #1a6bff) used only for glow and focus rings. Headline in a humanist grotesque (GT Walsheim, or Inter Display), 56px, medium weight, two lines, left-aligned, max 760px. Subhead at 18px in 60% white.\n\nHero layout: nav 64px with logo, three dropdowns, Enterprise, Pricing on the left; \"Log in\" in grey and a white \"Sign up\" pill on the right. Under the subhead, a white \"Get started for free\" button (8px radius) and a dark grey \"Download app\" button; a small \"New: <feature> →\" link at the far right of that row. Below, a 1200px wide stage with a 1px border at 8% white, 20px radius, black fill, and an inner blue glow (box-shadow 0 0 80px rgba(0,85,255,0.35)).\n\nStage scenes (each about 4s): 1) a rounded input \"Ask <product>…\" with a glowing blue border and a model selector; 2) the same input typing a prompt letter by letter at 12 characters per second, with a block cursor; 3) a code card with a filename tab and syntax-highlighted TypeScript; 4) a purple-bordered canvas with an animated 3D point sphere; 5) a CMS table beside three people cards in a blue frame. Cross-fade scenes in 400ms. Pause the loop when the tab is hidden.\n\nBelow the hero: a horizontally sliding strip of customer-site screenshots (use your own mock sites), a platform section with four feature rows, a \"shipped with\" showcase grid, a quiet logo row, a community block, a closing CTA, and a footer.\n\nMotion: the stage border glow pulses between 25% and 40% opacity over 3s. Strips scroll at 30px per second and pause on hover. Sections reveal once on scroll with 16px upward travel. Respect prefers-reduced-motion by showing only the first scene.\n\nResponsive: below 900px make the stage full-bleed with 12px radius, show scenes 1 to 3 only, and stack the CTA row.\n\nAvoid: multiple accent colors, drop shadows on text, stock photography, fake logos or numbers, and copied product copy."
+    }
+  ]
+}
