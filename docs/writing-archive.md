@@ -49,13 +49,17 @@ The original Directus answer supplies its displayed publication date.
 - Scope: no private drafts, analytics, comments by other people, or third-party
   images were published. Existing CMS articles were not overwritten.
 
-## Discovered but not republished
+## QuickStart recovery and second batch
 
 The [QuickStart author archive](https://blog.quickstartgenai.com/author/timur/)
 indexes 14 entries under a shared Timur/Shamim profile. Some same-title Medium
 posts are credited only to Shamim. A shared profile alone is insufficient to
-attribute them to Timur. Individual pages timed out during research. Awaiting
-user clarification on republication rights before importing these posts:
+attribute them to Timur. The user confirmed permission on 8 September to republish
+all 14 with their original author credits. QuickStart pages timed out; full matching
+editions were recovered for 12 technical posts from Shamim’s personal site and for
+Timur’s agent-design essay from Ardor. These 13 condensed editions are now added.
+The publishing announcement remains unpublished because only its excerpt could be
+recovered. The original discovery list is:
 
 1. Update on Our Website & Publishing Direction — 1 October 2025
 2. Your AI is a Caged Genius. Here’s How to Set It Free — 27 June 2025
@@ -90,7 +94,7 @@ wins a slug collision consistently in the index and detail route. Metadata and
 page rendering share the same cached lookup. Search filters the combined summaries
 in the browser, so no credential or post body is needed to search.
 
-Edit the JSON for these eight editions, or deliberately migrate them into Sanity
+Edit the JSON for these local editions, or deliberately migrate them into Sanity
 and remove their local records after write access is restored. They do not appear
 in the Sanity studio merely because they appear on the public blog.
 
@@ -103,3 +107,35 @@ Verified on 8 September: production build passed; all 42 sitemap URLs passed the
 SEO and publication-history checks. Browser search found both Zonelyte (local)
 and Swagger (CMS), empty/reset states worked, and the Zonelyte article showed
 its source notice with no horizontal overflow at 390px.
+
+
+## Second-batch editorial and attribution checks
+
+The archive now contains 21 local editions, alongside four CMS articles. Twelve
+new editions retain Shamim Bhuiyan as author, with a visible profile link and
+matching BlogPosting author URL. His name is also displayed on index cards and
+included in search. The thirteenth is Timur's agent-design essay. No shared
+QuickStart profile was treated as evidence of sole authorship.
+
+The new editions are condensed adaptations, not full-text reproductions. Source
+links point to the recovered full articles. Original dates use the QuickStart
+listing, which can differ from the date of a later mirror; publication history
+now separates first publication from the linked source edition. Tutorials are
+explicitly historical and were not rerun with today's model/package versions.
+No third-party images, copied sample dialogues, credentials, or runtime logs were
+imported. Links within the MCP series and RAG sequence point to the local editions.
+
+Corrections include MCP's expanded name and client/server responsibilities,
+retrieved text versus embeddings, local inference versus remote tools/tracing,
+vision understanding versus image generation, and current weather versus a future
+forecast. Removed blanket claims of guaranteed income, zero cost, automatic
+security, and unsupported performance. Current primary documentation consulted:
+
+- https://docs.ollama.com/faq
+- https://modelcontextprotocol.io/docs/learn/architecture
+- https://openai.github.io/openai-agents-python/models/
+- https://github.com/HazyResearch/minions
+
+Still needed: the complete text of “Update on Our Website & Publishing Direction”
+(1 October 2025). The public QuickStart RSS proxy supplied its date, author and
+opening excerpt, but that is insufficient to reconstruct the full announcement.

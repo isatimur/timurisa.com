@@ -80,6 +80,15 @@ for url in urls:
         assert schema['isBasedOn'] == expected['source']['url']
         assert schema['datePublished'] == expected['publishedAt']
         assert schema['dateModified'] == expected['_updatedAt']
+        assert schema['author']['name'] == expected['authorName'], (path, 'Wrong author')
+        if expected.get('authorUrl'):
+            assert schema['author']['url'] == expected['authorUrl']
+            assert expected['authorUrl'] in page.links, (path, 'Missing author profile')
+        for block in expected['body']:
+            for mark in block.get('markDefs', []):
+                href = mark.get('href', '')
+                if href.startswith('/blog/'):
+                    assert SITE + href in urls, (path, 'Broken related article', href)
         assert 'Publication history' in html and 'Edited for this blog' in html
         keys = [block['_key'] for block in expected['body']]
         assert len(keys) == len(set(keys)), (path, 'Duplicate block keys')

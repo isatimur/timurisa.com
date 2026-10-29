@@ -36,6 +36,7 @@ const generateArticleSchema = (post: Post) => ({
   author: {
     "@type": "Person",
     name: post.authorName || "Timur Isachenko",
+    ...(post.authorUrl ? { url: post.authorUrl } : {}),
     ...(!post.authorName || post.authorName === "Timur Isachenko" ? { "@id": person["@id"], url: SITE_URL } : {}),
   },
   publisher: person,
@@ -140,13 +141,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               />
             )}
             <div>
-              <strong>{post.authorName || "Timur Isachenko"}</strong>
+              <strong>{post.authorUrl ? <a href={post.authorUrl} target="_blank" rel="noopener noreferrer">{post.authorName}</a> : post.authorName || "Timur Isachenko"}</strong>
               <span>
                 {post.publishedAt
                   ? new Date(post.publishedAt).toLocaleDateString("en-GB", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
+                      timeZone: "UTC",
                     })
                   : ""}{" "}
                 · {readingTime} min read
@@ -154,7 +156,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
           {post.source && <aside className="article-provenance" aria-label="Publication history">
-            <p>Originally published on <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.platform}</a> on <time dateTime={post.source.publishedAt}>{new Date(post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>. Edited for this blog on <time dateTime={post._updatedAt}>{new Date(post._updatedAt || post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>.</p>
+            <p>First published <time dateTime={post.source.publishedAt}>{new Date(post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>. Source edition: <a href={post.source.url} target="_blank" rel="noopener noreferrer">{post.source.platform}</a>. Edited for this blog on <time dateTime={post._updatedAt}>{new Date(post._updatedAt || post.source.publishedAt).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"})}</time>.</p>
             <p>{post.source.editorialNote}</p>
           </aside>}
           {!!post.categories?.length && (

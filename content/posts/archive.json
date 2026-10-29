@@ -2509,5 +2509,3209 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-installing-your-first-local-llm",
+    "title": "Installing your first local LLM: a small, useful starting point",
+    "slug": {
+      "current": "installing-your-first-local-llm"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2024-10-08T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Start with one local model, verify inference, and understand the boundary between your machine, its network, and optional tools.",
+    "categories": [
+      "Local LLMs",
+      "Ollama"
+    ],
+    "source": {
+      "title": "Installing your first local LLM: a small, useful starting point",
+      "url": "https://shamimbhuiyan.ru/blogs/first-step-to-the-world-of-ai-part-1-installing-a-local-llm-",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2024-10-08T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. The old version-specific claim about network binding has been removed."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "A useful first local AI project is simply getting a model to answer a question on your own machine. That gives you a foundation for later work with retrieval, tools, and agents, while keeping the first troubleshooting task manageable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original home-lab setup used an Ubuntu virtual machine on Proxmox, 16 virtual CPUs, 16 GB of RAM, Ollama, and Llama 3 with 8 billion parameters. Those are the specifications of that experiment, not a minimum requirement or a performance guarantee for every model.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Establish one working path",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Install Ollama using its official instructions for your operating system. Start the service, then download and run the model. These were the core commands in the original experiment:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b4",
+        "language": "bash",
+        "code": "ollama pull llama3\nollama run llama3"
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "The first command downloads model files. The second opens an interactive session. Ask a small question, wait for the response, and check whether the speed is acceptable before adding a web interface. Model size, quantization, available memory, and CPU or GPU execution all affect the experience.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Keep the model name and runtime version in your notes. When you later change either, you will have a useful baseline for comparing output and latency.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Keep the network boundary explicit",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "Ollama binds to the loopback interface by default. That is enough when your client and model server run on the same machine. The original article also described connecting from a different computer, but remote access is a separate configuration decision.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b9l0",
+            "_type": "link",
+            "href": "https://docs.ollama.com/faq"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "The current ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b9s1",
+            "text": "Ollama FAQ",
+            "marks": [
+              "b9l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b9s2",
+            "text": " documents the host setting and service configuration. Do not expose an inference endpoint publicly just to make a desktop client connect. Decide which machines need access and configure the network accordingly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Add an interface after inference works",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Open WebUI and AnythingLLM were the interfaces considered in the original roadmap. A graphical client can make ongoing conversations easier, but it also adds configuration and storage to understand.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Local inference can work offline after the necessary files are downloaded. Web search, remote tools, cloud models, and application telemetry have their own network behaviour. Check the whole application before describing the complete workflow as offline.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b13l0",
+            "_type": "link",
+            "href": "/blog/local-rag-from-documents-to-answers"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "Once the basic conversation works, the next useful experiment is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b13s1",
+            "text": "retrieval over a small local document",
+            "marks": [
+              "b13l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-local-rag-from-documents-to-answers",
+    "title": "Local RAG: from documents to answers you can inspect",
+    "slug": {
+      "current": "local-rag-from-documents-to-answers"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2024-11-12T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Follow the path from source text to retrieved passages and a local answer, with a clear distinction between embeddings and evidence.",
+    "categories": [
+      "Local LLMs",
+      "RAG"
+    ],
+    "source": {
+      "title": "Local RAG: from documents to answers you can inspect",
+      "url": "https://shamimbhuiyan.ru/blogs/how-to-develop-a-rag-application-from-scratch",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2024-11-12T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. Clarified that retrieved text, not raw embedding vectors, is supplied to the language model."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "Retrieval-augmented generation adds relevant source material to a model’s input when a question arrives. A local RAG application combines a document collection, an embedding model, a retrieval store, and a language model running on your machine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original tutorial built this pipeline with Python, LangChain, Ollama, Llama 3, sentence-transformer embeddings, and SQLiteVSS. Its value is the visible sequence of operations: you can inspect what enters the system, what retrieval selects, and what the model says about it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Build the document path first",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Begin with a small text document. Load it, split it into passages, calculate embeddings, and store those vectors alongside the corresponding text. Keep a link or identifier for the source so a retrieved passage remains traceable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Chunking is a practical decision. Very short chunks can separate an answer from its context. Very long chunks can dilute the relevant passage or crowd the model’s context window. Inspect a few chunks before treating the configuration as settled.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Inspect retrieval before asking for an answer",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Embed the question using the compatible embedding model and run a similarity search. Read the returned passages directly. If they do not contain the answer, fluent generation will not repair the missing evidence.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Source document → chunks → embeddings → retrieval store\nQuestion → query embedding → matching passages\nQuestion + matching passages → local language model → answer"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The language model receives retrieved text in its prompt. It does not read the vector database or answer directly from raw embedding vectors. The embeddings help the retriever find candidate passages; the passages provide the evidence.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Make uncertainty observable",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "A useful application lets readers compare the answer with its sources. Include questions whose answers are present, questions that require more than one passage, and questions the document cannot answer. The last group reveals whether the assistant admits missing information or fills gaps with a plausible story.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "The original notebook used a retrieved-context prompt and a question-answering chain. Its package imports describe that historical environment; use the linked source when studying the notebook rather than assuming those imports match today’s libraries.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "/blog/web-crawling-for-local-rag"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Once this small pipeline is understandable, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "web crawling",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": " can provide another document source. Keep the same inspection points when the input becomes larger or changes more frequently.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-llama-32-vision-local-inference",
+    "title": "Llama 3.2 Vision: understanding the local inference workflow",
+    "slug": {
+      "current": "llama-32-vision-local-inference"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2024-10-16T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A historical walkthrough of image-and-text inference using a vision model, its processor, and a notebook you can inspect.",
+    "categories": [
+      "Local LLMs",
+      "Computer vision"
+    ],
+    "source": {
+      "title": "Llama 3.2 Vision: understanding the local inference workflow",
+      "url": "https://shamimbhuiyan.ru/blogs/how-to-use-llama-32-vision-models-from-local-inference-to-api-integration-part-1",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2024-10-16T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "A vision-language model accepts an image together with a text prompt and produces a text response. The original Llama 3.2 Vision experiment used this capability to describe a book cover and explore visual question answering.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "That is different from generating an image. It is also different from assuming that a small text-only model can interpret pictures. Model selection needs to match the input and output your application actually requires.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Separate the model from its processor",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The notebook downloaded a vision model through Hugging Face and loaded a matching processor. The processor prepared the image and text in the form the model expected. The model then generated tokens, which were decoded into readable text.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b4",
+        "language": "text",
+        "code": "Image + question\n  → matching processor\n  → model inputs on the execution device\n  → generated tokens\n  → decoded text response"
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "The example used a book-cover image and a request to describe it. Starting with a familiar image makes it easier to notice invented details, missed text, and ambiguous descriptions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Check access and execution separately",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Downloading gated model weights may require accepting the model’s terms and authenticating with Hugging Face. Keep tokens outside committed notebooks. Being able to download weights does not prove that the selected model will fit the available memory.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The original experiment discussed reduced-precision weights and automatic device placement. Its reported memory observations belonged to particular runs. Memory requirements also depend on model variant, image inputs, context length, and runtime configuration.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "A notebook running in a hosted service such as Colab is remote execution, even when it uses the same Python libraries as a notebook on your own computer. Distinguish the two when deciding where images may be processed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Evaluate more than one description",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Try a clear photograph, an image with small text, and a picture where the answer is not visible. Compare the output with what the image actually supports. A confident paragraph is not evidence that an object or detail was present.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "https://github.com/ThetaCursed/clean-ui"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The source also explored ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "Clean UI",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": " as an interface for the model. That repository and the recovered notebook document the historical setup. The old claim that other local runtimes could not support Llama 3.2 Vision has been omitted because runtime support changes over time.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-web-crawling-for-local-rag",
+    "title": "Web crawling for local RAG: keep the evidence visible",
+    "slug": {
+      "current": "web-crawling-for-local-rag"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-01-16T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Extend a local retrieval pipeline with Crawl4AI, while retaining source URLs and checking what the crawler actually captured.",
+    "categories": [
+      "RAG",
+      "Crawl4AI",
+      "Local LLMs"
+    ],
+    "source": {
+      "title": "Web crawling for local RAG: keep the evidence visible",
+      "url": "https://shamimbhuiyan.ru/blogs/web-crawling-for-rag-with-crawlai",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-01-16T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "A local RAG system becomes more useful when its input can include web pages. The original experiment extended a document-based notebook with Crawl4AI, then used the extracted text in the same retrieval and generation pipeline.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The historical stack combined Crawl4AI, LangChain, all-MiniLM-L6-v2 embeddings, SQLiteVSS, Ollama, and Llama 3 8B. A short Wikipedia page kept the initial example small enough to inspect in a notebook.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Treat crawling as document preparation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Fetching a page and extracting useful text are separate steps. A successful HTTP response can still leave you with navigation, duplicated sections, or missing content. Read the crawler’s output before splitting it into chunks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Keep the source URL and collection time with the text. When a page changes, that information helps explain why an answer produced from an earlier snapshot differs from what a reader sees today.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Reuse the retrieval pipeline",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The original notebook split extracted text, calculated embeddings, stored them in SQLiteVSS, and ran a similarity search. Retrieved passages then became context for a local question-answering prompt.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Web page → extracted text → chunks + source metadata\nChunks → embeddings → vector store\nQuestion → relevant passages → local model response"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "The retrieval stage selects text; the model reads that text. Adding a crawler does not make every response current or correct. The collection schedule, extraction quality, and retrieval result still determine which evidence reaches the model.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Check failures where they happen",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Inspect one example at each boundary: page to text, text to chunks, question to passages, and passages to answer. If an answer is wrong, this makes it possible to locate the failure instead of repeatedly changing the final prompt.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Web content is input data. Instructions found inside it should not gain authority over your application or its tools. For a question that the collected material cannot answer, the useful response is an explicit gap in the evidence.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "https://github.com/unclecode/crawl4ai"
+          },
+          {
+            "_key": "b12l1",
+            "_type": "link",
+            "href": "/blog/local-rag-from-documents-to-answers"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The recovered article retains the historical notebook steps. For a new implementation, consult ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "Crawl4AI’s project",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": " for its current installation and extraction interfaces. Start with the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s3",
+            "text": "local RAG foundation",
+            "marks": [
+              "b12l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s4",
+            "text": " if you have not yet verified retrieval over a simple document.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-mcp-with-local-language-models",
+    "title": "MCP with local language models: host, client, server, and tools",
+    "slug": {
+      "current": "mcp-with-local-language-models"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-03-17T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Understand where the local model sits in an MCP application and how to test a small tool integration before adding more servers.",
+    "categories": [
+      "MCP",
+      "Local LLMs",
+      "AI agents"
+    ],
+    "source": {
+      "title": "MCP with local language models: host, client, server, and tools",
+      "url": "https://shamimbhuiyan.ru/blogs/model-context-protocol-mcp-connecting-local-llms-to-various-data-sources",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-03-17T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "MCP connects an application to capabilities exposed by servers. A local language model can participate in that application without becoming an MCP server itself. Keeping those responsibilities separate makes the first integration easier to understand.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original experiment used Ollama, Qwen 2.5 7B, and mcp-cli to work with filesystem, search, and fetch capabilities. It explored the practical connection between a local model and external tools.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Put the model in the host application",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The host manages the user interaction and model workflow. Its MCP client connects to a server. The server exposes tools or other capabilities and performs the work requested through that connection.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b4l0",
+            "_type": "link",
+            "href": "https://modelcontextprotocol.io/docs/learn/architecture"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "The model can propose a tool call, but application code handles its execution and returns the result. See the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b4s1",
+            "text": "MCP architecture documentation",
+            "marks": [
+              "b4l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b4s2",
+            "text": " for the protocol’s separation of responsibilities.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Begin with one narrow capability",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The historical setup used a filesystem server configured with a specific directory. That is a useful place to start because you can compare the returned file list with the directory yourself.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "Confirm that the client can list the server’s tools before involving the model. Then ask for a simple read operation and inspect both the arguments and returned data. A missing tool connection and a model choosing the wrong tool are different failures.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "Tool-calling compatibility depends on the model, runtime, and client. The original article’s broad exclusion of reasoning models is not a reliable rule for selecting a current implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Add remote services deliberately",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "The experiment then added Brave Search and a fetch server. Those tools communicate over the network even when inference runs locally. Search also introduces a provider credential and its own service requirements.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Adding servers expands the application’s reach. It does not prove that the model will select the correct operation or that every available tool should be exposed in every conversation. Keep credentials outside committed configuration and expose only the capabilities the task needs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "https://github.com/chrishayuk/mcp-cli"
+          },
+          {
+            "_key": "b12l1",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-1"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The original client code lives in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "mcp-cli",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": ". For a larger example, the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s3",
+            "text": "REST API integration series",
+            "marks": [
+              "b12l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s4",
+            "text": " follows the same pattern through a warehouse service, a local model, and a Python agent.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-minions-local-and-cloud-models",
+    "title": "Minion and Minions: testing collaboration between local and cloud models",
+    "slug": {
+      "current": "minions-local-and-cloud-models"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-03-16T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A historical experiment with HazyResearch’s local/cloud model collaboration, and the measurements that make its tradeoffs visible.",
+    "categories": [
+      "Local LLMs",
+      "AI architecture"
+    ],
+    "source": {
+      "title": "Minion and Minions: testing collaboration between local and cloud models",
+      "url": "https://shamimbhuiyan.ru/blogs/minions-a-simple-protocol-for-communicating-with-local-and-cloud-llms",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-03-16T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "A local model and a cloud model can share a task instead of treating execution as an all-or-nothing choice. HazyResearch’s Minion and Minions work explored that design: local computation contributes to a larger reasoning workflow coordinated with a more capable model.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original experiment ran the project’s Streamlit application and notebook using Ollama alongside a cloud provider. It compared the two protocols on a document containing hotel information and reservation dialogues.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Follow the information exchanged",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The useful question is what each participant sees and produces. A model running locally does not make the combined workflow private if prompts, excerpts, intermediate results, or documents are sent to a cloud service.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b4l0",
+            "_type": "link",
+            "href": "https://github.com/HazyResearch/minions"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b4s1",
+            "text": "HazyResearch repository",
+            "marks": [
+              "b4l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b4s2",
+            "text": " describes the protocols and their implementation. Minion uses interaction between the models; Minions adds task decomposition and aggregation across local work. Inspect the version you run rather than assuming every variant sends the same information.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Use a question with a known answer",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The original task asked for a minibar bill from a longer hotel dialogue. This made it possible to compare the returned value against an identifiable passage instead of judging the answer only by its writing quality.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "An interesting intermediate result was that one worker returned a room-rate figure while another found the relevant minibar charge. The aggregation step therefore had to distinguish a superficially relevant amount from the amount that actually answered the question.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "That example illustrates why a final correct answer alone is not enough to understand the workflow. Inspect which pieces of evidence were extracted, what the workers misunderstood, and how the final model resolved the difference.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Measure the whole run",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Record the model names, input document, protocol settings, requests, tokens, elapsed time, and final answer. The historical runs reported different cloud costs, but one small example is not a general savings estimate.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "A stronger comparison includes a direct cloud baseline and questions of different difficulty. Extra coordination may be worthwhile for one workload and unnecessary for another. It also consumes local resources even when the provider bill falls.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Use the linked project for current setup instructions. This edition preserves the experiment’s central lesson: examine the actual exchange of data and work before deciding whether hybrid execution improves your application.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-openai-agents-sdk-local-models",
+    "title": "OpenAI Agents SDK with a local model: make the workflow explicit",
+    "slug": {
+      "current": "openai-agents-sdk-local-models"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-03-21T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "A planner-and-writer example that separates local inference, search tools, orchestration, and tracing.",
+    "categories": [
+      "AI agents",
+      "Local LLMs",
+      "Python"
+    ],
+    "source": {
+      "title": "OpenAI Agents SDK with a local model: make the workflow explicit",
+      "url": "https://shamimbhuiyan.ru/blogs/openai-agents-sdk-with-local-llm",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-03-21T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "An agent framework can coordinate work even when the model runs outside the framework provider’s infrastructure. The original experiment connected the OpenAI Agents SDK to an Ollama endpoint and used a planner-and-writer workflow to draft a technical article.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The proposed topic was deploying Apache Ignite with Docker and Kubernetes. The output was intended as a draft to edit and refine, which is an important distinction for any generated technical tutorial.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Configure the model explicitly",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "An OpenAI-compatible endpoint needs the appropriate base URL, model name, and client configuration. Compatibility is not a promise that every provider feature behaves identically. Tool calling and the selected API interface both matter.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b4l0",
+            "_type": "link",
+            "href": "https://openai.github.io/openai-agents-python/models/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "The current ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b4s1",
+            "text": "Agents SDK model documentation",
+            "marks": [
+              "b4l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b4s2",
+            "text": " explains support for other providers and common compatibility issues. Use it when adapting the historical notebook to a current environment.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Give each step a concrete output",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The planner in the example could call a search function to collect relevant material and produce an outline. The writer received the previous step’s output and drafted the article. The surrounding Python workflow connected those stages.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Topic → search results → planner’s outline\nOutline + source material → writer’s draft\nDraft → human review and technical verification"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "An agent name or role description does not by itself guarantee a useful handoff. Pass the actual output that the next stage needs, and retain source URLs so a reviewer can check claims.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Account for search and tracing",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "The notebook wrapped DuckDuckGo search as a callable tool. That search still reaches an external service when the language model runs locally. Model execution and tool execution have different data paths.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Tracing is another independent setting. The SDK can export traces; configure or disable that behaviour according to the environment. A local base URL alone does not establish that the complete workflow stays on the machine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Treat a technical draft as unfinished work",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "Review commands against the versions and platform the article names. Check that referenced links support the claims, that prerequisites are complete, and that error paths are explained. A second model can help edit the prose, but it cannot substitute for running the tutorial in its intended environment.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b14l0",
+            "_type": "link",
+            "href": "/blog/local-ai-content-pipelines"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "The recovered source contains the original notebook and orchestration examples. For the broader content workflow, continue with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s1",
+            "text": "local AI content pipelines",
+            "marks": [
+              "b14l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-a2a-travel-planner-local-llm",
+    "title": "A2A in practice: a travel planner with separate agent services",
+    "slug": {
+      "current": "a2a-travel-planner-local-llm"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-04-29T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Follow a historical weather, search, and local-model example to understand discovery, service boundaries, and task coordination.",
+    "categories": [
+      "AI agents",
+      "A2A",
+      "Local LLMs"
+    ],
+    "source": {
+      "title": "A2A in practice: a travel planner with separate agent services",
+      "url": "https://shamimbhuiyan.ru/blogs/google-agent-to-agent-a2a-protocol-explained--with-real-working-examples",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-04-29T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "The original A2A experiment built a travel-planning workflow from separate services. One agent fetched weather information, another searched for activities, and a local language model turned the gathered material into a readable plan.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The implementation used the community python-a2a library. Its purpose was to make agent communication tangible through a small example that could be run and inspected, rather than hide every step inside a single prompt.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Separate discovery from orchestration",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "An Agent Card describes a service’s capabilities and connection information. A client still needs to decide which service to call, send an appropriate request, and handle the result. Publishing a card does not automatically create a reliable planning workflow.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "The article also introduced task states and messages. These give the caller a way to represent work in progress, completion, failure, or a request for more input. The exact schema and discovery path belong to the protocol version used by the implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Follow one trip request",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The example’s coordinator queried the weather service, used the result to shape a search for indoor or outdoor activities, and sent the gathered information to the local model for summarization.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Destination → weather agent\nWeather context + destination → search agent\nWeather + search results → local model → proposed itinerary"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "Weather and search used OpenWeather and Brave APIs. Those calls were remote; local summarization did not make the whole workflow offline. The weather endpoint also needs to match the question: current conditions cannot establish the forecast for a future holiday.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Make partial failure understandable",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "A useful planner should distinguish a missing weather response from a completed search with no relevant results. Preserve service errors and timestamps rather than letting the final model present incomplete data as a fully supported itinerary.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "The historical weather example logged request details. When adapting it, redact credentials from URLs and logs. Authentication support in a protocol does not configure or secure the deployed services on its own.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Keep tools and agents in perspective",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "MCP and A2A address different integration boundaries: accessing exposed capabilities and communicating with agent services. Neither removes the application’s responsibility to coordinate work or validate results.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b14l0",
+            "_type": "link",
+            "href": "https://github.com/srecon/python-a2a/tree/main/examples/tutorials"
+          },
+          {
+            "_key": "b14l1",
+            "_type": "link",
+            "href": "https://github.com/themanojdesai/python-a2a"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "The author’s ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s1",
+            "text": "tutorial code",
+            "marks": [
+              "b14l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s2",
+            "text": " preserves the example. Credit also belongs to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s3",
+            "text": "python-a2a",
+            "marks": [
+              "b14l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s4",
+            "text": " and its contributors. This is an edited account of the 2025 implementation, not a claim of conformance with a newer protocol release.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-local-ai-content-pipelines",
+    "title": "Local AI content pipelines: build a reviewable draft, then publish",
+    "slug": {
+      "current": "local-ai-content-pipelines"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-05-14T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Use local models to structure research, drafting, and editing without confusing generated volume with useful technical content.",
+    "categories": [
+      "Local LLMs",
+      "Content engineering",
+      "AI agents"
+    ],
+    "source": {
+      "title": "Local AI content pipelines: build a reviewable draft, then publish",
+      "url": "https://shamimbhuiyan.ru/blogs/turn-ideas-into-income-create-ai-driven-content-pipelines-with-local-llms",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-05-14T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. Removed promises of effortless income, zero cost, and automatic publication quality."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "A useful content pipeline starts with a deliverable somebody needs: an API guide, a developer onboarding page, a lab exercise, or a clearer explanation of an internal system. Local models can help prepare those materials, but the value comes from their accuracy and usefulness.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original article proposed a workflow using Ollama and CrewAI, with roles for research, writing, editing, and optional quality review. It also explored delivering the result as Markdown, HTML, or a document.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Define the input before assigning roles",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "For a technical guide, provide the relevant repository, documentation, supported versions, intended reader, and expected outcome. A writer supplied only with a topic has to fill far more gaps than one working from a specific source package.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Keep research notes and source links alongside the draft. An editor should be able to distinguish a documented fact from an assumption or a suggestion introduced during generation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Give each stage a useful handoff",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The researcher gathers relevant material. The planner turns that material into an outline. The writer develops the explanation. The editor improves clarity and consistency. A technical reviewer checks the instructions against the actual system.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Source package → evidence notes → outline → draft\nDraft → editorial review → technical verification → publication"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "More agents are not automatically better. Start with the fewest stages that make the work easier to inspect. Add a stage when it addresses a recurring problem, such as missing prerequisites or unsupported claims.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Understand the local tradeoff",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "Running inference locally can avoid a model API charge, but hardware, electricity, maintenance, and review time still have costs. Search tools and hosted integrations may also communicate outside the machine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "The original article described several possible commercial uses, including documentation services and educational material. These are potential delivery models, not evidence that generated content will earn revenue. A reader still needs a reason to trust and use the result.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Publish after the work is checked",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "For a tutorial, execute the commands in the environment it names. For an architecture explanation, compare the description with the implementation. For an onboarding guide, ask whether a new reader can reach the stated outcome without filling in undocumented steps.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b14l0",
+            "_type": "link",
+            "href": "https://github.com/srecon/Getting_started_with_AI/tree/main"
+          },
+          {
+            "_key": "b14l1",
+            "_type": "link",
+            "href": "/blog/openai-agents-sdk-local-models"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "The accompanying ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s1",
+            "text": "book repository",
+            "marks": [
+              "b14l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s2",
+            "text": " includes the broader examples behind this workflow. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s3",
+            "text": "Agents SDK edition",
+            "marks": [
+              "b14l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s4",
+            "text": " shows another way to coordinate a planner and writer. Choose the framework around the handoffs you need to observe and maintain.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-mcp-rest-api-part-1",
+    "title": "MCP and REST APIs, part 1: expose warehouse operations as tools",
+    "slug": {
+      "current": "mcp-rest-api-part-1"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-05-31T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Build the service boundary first: FastAPI operations, Redis data, MCP tools, and direct inspection before adding a model.",
+    "categories": [
+      "MCP",
+      "FastAPI",
+      "AI architecture"
+    ],
+    "source": {
+      "title": "MCP and REST APIs, part 1: expose warehouse operations as tools",
+      "url": "https://shamimbhuiyan.ru/blogs/modern-ai-integrations-mcp-server-meets-rest-api-and-local-llms-part-1",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-05-31T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "An existing application already knows how to validate and perform its business operations. An MCP integration can expose selected operations to an AI application while keeping that service boundary in place.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The first part of this series built a small warehouse-order API with FastAPI and Redis, then connected it to an MCP server using fastapi-mcp. The exercise made it possible to compare a conventional API request with an invocation through an MCP client.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Start with operations you can test directly",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The service created, retrieved, listed, updated, and deleted orders. Each order included an identifier, a customer name, items, and a status. Redis hashes held the order data, with a set tracking order identifiers and a counter supplying new IDs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b4",
+        "language": "text",
+        "code": "POST   /orders             create an order\nGET    /orders             list orders\nGET    /orders/{order_id}  retrieve an order\nPUT    /orders/{order_id}  update an order\nDELETE /orders/{order_id}  delete an order"
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Test those operations through the API before adding a model. A tool wrapper cannot repair incorrect validation or an inconsistent data update. The storage example also needs an explicit persistence configuration if data must survive a Redis restart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "Expose a deliberate tool surface",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "The integration mapped API operations into MCP tools. This gives a client structured descriptions and inputs to work with; it does not make every generated argument valid or every available operation appropriate for every user.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "In this example, the application layer is a useful place to retain business rules. That is a design choice for the warehouse service, not a claim that every database-backed MCP server must use a REST intermediary.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Inspect the MCP connection independently",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "The original walkthrough used MCP Inspector to list tools and invoke a read operation. That separates server connectivity from model behaviour. Compare the result with a direct request to the API before trying natural-language interaction.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b11l0",
+            "_type": "link",
+            "href": "https://github.com/srecon/Getting_started_with_AI/tree/main/chapter-8/fastapi"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "The historical setup used SSE and an MCP endpoint mounted on the FastAPI application. Transport and mounting APIs vary by library version, so consult the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b11s1",
+            "text": "original project files",
+            "marks": [
+              "b11l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b11s2",
+            "text": " when studying that implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-2"
+          },
+          {
+            "_key": "b12l1",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-3"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Adding MCP does not supply authorization automatically. Decide who may read or modify an order at the service boundary. In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "part 2",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": ", the same tools are connected to a local model; ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s3",
+            "text": "part 3",
+            "marks": [
+              "b12l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s4",
+            "text": " moves the workflow into a Python agent.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-mcp-rest-api-part-2",
+    "title": "MCP and REST APIs, part 2: connect a local model to the service",
+    "slug": {
+      "current": "mcp-rest-api-part-2"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-06-01T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Connect Ollama and mcp-cli to the warehouse example, then separate tool discovery from correct execution.",
+    "categories": [
+      "MCP",
+      "Ollama",
+      "FastAPI"
+    ],
+    "source": {
+      "title": "MCP and REST APIs, part 2: connect a local model to the service",
+      "url": "https://shamimbhuiyan.ru/blogs/modern-ai-integrations-mcp-server-meets-rest-api-and-local-llms-part-2",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-06-01T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "With the warehouse API and MCP server working, the next step is to place a local model in the loop. The second part of the series used Ollama and mcp-cli to translate natural-language requests into calls to the exposed tools.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original experiment used a tool-capable model such as Qwen 2.5. Choosing a model that can chat is not enough to establish that it supports the tool-calling interface required by the client.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Verify discovery before interpretation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "Start the API and its backing Redis instance. Configure the MCP client to reach the server, start local inference, and inspect the available tool list. In the historical client, the chat command /tools displayed those capabilities.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Then ask for all warehouse orders. Compare the returned records with a direct API query. Follow with a narrower request, such as listing orders in a pending state. These checks reveal whether the model selected a suitable tool and interpreted its result correctly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Treat writes as a separate capability",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The original demonstration also included deleting an order by customer name. A name can match more than one record, so a dependable application should resolve the intended order IDs before performing the operation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7s0",
+            "text": "For an illustrative cancellation flow, first retrieve candidate orders, display their identifiers and statuses, and obtain confirmation for the specific records to change. The service must still enforce the caller’s permissions. A persuasive natural-language request does not replace that boundary.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "Understand the container network",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "The article packaged FastAPI and Redis in Docker Compose. Inside that Compose network, the application addressed Redis using its service hostname. A model server running on the host is a different connection and needs its own reachable address.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b10",
+        "language": "text",
+        "code": "Local model ↔ MCP client ↔ MCP server / FastAPI ↔ Redis"
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "Keep each connection independently testable. If the database is unavailable, inspect the API-to-Redis path. If no tools appear, inspect the MCP connection. If the wrong tool is chosen, examine the model interaction and tool descriptions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b12l0",
+            "_type": "link",
+            "href": "https://github.com/srecon/Getting_started_with_AI/tree/main/chapter-8/fastapi"
+          },
+          {
+            "_key": "b12l1",
+            "_type": "link",
+            "href": "https://github.com/chrishayuk/mcp-cli"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s1",
+            "text": "original FastAPI files",
+            "marks": [
+              "b12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b12s3",
+            "text": "mcp-cli project",
+            "marks": [
+              "b12l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b12s4",
+            "text": " document the historical setup. Local inference gives control over where model requests run; it does not by itself establish reliability or privacy for every connected component.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b13l0",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-3"
+          },
+          {
+            "_key": "b13l1",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-1"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "Continue to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b13s1",
+            "text": "part 3",
+            "marks": [
+              "b13l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13s2",
+            "text": " to make this interaction an explicit Python workflow, or revisit the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b13s3",
+            "text": "service foundation",
+            "marks": [
+              "b13l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-mcp-rest-api-part-3",
+    "title": "MCP and REST APIs, part 3: build an inspectable Python agent",
+    "slug": {
+      "current": "mcp-rest-api-part-3"
+    },
+    "authorName": "Shamim Bhuiyan",
+    "publishedAt": "2025-06-03T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Use mcp-agent to connect tool discovery, local inference, and a warehouse summary without hiding the application’s responsibilities.",
+    "categories": [
+      "MCP",
+      "AI agents",
+      "Python"
+    ],
+    "source": {
+      "title": "MCP and REST APIs, part 3: build an inspectable Python agent",
+      "url": "https://shamimbhuiyan.ru/blogs/modern-ai-integrations-mcp-server-meets-rest-api-and-local-llms--part-3-mcp-agent-integration",
+      "platform": "Shamim Bhuiyan’s blog",
+      "publishedAt": "2025-06-03T00:00:00.000Z",
+      "editorialNote": "Republished with permission as a condensed, edited edition. The original date comes from the QuickStart archive; the full text was recovered from the author’s own site. Historical examples have not been rerun against current dependencies. "
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "The final part of the warehouse series moved from an interactive client to a Python workflow. It used the mcp-agent framework to connect to the MCP server, attach a local model, query inventory information, and summarize the result.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The earlier layers remained in place: FastAPI performed warehouse operations and Redis stored order data. The agent coordinated calls to that service rather than accessing the database directly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Keep the runtime configuration visible",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The historical configuration named the MCP server, configured its connection, and selected an OpenAI-compatible Ollama endpoint for inference. The example used Qwen 2.5 and a framework wrapper for the model interaction.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "A server name in configuration is a reference the application uses to locate a connection. The MCP client discovers exposed tools through MCP. The FastAPI integration may derive those tools from API definitions, but the client is not independently discovering arbitrary REST endpoints.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "Make the workflow observable",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "The example initialized an MCPApp, created an inventory agent, listed available tools, attached the model wrapper, and issued prompts. A follow-up prompt requested a summary of the gathered information.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "b7",
+        "language": "text",
+        "code": "Initialize runtime → connect server → inspect tools\nAttach model → request inventory data → inspect result → summarize"
+      },
+      {
+        "_type": "block",
+        "_key": "b8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8s0",
+            "text": "These are useful boundaries for logging and debugging. A model response should remain connected to the tool results that support it. Avoid logging credentials or unnecessary customer information while making those boundaries observable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b9s0",
+            "text": "Decide what happens between runs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10s0",
+            "text": "The original article proposed persistent memory as an extension. That raises concrete questions: which state belongs to a task, how long it should be retained, and whether a later run may rely on an earlier inventory snapshot.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11s0",
+            "text": "A summary can become stale when orders change. Retained conversation history should not silently replace a fresh service query when the user asks for the current state.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12s0",
+            "text": "Carry service rules into the agent workflow",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13s0",
+            "text": "Useful extensions include clearer tool descriptions, bounded retries, explicit handling of partial results, and authorization on the service. None is supplied merely by attaching a model or choosing an asynchronous runtime.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "b14l0",
+            "_type": "link",
+            "href": "https://github.com/srecon/Getting_started_with_AI/tree/main/chapter-8/mcp_agent"
+          },
+          {
+            "_key": "b14l1",
+            "_type": "link",
+            "href": "https://github.com/lastmile-ai/mcp-agent"
+          },
+          {
+            "_key": "b14l2",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-1"
+          },
+          {
+            "_key": "b14l3",
+            "_type": "link",
+            "href": "/blog/mcp-rest-api-part-2"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s1",
+            "text": "author’s agent example",
+            "marks": [
+              "b14l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s3",
+            "text": "mcp-agent project",
+            "marks": [
+              "b14l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s4",
+            "text": " preserve the implementation. Start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s5",
+            "text": "part 1",
+            "marks": [
+              "b14l2"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s6",
+            "text": " for the API design and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b14s7",
+            "text": "part 2",
+            "marks": [
+              "b14l3"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b14s8",
+            "text": " for the interactive local-model connection. Together, the three layers show where each responsibility belongs and where a failure can be inspected.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "authorUrl": "https://shamimbhuiyan.ru"
+  },
+  {
+    "_id": "archive-ai-agents-show-their-work",
+    "title": "Better AI agents show their work",
+    "slug": {
+      "current": "ai-agents-show-their-work"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2025-06-27T00:00:00.000Z",
+    "_updatedAt": "2026-09-08T00:00:00.000Z",
+    "excerpt": "Why editable intermediate work can make an AI assistant easier to guide, verify, and improve.",
+    "categories": [
+      "AI agents",
+      "Product engineering"
+    ],
+    "source": {
+      "title": "Your AI Is a Caged Genius — Here’s How to Set It Free",
+      "url": "https://ardor.cloud/blog/set-your-ai-free",
+      "platform": "Ardor",
+      "publishedAt": "2025-06-27T00:00:00.000Z",
+      "editorialNote": "Edited from Timur’s essay, first listed on QuickStart on 27 June 2025 and republished by Ardor on 12 July 2025. Condensed to its central design argument; unsupported statistics, speed promises, and absolute safety claims have been removed. MCP terminology has been corrected."
+    },
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b0s0",
+            "text": "An assistant becomes easier to collaborate with when it exposes the work between a request and its answer. A query, a small script, or a visible set of source records gives the user something concrete to inspect and correct.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b1s0",
+            "text": "The original essay illustrated this with a project-status report assembled from several workplace tools. If the assistant selects the wrong channel or date range, a visible intermediate step lets the user identify the mistake before accepting the summary.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b2s0",
+            "text": "Make correction part of the interface",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b3s0",
+            "text": "The design argument is straightforward: show which information was used and how it was transformed. Let the user revise an assumption and continue from that point. Treat example scenarios as illustrations, not measured productivity results.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4s0",
+            "text": "Keep capability and control together",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5s0",
+            "text": "MCP means Model Context Protocol. It does not require a fixed linear workflow, and code execution can complement exposed tools. Neither approach removes the need for scoped permissions and review of consequential operations.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6s0",
+            "text": "An isolated execution environment can reduce risk, but it cannot guarantee harmless behaviour. The useful goal is an assistant whose actions and intermediate results remain understandable enough for a person to guide and verify.",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]

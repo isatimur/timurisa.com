@@ -4,6 +4,7 @@ import archive from '@/content/posts/archive.json';
 
 export interface PostSummary {
   _id: string;
+  authorName?: string;
   title: string;
   slug: { current: string };
   mainImage?: { asset: { _ref: string } };
@@ -15,7 +16,7 @@ export interface PostSummary {
   source?: { title: string; url: string; platform: string; publishedAt: string; editorialNote: string };
 }
 export interface Post extends PostSummary {
-  authorName?: string;
+  authorUrl?: string;
   authorImage?: { asset: { _ref: string } };
   body: Array<{ _type: string; _key: string; [key: string]: any }>;
 }
@@ -26,7 +27,7 @@ export function readingTime(body: Post['body']): number {
 }
 /** Local, reviewed editions take precedence if a CMS post later uses the same slug. */
 export const getPostSummaries = cache(async (): Promise<PostSummary[]> => {
-  const cms = await client.fetch<PostSummary[]>(`*[_type == "post" && defined(slug.current)] {_id,title,slug,mainImage,excerpt,publishedAt,_updatedAt,"estimatedReadingTime":round(length(pt::text(body))/5/200),"categories":categories[]->title}`);
+  const cms = await client.fetch<PostSummary[]>(`*[_type == "post" && defined(slug.current)] {_id,title,slug,mainImage,excerpt,publishedAt,_updatedAt,"authorName":author->name,"estimatedReadingTime":round(length(pt::text(body))/5/200),"categories":categories[]->title}`);
   const merged = new Map(cms.map(post => [post.slug.current, post]));
   for (const {body, ...post} of localPosts) merged.set(post.slug.current, {...post, estimatedReadingTime: readingTime(body)});
   return [...merged.values()].sort((a,b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''));

@@ -11,7 +11,7 @@ import type { PostSummary } from "@/lib/posts";
 export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[] }) {
   const [input, setInput] = useState("");
   const [term, setTerm] = useState("");
-  const posts = initialPosts.filter(post => `${post.title} ${post.excerpt || ""} ${(post.categories || []).join(" ")}`.toLocaleLowerCase().includes(term.toLocaleLowerCase()));
+  const posts = initialPosts.filter(post => `${post.title} ${post.authorName || "Timur Isachenko"} ${post.excerpt || ""} ${(post.categories || []).join(" ")}`.toLocaleLowerCase().includes(term.toLocaleLowerCase()));
   const search = (event: React.FormEvent) => { event.preventDefault(); setTerm(input.trim()); };
   return (
     <div className="portfolio site-shell">
@@ -26,7 +26,7 @@ export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[
             </h1>
             <p>
               Notes on AI engineering, distributed systems, and the products I
-              build along the way.
+              build along the way, alongside guest editions from my coauthor Shamim Bhuiyan.
             </p>
           </div>
           <div className="intro-aside">
@@ -80,7 +80,7 @@ export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[
                     />
                   ) : (
                     <div className="article-placeholder" aria-hidden="true">
-                      <span>ti.</span>
+                      <span>{post.authorName === "Shamim Bhuiyan" ? "sb." : "ti."}</span>
                       <i />
                       <i />
                       <i />
@@ -93,12 +93,13 @@ export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[
                 <div className="journal-copy">
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
+                  <p className="journal-author">By {post.authorName || "Timur Isachenko"}</p>
                   <div className="journal-meta">
                     <span>
                       {post.publishedAt
                         ? new Date(post.publishedAt).toLocaleDateString(
                             "en-GB",
-                            { day: "numeric", month: "short", year: "numeric" },
+                            { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" },
                           )
                         : "Field notes"}
                     </span>
