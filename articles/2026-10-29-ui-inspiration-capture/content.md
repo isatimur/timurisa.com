@@ -222,7 +222,7 @@ The hero is nearly all atmosphere: diagonal red light bands behind a centered he
 
 **Motion notes.** The hero background fades in from nothing: the diagonal stripes appear pale pink, then deepen to saturated red over a few seconds, and the hero text scrolls over them. The headline uses a fade-in-up on load. On scroll the stripes slide away and a large "Take shortcuts, not detours." line appears centered on black.
 
-**Capture note.** The full video is longer than the others because the page is heavy and scrolled slowly in headless capture.
+**Capture note.** The "AI Extensions" card in the AI section renders blank in the full-page capture, even after forcing lazy media to load; it appears to draw only while on screen. The video has the slow page-load lead-in trimmed, and its scroll pass is capped at 30 seconds.
 
 ### AI Builder Prompt
 
@@ -302,11 +302,11 @@ It breaks the dark-mode default of developer tools. A warm off-white page, a mut
 
 **Visual pattern.** Warm paper background, small left-aligned headline (about 28px) in CursorGothic, a dark primary button and a light secondary one. A wide painted-landscape panel holds overlapping app and CLI windows. Below: logo trust row, autonomy and tooling sections, a research-team block with a photograph, changelog, highlights, closing CTA, footer.
 
-**Interaction notes.** Hovering the mock highlights an element in the live preview and shows a small tag (for example "InitialParagraph · span"). Sticky light nav with a dark Download pill and an outlined Contact sales pill. A cookie banner overlaps the lower right of the hero.
+**Interaction notes.** Hovering the mock highlights an element in the live preview and shows a small tag (for example "InitialParagraph · span"). Sticky light nav with a dark Download pill and an outlined Contact sales pill.
 
 **Motion notes.** The product mock auto-plays: the left task list changes state, the chat shows a build in progress, and the window swaps to a "Mission Control" planning screen after several seconds. The CLI window overlaps from the lower right and scrolls its own text. Later sections reveal a blurred-focus photograph.
 
-**Capture note.** The cookie banner overlaps the hero in the still and several motion frames; it is site chrome, not part of the design reference.
+**Capture note.** The cookie banner was dismissed with "Reject All" before capture so it does not cover the hero.
 
 ### AI Builder Prompt
 
@@ -384,7 +384,7 @@ The hero is one large rounded stage that plays short product vignettes, so a vis
 
 **Motion notes.** The stage cycles through scenes: an empty "Ask Framer…" input with a glowing blue border, a prompt typed letter by letter ("ask black homep|"), a purple-bordered canvas with an animated point sphere, then a CMS grid with a blue frame. Customer-site cards slide horizontally in a strip.
 
-**Capture note.** A cookie banner overlaps the lower left of the hero in the still and several frames; it is site chrome, not part of the reference.
+**Capture note.** The cookie banner was dismissed with "Reject" before capture so it does not cover the hero.
 
 ### AI Builder Prompt
 
