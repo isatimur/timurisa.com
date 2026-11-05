@@ -13243,5 +13243,260 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-how-claude-code-team-does-code-review",
+    "title": "How the Claude Code team does code review: a short summary",
+    "slug": {
+      "current": "how-claude-code-team-does-code-review"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-05T09:00:00.000Z",
+    "_updatedAt": "2026-11-05T09:00:00.000Z",
+    "excerpt": "A short summary of Anthropic's engineering post on reviewing code at high volume: machines read first, people spend their time where risk is highest.",
+    "categories": [
+      "AI-assisted development",
+      "Code review"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "c0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "c0l0",
+            "href": "https://claude.dev/blog/solving-code-review-at-anthropic/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c0s0",
+            "text": "This is my summary of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "c0s1",
+            "text": "How the Claude Code team does code review",
+            "marks": ["c0l0"]
+          },
+          {
+            "_type": "span",
+            "_key": "c0s2",
+            "text": ", written by Addy Osmani, Morgan Westlee Lunt, and Qing Wang and published on 15 October 2026. The ideas and numbers are theirs. Read the original for the full detail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c1s0",
+            "text": "The problem",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c2s0",
+            "text": "On the Claude Code team, Claude writes about 90% of the code. Between June and September, merged pull requests more than doubled. The share of PRs that needed a revert fell by over 40%. The team did not drop review. It moved most of the reading to machines, so that human time and attention go where they matter. The goal: merge most PRs with at most one person involved, with no rise in reverts or incidents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c3s0",
+            "text": "Two jobs of review",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c4s0",
+            "text": "The authors say review does two things: it catches problems before they ship, and it spreads understanding of the codebase across the team. Review now runs continuously. Usually Claude has reviewed and fixed a change before a person looks at it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c5s0",
+            "text": "The layers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c6s0",
+            "text": "Before the PR: ",
+            "marks": ["strong"]
+          },
+          {
+            "_type": "span",
+            "_key": "c6s1",
+            "text": "Claude runs tests and builds. A subagent with fresh context reviews the diff.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c7s0",
+            "text": "On every PR: ",
+            "marks": ["strong"]
+          },
+          {
+            "_type": "span",
+            "_key": "c7s1",
+            "text": "required CI, plus an AI reviewer. Parallel agents look for bugs, and verifier agents vote on each finding. A security review can block the merge.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c8s0",
+            "text": "Human approval by risk: ",
+            "marks": ["strong"]
+          },
+          {
+            "_type": "span",
+            "_key": "c8s1",
+            "text": "a classifier puts each PR in a tier that needs zero, one, or two people. Sensitive paths always need a person.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c9s0",
+            "text": "Merge and release: ",
+            "marks": ["strong"]
+          },
+          {
+            "_type": "span",
+            "_key": "c9s1",
+            "text": "a merge queue re-runs the checks, changes ship behind flags, and rollback is fast.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c10s0",
+            "text": "Teaching the reviewer, and stopping loops",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c11s0",
+            "text": "Reviewer guidance lives in CLAUDE.md and in a REVIEW.md file for each repo. Past incidents form an eval set that runs daily. Review loops needed work too. One PR went through more than fifty rounds, and about 59% of the flagged code was older than the PR. A three-round cap and diff-only re-review cut the share of PRs needing five or more rounds from 8.9% to 1.5%.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c12s0",
+            "text": "What people still do",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "c13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "c13s0",
+            "text": "Humans decide what to build, review risky code and architecture, and own the outcomes. The original ends with an adoption checklist: pre-PR checks, PR templates, risk tiers, and merge safeguards.",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
