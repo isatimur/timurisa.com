@@ -78,6 +78,13 @@ export default function BlogIndex({ initialPosts }: { initialPosts: PostSummary[
                       width={i === 0 ? 1100 : 650}
                       height={i === 0 ? 650 : 420}
                     />
+                  ) : post.coverImage ? (
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      width={i === 0 ? 1100 : 650}
+                      height={i === 0 ? 650 : 420}
+                    />
                   ) : (
                     <div className="article-placeholder" aria-hidden="true">
                       <span>{post.authorName === "Shamim Bhuiyan" ? "sb." : "ti."}</span>

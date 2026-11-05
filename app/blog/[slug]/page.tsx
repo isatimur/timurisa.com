@@ -61,7 +61,7 @@ export async function generateMetadata({
         .width(1200)
         .height(630)
         .url()
-    : undefined;
+    : post.coverImage;
 
   const base = pageMetadata(`/blog/${slug}`, title, description);
   return {
@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         .height(600)
         .format("webp")
         .url()
-    : null;
+    : post.coverImage || null;
 
   const authorImageUrl = post.authorImage
     ? createImageUrlBuilder(client)
@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               src={mainImageUrl}
               alt={post.title}
               width={1200}
-              height={600}
+              height={post.mainImage ? 600 : 630}
               priority
             />
           </div>

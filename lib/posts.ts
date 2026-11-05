@@ -8,6 +8,8 @@ export interface PostSummary {
   title: string;
   slug: { current: string };
   mainImage?: { asset: { _ref: string } };
+  /** Generated cover in public/blog-covers, set for local posts only (scripts/generate-blog-covers.mjs). */
+  coverImage?: string;
   excerpt?: string;
   publishedAt?: string;
   _updatedAt?: string;
@@ -20,7 +22,8 @@ export interface Post extends PostSummary {
   authorImage?: { asset: { _ref: string } };
   body: Array<{ _type: string; _key: string; [key: string]: any }>;
 }
-const localPosts = archive as Post[];
+const coverFor = (slug: string) => `/blog-covers/${slug}.webp`;
+const localPosts = (archive as Post[]).map(post => ({...post, coverImage: coverFor(post.slug.current)}));
 export function readingTime(body: Post['body']): number {
   const text = body.map(block => block._type === 'code' ? block.code || '' : (block.children || []).map((child: {text?: string}) => child.text || '').join(' ')).join(' ');
   return Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 200));
