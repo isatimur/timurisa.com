@@ -15527,5 +15527,795 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-the-cliff-in-the-crystal-palace-garden",
+    "title": "The cliff in the Crystal Palace garden: a bug that was not the terrain",
+    "slug": {
+      "current": "the-cliff-in-the-crystal-palace-garden"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T14:00:00.000Z",
+    "_updatedAt": "2026-11-06T14:00:00.000Z",
+    "excerpt": "A grey cliff appeared in my 3D map of Porto. The terrain data looked guilty. It was innocent. The cause was a level pad cut 61.6 metres deep.",
+    "categories": [
+      "Product engineering",
+      "Debugging"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "While building my 3D map of Porto, I sent my agents a screenshot. It showed a grey cliff wall where a garden should be. The garden belongs to the Palácio de Cristal, a landmark on a hill above the Douro river.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The map is at porto-3d.com. This post is about why that cliff was there, and why the first suspect was wrong.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The wrong suspect",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The first suspect was the elevation data. The map uses a coarse elevation grid, and coarse grids make crude slopes. A cliff on a slope sounded like a data problem.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "It was not. An agent traced the cliff to a different part of the pipeline. I call that part pads.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "A pad is a flat platform. Real landmarks stand on level ground, but real hills are not level. So the engine levels the ground under each landmark. It cuts the hill where the ground is too high, and it fills where the ground is too low.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "What the pad did",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The Palácio de Cristal garden is large. Its pad was 417 by 438 metres. The garden outline falls about 88 metres towards the river. To make that whole area level, the engine cut 61.6 metres out of the hill. That is the pit, and the grey cliff was its wall.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The first fix capped the cut. That created a new problem. With a smaller cut, the pad could no longer reach the level it wanted from the hill side, so it filled in from the river side. It piled up 83 metres of ground on the shore of the Douro. A garden spur 80 metres high stood in the river.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "So I had two bugs sharing one cause. The pad algorithm had no sense of proportion. It would move any amount of earth to keep a floor flat.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The caps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The fix gives every pad a budget.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "A cut may not exceed one third of the building height, with a minimum of 3 metres. Gardens and streets may cut 6 metres. A stadium may cut 10 metres. A fill may raise the ground by 2.5 metres at most, and never at all below 1.5 metres above sea level. This stops pads from filling the river. Slope faces may not be steeper than 1 to 1.8.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Where a pad stands higher than the land beside it, the engine builds retaining walls under its edge. The final count is 429 wall segments. They cost 858 triangles and one draw call.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The Palácio extent also changed. The base now sits on the plateau, an area of 270 by 245 metres, not on the full garden outline.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The numbers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The worst cut fell from 61.6 metres to 10.8 metres. The worst fill fell from 83 metres to 11.2 metres.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The agent read the screenshots from before and after. The grey pit wall was gone. A grass plateau and street ribbons read sensibly. Two problems remained: a flat grey ring around the plateau, and bare lawn without trees.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "A note on the terrain data",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "The terrain data was not the cause, but it is not perfect. I compared it against the EU-DEM source on six reference points. The mean error was 12.0 metres for the data I use, and 12.4 metres for EU-DEM. They are about equally accurate. Hill tops still read 10 to 30 metres too low. Serra do Pilar shows 70 metres, and the real value is about 100.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "I wrote this limit into the notes. A map that states its own error is easier to trust.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Lessons",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Do not blame the data first. Find the layer that changes the data. Here, that layer was the pad algorithm.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "A fix can move a bug. Capping the cut made the fill worse. Check both sides of any change that balances two quantities.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "Give every automatic correction a budget. An algorithm that can move any amount of earth will, sooner or later, move 61 metres of it. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-two-deploy-traps-after-a-day-of-parallel-agents",
+    "title": "Two deploy traps after a day of parallel agents",
+    "slug": {
+      "current": "two-deploy-traps-after-a-day-of-parallel-agents"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T15:00:00.000Z",
+    "_updatedAt": "2026-11-06T15:00:00.000Z",
+    "excerpt": "Five agents worked on one repo for a day. The code was fine. Deploying it was the risky part, and a handoff file kept me safe.",
+    "categories": [
+      "Engineering practice",
+      "AI agents"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "On 10 October I ran several AI agents in parallel on my Porto map. Each one owned a set of files. One worked on the coastline, one on the sea shader, one on landmarks, one on terrain, and one on loading speed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "They did good work. The risky part came afterwards, when I had to put it all on the live site. I wrote a handoff file for the day I would resume. This post is about what that file warned me about.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Trap one: a commit that needs its neighbour",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "One commit changed the water code to import a new file, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": "coast.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": ". That file did not exist at that commit. It only arrived in the next commit, from another agent.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Deploying the state between the two would break the build. The rule I wrote down: never deploy a state between the two commits. Deploy from the newest commit, after both are in.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "This is a risk with parallel agents. Each agent commits its own files, and a commit from one agent can depend on a file that another agent has not committed yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Trap two: a build that edits its own inputs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The real build command runs a step before the build. That step rewrites ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "data/fits.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": ", a file that records how models fit their real-world footprints. One agent knew this and built to a temporary folder to avoid it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "If you run the real build for a deploy, expect that file to change. Review the change before you ship it. A build that edits tracked files is easy to forget, and the diff is easy to miss.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "A safe branch that was not safe",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "One agent produced a branch with lazy-loaded models and a lighter scene for weak devices. It passed all 15 of my verify checks. It looked ready to ship.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "It was not. The branch left out the camera clamp, the boat models, the finer terrain, the pads, and the first wave of commits. Deploying it would have rolled back live work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The agent's own deploy was also denied by the permission classifier, so nothing from that round reached the site. I wrote in the handoff: do not ship that branch. Deploy from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "main",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ", after fixing the checks that fail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Passing the checks told me the branch worked. It did not tell me the branch was complete.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "What the light scene did",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The lighter scene is worth a note. I measured it on a software renderer with the CPU slowed four times, as a stress test.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Time to ready fell from 58.1 seconds to 5.0 seconds. The mean frame time fell from 2742 to 45 milliseconds. Draw calls fell from 159 to 9. GPU memory fell from 349 MB to 6.4 MB.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "These are test-bench numbers, not real devices. The handoff says so, and it lists the limits: no weather, people, vehicles, or trees in the light scene, and it is not yet the default for low-end devices. I need real-device numbers first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "What the handoff did",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "The handoff file listed each agent, what it finished, what it left half done, and which commits were local only. It named both traps. It gave the state of each repository and the live site. It also said which two verify checks were failing on ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "main",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ", so the first job on the next day was clear.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Lessons",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Treat deploying as its own job. The code can be right while the deploy is wrong.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "Do not trust a green check to mean \"complete\". Compare what a branch contains with what the live site already has.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "Write the traps down. The next reader, including me, will not know them. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
