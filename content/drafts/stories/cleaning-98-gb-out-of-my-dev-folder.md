@@ -13,7 +13,7 @@ Most of the 77 GB was caches that rebuild themselves: `node_modules`, build outp
 
 I wrote the cleanup as scripts: one to reclaim caches, one to remove redundant copies, one to back up risky repos, one to restructure. Each script does nothing by default. It prints what it would do. You pass a flag to make it act.
 
-This habit costs a minute and prevents the worst mistakes. I read the dry-run output like a code review before any file moved.
+This habit costs a minute and prevents the worst mistakes.
 
 ## A tree I did not build
 
@@ -21,7 +21,7 @@ I had a proposal for eight top-level folders: one for my company, one for produc
 
 I looked at the plan and called it questionable. I skipped it.
 
-Two reasons. Some paths are hardcoded in my tools and notes, so moving them breaks things. And a tidy tree is a tax: you pay it on every future project, to decide where it goes. A flat folder with a good index was cheaper.
+One fact limits any tree: two of my folders cannot move at all, because their paths are written into my tool configuration. The script stays in the toolbox, dry-run clean, in case I change my mind.
 
 The index lives in my notes, not in the repo. For each project it holds a name, a purpose, and a status. Where I no longer remember the purpose, the entry shows a dash. I fill the gap when I next touch the project. I do not guess.
 

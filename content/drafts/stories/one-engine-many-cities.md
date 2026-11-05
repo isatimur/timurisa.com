@@ -15,13 +15,13 @@ On 30 September I had to choose. One monorepo with all cities, or one repo per c
 
 I chose one repo per city. Each is a template fork of `braga-3d`, named `<city>-3d`. A city has its own folder, its own deploy, and its own history.
 
-The price is clear. A fix in the engine must be ported by hand to each fork. I felt this later, when I fixed a flicker bug and had to carry the fix to four repos. The benefit is also clear. A mess in one city cannot break another city's deploy.
+The price is clear. A fix in the engine must be ported by hand to each fork. I see this with the flicker bug below: the fix has to be carried to each city by hand. The benefit is also clear. A mess in one city cannot break another city's deploy.
 
 Each city is driven by a config file. A command runs the geodata pipeline for that city. Per-city models and texts live next to the shared engine. The engine does not need to know which city it runs.
 
 ## Performance is a feature
 
-On 10 October I spent a full day on Porto's speed. The draw calls dropped from 499 to 281. That is the difference between a map that stutters on a phone and one that does not.
+On 10 October I spent a full day on Porto's speed. The draw calls dropped from 499 to 281.
 
 The same round fixed a seam in the water, added a lite button on the loader for slow devices, and added roof art and 18 story illustrations. Streams that run in culverts no longer cut through streets. Six bridges over the Douro now land on raised pads instead of floating above the river bank.
 

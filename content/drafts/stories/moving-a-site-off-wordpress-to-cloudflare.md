@@ -43,7 +43,7 @@ The fix for testing is a direct request that skips the cache:
 
 `curl --resolve example.com:443:<worker-ip> https://example.com`
 
-I now test this way before I trust a browser.
+A browser can lie about DNS for a day. A direct request cannot.
 
 ## How I checked the design
 
@@ -51,6 +51,6 @@ I now test this way before I trust a browser.
 
 One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture.
 
-## What I would do again
+## Lessons
 
 Measure before you tune. Keep a backup of the old public folder, and keep it out of the deploy. Write the manual for the owner on day one. And never trust one browser to tell you that DNS has changed.

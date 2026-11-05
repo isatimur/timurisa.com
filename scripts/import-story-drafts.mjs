@@ -1,7 +1,7 @@
 // Appends the markdown stories in content/drafts/stories/ to content/posts/archive.json.
 // Header lines (title, slug, excerpt, category, date) come first, then a blank line, then the body.
 // Body: "## " starts a heading, a blank line splits paragraphs, `x` marks code.
-// Slugs already in the archive are skipped, so a rerun is safe.
+// A slug already in the archive is replaced in place, so a rerun is safe.
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 
 const DIR = new URL('../content/drafts/stories/', import.meta.url);
@@ -27,7 +27,7 @@ for (const file of readdirSync(DIR).filter(f => f.endsWith('.md')).sort()) {
     if (k === 'category') meta.category.push(value);
     else meta[k] = value;
   }
-  if (seen.has(meta.slug)) continue;
+  const existing = archive.findIndex(p => p.slug.current === meta.slug);
   const body = rest.map((chunk, i) => {
     const isHeading = chunk.startsWith('## ');
     return {
@@ -38,7 +38,7 @@ for (const file of readdirSync(DIR).filter(f => f.endsWith('.md')).sort()) {
       children: spans(isHeading ? chunk.slice(3) : chunk.replace(/\n/g, ' '), `n${i}`),
     };
   });
-  archive.push({
+  const entry = {
     _id: `archive-${meta.slug}`,
     title: meta.title,
     slug: { current: meta.slug },
@@ -48,7 +48,9 @@ for (const file of readdirSync(DIR).filter(f => f.endsWith('.md')).sort()) {
     excerpt: meta.excerpt,
     categories: meta.category,
     body,
-  });
+  };
+  if (existing >= 0) archive[existing] = entry;
+  else archive.push(entry);
   added++;
 }
 

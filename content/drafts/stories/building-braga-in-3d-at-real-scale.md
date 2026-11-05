@@ -41,12 +41,12 @@ Two habits saved me. Before each big round, I commit a work-in-progress checkpoi
 
 I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine.
 
-## What I would tell my past self
+## Lessons
 
-Pick the hard constraint first. "Real scale" sounded like a detail. It became the architecture. Everything else followed from it: the footprints, the terrain, the checks, the way the models are authored.
+The hard constraint drove the architecture. "Real scale" shaped the footprints, the terrain, the checks, and the way the models are authored.
 
-Write the check at the same time as the rule. A rule without a check decays.
+A rule needs a check. `check-fit` is what turns "real scale" from a wish into a build failure.
 
-And keep the notes about the odd data sources. Next month I will not remember which mirror works. The note will.
+Notes about odd data sources earn their place. The working Overpass mirror and the OSRM foot-profile server are in my notes, so I do not rediscover them.
 
 Braga was the first city. It would not be the last.
