@@ -13281,7 +13281,9 @@
             "_type": "span",
             "_key": "c0s1",
             "text": "How the Claude Code team does code review",
-            "marks": ["c0l0"]
+            "marks": [
+              "c0l0"
+            ]
           },
           {
             "_type": "span",
@@ -13371,7 +13373,9 @@
             "_type": "span",
             "_key": "c6s0",
             "text": "Before the PR: ",
-            "marks": ["strong"]
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
@@ -13391,7 +13395,9 @@
             "_type": "span",
             "_key": "c7s0",
             "text": "On every PR: ",
-            "marks": ["strong"]
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
@@ -13411,7 +13417,9 @@
             "_type": "span",
             "_key": "c8s0",
             "text": "Human approval by risk: ",
-            "marks": ["strong"]
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
@@ -13431,7 +13439,9 @@
             "_type": "span",
             "_key": "c9s0",
             "text": "Merge and release: ",
-            "marks": ["strong"]
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
@@ -13493,6 +13503,1686 @@
             "_type": "span",
             "_key": "c13s0",
             "text": "Humans decide what to build, review risky code and architecture, and own the outcomes. The original ends with an adoption checklist: pre-PR checks, PR templates, risk tiers, and merge safeguards.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-building-braga-in-3d-at-real-scale",
+    "title": "Building Braga in 3D at real scale",
+    "slug": {
+      "current": "building-braga-in-3d-at-real-scale"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T09:00:00.000Z",
+    "_updatedAt": "2026-11-06T09:00:00.000Z",
+    "excerpt": "How I built an interactive map of Braga where every building sits on its real footprint, and the rule that kept it honest.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "I love Braga, a city in northern Portugal. I wanted a 3D map of it that felt like the real city. Not a toy. Not a diorama. A map where a church tower has the height of the church tower, and a street has the width of the street.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The project is a Three.js app built with Vite and plain JavaScript. The interface speaks Russian, English, and Portuguese. It runs at braga-3d.com. This is the story of how it got built, and what I learned about data on the way.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "One rule: real scale only",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Early on, the map had a diorama mode. It showed the city as a small, friendly model. It looked nice. It was also a lie, because the proportions bent to make things look good.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "On 28 September I removed it. Real scale became the only mode. Models are authored one to one, in metres, on top of OpenStreetMap footprints.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "A rule that you only believe is not a rule. So I wrote a check. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "check-fit",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": " script fails if any model covers less than 97% of its OpenStreetMap extent, or falls short of its real height. If I draw a landmark too small, the build tells me.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "I run other checks as well: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "check-data",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "check-geo",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s5",
+            "text": "check-dimensions",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s6",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s7",
+            "text": "count-tris",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s8",
+            "text": ". Together they catch the quiet mistakes. A building that drifts by a few metres still looks fine to the eye. The checks do not look with eyes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Where the data comes from",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The ground is EU-DEM terrain. The city is about 17,000 buildings from OpenStreetMap. Walking routes come from OSRM. The pipeline lives in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "scripts/fetch-*.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " and writes to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": "data/*.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Three details cost me time. I list them so they cost you less.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "First, the public Overpass servers are busy. The mirror that worked for me was maps.mail.ru.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Second, the main OSRM demo server ignores the foot profile. You ask for a walking route and get a driving route. The server at routing.openstreetmap.de does the job properly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Third, panoramas. I wanted 360 views of the main sites. Wikimedia Commons has no equirectangular panoramas of Braga. The fallback is YouTube 360 video, and it covers 6 of my 16 sites. Detecting a 360 video needs a full Chrome user agent. The rule that works: the video metadata must show MESH or EQUIRECTANGULAR.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Working with agents",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "I built the first version on 28 September with a team of AI subagents. I did not let them all touch everything. I split the work by file ownership.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "One group owned models, fit checks, and landmarks. One owned the scene, effects, and interface. One owned the data folder. Nobody edited a file that belonged to another group. This removed most of the merge trouble before it started.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Two habits saved me. Before each big round, I commit a work-in-progress checkpoint and make a snapshot tarball. Agent rounds sometimes stop halfway when usage limits hit. A checkpoint turns a mess into a clean restart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "What I would tell my past self",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Pick the hard constraint first. \"Real scale\" sounded like a detail. It became the architecture. Everything else followed from it: the footprints, the terrain, the checks, the way the models are authored.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Write the check at the same time as the rule. A rule without a check decays.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "And keep the notes about the odd data sources. Next month I will not remember which mirror works. The note will.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Braga was the first city. It would not be the last. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-cleaning-98-gb-out-of-my-dev-folder",
+    "title": "Cleaning 98 GB down to 21 GB, and the backup I chose not to make",
+    "slug": {
+      "current": "cleaning-98-gb-out-of-my-dev-folder"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T12:00:00.000Z",
+    "_updatedAt": "2026-11-06T12:00:00.000Z",
+    "excerpt": "An audit of my Dev folder removed 77 GB. The more useful part was a plan I did not run.",
+    "categories": [
+      "Engineering practice",
+      "Developer workflow"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "In August I audited my ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "~/Dev",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " folder. It held 98 GB across 139 entries. After the cleanup it held 21 GB across 94 entries.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Most of the 77 GB was caches that rebuild themselves: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "node_modules",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": ", build output, package caches. Nothing exciting. The interesting parts were the decisions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Scripts that start in dry-run mode",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "I wrote the cleanup as scripts: one to reclaim caches, one to remove redundant copies, one to back up risky repos, one to restructure. Each script does nothing by default. It prints what it would do. You pass a flag to make it act.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "This habit costs a minute and prevents the worst mistakes. I read the dry-run output like a code review before any file moved.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "A tree I did not build",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "I had a proposal for eight top-level folders: one for my company, one for products, one for skills, one for clients, one for experiments, and so on. The restructure script was ready. A dry run showed 120 moves.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "I looked at the plan and called it questionable. I skipped it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Two reasons. Some paths are hardcoded in my tools and notes, so moving them breaks things. And a tidy tree is a tax: you pay it on every future project, to decide where it goes. A flat folder with a good index was cheaper.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The index lives in my notes, not in the repo. For each project it holds a name, a purpose, and a status. Where I no longer remember the purpose, the entry shows a dash. I fill the gap when I next touch the project. I do not guess.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The backup I did not make",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Some repos had history only on my machine. Some of them were work I did for an employer or for clients.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The first plan was simple: create private repositories on my personal GitHub account and push everything. It protects the history, and it is wrong. That code does not belong on a personal account. Moving it there is a policy decision, and the cleanup was not the place to make it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "I used ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "git bundle",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": " instead. A bundle is a single file that holds a full repository history. It gives the same protection. Nothing is published anywhere.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "An honest limit: the bundles sit on the same disk. That is not a real backup yet. A real one means a second location, and choosing it is still open. I would rather write that down than pretend the problem is solved.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "One small macOS lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "macOS is case-insensitive by default. I had a repo called ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": "Skills",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": ". A new folder called ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s3",
+            "text": "skills",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s4",
+            "text": " would have collided with it. If your restructure moves things between names that differ only in case, check this first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Takeaways",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Make destructive scripts dry-run by default. Treat a skipped plan as a result. Keep client and employer code out of personal accounts, and say so in the notes. Fill index gaps when you touch a project, not before.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "A clean folder is nice. A folder whose rules you can explain is better. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-moving-a-site-off-wordpress-to-cloudflare",
+    "title": "Moving a small site off WordPress to a Cloudflare Worker",
+    "slug": {
+      "current": "moving-a-site-off-wordpress-to-cloudflare"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T11:00:00.000Z",
+    "_updatedAt": "2026-11-06T11:00:00.000Z",
+    "excerpt": "A WordPress site became a static site on a Cloudflare Worker, with the same design and a mobile PageSpeed score of 93. What worked and what did not.",
+    "categories": [
+      "Web performance",
+      "Cloudflare"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "In October I moved a small professional site off WordPress. The old site ran on WordPress and Elementor. The new one is a static site served by a Cloudflare Worker. It went live on 19 October.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The owner gave me one hard rule: the design must stay pixel-identical. That rule shaped every decision.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The setup",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The source is a folder with a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": "wrangler.jsonc",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": " file and a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s3",
+            "text": "public",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s4",
+            "text": " directory. One command deploys it: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s5",
+            "text": "npx wrangler deploy",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s6",
+            "text": ". I used Workers static assets with an SPA fallback. Cloudflare Pages is the older route, and I did not need it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "A few limits showed up early. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "_redirects",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " file only supports 301 redirects. Workers assets do not support rewrites that return 200. Old WordPress URLs now redirect with plain 301s.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "I also keep a plain-language set of diagrams for the owners: a system map, the update loop, and a \"the site looks wrong\" decision tree. A site is only maintainable if the person who owns it can read the manual.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Speed work, with measurements",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "I measured with real PageSpeed on 20 October. Mobile scored 93.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Here is what moved the score, and what did not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Google Fonts load from a small script in the head, right after the first paint. Requesting them earlier cost about 25 points in the Lantern simulation. Self-hosting the fonts scored worse than the Google request in my tests. Deferring the main script also scored worse.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Images are WebP with a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "srcset",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": ". The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": "src",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": " stays a JPEG for old browsers. The three.js code on the page is minified and loads lazily.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "I tested each idea and kept only the ones that the numbers supported. Several ideas that sound right, like local fonts, were wrong here.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Two traps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "First, caching. Files under ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "/assets",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s3",
+            "text": "/vendor",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s4",
+            "text": " are cached as immutable for a year. This is fast, and it has a catch: a changed file needs a new file name. Forgetting this means visitors see old files for a year.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Second, the page is rendered in the browser by a script. It loads React from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "/vendor/react",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " and checks it against a hash. Cloudflare features that rewrite JavaScript, such as Rocket Loader, would break that check. I left them off.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The day the old site would not go away",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "After the DNS change, my own Mac kept showing the old site for a day. My home router had cached the old delegation. The site was live for everyone else.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The fix for testing is a direct request that skips the cache:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "curl --resolve example.com:443:<worker-ip> https://example.com",
+            "marks": [
+              "code"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "I now test this way before I trust a browser.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "How I checked the design",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "\"Pixel-identical\" needs proof. I took before and after screenshots of all six routes at 390 pixels and at 1440 pixels. Then I compared them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "What I would do again",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "Measure before you tune. Keep a backup of the old public folder, and keep it out of the deploy. Write the manual for the owner on day one. And never trust one browser to tell you that DNS has changed. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-one-engine-many-cities",
+    "title": "One engine, many cities: what I learned scaling a 3D map",
+    "slug": {
+      "current": "one-engine-many-cities"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T10:00:00.000Z",
+    "_updatedAt": "2026-11-06T10:00:00.000Z",
+    "excerpt": "Braga became four city maps on one engine. Notes on forks versus monorepos, performance work, and keeping long agent runs recoverable.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "After Braga, I wanted more cities. I now have four real-scale maps that share one engine: Braga, Guimarães, Barcelos, and Porto. Porto is the flagship, with 70 places, at porto-3d.com. A fifth city is in progress.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Adding a city sounds like copying a folder. It is not. This post covers the decisions that mattered.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "A repo per city, not a monorepo",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "On 30 September I had to choose. One monorepo with all cities, or one repo per city.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "I chose one repo per city. Each is a template fork of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "braga-3d",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": ", named ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "<city>-3d",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": ". A city has its own folder, its own deploy, and its own history.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The price is clear. A fix in the engine must be ported by hand to each fork. I felt this later, when I fixed a flicker bug and had to carry the fix to four repos. The benefit is also clear. A mess in one city cannot break another city's deploy.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Each city is driven by a config file. A command runs the geodata pipeline for that city. Per-city models and texts live next to the shared engine. The engine does not need to know which city it runs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Performance is a feature",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "On 10 October I spent a full day on Porto's speed. The draw calls dropped from 499 to 281. That is the difference between a map that stutters on a phone and one that does not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The same round fixed a seam in the water, added a lite button on the loader for slow devices, and added roof art and 18 story illustrations. Streams that run in culverts no longer cut through streets. Six bridges over the Douro now land on raised pads instead of floating above the river bank.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "One bug taught me a lesson about invisible geometry. A black square flickered on screen in one city. The cause was triangles with zero area. They draw nothing, but they confuse the renderer. The fix was small. Finding the cause was not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "I compared Braga and Porto on eleven axes. Porto led on eight. Braga led on three, among them live weather by default and the variety of its crowds. A comparison like this keeps me honest about what to port next.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Honesty about invented data",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Some of my data is a guess. OpenStreetMap does not know how many storeys every building has. For buildings without that tag, my code uses a heuristic. The heuristic is invented. I decided to ship it and to record that it is a guess.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The same goes for translations. New language editions come from machine translation. They need a native speaker's review before I call them finished. I keep a status file so I do not forget.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Maps carry trust. I want to be clear about where the data is measured and where it is estimated.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Long runs need a recovery path",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "I build much of this with parallel AI subagents. They work in rounds. A round can die when a usage limit hits. This happened to me three times in two days, on 28 and 29 September.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "So the handoff file matters as much as the code. It says what shipped, which commit is deployed, what is half done, and what is open. When I resume, I check the git status, finish or stash the cut-off edits, run ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ", and deploy once.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "I commit before every big round. I snapshot before every big round. The cost is a few seconds. The benefit is that no agent can lose a day of work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "What is still open",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "The engine port to Barcelos and Guimarães is not done. Guimarães is the risky one, because its roads, water, and main files conflict with the new engine. Some art is not wired in yet. The Discover tab is missing in some cities. I would rather list these than hide them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "One engine, many cities works. It works because each piece has an owner, each rule has a check, and each run leaves a note for the next one. ",
             "marks": []
           }
         ]
