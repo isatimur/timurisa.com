@@ -16317,5 +16317,627 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-giving-porto-a-real-coastline",
+    "title": "Giving Porto a real coastline",
+    "slug": {
+      "current": "giving-porto-a-real-coastline"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T16:00:00.000Z",
+    "_updatedAt": "2026-11-06T16:00:00.000Z",
+    "excerpt": "The sea in my Porto map now follows the OpenStreetMap coastline, with moles, piers, lighthouses, and foam that follows the waves.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "My Porto map is built at real scale, and the sea is part of the city. Porto's coast is not a simple line. The Douro meets the Atlantic among breakwaters, piers, and small harbours.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "On 10 October the sea got a real shape. Two agents worked in parallel: one built the shore, and one built the look of the water.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The shore from OpenStreetMap",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The new sea follows the real OSM coastline. It is a ring of 981 points. The sea mesh is a quadtree and costs about 5,000 triangles. Around it sit a shore apron of 22,600 triangles, 127 moles and breakwaters at 24,000 triangles, and rock armour on the moles at 44,000 triangles. The armour only appears for medium landmark classes and above. The map also has 79 piers and 17 lighthouses and harbour lights.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "In total, the shore adds 96,800 triangles. The overview of the whole city stands at 1.94 million triangles.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The work comes with scripts: one fetches the coast data, and one checks it. A check that fails when the data is wrong matters more than the data itself. The same idea drives my fit checks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "One landmark, rebuilt",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The mole at Felgueiras shows what real data does to a model. Its pin is now anchored to a real OSM node, 6 metres from the coast, at 41.14673 north and 8.6773 west.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The model is now the real OSM mole, rebuilt in 16 slabs, with a 10-metre hexagonal granite tower. The crown stands 4 metres above the root and 6 metres at the head. Those heights are my estimate, and the code says so.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Two other landmarks sit close to the new sea. Castelo do Queijo is 41 metres from the coast, and Praia dos Ingleses is 35 metres. The checks confirm that no landmark lies inside the new sea.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The look of the water",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The second agent rewrote the water shader. Crest foam now comes from the Jacobian of the wave field, so foam appears where waves actually fold. Shoreline swash uses the distance to the shore. The swell no longer repeats, because its phase is warped. The Atlantic reads blue-green. The estuary reads olive, and the two blend at the river mouth.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The sea mesh carries three attributes for this: distance to the shore, depth, and a mouth mask. At the time of writing, the shader uses the shore distance and the mouth mask. The depth is stored but not yet used for shoaling.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "A bug named after pixels",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "During this round we found a shadow artefact: a hatch pattern, like a screen door. The cause was small. The landmark focus effect, which fades buildings that block the view, kept one pixel in eight of each blocking landmark, in a 4 by 2 pattern. That pattern showed up in the shadows as a hatch. The fix drops the blocking landmark whole.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "What is not done",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "I keep this list in the handoff, so I can keep it here too. The Leixões docks are not water in OpenStreetMap, so they are missing. Beaches have no foam line. The Passeio Alegre pools are not done. The rocks and apron have only one level of detail. Green strips still cross the sea at the river mouth. Four tower-like boxes stand beside the Congregados church, because OSM buildings sit inside its outline.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Real data is honest in both directions. It gives you the shape of the coast, and it shows you where the map still has gaps. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-making-a-3d-city-run-on-a-weak-device",
+    "title": "Making a 3D city run on a weak device, and where I fell short",
+    "slug": {
+      "current": "making-a-3d-city-run-on-a-weak-device"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-06T17:00:00.000Z",
+    "_updatedAt": "2026-11-06T17:00:00.000Z",
+    "excerpt": "Lazy-loaded models and a lite scene cut memory and start-up time in my Porto map. Some goals stayed unmet, and I measured them honestly.",
+    "categories": [
+      "Web performance",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "My Porto map holds 70 landmarks, a whole city of buildings, and a lot of art. On a good laptop it runs well. On a weak phone it can struggle. On 10 October I worked on two ideas to help: load models lazily, and add a lite scene for the weakest devices.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "This post gives the numbers I measured. It also gives the goals I missed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Lazy models",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Models used to be built at start-up. Now each model is built in a worker, when the camera comes near. The model builders are split into 10 chunks. A queue caps how many models stay built, with a different cap for each performance class: 70 on the strongest, down to 8 on the weakest.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "A script bakes the fit data for all models into one 56 KB file, and the build re-bakes it only when the inputs change. The check for this runs with the rest of my verify suite.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Results: - The critical chunk fell from 299.5 KB to 237.5 KB gzipped, a drop of 21 percent. - GPU memory fell from 672 MB to 543 MB on desktop, and from 335 MB to 214 MB on a high-end phone. - CPU-side vertex arrays for the largest class fell from 124 MB to 61 MB. - First frame and time to ready stayed the same, within noise. - V8 heap stayed the same, because typed arrays live outside it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "The lite scene",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "For the weakest devices, there is now a separate lite scene. It runs with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "?scene=lite",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": ", and the menu offers it as \"Potato — lite scene\". I measured it on a software renderer, with 1280 by 720 pixels and the CPU slowed four times.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "- Time to ready fell from 58.1 s to 5.0 s. - Mean frame time fell from 2,742 ms to 45 ms, which is 22 to 36 frames per second. - The 95th percentile frame fell from 6,133 ms to 67 ms. - The overview fell from 0.88 million triangles to 0.126 million. - Draw calls fell from 159 to 9. - GPU memory fell from 349 MB to 6.4 MB, and heap from 178 MB to 18 MB.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "On a simulated low phone with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": "?quality=potato",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": ", time to ready fell from 38.3 s to 13.7 s, and it ran at 60 frames per second.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "These come from a test bench. They are not real devices.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "What I did not achieve",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "I did not make hitches near landmarks go away. Frames over 50 ms, when the camera approaches a landmark, were about the same before and after: 8, 6, and 10 before, and 8, 7, and 7 after, at four times CPU slowdown on the Low setting. The remaining hitches come from tile integration, clustered copies, and the first GPU upload.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "I did not show the 1 ms phone slice that I aimed for.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The soak test fails. Over five minutes, GL memory grows past the gate by a hair on the Ultra setting, at 5.0 percent. It fails clearly on Low, at 14 percent. The working set of 70 models is larger than the Low cap of 14, so the map built 455 models and freed 403 in 300 seconds. The fix is to raise the Low cap or to stop freeing models near the camera.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The lite scene has limits",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "It has no weather, people, vehicles, or trees. Browsers with only WebGL 1 cannot run three.js r186, so those users see a message. The performance governor cannot switch scenes at run time. If it learns that a device is weak, the next visit starts in the lite scene. And the lite scene is not yet the default for the Low class, because I need real-device numbers first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "One more item is unverified. Gold pins lacked glow in the \"after\" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Lessons",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Write the numbers that failed next to the ones that passed. A table with only wins is a poster.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Measure on a stress bench, and say that it is a bench. Real devices will disagree.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "A lite mode is a safety net. It is not a reason to stop improving the full scene. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
