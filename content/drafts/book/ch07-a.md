@@ -1,36 +1,40 @@
 ---
 slug: make-agent-mistakes-survivable
 title: Build so that an agent being wrong is survivable
-excerpt: A model should never enforce its own power. Chapter 7 argues for sandboxes, narrow scopes, and boundaries that hold when the model is wrong.
+excerpt: Chapter 7 says a model can never enforce its own power. Build sandboxes, narrow scopes, and boundaries that hold when the model is wrong.
 categories: [AI engineering, Security]
 chapter: 7
 ---
-A helpful model can get away with being vague about power. An acting system cannot. That pair of sentences opens Chapter 7, and they hold the whole chapter in small form.
+A helpful model can get away with being vague about power. An acting system cannot. Chapter 7 opens with those two sentences and spends the rest of the chapter on them.
 
-Once an agent can read across accounts, call tools, execute code, or keep working after you have looked away, trust stops being a judgment about how smart the model sounds. It becomes an architecture question. Who is this system acting as? What can it reach? What can it do without asking again? What evidence remains afterward? How fast can we reduce or revoke its power?
+An agent that reads across accounts, calls tools, executes code, or keeps working after the user looks away changes the trust question. Trust stops being a judgment about how smart the model sounds. It becomes an architecture question. Who is this system acting as? What can it reach? What can it do without asking again? What evidence remains afterward? How fast can its power be reduced or revoked?
 
 ## The model is not the enforcement layer
 
-The chapter gives one rule I would like you to repeat. A model can never be the final enforcement layer for its own power.
+The chapter gives one rule: a model can never be the final enforcement layer for its own power.
 
-If an agent can execute code, browse untrusted content, open files, or chain across tools, the design must assume someone can induce it into bad behavior. A malicious instruction can do it. So can a poisoned page, a badly described tool, or a plain misunderstanding. The cause matters less than the consequence.
+Take an agent that can execute code, browse untrusted content, open files, or chain across tools. The design must assume someone can push it into bad behavior. A malicious instruction can do it. So can a poisoned page, a bug in a tool description, or a plain misunderstanding. The cause matters less than the consequence.
 
-So the principle is blunt. Assume the agent will sometimes be wrong, and build so that being wrong is survivable. In classic software, developers wrote the code paths and could know them ahead of time. In agentic software, the system chooses among many paths at runtime. The model may improvise. The environment should fail closed.
+The chapter's blunt principle follows. Assume the agent will sometimes be wrong, and build so that being wrong is survivable. In classic software, developers wrote the code paths and could know them ahead of time. In agentic software, the system picks among many paths at runtime. The model may improvise. The environment should fail closed.
 
-## Where the boundaries live
+## A code agent shows the stakes
 
-This pushes security talk toward runtime design. It becomes a talk about operating system boundaries, execution isolation, token scope, credential lifetimes, and mediation layers. These decide what the system can do when the model is confused, manipulated, or simply too eager.
+The chapter uses the Software Factory to make this concrete. A code agent with repository access is dangerous when it writes a bad patch. It is also dangerous when it can quietly inspect secrets, change CI configuration, add a dependency, call external services, or keep iterating after a misleading instruction entered the loop. Once code execution is in play, the idea that a better prompt solves trust is hard to defend.
 
-The chapter cites Fouad Matin's security guidance for coding agents at OpenAI. It names four controls as the default-on baseline: sandboxing, network restriction, privilege boundaries, and human review. Each one bounds a different failure. A bad command, exfiltration, over-reach when the agent is wrong, and the trajectory the first three let through.
+So the chapter moves the conversation to runtime design: operating system boundaries, execution isolation, token scope, credential lifetimes, and mediation layers. These decide what the system can do when the model is confused, manipulated, or simply too eager.
 
-I am not arguing against alignment work. There is a serious discipline devoted to what a model is disposed to do, refuse, and value. The book covers a different layer. It covers the engineering around the model: the boundaries, identities, sandboxes, and audit trails that must hold even when the model's inner alignment is imperfect.
+The chapter does not argue against alignment work. A serious discipline studies what a model is disposed to do, refuse, and value. The book covers a different layer: the boundaries, identities, sandboxes, and audit trails that must hold even when the model's inner alignment is imperfect.
 
-Narrow powers help in a second way. They reduce the number of tempting but unsafe paths the model can wander into. A tighter design often makes the system easier to reason about, not only safer. The chapter puts it this way: safe delegation comes from making carelessness less powerful, not from asking the model to be careful.
+## Narrow power helps twice
 
-None of this is a promise that nothing will go wrong. Controls bound failures. They do not remove the need to expect them.
+Narrow powers protect the organization. They also shrink the number of tempting but unsafe paths the model can wander into. A tighter design often makes the system easier to reason about, not only safer.
+
+The chapter sums it up in one sentence: safe delegation comes from making carelessness less powerful, not from asking the model to be careful.
 
 ## One thing to do
 
-Pick one agent you run today. Find the step where it holds the most power. Write down the worst plausible mistake it could make there, whether from a bad instruction or a plain error. Then ask one question: would that mistake be survivable? If the answer is no, narrow the power at that step before you spend another hour improving the prompt.
+Pick one agent you run today. Find the step where it holds the most power. Write down the worst plausible mistake there, whether from a bad instruction or a plain error. Then ask: would that mistake be survivable?
+
+If the answer is no, narrow the power at that step before you spend another hour improving the prompt.
 
 This post draws on Chapter 7 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

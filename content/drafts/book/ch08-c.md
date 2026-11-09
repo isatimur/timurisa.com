@@ -5,26 +5,36 @@ excerpt: A support-call scene from Chapter 8 shows that interruption handling is
 categories: [AI engineering, Voice and realtime]
 chapter: 8
 ---
-Chapter 8 opens its main scene with a support call. I want to walk through it, because it teaches one lesson: turn-taking is a runtime problem wearing a UX costume.
+A caller is halfway through a sentence when they change the facts. The agent has already started a retrieval step. Chapter 8 uses this moment to teach one lesson: turn-taking is a runtime problem wearing a UX costume.
 
-Picture Hargrove's assistant, the running example in the book, on a live call. The client's account is locked. Their case crosses billing and compliance rules. Their patience is running out in real time. The agent must understand messy speech, notice that the caller interrupted to add a crucial exception, retrieve the right policy, check the client record, decide whether to act or escalate, and explain what it is doing. It must also avoid sounding either lost or overconfident.
+The chapter sets the scene with Hargrove's assistant, the running example in the book. It sits on a live support call. The client's account is locked. The case crosses billing and compliance rules. The client's patience is running out in real time. The agent must understand messy speech, notice that the caller interrupted to add a crucial exception, retrieve the right policy, check the client record, decide whether to act or escalate, and explain what it is doing. It must also avoid sounding lost or overconfident.
 
-## Three moments that break
+## Where the call breaks
 
-The chapter picks out a few moments. In the first, the caller corrects their own account number halfway through a sentence. The system has to revise state. In the second, the caller says, "No, wait, that was the old policy." The system has to tell abandoned context from active context. In the third, the agent says "One moment while I check that" and then goes silent. The caller does not experience a neutral backend delay. They experience incompetence.
+The chapter picks out several moments. Each one tests a different part of the system.
 
-Then comes the case I find most instructive. The agent has already begun a retrieval step when the caller reveals that the account belongs to a different region. If the runtime cannot cancel, redirect, or downgrade the old plan cleanly, the system starts answering with stale assumptions. The human hears a conversational failure. The root problem is execution semantics.
+- The caller corrects their own account number halfway through a sentence. The system has to revise state.
+- The caller says, "No, wait, that was the old policy." The system has to tell abandoned context from active context.
+- The agent announces a short wait while it checks, then goes silent. The caller does not feel a neutral backend delay. The caller feels incompetence.
+
+Then comes the hardest case. The agent has already begun a retrieval step when the caller reveals that the account belongs to a different region. If the runtime cannot cancel, redirect or downgrade the old plan cleanly, the agent starts answering with stale assumptions. The human hears a conversational failure. The root problem is execution semantics.
 
 ## Questions that belong to the runtime
 
-It is tempting to file interruption handling under polish. The chapter says that is too shallow. When a human cuts the system off, what state is preserved? Which partial output is discarded? Does a tool call continue in the background, and if so, how is the result surfaced later? If the user answers a question indirectly, how much of the prior plan stays binding? If a user correction and a returning tool result arrive at once, which one wins?
+It is tempting to file interruption handling under experience polish. The chapter calls that too shallow. When a human cuts the system off, ask:
 
-None of these is a copywriting question. They are the same kind of question you ask of any durable workflow, now asked under a clock. The chapter adds that a spoken system must manage state in public. It needs a runtime that can pause, redirect, summarize, and resume without making the user rebuild everything by hand.
+- What state is preserved?
+- Which partial output is discarded?
+- Does a tool call continue in the background? If so, how does the result surface later?
+- If the user answers a question indirectly, how much of the prior plan stays binding?
+- If a user correction and a returning tool result arrive together, which one takes priority?
 
-The security boundaries must also survive the change of medium. A friendly voice does not make overscoped authority less dangerous. The chapter goes further: because voice feels human, people approve more casually, so confirmation for consequential actions has to be more deliberate.
+The chapter says these are execution questions, not copywriting questions. They resemble the questions you ask of any durable workflow, now asked under a clock. A spoken system manages state in public. It needs a runtime that can pause, redirect, summarize and resume without forcing the user to rebuild everything by hand.
 
-## The takeaway
+Security boundaries must also survive the change of medium. A friendly voice does not make overscoped authority less dangerous. Because voice feels human, people approve more casually. So the more consequential the action, the more deliberate the confirmation has to be.
 
-Take your own agent and write the support-call script for it. Include a mid-sentence correction, an abandoned policy, and a late discovery that changes the plan while a retrieval step is running. Then walk each case through your runtime on paper. For each one, write down what state is kept, what is discarded, and what the caller hears. Wherever you cannot answer, you have found a runtime gap. Fix it there, in the execution layer, before you touch the script the agent speaks.
+## Try it
+
+Write the support-call script for your own agent. Include a mid-sentence correction, an abandoned policy and a late discovery that changes the plan while a retrieval step runs. Walk each case through your runtime on paper. For each one, write down three things: what state is kept, what is discarded and what the caller hears. Every blank answer marks a runtime gap. Fix it in the execution layer before you touch the words the agent speaks.
 
 This post draws on Chapter 8 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

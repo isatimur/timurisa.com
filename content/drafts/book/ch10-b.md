@@ -5,26 +5,44 @@ excerpt: Chapter 10 closes with five practical steps. Here is how a team can run
 categories: [AI engineering, What endures]
 chapter: 10
 ---
-Chapter 10 of my book is about what lasts. Its checklist is about what to do on Monday. The pattern I call constrained delegation is built one layer at a time, not declared all at once. Here is how a team can start this week.
+Monday morning, a delegated system misbehaves. Someone suggests a bigger model. Chapter 10 closes with a checklist that starts by stopping that suggestion. Constrained delegation, the chapter says, is built one layer at a time, not declared all at once. Here is a week that builds one layer.
 
 ## Diagnose before you upgrade
 
-Pick whatever delegated system is misbehaving right now. Before anyone suggests a bigger model, name which of six layers actually failed. The layers are legibility, evals, context, runtime, authority and supervision. The chapter's point is that a legible workplace without evals is not enough, evals without good context are not enough, and so on down the chain.
+Pick the delegated system that misbehaves right now. Before anyone reaches for a bigger model, name which of six layers failed. The layers are legibility, evals, context, runtime, authority and supervision.
 
-Hold a thirty-minute review with the people who saw the failure. Go through the six layers in order and ask of each one whether it held. Write the answer in one sentence. In the two recurring cases the book followed, the model was rarely the layer that failed. Your case may differ. The exercise makes you check before you spend.
+The chapter's logic runs down the chain. A legible workplace without evals is not enough. Evals without good context are not enough. Context without a durable runtime is not enough. Runtime without bounded authority is not enough. Security without usable supervision is not enough.
 
-## Set the dial and name the owner
+Hold a thirty-minute review with the people who saw the failure. Go through the six layers in order. Ask of each one: did it hold? Write the answer in one sentence. In the two recurring cases the book followed, the model was rarely the layer that failed. Your case may differ. The exercise makes you check before you spend.
 
-Next, choose one real workflow and set its autonomy dial in writing. Joel Hron's framing, as the chapter uses it, treats agency as a dial. Turn it up where the work is reversible and recoverable. Turn it down where a wrong move costs something you cannot get back. Write down, for that workflow, what the agent may do alone, what needs a human, and why. The chapter puts it sharply: an undocumented dial is a dial nobody actually set.
+## Set the dial in writing
 
-Then name the person accountable before you ship. Ask who owns this system's output six months from now, after whoever wrote the prompt has moved to a different team. If no name comes to mind, the responsibility was never assigned. Write the name next to the workflow. This takes five minutes and prevents the longest argument you could have later.
+Choose one real workflow. Set its autonomy dial on paper. The chapter takes the dial from Joel Hron, who described treating agency this way: turn it up where the work is reversible and recoverable, turn it down where a wrong move costs something you cannot get back.
+
+Write three lines for that workflow. What may the agent do alone? What needs a human? Why? The chapter's warning is blunt. An undocumented dial is a dial nobody actually set.
+
+## Name the owner
+
+Before you ship, write down who is accountable for the system's output. The chapter asks for this before something breaks, not after. If no name comes to mind, nobody holds the responsibility yet. Write the name next to the workflow. This takes five minutes.
 
 ## Build one thing
 
-Now pick the chapter that maps to your worst gap and build that one thing. The book offers a short menu. It names a legible repo, a real eval slice, a working set instead of a document dump, a durable runtime, a bounded credential, a control plane, or a named owner. Choose one. Scope it to a week. Resist the urge to do three.
+Now find the gap that hurts most and build one piece to close it. The chapter offers a menu: a legible repo, a real eval slice, a working set instead of a document dump, a durable runtime, a bounded credential, a control plane, a named owner. Pick one. Scope it to this week. The chapter says "one thing," so resist doing three.
 
-Last, put a reminder in your calendar for six months out. Reread the seven "make" lines from the end of the chapter. Make the task legible. Make the standards explicit. Make the context usable. Make the runtime durable. Make authority narrow enough to trust. Make review proportionate to risk. Make the organization capable of learning.
+## Set a six-month reminder
 
-The test is not whether you agreed with the book. The test is whether more of those seven lines are true of your system than are true today. Score yourself now, on paper, so the comparison is honest later.
+Put a date in your calendar six months out. On that day, reread the seven "make" lines that end the chapter:
+
+- Make the task legible.
+- Make the standards explicit.
+- Make the context usable.
+- Make the runtime durable.
+- Make authority narrow enough to trust.
+- Make review proportionate to risk.
+- Make the organization capable of learning.
+
+The chapter sets the bar for the whole book here. The test is not whether you agreed with it. The test is whether more of those seven lines are true of your system than are true today.
+
+So score yourself today. Mark each line true or false for your system, and save the page. In six months, the comparison will be honest because the first score is on paper.
 
 This post draws on Chapter 10 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

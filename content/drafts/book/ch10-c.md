@@ -5,28 +5,40 @@ excerpt: Chapter 10 argues the lasting human role in AI work is responsibility. 
 categories: [AI engineering, What endures]
 chapter: 10
 ---
-There is a shallow version of the question "what remains human?" It fixates on which tasks people will keep doing by hand. In Chapter 10 of my book I argue that is not the most important distinction.
+Picture a delegated system six months after launch. Its output turns out to be wrong. The person who wrote the prompt moved to a different team long ago. Who answers for the error?
 
-Humans may type less. They may implement less boilerplate directly. They may supervise parallel flows of machine work, edit generated artifacts, compose systems from agentic parts, and step in mostly at moments of ambiguity or consequence. All of that is plausible. None of it names the deeper role.
+Chapter 10 uses this scene as a test. If no name comes to mind, the chapter says, the responsibility was never assigned. It evaporated along with the context window that produced the output.
 
-## A list of responsibilities
+## The shallow debate
 
-The deeper human role is responsibility. The chapter lists what that covers. Responsibility for standards. Responsibility for scoping. Responsibility for the boundaries within which machines act. Responsibility for deciding when evidence is sufficient. Responsibility for noticing when the system is producing motion without progress.
+The test sits inside a larger argument about what remains human. The chapter calls one version of that debate shallow: the version that fixates on which tasks people will keep doing by hand.
 
-The last item matters most to me. A system that generates a lot of work looks busy. Someone has to judge whether the work moved anything. A machine can report its own activity. It cannot take the blame for it.
+Humans may type less. They may implement less boilerplate. They may supervise parallel flows of machine work, edit generated artifacts, compose systems from agentic parts and step in mostly at moments of ambiguity or consequence. The chapter accepts all of that. It says none of it is the deeper role.
 
-This fits a theme that runs through the whole book. Cheap generation shifts value upward, toward framing, discrimination, prioritization and the willingness to throw away seductive garbage. As output gets cheaper, standards do not become quaint. They become load-bearing. People who hold those standards are doing the human work, even if they never touch a keyboard.
+## Five responsibilities
 
-## A test you can run today
+The deeper role is responsibility. The chapter lists what it covers:
 
-The chapter gives a fast test for whether responsibility has actually been placed, not merely assumed. Name the person accountable when a delegated system's output turns out to be wrong six months from now, after whoever wrote the prompt has moved to a different team.
+- Responsibility for standards.
+- Responsibility for scoping.
+- Responsibility for the boundaries within which machines act.
+- Responsibility for deciding when evidence is sufficient.
+- Responsibility for noticing when the system is producing motion without progress.
 
-If no name comes to mind, the responsibility was never assigned. In the book's words, it evaporated along with the context window that produced the output.
+The last item shows why a machine cannot hold the role. A system that generates a lot of work looks busy. Someone must judge whether the work moved anything. A machine can report its own activity. It cannot answer for it.
 
-I like this test because it is hard to argue with. It does not ask whether your team cares about quality. It asks for one name. Teams often discover that the person who launched an agent assumed a reviewer owned the result, and the reviewer assumed the person who launched it did. Both are acting reasonably. Nobody owns the outcome.
+This follows a theme from earlier in the chapter. Cheap generation shifts value upward, toward framing, discrimination, prioritization and the willingness to throw away seductive garbage. As output gets cheaper, standards do not become quaint. They become load-bearing. The people who hold those standards do the human work, even when they never touch a keyboard.
 
-The same logic explains why the book stays skeptical of both utopian and defensive stories. AI neither leaves engineering unchanged nor abolishes the need for engineers. It relocates value toward those who can design, govern and continuously improve systems of delegated work.
+## Why one name is a hard test
 
-Here is the takeaway. Pick one workflow where an agent produces output that others rely on. Write down a name, not a team, for who answers for that output in six months. If you cannot do it, treat that as the next piece of engineering work, ahead of any new feature. Then write the name where the next reader of the system will see it.
+The six-month test is hard to dodge because it does not ask whether your team cares about quality. It asks for a single answer. A team or a role will not pass it. A name will.
+
+The chapter draws a wider conclusion from this. It stays skeptical of both utopian and defensive stories. AI neither leaves engineering unchanged nor removes the need for engineers. It relocates value toward those who can design, govern and continuously improve systems of delegated work.
+
+## Run the test today
+
+Pick one workflow where an agent produces output that others rely on. Imagine it is six months from now and the output is wrong. Write down the name of the person who answers for it. Use a person, not a team.
+
+If you cannot write a name, treat that gap as engineering work, due before the next feature. If you can, write the name where the next reader of the system will see it.
 
 This post draws on Chapter 10 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

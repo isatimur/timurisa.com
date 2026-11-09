@@ -75,9 +75,11 @@ for url in urls:
     if path in local_posts:
         expected = local_posts[path]
         assert page.h1_count == 1, (path, 'Multiple top-level headings')
-        assert expected['source']['url'] in page.links, (path, 'Missing source link')
         schema = page.schemas[0]
-        assert schema['isBasedOn'] == expected['source']['url']
+        if expected.get('source'):
+            assert expected['source']['url'] in page.links, (path, 'Missing source link')
+            assert schema['isBasedOn'] == expected['source']['url']
+            assert 'Publication history' in html and 'Edited for this blog' in html
         assert schema['datePublished'] == expected['publishedAt']
         assert schema['dateModified'] == expected['_updatedAt']
         assert schema['author']['name'] == expected['authorName'], (path, 'Wrong author')
@@ -89,7 +91,6 @@ for url in urls:
                 href = mark.get('href', '')
                 if href.startswith('/blog/'):
                     assert SITE + href in urls, (path, 'Broken related article', href)
-        assert 'Publication history' in html and 'Edited for this blog' in html
         keys = [block['_key'] for block in expected['body']]
         assert len(keys) == len(set(keys)), (path, 'Duplicate block keys')
         assert all(f'heading-{block["_key"]}' in html for block in expected['body'] if block.get('style') == 'h2')

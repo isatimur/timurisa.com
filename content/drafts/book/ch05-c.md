@@ -5,28 +5,34 @@ excerpt: A tax assistant at Hargrove ranked a public explainer above a senior at
 categories: [AI engineering, Context engineering]
 chapter: 5
 ---
-In Chapter 5 of my book I follow a firm called Hargrove. Hargrove runs a tax practice. Its assistant began as a helpful chat surface. It summarizes documents, answers questions, and cites plausible authorities. Users like it. In the book I call this kind of system the High-Stakes Colleague: an assistant that works where evidence and provenance change the quality of the work.
+A tax associate at Hargrove asks the firm's assistant to trace the support for a deduction a client has claimed for years. The assistant answers fluently. It cites a clean-looking authority, and the answer reads as decisive. It is also wrong for this client.
 
-After the novelty phase, users ask for something harder. They stop saying help me think. They say help me do the work.
+The chapter follows this scene from Hargrove's early build-out. The firm's tax practice runs an assistant that began as a helpful chat surface. It summarizes documents, answers questions, and cites plausible authorities. Users like it. Then they ask for more. They want the assistant to do the work, not only to help them think.
 
-## The request
+## What went wrong
 
-A tax associate asks the assistant to trace the support for a deduction a client has claimed for years. The assistant answers fluently. It cites a clean-looking authority, a public explainer whose wording matches the query almost perfectly. The answer reads as decisive.
+The cited authority was a public explainer whose wording matched the query almost perfectly. The governing position lived elsewhere. A senior attorney had written it earlier in a matter note, in a different file, under a jurisdiction the explainer never mentioned.
 
-It is also wrong for this client. The governing position lives in a matter note that a senior attorney wrote earlier, in a different file, under a jurisdiction the explainer never mentions. The system ranked the explainer first because nothing told it that a public article and a matter-specific note are different kinds of evidence.
+The system ranked the explainer first because nothing told it that a public article and a matter-specific note are different kinds of evidence. The model did not invent a source. The explainer was real. The system treated all text as interchangeable.
 
-I want to stay with this failure, because it is easy to misread. The model did not lack knowledge. It did not invent a source. The explainer was real. The system simply treated all text as interchangeable and ranked by closeness to the query. In the book I note that simplistic retrieval systems flatten everything into one searchable pile and act as if the only problem were semantic similarity.
+The chapter says simplistic retrieval systems flatten everything into one big searchable pile. They act as if the only problem were semantic similarity.
 
 ## The remedy
 
-The remedy was not a smarter model. The team typed its knowledge topology into the system. In practice that meant three changes. Source typing ranks internal precedent above public background. Access boundaries apply per matter. The retrieval surface carries provenance, so the associate can see which layer an answer came from.
+The chapter states it plainly: the remedy is not a smarter model. The team types its knowledge topology into the system. That means three changes.
 
-Context topology is my name for this idea. Different kinds of information should not be treated as interchangeable text. A draft contract is not signed language. An old Slack discussion is not a policy. A matter note from a senior attorney is not a general explainer from a public source. What matters is what kind of thing a document is, how trustworthy it is, how recent it is, and whether the task needs literal quotation or background.
+- Source typing ranks internal precedent above public background.
+- Access boundaries apply per matter.
+- The retrieval surface carries provenance, so the associate can see which layer an answer came from.
 
-Chau Tran's Glean work makes the same point operational. Much of it is filtering on signals the corpus already carries: the user's permission scope, the freshness of the source, and the document's role in the organization. That filtering runs before the reranker, so material the task should never see never reaches the window. Without it, ranking on raw embedding similarity will happily surface a deprecated wiki page that reads almost exactly like the current one.
+The chapter calls this idea context topology. Different kinds of information are not interchangeable text. A draft contract is not signed language. An old Slack discussion is not a policy. A matter note from a senior attorney is not a general explainer from a public source. Usefulness depends on what kind of thing a document is, how it relates to other documents, how trustworthy it is, and how recent it is.
 
-The chapter says that in high-stakes work, a system that is 90 percent right for unclear reasons can still be professionally unusable. The associate needs to know why an answer is right. Provenance gives that.
+The chapter then draws the stakes. In high-stakes work, a system that is 90 percent right for unclear reasons can still be professionally unusable. The associate needs to see why an answer is right. Provenance shows it.
 
-Here is the lesson to carry away. List the kinds of documents your assistant can retrieve. For each pair, ask whether one should outrank the other. If the answer is yes, write that rule into the system, and show the source type next to every citation. At Hargrove, the misranked matter note became the scar the rest of the build-out was designed around. You can learn the same lesson from a list, before a client pays for it.
+The chapter closes the scene with a line worth keeping: the misranked matter note becomes the scar the rest of the build-out is designed around.
+
+## Do this today
+
+List the kinds of documents your assistant can retrieve. Take each pair and ask whether one kind should outrank the other. Where the answer is yes, write the rule into the system. Then show the source type next to every citation your assistant gives.
 
 This post draws on Chapter 5 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

@@ -1,34 +1,38 @@
 ---
 slug: context-checks-this-week
 title: A week of context checks for your retrieval system
-excerpt: Five checks from the Chapter 5 checklist that a team can run in one week to find out whether context assembly or the model is the problem.
+excerpt: Five checks from the Chapter 5 checklist, one per working day, to learn whether context assembly or the model is your real problem.
 categories: [AI engineering, Context engineering]
 chapter: 5
 ---
-Chapter 5 of my book ends with a practical checklist. Five items. Each one is small enough to try in a day. Together they tell you whether your context system helps the work or only looks good in a diagram.
+Chapter 5 ends with a checklist of five items. Each fits in one working day. Run them Monday to Friday and a team learns whether its context system helps the work or only looks good in a diagram.
 
-I will take them in the order a team could run them across a week.
+## Monday: plot accuracy against document count
 
-## Monday and Tuesday: look and measure
+Take your retrieval system and vary the number of retrieved documents. Plot accuracy for each count. If accuracy drops as you add documents, the middle of the context window is getting lost. The chapter says this is not the model getting dumber. Its fix is better assembly, such as summarization, graphs, or iterative retrieval, not a bigger window.
 
-Start with one signal. Plot accuracy against the number of retrieved documents. If accuracy drops as you add documents, the middle of the context window is getting lost. The model is not getting dumber. The book's fix is better assembly, such as summarization, graphs, or iterative retrieval, not a bigger window.
+## Tuesday: measure how little the answer needed
 
-Next, change what you instrument. Most teams track how big the index is. I suggest tracking how little of it the answer needed. Kuba Rogut relays Jeff Dean: you do not need a trillion tokens at once, you need the right million. So record how much of what you retrieved a task actually used. That number tells you where you are wasting attention and money.
+Most teams track how big the index is. The chapter asks teams to track how little of it the answer needed. Kuba Rogut relays Jeff Dean on the sizing rule: you do not need a trillion tokens at once, you need the right million. So record how much of what you retrieved each task actually used.
 
-On cost, Rajkumar Sakthivel's team at Tesco says 90 percent of AI cost is input: files, search results, and context you send in. Only 10 percent is output. His team cut input tokens by 94 percent on a public benchmark by retrieving relevant slices of a codebase instead of pasting whole files. He is careful to say that is a best case, and real setups will not match it. Treat it as a reason to measure, not as a target.
+The chapter adds a cost figure. Rajkumar Sakthivel's team at Tesco states that 90 percent of AI cost is input: files, search results, and context you send in. Retrieving only the relevant slices of a codebase, instead of pasting whole files, cut their input tokens by 94 percent on a public benchmark. He says this is a best case, and real setups will not match it. Use it as a reason to measure, not as a target.
 
-## Wednesday and Thursday: match and separate
+## Wednesday: match the mechanism to the answer
 
-Now look at your retrieval mechanism. Match it to the shape of the answer. Use vector search when the answer is a single similar passage. Use graph traversal when the answer is a path along explicit relationships. Use keyword or metadata filters when exactness is what matters. Do not make one mechanism carry all three jobs. Mature systems layer them.
+Match each retrieval mechanism to the shape of the answer. Use vector search when the answer is a single similar passage. Use graph traversal when the answer is a path along explicit relationships. Use keyword or metadata filters when exactness matters. Do not make one mechanism carry all three jobs. Mature systems layer them.
 
-Then split your eval in two. Score retrieval and generation as separate questions. First, check whether the governing passage reached the assembled working set at all. That is a recall measure on the context layer. Only then score whether the model used it correctly. If you score only the final answer, a context-assembly bug looks exactly like a model getting dumber. You may then spend a model upgrade on a retrieval problem.
+## Thursday: split the eval in two
 
-## Friday: change a default
+Score retrieval and generation as separate questions. First check whether the governing passage reached the assembled working set at all. That is a recall measure on the context layer. Only then score whether the model used it correctly. If you score only the final answer, a context-assembly bug looks exactly like a model getting dumber. Then a model upgrade gets wasted on a retrieval problem.
 
-The last item is about people. When a fix depends on users opting in, assume almost no one will. GitHub learned this with its remote MCP server. After community contributions pushed it past a hundred tools, the agents got measurably worse. The first fixes were opt-in tool sets and dynamic discovery. Almost no one used them, because most users never touch the JSON config. GitHub changed the default instead and cut the initial tool-load context by 49 percent. The number of tools the agent could call did not fall. The number it had to read did.
+## Friday: change one default
 
-So on Friday, find one place where your system relies on a setting nobody changes. Change the default.
+The last item concerns people. When a fix depends on users opting in, assume almost no one will. The chapter tells the GitHub story. Community contributions pushed its remote MCP server past a hundred tools, and the agents got measurably worse. The first fixes were opt-in tool sets and dynamic discovery. Almost no one used them, because most users never touch the JSON config. GitHub changed the default and cut the initial tool-load context by 49 percent. The number of tools the agent could call did not fall. The number it had to read did.
 
-By the end of the week you will have four facts: how accuracy moves with document count, how much context a task really uses, whether the right passage arrives, and which defaults carry your product. Write them on one page. That page is your first honest view of your context system, and it will tell you what to fix first.
+So on Friday, find one setting in your system that nobody changes. Change its default.
+
+## Close the week with one page
+
+Write four lines. How accuracy moves with document count. How much context a task really uses. Whether the governing passage arrives. Which default you changed. Pin the page where the team sees it. The weakest line is your first fix.
 
 This post draws on Chapter 5 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).

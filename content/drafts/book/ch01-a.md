@@ -5,30 +5,38 @@ excerpt: Chapter 1 argues the hard problem in AI is no longer better answers. It
 categories: [AI engineering, Delegation]
 chapter: 1
 ---
-For a while, the most impressive thing AI could do was answer. It answered faster than search and more fluently than documentation. That changed user expectations and product design. It did not yet change the nature of work.
+A bad answer wastes a few minutes. A bad patch can stall a release. Chapter 1 of the book builds its whole argument on that gap.
 
-The change begins when we ask the system to return with work done. Research this market and come back with a memo. Refactor this service, run the checks, and prepare the patch for review. In Chapter 1 I argue that this is a different standard, and that most of AI engineering follows from it.
+For a while, the best thing AI could do was answer. It answered faster than search and more fluently than documentation. That changed user expectations and product design. It did not change the nature of work.
 
-## A different kind of failure
+The change starts when the system must return with work done. Research this market and come back with a memo. Refactor this service, run the checks, and prepare the patch for review. The chapter says this is a different standard, and that most of AI engineering follows from it.
 
-A helpful answer can be wrong and still be useful. Delegated work costs more. It consumes time, touches systems, and shapes decisions. It also hides its mistakes inside output that looks plausible enough to pass a casual glance.
+## Work that looks finished
 
-I wrote that the primary failure surface is not the work that looks broken. It is the work that looks finished. A test claimed to pass, a source claimed to be checked, a step claimed to be done: the same shape of failure appears wherever an agent reports on its own success. So the question moves from "is the answer good?" to "can we verify the work by something other than the system's own account of itself?"
+A helpful answer can be wrong and still useful. Delegated work costs more. It consumes time, touches systems, and shapes decisions. It also hides its mistakes inside output that looks plausible enough to pass a casual glance.
 
-## Three roles and one test
+So the chapter says the main failure surface is not the work that looks broken. It is the work that looks finished. The same shape recurs wherever an agent reports on its own success: a test claimed to pass, a source claimed to be checked, a step claimed to be done. The review question changes. Stop asking whether the answer is good. Ask whether anything other than the system's own account can verify the work.
 
-The book separates three kinds of system. An assistant suggests. A copilot collaborates inside a tight human loop. A delegate is given a unit of work and is expected to come back with an artifact, a recommendation, or a completed step. The labels matter less than where the human sits. With an assistant, nothing takes effect until you read it. With a delegate, you step out of the moment-to-moment loop and back in at review.
+## Three roles, one question
 
-I offer one quick test. Ask what happens if no human looks at the output for the next 24 hours. An assistant's suggestion goes stale, which is harmless. A delegate's output has usually already changed something: a pull request opened, a record updated, a deadline running that someone else now inherits. If your system fails that test the delegate way, you are past the assistant stage, whatever the product page says.
+The chapter separates three kinds of system.
+
+- An assistant suggests.
+- A copilot collaborates inside a tight human loop.
+- A delegate takes a unit of work and returns an artifact, a recommendation, or a completed step.
+
+The labels matter less than where the human sits. With an assistant, nothing takes effect until you read it. A copilot lands its contribution inside a task already in motion, like a completed line of code you were already typing. A delegate steps you out of the moment-to-moment loop and back in at review. The work it produces changes the state of the world, and others rely on it.
 
 ## Trust under action
 
-Joel Hron puts the shift cleanly: the north star has moved "from helpfulness to productive." Once a system acts for users, prompt cleverness stops being the central problem. Trust under action takes its place.
+Joel Hron describes the shift as a move "from helpfulness to productive." Once a system acts for users, prompt cleverness stops being the central problem. Trust under action takes its place.
 
-That is why I define AI engineering as the discipline of turning raw model capability into delegated work that can be structured, measured, supervised, and trusted. Prompting, retrieval, evals, workflow engines, guardrails, observability, and approval systems often look like separate subcultures. In the book they are pieces of one discipline. Each answers the same question: what must surround intelligence before it is safe to delegate work to it?
+The chapter defines AI engineering as the discipline of turning raw model capability into delegated work that can be structured, measured, supervised, and trusted. Prompting, retrieval, evals, workflow engines, guardrails, observability, and approval systems often look like separate subcultures. The book treats them as parts of one discipline. Each answers one question: what must surround intelligence before it is safe to delegate work to it?
 
-The chapter also takes a position on autonomy. The goal is not maximum agency in every direction. In many valuable systems the right design is adjustable autonomy. Let the machine move fast where the risk is low and the checks are strong. Slow it down where consequences are harder to reverse.
+The chapter also rejects autonomy maximalism. Maximum agency in every direction is not the goal. In many valuable systems, the right design is adjustable autonomy. Let the machine move quickly where risk is low and checks are strong. Slow it down where consequences are hard to reverse.
 
-Here is the takeaway to try this week. Pick one AI feature your team runs or plans to ship and apply the 24-hour test. Write down what changes in the world if nobody reads its output for a day. If the answer is "something," treat the feature as a delegate. That means giving it the structure, measurement, and review points you would give any colleague whose work others will rely on.
+## Try this
+
+Pick one AI feature you run or plan to ship. Draw a line through its workflow and mark where the human sits: in the path of every step, beside the work, or out of the loop until review. Then find the last step before that human appears. Ask what proves the step happened, other than the system saying so. If nothing does, add a check there before you add any new capability.
 
 This post draws on Chapter 1 of [From Copilot to Colleague](https://fromcopilottocolleague.com/).
