@@ -22,6 +22,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://timurisa.com'),
+    // Set GOOGLE_SITE_VERIFICATION to the token from Search Console (HTML tag method).
+    verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
     title: {
         default: "Timur Isachenko | AI CTO & Principal Solution Architect",
         template: "%s | Timur Isachenko"
