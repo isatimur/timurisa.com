@@ -17989,5 +17989,5005 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-a-feature-list-agents-cannot-game",
+    "title": "A feature list agents cannot game",
+    "slug": {
+      "current": "a-feature-list-agents-cannot-game"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T12:00:00.000Z",
+    "_updatedAt": "2026-11-15T12:00:00.000Z",
+    "excerpt": "A JSON file with three rules and an evidence field. How my Porto repo tracks features, and where the file stopped following its own rules.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "An agent that is asked \"are you done?\" will often say yes. The answer costs nothing. So I do not ask. I keep a file that says what done means, and I check the file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "In the Porto repository, that file is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "feature_list.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The shape of an entry",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Each feature has the same fields: an id, a priority, an area, a title, the user-visible behaviour, a status, a list of verification steps, a list of evidence, and a notes field.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Here is the first entry, trimmed. Its id is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "porto-001",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": ", its area is skeleton, and its title is \"Engine fork, Porto config, shell, green build\". Its user-visible behaviour is that the app runs for Porto and draws the terrain and city fabric. Its verification steps say to run the dev server, confirm that Porto is the default city and the terrain renders, and confirm that the build completes. Its evidence lists a commit, a passing ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": " with the date, and a note that the config holds the core area and 70 landmark ids.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Notice the order. The behaviour comes first, in terms a user would see. Then the way to check it. Then the proof.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Three rules at the top",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The file opens with three rules, each a boolean: only one feature is active at a time, passing requires evidence, and verification must not be skipped.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "There are four statuses. Not started means work has not begun. In progress means the feature is the current task, or only part of it has shipped. Blocked means a documented blocker stops the work. Passing means the required verification passed and the evidence is recorded.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The rule that matters most is the second one. A status of passing without evidence is not allowed. This is what makes the list hard to game. To flip a feature to passing, an agent must write down a command, a file, or a count that someone else can check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Where the file stopped following its rules",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "I read the file as I write this. It holds 31 features. 24 are passing and 7 are in progress.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The first rule says only one feature is active at a time. Seven are in progress.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The legend explains part of it. In progress also covers a feature where only part has shipped. But my clean-state checklist says exactly one feature should be in progress at the end of a session. The file and the checklist disagree.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "There is a sharper mismatch. My session handoff from 5 October says two features, the quay walls and the building geometry detail levels, are not started. The feature list marks both as in progress. One of the two files is wrong, and nothing checks them against each other.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "This is useful. The spec shows where the project drifted. Seven open items is a fact I can act on. The fix is either to split \"partly shipped\" into its own status, or to close the entries that are done. Both are small edits.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Why a file and not a chat",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "My ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": " tells agents to prefer durable repository artifacts over chat summaries. A chat message disappears when the session ends. The feature list is in version control. A new session can read it, and a reviewer can read the history.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The same logic keeps agents honest about scope. If a task is not in the list, it is a new feature, and it gets an entry before it gets code.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Try it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Write three entries for a project you are working on. For each, write the behaviour a user would see, one check you could run, and what evidence would prove the check passed. If you struggle with the third part, the feature is not specified yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n21l0",
+            "href": "/blog/the-definition-of-done-is-a-command"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": "the definition of done is a command",
+            "marks": [
+              "n21l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-a-handoff-note-that-fits-on-one-screen",
+    "title": "A handoff note that fits on one screen",
+    "slug": {
+      "current": "a-handoff-note-that-fits-on-one-screen"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T15:00:00.000Z",
+    "_updatedAt": "2026-11-15T15:00:00.000Z",
+    "excerpt": "The template I use to end every agent session, the checklist behind it, and the day my handoff grew to 2,681 words.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "Agent sessions end. A usage limit hits, a context window fills, or I close the laptop. The next session starts with no memory of the last one. The handoff note is the only thing that crosses the gap.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The template",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "My Porto repository has a file called ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "session-handoff.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ". It says: compact note for the next session, keep it to one screen. It has eight fields.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The date. The session goal. The verified state, meaning the result of the last verify run. The active feature, by id. What changed. What is half-done or risky. The exact next step. And the files to look at first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "An example, from 5 October",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "On 5 October the note recorded that all 11 checks were green, with one transient smoke-test failure that passed on a rerun. The active feature was the deploy. The site was live at a temporary address, and the real domain did not answer yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Under \"half-done or risky\" it listed four things. Ten landmarks had no share image, though their pages referenced one. The engine sync script had never run. Two features had not started. And the smoke test needs a browser engine, or it skips.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Then the exact next step: run the share-image script, check that the folder holds 71 images, and add the domain in the hosting dashboard.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The last field is the sharpest. \"Continue the work\" tells the next session nothing. A command and a count tell it exactly what to do.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The checklist behind it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "A second file, the clean-state checklist, lists eight things to do before ending a session. Verify passed, or the failure is recorded as the next task. The progress file is updated. The feature list is updated. No half-finished feature is loose, and work in progress is committed or stashed. Only intentional changes show in git status. Nothing ignored is staged. Exactly one feature is in progress. And the repository restarts from the init script.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The checklist exists so the handoff can be short. If the repository is in a clean state, the note does not need to explain a mess.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The day it did not fit",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "On 10 October I ran several agents in parallel on the same repository. When I stopped, I wrote a handoff for the day I would resume. It ran to 2,681 words.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "It had to. It listed each agent, its port, its job, what it finished, and what it left half done. It named two deploy traps. It warned against shipping one branch. It recorded which verify checks failed. A one-screen note could not carry that.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "I take two lessons from it. First, the one-screen rule works for one agent working on one feature. Parallel work breaks it, because the note must now describe several threads. Second, a long handoff is still better than none. But the length is a signal. It told me I had too much in flight.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "A test",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Open a fresh session with only your handoff note and the repository. Can the new session name the next step without asking you anything? If not, a field is missing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "/blog/specs-shrink-the-search-space"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "specs shrink the search space",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-a-minimum-viable-spec",
+    "title": "A minimum viable spec",
+    "slug": {
+      "current": "a-minimum-viable-spec"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T20:00:00.000Z",
+    "_updatedAt": "2026-11-15T20:00:00.000Z",
+    "excerpt": "How small can a spec be and still work? Three fields from one entry of my feature list, a note on structure from the Kiro team, and a proposal.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "My research notes on spec-driven development end with an open question: what is the minimum viable spec for a small task, compared with a large refactor? Here is my attempt to answer it, from files I use.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Nine fields, three that matter",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "An entry in my Porto feature list has nine fields: id, priority, area, title, user-visible behaviour, status, verification steps, evidence, and notes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Six of them are bookkeeping. The id and the priority let an agent pick the next item. The area and the title let a person scan the list. The status says where the item stands. The notes field holds anything that does not fit elsewhere.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Three fields carry the spec itself. They are the behaviour a user would see, the steps that verify it, and the evidence that proves the steps passed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "My proposal",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "For a small task, write those three things and nothing more.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "First, one sentence on what changes for the user, in terms the user would use. Second, one way to check it, a command or an exact step. Third, a place to record what the check printed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "If you cannot write the second one, the task is not ready for an agent. That is useful to learn in the first two minutes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "For a large refactor, the same three fields apply, but you split the work into many entries and add the constraints that must hold across all of them. The refactor's spec is a list of small specs, plus the rules that bind them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "I should say this is a proposal. I have not tested it against a range of project types, and I cannot say it is the right minimum for every team.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "A note on structure",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n12l0",
+            "href": "https://www.youtube.com/watch?v=HY_JyxAZsiE"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "his Kiro talk",
+            "marks": [
+              "n12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ", Al Harris explains why the tool uses fixed templates for its three stages. The structure lets the team build reproducible tooling on top, such as task management in the interface. He also admits the structure is too rigid for some people. Some want to start from a technical note, such as a refactor where the requirements are not yet known, and extract the requirements later. The team was working on making the flow more flexible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "That tension is real. More structure gives tools something to hold. Less structure fits more kinds of work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Keeping specs current",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The second open question is how to keep specs current without process drag. My answer is to attach the update to something that already happens. My end-of-session checklist asks for the progress file and the feature list to be updated before the session ends. The update is part of finishing, not an extra chore.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "My own files show the limit of that. Seven features are in progress against a rule of one. Habit helps, but it does not replace a check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Who writes the spec",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The third question is which parts a model writes. Harris shows one example: after working out a deployment detail the hard way, he asks the tool to write what it learned into a steering document, and says it usually does a good job. The model records. The person decides what is worth recording.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Try it today",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Take one task from this week. Write the three fields. Ask an agent to do the task using only those three. See what it gets wrong. The gaps it finds are the next lines of your spec.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n21l0",
+            "href": "/blog/what-spec-driven-development-means-to-me"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "This is the last article in this series for now. It began with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": "what spec-driven development means to me",
+            "marks": [
+              "n21l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-agents-md-is-a-map-not-a-manual",
+    "title": "AGENTS.md is a map, not a manual",
+    "slug": {
+      "current": "agents-md-is-a-map-not-a-manual"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T11:00:00.000Z",
+    "_updatedAt": "2026-11-15T11:00:00.000Z",
+    "excerpt": "The one file every agent reads first. What mine contains, why it points elsewhere instead of explaining everything, and where it broke its own rule.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "Every one of my city map repositories has an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " file at its root. In the Porto repository, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s3",
+            "text": "CLAUDE.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s4",
+            "text": " is a three-line stub that says ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s5",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s6",
+            "text": " is the single source of agent instructions. One file, so the tools cannot disagree.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The first line is a promise",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The file states its own purpose: it is a map, not a manual. Read the pointer, then follow it. It asks to stay under about 100 lines, with detail kept in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "README.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s3",
+            "text": "PLAN.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s4",
+            "text": ", or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s5",
+            "text": "docs/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The reason is attention. An agent reads this file at the start of every session. If it is long, the important rules compete with trivia. A short file with pointers gives the agent the shape of the project and tells it where each kind of detail lives.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "What it contains",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "**A startup workflow.** Six steps before any code is written: confirm the directory, read the progress file, read the feature list and pick the highest-priority unfinished feature, look at the last five commits, run the init script, and fix the baseline first if verification fails.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "**Working rules.** Work on one feature at a time. Do not mark a feature passing because code was added. Stay inside the feature's scope. Never hand-edit generated geodata, regenerate it through the pipeline. Do not silently weaken a check to make a feature pass. Prefer durable repository artifacts over chat summaries.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "**A definition of done.** A command, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": ", is the gate. The file lists the checks behind it and says what each one guards.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "**Hard constraints.** Node 22, plain ES modules, models authored in metres on real OSM footprints, free-licensed photos only.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "**An end-of-session routine.** Update the progress file and the feature list, record blockers, commit only in a safe state, and leave the repo ready to restart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "What is deliberately not in it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The file does not explain how the sea shader works, or why the terrain data looks the way it does. Those facts live in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "perf/ARCHITECTURE.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": " and in other documents. The map says where to look.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n12l0",
+            "href": "https://www.youtube.com/watch?v=ShuJ_CN6zr4"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "This matches advice I found in the research for my book. In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "a talk on making codebases agent-ready",
+            "marks": [
+              "n12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ", Eno Reyes of Factory AI lists ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s3",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s4",
+            "text": " files among the pillars of an agent-ready codebase, next to linters, tests, and reliable CI. The file matters, but it is one pillar of several.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Where it broke its own rule",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "I counted the lines. The Porto ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " has 137, and it asks to stay under about 100. The performance table and the command list grew it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "I could argue that the content earns its place. But the rule exists, and the file breaks it. This is a small, honest example of spec drift: a spec that stops matching the thing it describes. The fix is either to move the table into ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "perf/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": " and link to it, or to change the rule. I have not done either yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "A test for your own file",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Give your ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": " to someone who has never seen the project. Ask them to find three things in under a minute: how to run the checks, what counts as done, and what they must never edit by hand. If they cannot, the map has a hole.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "/blog/a-feature-list-agents-cannot-game"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "a feature list agents cannot game",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-an-evaluator-rubric-for-ai-changes",
+    "title": "An evaluator rubric for AI changes",
+    "slug": {
+      "current": "an-evaluator-rubric-for-ai-changes"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T14:00:00.000Z",
+    "_updatedAt": "2026-11-15T14:00:00.000Z",
+    "excerpt": "Nine questions, scored 0 to 2, with three of them able to block a change on their own. The rubric I keep in my Porto repo.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "A passing build tells you the code runs. It does not tell you the change is good. For that my repository holds a short rubric. Its first line says to use it after implementation and before final acceptance.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Nine categories",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Each category is a question. The answer is a score from 0 to 2.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The first is the verify gate: did the full verify command run and end green, with the smoke test passing and not skipped? The second is the 1:1 fit: do the fit checks pass, and does every landmark still have its own hand-written builder? The third is the triangle budget.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The fourth is languages: do Russian, English, and Portuguese cover every new landmark, route, story chapter, and interface string? The fifth is data provenance: does every changed dimension entry carry sources with a fact and reasoning, and a confidence value? Was generated data rebuilt by the pipeline and not edited by hand?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The sixth is performance: does the change stay inside the load-time and frame-rate budget, and does the adaptive governor still step down on a slow device? The seventh is leftovers: does the change add no ids, coordinates, or text from Braga, the first city, outside inherited engine comments? The eighth is the web surface: do the sitemap, the landmark pages, and the share images stay in step with the landmark data, and do the API routes still answer? The ninth is scope and handoff: did the session stay inside the chosen feature, and do the state files hold true evidence?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "What a score means",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A 0 means the item is missing, failing, or has no evidence. A 1 means it is partly met, or met without recorded evidence. A 2 means it is fully met, with evidence in the repository: command output, a file path, or a count.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "That last clause is the important one. A score of 2 needs proof that a reviewer can find. The rubric rewards written evidence as much as correct work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The maximum is 18.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Three questions can block alone",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The verdict has three levels. Accept needs 16 or more, with no zero in the verify gate, the 1:1 fit, or the triangle budget. Revise covers 10 to 15, or any zero outside those three. Block means below 10, or a zero in one of the three.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Those three guard the project's core promise: real scale and a working build. A change can be excellent everywhere else and still be unacceptable if it breaks them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The rubric ends with three blanks to fill in: missing evidence, required fixes, and the next review trigger. A review that finds problems must say what to do next.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Why a rubric and not a feeling",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Agents are good at producing a convincing summary of their own work. A rubric moves the question from \"does this sound finished?\" to \"can you show me?\" It also makes reviews comparable. Two changes reviewed a month apart get the same nine questions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "My notes from the research for my book point the same way. Specs create eval seeds: the best evals often start as well-framed task definitions. This rubric is a small case of that. The questions came from the project's own rules.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "What I have not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The rubric is a template in the repository. I have not recorded how often each category catches a problem, so I cannot tell you which question earns its place. If I tracked scores over several weeks, I would learn which rows to sharpen and which to drop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n19l0",
+            "href": "/blog/a-handoff-note-that-fits-on-one-screen"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "a handoff note that fits on one screen",
+            "marks": [
+              "n19l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-five-city-maps-in-seven-weeks",
+    "title": "Five city maps in seven weeks: what the git log says about my pace",
+    "slug": {
+      "current": "five-city-maps-in-seven-weeks"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T21:00:00.000Z",
+    "_updatedAt": "2026-11-15T21:00:00.000Z",
+    "excerpt": "Five real-scale 3D city maps, 453 commits, 48 days. The numbers, the bursts and pauses behind them, and why commit counts overstate what one person does.",
+    "categories": [
+      "Product engineering",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "How fast do I move? I would rather answer with data than a feeling, so I counted.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The numbers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "I build real-scale 3D maps of Portuguese cities. Five repositories share one engine. The first commit was on 28 September, in the Braga repository. The most recent was on 14 November. That is 48 days, about seven weeks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Across the five repositories there are 453 commits. By repository, Braga has 60, Guimarães 40, Barcelos 51, Porto 112, and the fifth city 190.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "By 10 October, four of them were live with 134 places in total: Braga 30, Guimarães 18, Barcelos 16, and Porto 70. Porto is the flagship, with real streets, a coastline from OpenStreetMap, and models of all its landmarks. A fifth city followed in late October.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Bursts and pauses",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Commits did not arrive evenly. Counting by calendar week, the weeks of 28 September and 5 October brought 98 and 139 commits. The next two weeks brought 5 and 1. Then 136, 66, and 8 in the last, partial week.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Only 26 of the 48 days have any commit at all. The busiest day, 30 October, has 95 commits.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The gap in the middle is real. Work paused for about two weeks after the second week and resumed in late October. My notes record that agent rounds can die when usage limits hit, and that my 10 October stop was written as a handoff for that reason. They do not say why the gap lasted two weeks. The pace is not a smooth line. It is a series of sprints and stops.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "What a commit count hides",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "I want to be careful here. Commits are a poor measure of progress.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "First, agents wrote most of the code. I direct the work, define the checks, and decide what ships. My agents type. A commit count measures the output of a team of agents, and I am the lead of that team. It says little about how much one person writes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Second, commits vary in size. A commit that fixes one typo counts the same as one that adds a coastline. And agents commit often, so a busy day can inflate the count.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Third, the numbers do not measure quality. The same repositories contain a failed soak test, a branch that nearly shipped by mistake, and features that are only half done. I have written about those too.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "What I would call speed",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "If I have to choose one number, I would not pick commits. I would pick this: five working maps, each with its own live site and its own checks, in seven weeks, by one person directing agents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n16l0",
+            "href": "/blog/what-spec-driven-development-means-to-me"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "What made it possible was not typing speed. It was the structure around the agents: a shared engine, a repository per city, a verify command, a feature list, and handoff notes that let a stopped session resume. I describe those files in my series on spec-driven development, which starts with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": "what spec-driven development means to me",
+            "marks": [
+              "n16l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Where it is slow",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Some things do not speed up. Real-device testing is still on my list. Language editions made by machine translation need a native reader. A few decisions, such as licences for generated art, are mine alone, and they wait for me.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Pace is a property of the whole system. The agents are fast. The checks, the decisions, and the review set the speed of the loop. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-mentoring-the-machine",
+    "title": "Mentoring the machine: outcomes, context, constraints, evaluation",
+    "slug": {
+      "current": "mentoring-the-machine"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T18:00:00.000Z",
+    "_updatedAt": "2026-11-15T18:00:00.000Z",
+    "excerpt": "Eric Hou of Augment Code calls AI a perpetually junior engineer. What that role asks of you, and how it maps to the files in a spec-driven repo.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://www.youtube.com/watch?v=Zniw5c9_jx8"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "A spec is what you hand to a colleague who is capable but new. That image comes from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "a talk by Eric Hou",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", a member of technical staff at Augment Code.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The perpetual junior",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Hou describes AI as a perpetually junior engineer. It has no knowledge of your organisation or your systems. It can implement something in isolation. It needs a structured environment to do well. Unlike a human junior, it works through a task in minutes, but it forgets between conversations.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "From this he draws a role for the engineer: the perpetual tech lead. Stop assigning tickets. Start mentoring. A mentor gives outcomes, context, constraints, and evaluation, and does not dictate the implementation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Those four words are close to a definition of a spec.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "His story, as he tells it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Hou anchors the talk in a Tuesday where three things collide: an overdue design-system component, a staging emergency caused by a library mismatch, and a new colleague asking for help. He describes handing the component to an agent early, running log parsing and a search for the bad commit in parallel across two agents, and pointing the new colleague to a chat assistant that can read the code, the documents, and the tickets.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "His headline result is a library upgrade across 12 services and 20,000 lines of code. By his account it was finished, tested, and ready for final human polish in roughly half a day, against a normal estimate of three weeks. These are his numbers about his work. I cannot check them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Why teams stall",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "He makes a sharp point about scale. Individuals gain a lot, but teams stall. The reason is the same context deficit that makes a new hire take months to become useful. He reports that four in five engineers name missing context as their biggest blocker, and that this predates AI. You cannot give an agent the knowledge your team never wrote down.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "His three starting steps are to gather knowledge by auditing the documents you have, to get familiar by introducing tools across teams, and to lean in by sharing what works, including agent memories and task lists.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Mapping it to files",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Here is how his four words map onto the files in my Porto repository.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Outcomes live in the user-visible behaviour of each entry in the feature list. Context lives in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": ", which says where to start, and in the plan and the architecture notes. Constraints live in the hard-constraints section and in the checks, such as the rule that a model never shrinks below 97 percent of its real size. Evaluation lives in the verify command and in the evaluator rubric.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "I am not claiming Hou uses these files. The mapping is mine. But it shows that a spec-driven repository is mentoring written down, so the next session, which has no memory, can still be mentored.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "A small exercise",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Think of a task you would give a new colleague on their first day. Write the four things you would tell them: the outcome, what they need to know, what they must not do, and how you will judge the result. That page is a spec.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n17l0",
+            "href": "/blog/when-the-spec-is-not-enough"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "when the spec is not enough",
+            "marks": [
+              "n17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-my-rules-for-working-with-coding-agents",
+    "title": "My rules for working with coding agents",
+    "slug": {
+      "current": "my-rules-for-working-with-coding-agents"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T22:00:00.000Z",
+    "_updatedAt": "2026-11-15T22:00:00.000Z",
+    "excerpt": "The rules in my own agent configuration, and the cost that each one was written to stop. A short, honest look at how I run sessions.",
+    "categories": [
+      "Engineering practice",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "I keep a global instructions file that every one of my agent sessions reads. A section of it is headed with the date of an opportunity scan on 28 September. Here are the rules in it. Where my notes give a reason, I give it too.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Run sessions in short loops",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "One session per pull request. Start a fresh session after a merge, and do not resume a session older than a day. The review found five sessions that had run for weeks, at over one million tokens per turn. A long session is expensive, and its context fills with old details.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Edit files with the right tool",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "File changes go through the edit and write tools, not through shell heredocs. The shell runs things. It does not write source files.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Never sleep in a command",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Do not use ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "sleep",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": " inside a shell call. Wait with a purpose-built tool, a monitor with an until-loop, or a background run. A guard on my shell blocks sleep chains. Its message says polling with sleep burned 47 blocked calls and 27 loops in past sessions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Treat a denial as a decision",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "When the permission classifier blocks a command, do not issue it again. Give the exact command to the person to run themselves, and carry on with other work. A block is a decision, not an obstacle.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Answer once, in the right language",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Reply once, in the language of the last message. Do not repeat the answer in a second language.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Stop on re-authorisation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "When a tool server says it needs re-authorisation, stop and ask for the settings command. Do not retry.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Look at what you made",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "View every generated image or asset before reporting it done.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Read big files in windows",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Never read a large file whole. Search for the symbol, then read a window. A guard blocks whole-file reads above 1,200 lines.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Keep secrets out of reports",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "When a subagent finds a credential anywhere, it reports the fact and the location, never the value. A secret quoted in a subagent's report lands in the parent transcript, and no hook can remove it afterwards.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Commit messages carry no AI attribution",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "My commit messages do not include co-author or attribution lines for the AI. That is a style choice about authorship on my own repositories.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "The orchestrator role",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "The same file describes how I run delegation. I act as the orchestrator: plan, decompose, delegate, and synthesise, and keep my own context lean. Reasoning-heavy work goes to a deep-reasoning agent. Mechanical work goes to a fast worker. For a fresh angle, I may ask a second engineering agent from another vendor. For high-stakes decisions, I may give the same problem to two agents without showing either the other's answer, then combine the best of both.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "Why write these down",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n24l0",
+            "href": "/blog/what-spec-driven-development-means-to-me"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "A new session has no memory of the last one. The file is what it reads first. That is the same idea as the rest of this blog: a spec for the agent, written once, read every time. If you are new to it, start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "what spec-driven development means to me",
+            "marks": [
+              "n24l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-quality-means-fewer-defects",
+    "title": "Quality means fewer defects",
+    "slug": {
+      "current": "quality-means-fewer-defects"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T17:00:00.000Z",
+    "_updatedAt": "2026-11-15T17:00:00.000Z",
+    "excerpt": "Josh Albrecht of Imbue defines code quality by defects and time to fix. His prevention and detection techniques, and where my own repos show the same drift he targets.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://www.youtube.com/watch?v=x_1EumTaXeE"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "\"High quality code\" is a phrase that means nothing until you define it. In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "a talk on writing high-quality code with AI",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", Josh Albrecht, the CTO of Imbue, does define it. He borrows from software engineering research: quality is the absence of defects, measured by how many there are and how long they take to fix.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Feedback before the pull request",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Albrecht presents Sculptor, a research-preview environment for coding agents that Imbue built. A key choice is when feedback arrives. A pull request review is too late, he argues. Sculptor gives synchronous, immediate feedback while the agent works.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Four ways to prevent defects",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "He describes four prevention strategies.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The agent researches prior art before it writes code. A plan-only step comes first, enforced through the system prompt, so no code appears before there is a plan. Specs and documents are first-class artifacts, and the tool detects drift between a document and the code. And a strict style guide applies, in a functional and immutable style, including one tailored to common mistakes of AI agents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Three ways to detect them",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "On the detection side he covers linters, tests, and review by a model.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "For linters, the tool compares the issues that existed before with the issues the change introduced. The agent is not blamed for old lint debt.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "For tests, he argues the old objections to writing them have faded. An agent can generate hundreds or thousands of synthetic inputs for the unhappy paths and flag outputs that look wrong. Generated unit tests that go stale are often worth throwing away and regenerating. And integration tests written from user-facing test plans are usually more valuable than unit tests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "For review, you can simply ask a model to check for style or spec violations, or for missing details, before the commit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "He closes with a tactic: run many sandboxed attempts at a fix in parallel and keep the one that succeeds. His logic is that a problem well stated is half solved.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Where I recognise this",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The idea of doc-code drift is one I have lived with. My ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": " asks to stay under about 100 lines and has 137. My feature list says one feature is active at a time and marks seven in progress. My handoff from 5 October calls two features not started, while the list marks them in progress. Each is a spec and its subject drifting apart. A check that compares them would find all three in seconds.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The lint idea carries over to my gate. A check that fails on old problems teaches an agent to ignore failures. A check that reports only what the change introduced keeps the signal clean. My verify script reports PASS, FAIL, or SKIP for each check. It has no step that separates old failures from new ones. That is a gap.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "A practical start",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Pick one drift your project already has. Write a ten-line script that detects it. Run the script in your verify step. Then the spec and the code have a referee.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n17l0",
+            "href": "/blog/mentoring-the-machine"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "mentoring the machine",
+            "marks": [
+              "n17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-requirements-a-machine-can-check",
+    "title": "Requirements a machine can check",
+    "slug": {
+      "current": "requirements-a-machine-can-check"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T10:00:00.000Z",
+    "_updatedAt": "2026-11-15T10:00:00.000Z",
+    "excerpt": "Structured requirements, EARS syntax, and property-based testing turn a sentence into an invariant. Notes from a Kiro talk, and one rule from my own map project.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "A requirement written as a paragraph can be read in three ways. A requirement written as a rule can be checked. This article is about moving from the first to the second.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "What the Kiro team does",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n2l0",
+            "href": "https://www.youtube.com/watch?v=HY_JyxAZsiE"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "his talk on spec-driven development",
+            "marks": [
+              "n2l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ", Al Harris explains that the Kiro IDE turns a prompt into requirements with acceptance criteria. It writes those criteria in the EARS format. EARS stands for the Easy Approach to Requirements Syntax. It is a structured form of natural language, so each requirement has a clear trigger and a clear response.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "He says this looked like an interesting but minor choice for the first months. Then the team started using it. The requirements translate into properties of the system. A property is an invariant, something that must always hold.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Properties and property-based testing",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Property-based testing checks an invariant by searching for a counterexample. The test generates many inputs and looks for one that breaks the rule. Libraries such as Hypothesis for Python and fast-check for Node do this. If the search finds nothing, you gain confidence that the rule holds.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Harris is careful about the word \"confidence\". It depends on how well the tests are written. A weak generator proves little. Still, the chain is useful: a requirement becomes a property, and the property becomes a test that runs on every change. The requirement stays connected to the code.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "He also describes a step before testing: scanning the requirements themselves for ambiguity and for constraints that conflict, and helping the author resolve them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "A rule from my own project",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "My city maps are built at real scale. One rule says a landmark model must never shrink below its real size. In prose, it reads as a wish. In the repository it is a check called ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": "check:fit",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": ", with two hard-fail rules. A model fails if it deviates from its OpenStreetMap footprint by more than 15 percent. It also fails if it covers less than 97 percent of the OSM extent, or of the real height recorded in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s3",
+            "text": "dimensions.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Written in the EARS style, the second rule reads: while a landmark model is built, the system shall keep it at 97 percent or more of the OSM extent and of the recorded height. The EARS wording is mine, not a format my repository uses. But the shape fits. There is a state, a subject, and a response you can measure.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Because it is a check, the rule does not depend on anyone's memory. An agent that draws a landmark too small gets a failed build.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Not every requirement checks this way",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "I should be honest about the limits. Many entries in my feature list still end in a manual step, such as \"open the local server and confirm that the terrain renders\". A person or a browser script has to look. Some qualities, such as whether a view feels right, resist a property.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "A good practice is to push each requirement as far toward a check as it will go, and to write down the manual step plainly when it will not go further.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "A short method",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Take one requirement from a current project. Rewrite it with a condition, a subject, and a measurable response. Ask what single counterexample would prove it false. If you can name one, you can write the check. If you cannot, the requirement is still ambiguous, and that is worth finding out before an agent builds on it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n17l0",
+            "href": "/blog/agents-md-is-a-map-not-a-manual"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The next article, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "AGENTS.md as a map",
+            "marks": [
+              "n17l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": ", covers the file that tells an agent where these checks live. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-specs-shrink-the-search-space",
+    "title": "Specs shrink the search space",
+    "slug": {
+      "current": "specs-shrink-the-search-space"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T16:00:00.000Z",
+    "_updatedAt": "2026-11-15T16:00:00.000Z",
+    "excerpt": "Why explicit boundaries help parallel agents, how I split work by file ownership, and what happened when two agents shared a file.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "The first pattern in my notes on spec-driven development reads: good specs shrink the search space. An agent that knows the goal, the boundary, and the check has fewer wrong moves to try.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Boundaries as specs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "On my city map projects, I split parallel agents by file ownership. One group owns the landmark models, the fit checks, and the landmark list. One owns the scene, the effects, and the interface. One owns the data folder. An agent edits only its own files.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "That is a spec. It says what an agent may touch. It turns \"build the sea shader\" from an open problem into one with edges.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "On 10 October I had five agents working in the same Porto working tree at once, each with a job and a port for its dev server. The handoff I wrote that day listed the rules for all of them: write to disjoint files, commit only your own files, do not push, do not deploy.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Structure helps the agent read the code too",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n6l0",
+            "href": "https://www.youtube.com/watch?v=HY_JyxAZsiE"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "his Kiro talk",
+            "marks": [
+              "n6l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": ", Al Harris answers a question about large existing codebases. His answer is that it depends, but one factor stands out. If the system already separates concerns well, and its components are highly cohesive, the agent can say \"this module does this thing\" and need not hold 18 things in context. A codebase with a lot of tech debt makes it harder for the agent to find its way, as it does for a person. He adds that reliable tests and clear module separation both make the agent perform better.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "He also describes how a task list runs. By default each task starts as a fresh session that shares no context with the earlier ones. The session is seeded with the specification, then told to do one task. The spec is the memory.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Where the boundary leaked",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "A boundary only works if it holds. In my 10 October handoff, two files were shared. Two agents had both left unfinished edits in the scene file and in the landmarks file. The handoff warns that whoever commits those files includes both authors' changes, so they must be committed together, after the verify run.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Another leak was smaller. The terrain agent owned the fit file. The landmark agent found a dead fit rule for the Felgueiras landmark in it and restored the file byte for byte, since the file was not its own. Yet the terrain agent had edited a rule for the Palácio de Cristal in the same file, and that landmark was the landmark agent's area. The handoff records these as deviations to reconcile.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "This shows that a file-ownership rule needs a way to handle changes that cross it. The rule said who owns a file. It did not say what to do when a change belongs to one agent and sits in another's file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "A cheap test",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "For each parallel task, write one sentence about which files it may edit. If two sentences name the same file, decide who owns it before you start. The cost is a minute. A shared file costs an hour of untangling later.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n14l0",
+            "href": "/blog/quality-means-fewer-defects"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "quality means fewer defects",
+            "marks": [
+              "n14l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-the-definition-of-done-is-a-command",
+    "title": "The definition of done is a command",
+    "slug": {
+      "current": "the-definition-of-done-is-a-command"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T13:00:00.000Z",
+    "_updatedAt": "2026-11-15T13:00:00.000Z",
+    "excerpt": "One command gates every change in my map projects. What it runs, why it skips missing inputs instead of faking them, and why Eno Reyes calls coverage a hard limit for agents.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "In my Porto repository, a feature is done when ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " passes. Not when the code looks right, not when an agent says so. The command builds the app and runs every check whose input data exists.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "What the gate runs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The gate runs 11 checks. They cover the build and the content contract for landmarks, routes, licences, and photos. They check the geometry: footprints, buildings, terrain. They check real-world dimensions and their sources. They check the 1:1 fit against OpenStreetMap. They check the street network and traffic. They check the triangle budget for every model, from 4,000 to 40,000 triangles each and 900,000 in total. Then a smoke test loads the built site in a headless browser and fails on console errors, graphics errors, or bad geometry buffers. Smaller smoke tests cover the trams and the rail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "A feature counts as done under four conditions, all written in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": ". The user-visible behaviour is implemented. The verify command was actually run and passed. Evidence is recorded in the feature list and the progress file. And the repository restarts cleanly from the init script.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Skipped, not faked",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "One line in the file stands out: missing inputs are skipped, not faked.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "If the data a check needs does not exist, the check skips. It does not invent a pass. The smoke test shows the cost of this honesty. It needs a browser engine installed, and without one it reports SKIP. My evaluator rubric then refuses to count a SKIP as a pass. The rubric asks whether the smoke test passed and was not skipped.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A gate that quietly passes when it cannot run is worse than no gate. It gives a false green, and agents learn to trust it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The temptation to weaken the check",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "There is a second rule beside it: do not silently weaken the verification script, or a single check, to make a feature pass. The easy path for an agent that fails a check is to adjust the check. The rule makes that a visible act, not a quiet one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Why this gets harder for teams",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n11l0",
+            "href": "https://www.youtube.com/watch?v=ShuJ_CN6zr4"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "a talk on making codebases agent-ready",
+            "marks": [
+              "n11l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": ", Eno Reyes argues that agents fail in many real projects not because the models are weak, but because the codebase lacks the automatic validation agents need. His starting point is that software has an unusually good signal for correctness: tests, linters, and continuous integration.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "His sharpest observation concerns tolerance. Many organisations function with 50 to 60 percent test coverage, because people compensate by hand. A flaky build that fails every third run is a nuisance a human works around. For an agent, it is a hard block. The agent cannot tell a real failure from noise.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "He proposes eight areas to audit: linter quality, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": " files, test coverage, flaky-test rate, API and doc completeness, reliability of the CI signal, automated code review, and dependency hygiene. He also argues that an imperfect AI-written test is better than none, because it records a specification that later agents can follow and improve. And he claims that organisations that invest in this validation see gains of five to seven times, not one and a half or two. That figure is his claim. I report it, I do not endorse it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "My own gaps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Reading his list against my repository, I can confirm two items: there is an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": ", and there is a gate with 11 checks. I cannot confirm the others from the files I have in front of me. For example, I do not have a measured flaky-test rate. That is a fair place to begin an audit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Takeaway",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Write down the command that proves a change works. Make sure it fails loudly. Make sure a skipped check is never read as a passing one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "/blog/an-evaluator-rubric-for-ai-changes"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "an evaluator rubric for AI changes",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-what-spec-driven-development-means-to-me",
+    "title": "What spec-driven development means to me",
+    "slug": {
+      "current": "what-spec-driven-development-means-to-me"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T09:00:00.000Z",
+    "_updatedAt": "2026-11-15T09:00:00.000Z",
+    "excerpt": "A working definition of spec-driven development, how it differs from paperwork, and the files I use to practise it in my own projects. Part 1 of a series.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "This is the first article in a series about spec-driven development, or SDD. I will keep it practical. Each article takes one idea and shows where it lives in my own repositories.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "A working definition",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "In my book research I wrote down this definition. Spec-driven development makes task intent, constraints, acceptance criteria, and system boundaries explicit enough that humans and agents can implement against them reliably.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Two words in that sentence matter. The first is \"explicit\". A spec states what you would otherwise leave in your head. The second is \"against\". A spec is something you build against and check against. If nobody ever compares the result with the spec, it is only a document.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Why vague requests got more dangerous",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "When coding agents were weak, a vague request produced a weak result, and you noticed at once. Now agents are strong. A vague request produces a confident, plausible result that may solve a different problem. The cost of a missing constraint went up, because the agent will carry on without it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "My notes put it this way: specs convert ambiguous desire into executable coordination. They help people agree with each other. They help agents avoid sprawl. They help evals decide whether a change is correct.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Not bureaucracy, and not a PRD",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Two distinctions from my notes guard against the wrong reading.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "First, SDD is not about producing more documents. The goal is a clearer execution contract. If a document does not change what an agent does or how a reviewer judges, delete it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "Second, an ordinary product requirements document is usually not enough. Many are too narrative, too vague, or too incomplete to guide an agent.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "One public example",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n12l0",
+            "href": "https://www.youtube.com/watch?v=HY_JyxAZsiE"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Al Harris, a principal engineer at Amazon, described the approach his team built into the Kiro IDE in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "a conference talk",
+            "marks": [
+              "n12l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ". The flow takes a prompt and turns it into three artifacts: requirements with acceptance criteria, a design, and a task list. He describes the spec as the artifacts that represent the state of the system at a point in time, plus a structured workflow, plus tools on top that make results reproducible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "I like the framing. It treats the spec as a living thing that moves through three stages, not as a single file written once.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "What it looks like in my repos",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "My city map projects carry their spec in plain files at the root of each repository. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": " tells an agent where to start and what the rules are. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s3",
+            "text": "PLAN.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s4",
+            "text": " holds the plan and the remaining rounds. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s5",
+            "text": "feature_list.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s6",
+            "text": " lists the features with how to verify each one. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s7",
+            "text": "evaluator-rubric.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s8",
+            "text": " scores a finished change. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s9",
+            "text": "session-handoff.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s10",
+            "text": " and a clean-state checklist carry the work from one session to the next.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "None of these is long. Each answers one question for an agent that has never seen the project: where do I start, what is next, how do I prove it works, how do I judge it, and what do I leave behind.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The series",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The next articles take these files one at a time, and then look at what other practitioners say about the same problems.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n19l0",
+            "href": "/blog/requirements-a-machine-can-check"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l1",
+            "href": "/blog/agents-md-is-a-map-not-a-manual"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l2",
+            "href": "/blog/a-feature-list-agents-cannot-game"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "I start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "requirements a machine can check",
+            "marks": [
+              "n19l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ", then ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": "AGENTS.md as a map",
+            "marks": [
+              "n19l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s5",
+            "text": "a feature list agents cannot game",
+            "marks": [
+              "n19l2"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s6",
+            "text": ". Later articles cover the definition of done, the rubric, the handoff, and the limits of all of this.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "The thread through the series is simple. Cheap generation does not remove the need for judgement. It moves the judgement into the spec. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-when-the-spec-is-not-enough",
+    "title": "When the spec is not enough",
+    "slug": {
+      "current": "when-the-spec-is-not-enough"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-15T19:00:00.000Z",
+    "_updatedAt": "2026-11-15T19:00:00.000Z",
+    "excerpt": "A green gate, a branch that passed 15 of 15 checks and would have rolled back live work, and an invented number that no check covers. The limits of spec-driven development in my own repos.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "A series about spec-driven development should say where it fails. Here is where it failed for me.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "A green gate that was not complete",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "On 10 October an agent produced a branch with lazy-loaded models and a lite scene. It passed all 15 of its verify checks. It was not safe to ship. The branch left out the camera clamp, the boat models, the finer terrain, the landing pads, and the first wave of commits. Deploying it would have rolled back live work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The gate answered \"does this branch work?\" It had no way to answer \"does this branch contain everything that is already live?\" Nobody had written that requirement down, so nothing checked it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "A spec that does not cover deploying",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Two more traps lived outside the checks. One commit imported a file that only arrived in the next commit, so deploying the state between them would have broken the build. And the real build command edits one of the tracked data files before it builds. Both were in my handoff, in prose. Neither was a check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "The lesson is plain. A spec covers what you thought to specify. Deploying is a separate job, and my specs treated it as an afterthought.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The main branch failing its own gate",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The same handoff records that the main branch failed two verify checks at that point. One was a life-simulation smoke test, broken by a boat hull change. The other was the model check, because one of the 70 models fell outside the triangle range. The gate did its job. It caught regressions from a busy day. But it also shows that a gate can be red while work continues around it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "An invented number no check covers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "My notes record that the storey count for buildings without a tag is an invented heuristic. OpenStreetMap does not say how many storeys such buildings have, so the code guesses. I decided to ship it. No check can tell me whether the guess is right, because there is nothing to compare it against. The spec records the guess, and that is all a spec can do here.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Small drifts",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "I described three drifts earlier in the series. The agent instructions file is longer than the limit it states. The feature list has seven features in progress, against its own one-at-a-time rule. A handoff and the list disagree on whether two features have started.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The open questions",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "My research notes end with questions I cannot yet answer. What is the minimum viable spec for a small task, compared with a large refactor? How can a team keep specs current without creating process drag? Which parts of a spec should a model write, and which a human?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "I have partial answers, and the next article gives one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "What I take from it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "A spec is a set of promises. Checks keep the promises you can measure. For the rest, such as completeness, deploy order, and judgement calls, you need a written warning and a person who reads it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "/blog/a-minimum-viable-spec"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "a minimum viable spec",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
