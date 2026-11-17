@@ -22989,5 +22989,3494 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-a-200-is-not-enough-to-call-a-city-live",
+    "title": "A 200 is not enough to call a city live",
+    "slug": {
+      "current": "a-200-is-not-enough-to-call-a-city-live"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T10:00:00.000Z",
+    "_updatedAt": "2026-11-17T10:00:00.000Z",
+    "excerpt": "Two of my map addresses answered with other people's sites. How that changed the rule for what \"live\" means, and why my maps now live on subdomains.",
+    "categories": [
+      "Product engineering",
+      "Web performance"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "On 14 November I tested the addresses I had planned for two new maps. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "lisboa-3d.vercel.app",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s3",
+            "text": "faro-3d.vercel.app",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s4",
+            "text": " both answered with a normal 200. Both were other people's sites.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Names on ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "*.vercel.app",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": " are first come, first served. A plain \"does it answer?\" check would have called both of my cities live. A visitor would have landed on a stranger's page.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The rule",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The README now states it: a place counts as live when its address answers 200 with one of our city maps that names it. A 200 alone is not enough.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Two commands enforce the rule. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "npm run check",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " validates the city data and the landmarks, and every place marked live must answer. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "npm run check:live",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": " tests every address and prints which ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": "live",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": " flags are wrong.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "How a map names itself",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Each place record has a ready flag, or null when the site exposes none. Some maps run on a different engine and have no such flag. Madeira and Pena Park are two. For those, the record lists the marks that appear in the page ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "<title>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": ", and the check looks for them.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The check does not judge quality. It answers one question: is this page ours, and does it name this place?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "\"Coming soon\" never links",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "A place that is not live shows a card with a clear label. The card is an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": "<article>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": " that can take focus but has no link. A visitor cannot click through to a dead or foreign page. The check and the card enforce the same promise from two sides.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The fix: subdomains of my own domain",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "On 15 November I told the agent to decide everything itself. It chose a subdomain for each new map: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "https://<name>.portugal-3d.com",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": ", with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "douro",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": " for Pinhão. Subdomains of my own domain cannot belong to a stranger.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The setup needs one wildcard DNS record at the registrar. I added it. After that, each repository gets its own deploy, and the subdomain is attached to it with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "vercel domains add",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ". Then I run the live check and flip the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s3",
+            "text": "live",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s4",
+            "text": " flag.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Until the wildcard existed, the globe linked the eleven new maps at their Vercel addresses. Two of those names carried a suffix that Vercel had added, because the plain names were taken. When the record went live, all eleven subdomains served their maps with certificates. The globe switched its links to the subdomains.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "On 16 November I moved Guimarães, Barcelos and Arouca to subdomains too. Braga and Porto keep their own domains, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "braga-3d.com",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s3",
+            "text": "porto-3d.com",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s4",
+            "text": ". Pena Park stays on its Vercel address.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "What I take from it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Test the claim, not the status code. \"Does it return 200?\" and \"is this our page?\" are different questions. Only the second one protects a visitor.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Own the namespace. A shared hostname is fine for a prototype. For a public front door, put every address under a name you control.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Keep the check in the repository. I do not remember which flags are right. The command does.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n19l0",
+            "href": "/blog/scroll-dive-and-the-way-back"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "The next article covers ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "what happens after a visitor picks a city",
+            "marks": [
+              "n19l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-a-globe-in-front-of-eighteen-maps",
+    "title": "A globe in front of eighteen maps",
+    "slug": {
+      "current": "a-globe-in-front-of-eighteen-maps"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T09:00:00.000Z",
+    "_updatedAt": "2026-11-17T09:00:00.000Z",
+    "excerpt": "How portugal-3d.com went from an idea on 5 November to the front door of eighteen real-scale 3D maps. What it is, how it is built, and what the git log says about the pace.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "By early November I had five city maps and no front door. Each map lived at its own address. A visitor had to know the address first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "On 5 November I described a different shape to my agent. A globe, or a sphere, with the 3D cities on it. Pick any city. It should be a standalone project on its own domain, portugal-3d.com. Scroll a little and the globe moves with you, then a city gets selected.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "This article is the first in a series about that site. It covers what the site is and how fast it came together.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "What it is",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The README describes it in one paragraph. It is the front door to eighteen real-scale 3D maps of Portugal, from Ponte de Lima to Faro and out to Madeira. A scroll-driven globe pulls the visitor toward Portugal and highlights the outline. Every place shows as a pin. A focused place shows its best-known landmarks, its UNESCO listing, and the straight-line distance to its neighbours. A pick plays a dive that ends in that place's own site.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "A place whose site is not up shows as \"coming soon\". It never sends anyone to a dead page.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "One list of places",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "data/cities.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": " is the only list of places. It runs north to south by region. A record holds an id, a region, and a rank that sets label priority. It holds the names and a short fact in six languages, and the fact's source: a URL and a quoted passage. It holds the coordinates, the map's address, a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": "live",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s3",
+            "text": " flag, a card image, a theme colour, and the UNESCO listing if there is one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The README says plainly that four of the six languages are machine translations. Spanish, French, German and Russian need a native review. I have not done that review yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "HTML first, globe second",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The cards for all places are written into ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "index.html",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": " at build time, grouped by region in one sideways rail. They work with script off, with reduced motion, and on a device without WebGL. Script then adds the globe on top.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n11l0",
+            "href": "/blog/the-globe-costs-five-draw-calls"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "A small module picks one of three tiers for the globe: full, lite or static. Phones always get lite. The next article in the series, on ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "the draw-call budget",
+            "marks": [
+              "n11l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": ", shows what that costs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The pace, from git",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The repository has 62 commits. They fall on six days.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "On 7 November: 13 commits. The design and plan came first, then the scaffold, the static landing, and the globe scene. Then a gap with no commits until 13 November. That is the day I bought the domain. On the 13th: 13 commits. On the 14th: 15 commits, with sixteen pins, collision-aware labels, and a panel with landmarks and distances. On the 15th: 6 commits, and all sixteen maps went live. On the 16th: 6 commits. On the 17th: 9 commits.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The count grew from five places to eighteen. Madeira joined as the seventeenth place on 15 November. Pena Park joined as the eighteenth on 17 November.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "I do not read commit counts as effort. An agent writes most of the code. What they show is rhythm: a burst, a pause, then three days of steady work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "What came out of it",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The rest of the series takes one piece at a time:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n19l0",
+            "href": "/blog/a-200-is-not-enough-to-call-a-city-live"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l1",
+            "href": "/blog/scroll-dive-and-the-way-back"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l2",
+            "href": "/blog/labels-that-do-not-collide"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l3",
+            "href": "/blog/claims-with-a-status"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l4",
+            "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
+          },
+          {
+            "_type": "link",
+            "_key": "n19l5",
+            "href": "/blog/what-my-claude-sessions-show-about-my-own-work"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "- ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "A 200 is not enough to call a city live",
+            "marks": [
+              "n19l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": " - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": "Scroll, dive, and the way back",
+            "marks": [
+              "n19l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s4",
+            "text": " - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s5",
+            "text": "Labels that do not collide",
+            "marks": [
+              "n19l2"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s6",
+            "text": " - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s7",
+            "text": "Claims with a status",
+            "marks": [
+              "n19l3"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s8",
+            "text": " - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s9",
+            "text": "Eleven city maps in three days, and the limits behind them",
+            "marks": [
+              "n19l4"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s10",
+            "text": " - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s11",
+            "text": "What my Claude sessions show about my own work",
+            "marks": [
+              "n19l5"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "The lesson from the first week is small. Start the front door with a list in plain HTML. The globe is a layer on top of the list, not a replacement for it. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-claims-with-a-status",
+    "title": "Claims with a status",
+    "slug": {
+      "current": "claims-with-a-status"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T14:00:00.000Z",
+    "_updatedAt": "2026-11-17T14:00:00.000Z",
+    "excerpt": "Every statement on my globe story has a status (works, trying, idea) and a source file. How the check works, and what a claims list found when I turned it on my own pages.",
+    "categories": [
+      "Engineering practice",
+      "Product engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "A tourism site that says \"tested on phones\" when it was not tells a small lie. My globe keeps its sentences in a file that makes this kind of sentence hard to write.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The story is data",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The globe tells a story in six chapters as you scroll. The text does not live in the page. It lives in two files.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "data/claims.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": " holds each statement as a record with a status and a source. The status is one of three words: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": "works",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s3",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s4",
+            "text": "trying",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s5",
+            "text": ", or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s6",
+            "text": "idea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s7",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s8",
+            "text": "data/story.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s9",
+            "text": " builds the chapters out of claim ids.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Today the file holds nine claims. Six are ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "works",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": ", one is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "trying",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": ", and two are ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": "idea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "One rule for adding a sentence",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "To add a statement, add a claim with a source. If there is no source, mark it ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "idea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": " and word it as an idea. Only then list its id in a chapter. The wording of an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "idea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": " must read like one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A check that opens the sources",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The command ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "npm run check:story",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " validates the data. It checks that every source file exists. The paths are relative to my development folder. It then writes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": "docs/story-claims.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s4",
+            "text": ", a plain list for me to review.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The check cannot tell me that a source supports the sentence. It can only tell me that a source exists. The written list exists so that I read it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The same habit on another page",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "I used the same method on a page for institutions that I have not linked from the site yet. For each line in its \"works today\" column, I wrote down which file proves it. I checked by reading the code of each map. For that column I did not open the live sites, and the list says so.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The list also has a \"left out\" section.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "- A guide that answers questions is built but parked. It loads only with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "?guide=1",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": ", and no API key is set, so it has never answered a real question. - \"Tested on phones\" stays out. No map has had a test on a real phone. - A statement that a trail is official stays out. Its official status is not confirmed. - \"Reconstructions are labelled\" stays out. No map shows a reconstruction label yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "What a claims list finds",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Two sentences changed on 17 November when Pena Park joined. \"Day and night on every map\" became \"on the town maps and Madeira\", because Pena Park has no night. \"Weather on every map except Madeira\" became \"on the town maps\", because Madeira and Pena Park have none.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The list also counted photos. Eight of the 301 town-map landmarks have no photo. So \"a photo for every landmark\" is false, and the page says \"a photo where a free one exists\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The list records conflicts between sources. One map's README still says \"not deployed\", while its progress log and data say the map is built. The page follows the progress log and the data.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "A claim without a file is an idea. Give every sentence a status, and make the status visible to the person who reads the page. When a new place joins, rerun the list. The sentences that were true for five places may be false for eighteen.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n20l0",
+            "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "eleven city maps in three days, and the limits behind them",
+            "marks": [
+              "n20l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-eleven-city-maps-in-three-days-and-the-limits-behind-them",
+    "title": "Eleven city maps in three days, and the limits behind them",
+    "slug": {
+      "current": "eleven-city-maps-in-three-days-and-the-limits-behind-them"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T15:00:00.000Z",
+    "_updatedAt": "2026-11-17T15:00:00.000Z",
+    "excerpt": "Sintra, Faro, Lisboa, Évora, Coimbra and six more went from nothing to live between 13 and 15 November. What made it fast, and the four limits that decided the pace.",
+    "categories": [
+      "Product engineering",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "The globe needed more places on it. Between 13 and 15 November, eleven new city maps went from nothing to live. This article explains how, and what held the pace down.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The waves",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Each map is a fork of the same engine. I built them in three waves, with agents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "On 13 November: Sintra, Faro, Lisboa, and Ponte de Lima. On 14 November, a UNESCO wave: Évora, Coimbra, Tomar, and Belém. Later that day, a third wave: Batalha, Alcobaça, and Pinhão, where the Douro vineyard terraces are drawn in the ground shader.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "All eleven passed ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " on 14 November. On 15 November, all sixteen maps were deployed and linked from the globe. Madeira followed as the seventeenth the same day.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Limit one: usage",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "The agents run on a plan with a five-hour usage limit. Four heavy agents in parallel use it up. Three or four at once hit it again on 15 November. Two at once was safe.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "Two rules now go into my briefs. Commit after each round, so a cut-off loses little. And for a repository that I might deploy, work in a git worktree and leave the merge to me. After the merge, remove the worktree, so the deploy tool does not upload it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Limit two: the map data",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The pipeline asks a public service, Overpass, for the OpenStreetMap data. Overpass was down at times. A script in two of the repositories can answer the same queries from the main OpenStreetMap API when you set ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": "OSM_API=1",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The result is uneven. On some maps the outer ring of OpenStreetMap data is thin because Overpass failed. Each repository records the commands to resume. Most building heights are estimates.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Limit three: what a site lets you read",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Some heritage and tourism sites refuse automated reads. I did not work around that. The agents do not pretend to be a browser to get past a refusal.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The photo script for Belém rejects Commons authors who ask to be contacted before reuse. The globe uses 33 landmark photos from the city repositories, each with a checked licence and a visible credit. Eight of 301 town-map landmarks still have no photo.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Limit four: measurement",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "When the eleven maps first passed ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": ", I had not run the performance bench on them. That is a gap. On 15 November, the faster-start work from Lisboa was ported into the other ten. In the test profile \"phone-low\", the first frame arrived at about 5.5 seconds, down from about 8. That figure comes from a test profile, not a real phone.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "What made it fast",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The engine was shared. A map is mostly data: a city config, landmark records, and a data pipeline that is resumable and writes into the repository. The checks from the first city came along, and all eleven forks passed them on 14 November.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Speed here has four limits, and none is typing. They are usage, data, permission to read a source, and measurement. The first two have written fallbacks now: the commit rule and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "OSM_API=1",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ". I respected the third. The fourth is still open, and I say so.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n20l0",
+            "href": "/blog/what-my-claude-sessions-show-about-my-own-work"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "The last article in this series looks at the logs behind all of this: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "what my Claude sessions show about my own work",
+            "marks": [
+              "n20l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-labels-that-do-not-collide",
+    "title": "Labels that do not collide",
+    "slug": {
+      "current": "labels-that-do-not-collide"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T13:00:00.000Z",
+    "_updatedAt": "2026-11-17T13:00:00.000Z",
+    "excerpt": "Eighteen pins on a small country. The rules that merge, place and hide labels, and the tests that run them at four screen sizes in two languages.",
+    "categories": [
+      "Product engineering",
+      "UI"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "Portugal is a narrow country. At the full view of the globe, several of my eighteen places sit almost on top of each other. Naive labels would pile up into an unreadable smear. This article covers the rules that stop that.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Merge close places",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Every frame, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "src/labels.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": " looks at the pins on screen. Places that sit closer than 30 pixels merge under the name of the best-ranked one. The label reads like \"Lisbon +2\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Rank is a field in the data. Rank 1 wins. The focused place always leads its group, whatever its rank.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Place what is left",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Each label tries eight sides around its pin. It takes the first side that is clear of other labels, other pins, the info panel, the chapter text, and the bar. If no side is clear, the label hides. The pin's button keeps its name.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Zoom a group",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A click on a merged group zooms the camera until the places in it stand apart. \"Back to all of Portugal\" or the Escape key returns to the full view.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Featured places follow the same rules",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "One place, Pena Park, carries a \"Featured\" badge and a gold ring on its pin. A featured place follows its rank like any other. At the country view, Pena Park has rank 18 and sits inside the group \"Pinhão +1\". Its gold ring shows when you hover over it, focus it, zoom to it, or when its card is in view in the rail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The panel and the arcs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The place panel shows the focused place's landmarks, its UNESCO mark, and its three nearest places with great-circle distances. It also draws fine arcs to those neighbours in an SVG laid over the canvas. The arcs cost no extra draw calls.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "On a phone, the card in view in the rail focuses its place. The visitor scrolls cards, and the globe follows.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Tests",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Layout rules are easy to break without noticing. The repository covers them from three sides.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "A unit test file checks the merge and placement logic. An end-to-end test checks label overlap at four screen sizes, in English and in Russian. Other end-to-end tests cover the panel, the distances and the arcs, and the card-in-view focus on a phone. The Russian copy ran long, so it was shortened to fit a small phone.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "A layout that looks right in one language and one size is an accident. Write the rules as code, then test them in the longest language at the smallest size.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "/blog/claims-with-a-status"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The next article is about the words on the page: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": "claims with a status",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-scroll-dive-and-the-way-back",
+    "title": "Scroll, dive, and the way back",
+    "slug": {
+      "current": "scroll-dive-and-the-way-back"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T11:00:00.000Z",
+    "_updatedAt": "2026-11-17T11:00:00.000Z",
+    "excerpt": "How scroll drives the globe, how a pick becomes a dive into a separate site, and the three values that let a city link back without confusing a visitor who never saw the globe.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "The globe page has to do three jobs. It has to follow the scroll. It has to hand a visitor to a city's own site without a seam. And it has to let that visitor come back.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Scroll as the only input",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "One module, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "src/timeline.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ", maps scroll progress to everything on screen: the camera, the glow on Portugal's outline, the dimming, the opener, the six story chapters, and the fade-in of the cards.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The hero spacer is 600vh tall. Progress runs from 0 to 1 over that height. The opener takes up to 0.12. The six chapters run from 0.12 to 0.84. The cards take the last part, 0.84 to 1.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "A function of one number is easy to test. The repository has a unit test file for the timeline and an end-to-end scroll test. The end-to-end test does what a visitor does: it scrolls.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The opener",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "A short hero video plays at the start. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "src/opener.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": " loads it after the globe is ready, plays it once, and stops it when it has faded. A helper called ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "pickOpener",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": " decides whether the video plays at all. It plays only on the full tier and only if the visitor has not asked to save data. Otherwise only the poster shows.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The dive",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "When a visitor picks a place, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "src/dive.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " plays a descent. The shot ends at the city's own address with two values added: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": "?intro=1&lang=<lang>&from=globe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s4",
+            "text": ". The city site plays its own fly-in as the last part of the shot. The two animations meet in the middle, so the visitor sees one movement.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The dive needs very little from the other site: an address and a theme colour. That is why it works for Madeira and Pena Park, which run on a different engine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The way back",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "A visitor who clicked through from the globe should be able to return. A visitor who found a city through a search engine should not see a link to a globe they never saw.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "from=globe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": " value solves this. Each city repository carries ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s3",
+            "text": "src/back-to-globe.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s4",
+            "text": ". It shows the back link only when the address contains ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s5",
+            "text": "from=globe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s6",
+            "text": ". The link points to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s7",
+            "text": "https://portugal-3d.com/#from=<id>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s8",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s9",
+            "text": "src/ascend.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s10",
+            "text": " on the globe reads that value and flies back to the right place.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "So three values carry the whole contract: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "intro",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s3",
+            "text": "lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s4",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s5",
+            "text": "from",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Where the contract has a hole",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Pena Park has no ready flag and no back link to the globe. The README states both facts. The dive still works for it, because the dive needs only an address and a theme.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Tests",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The repository has a unit test for the dive and one for the return path. An end-to-end test covers the return. Together they cover the loop: pick, dive, arrive, return.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Keep the contract between two sites small and explicit. Three named values are easy to document, to test, and to explain to the next agent that touches either side.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n20l0",
+            "href": "/blog/the-globe-costs-five-draw-calls"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "The next article looks at what all of this costs on a phone: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "the globe costs five draw calls",
+            "marks": [
+              "n20l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-the-globe-costs-five-draw-calls",
+    "title": "The globe costs five draw calls",
+    "slug": {
+      "current": "the-globe-costs-five-draw-calls"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T12:00:00.000Z",
+    "_updatedAt": "2026-11-17T12:00:00.000Z",
+    "excerpt": "Sixteen pins, labels, a panel and arcs added no draw calls to the globe. The numbers, the test setup, and what they do and do not prove. Plus the same question asked of the city maps.",
+    "categories": [
+      "Web performance",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "The globe page must run on a phone. The repository has a phone probe, and its first commit says it was written before the move from five places to sixteen. That way each change could be measured against a baseline.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The tiers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "src/tier.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": " picks one of three tiers: full, lite, or static. Phones always get lite. The place cards are plain HTML, so they also work with script off or without WebGL.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The probe",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The script ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "scripts/perf-globe.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " runs against a preview build. It uses a 390 by 844 viewport at a pixel ratio of 3, on the lite tier. It slows the CPU four times through the browser's debugging protocol. It then scrolls 180 steps from the top of the page to the end of the globe story. Each result comes from three runs. It records the time between animation frames, the draw calls at the end view, and the triangle count.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The numbers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "On the build with five places, the mean frame interval was 18.5 ms in run 1 and 19.1 ms in run 2. The 95th percentile was 33.3 ms and 16.7 ms.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "On the build with sixteen places, the mean was 16.7 and 16.8 ms, and the 95th percentile 16.8 ms in both runs. With Lisboa focused, so the panel and arcs were on screen, the mean stayed at 16.7 ms.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The draw calls stayed at 5 in every row. The triangle count stayed at 5,440.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Why the cost did not grow",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The pins, the labels, the panel, and the arcs are DOM and SVG elements laid over the canvas. They are not part of the 3D scene. Label placement runs once per drawn frame, for sixteen points. That is a small amount of arithmetic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "As a result, adding a place adds an element in the page, not a mesh in the scene.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "What the numbers do not prove",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "I measured on 14 November on an Apple-silicon Mac using the Metal graphics API. The CPU slowdown is a stress test. The result shows relative cost between builds. It does not show how a real phone behaves.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "My own claims list says that no city map has had a test on a real phone. I have no record of a real-phone test for the globe either.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The frame interval of 16.7 ms is the refresh rate of a 60 Hz display. Once a build sits at the refresh rate, the probe cannot show an improvement. It can only show a regression.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The same question for the city maps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "On 17 November I asked for the same discipline in the city maps: do not draw the whole map, draw what is visible, and load and unload objects.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The first result came on Porto. Roads are now drawn by the cells in view. A deep link that opens a route improved from 22.7 seconds to 4.8 seconds in a headless run. Desktop frame time and map load time did not change.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "I report both parts. The deep link got much faster. The two numbers I hoped to move stayed where they were. An earlier round on Porto cut draw calls from 499 to 281 at the same image.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Measure before you add features, and keep the probe in the repository. A table where a row says \"no change\" is still useful. It tells you where the cost is not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n22l0",
+            "href": "/blog/labels-that-do-not-collide"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": "labels that do not collide",
+            "marks": [
+              "n22l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-what-my-claude-sessions-show-about-my-own-work",
+    "title": "What my Claude sessions show about my own work",
+    "slug": {
+      "current": "what-my-claude-sessions-show-about-my-own-work"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-17T16:00:00.000Z",
+    "_updatedAt": "2026-11-17T16:00:00.000Z",
+    "excerpt": "I asked Claude to read the logs of my own sessions on the portugal-3d project. Twenty clean reviews, five usage resets, two false \"done\" reports, and what logs can never tell you.",
+    "categories": [
+      "Engineering practice",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "Claude Code writes every session to a log on my machine. The logs are JSON lines. I asked Claude to read the ones for portugal-3d and tell me what they show about my own work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "I limited the read. Claude read my messages and the structured results of reviews. It did not read tool output, because tool output can hold secrets.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Finding 1: the project folder is all reviews",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The project folder for portugal-3d holds 20 sessions. Ten run on 7 November and ten on 13 November. All 20 are automated security reviews. Each one received a diff and returned a structured result. All 20 returned an empty list of findings.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "They covered the globe, the border, the scroll, the dive and the return, the opener, and the story chapters.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "An empty list is a result, not a proof. A reviewer saw only the diff, not the whole repository. And a model wrote each review. What the logs do give me is a record that every change got a look.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Finding 2: my own building happened elsewhere",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "My conversations about the globe are not in that folder. They sit in one long session in my main folder that began on 28 September. It holds about 230 of my own messages across seven weeks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The log tells me what I asked and when. It does not hold the reasons. The reasons are in the notes that the session wrote for itself.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Finding 3: usage limits set the rhythm",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "From 9 October on, the log shows five usage-limit resets, each followed by a message that tells the agent to continue. It shows cut-offs at 01:39 on 14 November and 03:52 on 17 November.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Work does not stop cleanly at these points. This is why my briefs say \"commit after each round\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Finding 4: two false \"done\" reports",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "A stop hook called done-check compares a completion report with the repository. It flagged two reports in these logs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "On 13 November, it flagged a report that claimed completion. The diff against the main branch touched 81 files and 6,709 added lines. On 15 November, it flagged a report of \"merged, pushed and ready\" while the working tree was dirty.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "The hook caught both, not me.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Finding 5: forty minutes of waiting for a report",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "On 3 November I sent the same message, \"I am waiting for the report, then deploy\", 17 times in 39 minutes. In the middle of that I told the agents to stop the hung ones and restart the work step by step.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The lesson is about the channel, not the wait. If a report does not come, ask why the channel is silent. Do not send the same message again.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Finding 6: two mistakes in the briefs",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "One agent was briefed with the wrong place. My Pena Park project is in Ribeira de Pena. It is not the Parque da Pena in Sintra. The notes now say so at the top.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Another agent put my email address into the user-agent header of requests to a public map service. My briefs now forbid it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "In both cases the fix went into the brief.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "What logs cannot tell you",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "Lesson",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "Read your own logs at least once. They hold patterns you cannot see from inside a session: where the limits fall, which checks fire, and which mistakes repeat. Then turn each pattern into a rule, a hook, or a line in a brief. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
