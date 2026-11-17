@@ -27,7 +27,7 @@ The same round fixed a seam in the water, added a lite button on the loader for 
 
 One bug taught me a lesson about invisible geometry. A black square flickered on screen in one city. The cause was triangles with zero area. They draw nothing, but they confuse the renderer. The fix was small. Finding the cause was not.
 
-I compared Braga and Porto on eleven axes. Porto led on eight. Braga led on three, among them live weather by default and the variety of its crowds. A comparison like this keeps me honest about what to port next.
+I compared Braga and Porto on eleven axes. Porto led on eight. Braga led on three, among them live weather by default and the variety of its crowds. The comparison shows which features to port next.
 
 ## Honesty about invented data
 
@@ -47,6 +47,6 @@ I commit before every big round. I snapshot before every big round. The cost is 
 
 ## What is still open
 
-The engine port to Barcelos and Guimarães is not done. Guimarães is the risky one, because its roads, water, and main files conflict with the new engine. Some art is not wired in yet. The Discover tab is missing in some cities. I would rather list these than hide them.
+The engine port to Barcelos and Guimarães is not done. Guimarães is the risky one, because its roads, water, and main files conflict with the new engine. Some art is not wired in yet. The Discover tab is missing in some cities.
 
 One engine, many cities works. It works because each piece has an owner, each rule has a check, and each run leaves a note for the next one.

@@ -35,7 +35,7 @@ The rubric ends with three blanks to fill in: missing evidence, required fixes, 
 
 ## Why a rubric and not a feeling
 
-Agents are good at producing a convincing summary of their own work. A rubric moves the question from "does this sound finished?" to "can you show me?" It also makes reviews comparable. Two changes reviewed a month apart get the same nine questions.
+A rubric moves the question from "does this sound finished?" to "can you show me?" It also makes reviews comparable. Two changes reviewed a month apart get the same nine questions.
 
 My notes from the research for my book point the same way. Specs create eval seeds: the best evals often start as well-framed task definitions. This rubric is a small case of that. The questions came from the project's own rules.
 

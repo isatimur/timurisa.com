@@ -41,6 +41,6 @@ Test the claim, not the status code. "Does it return 200?" and "is this our page
 
 Own the namespace. A shared hostname is fine for a prototype. For a public front door, put every address under a name you control.
 
-Keep the check in the repository. I do not remember which flags are right. The command does.
+Keep the check in the repository, so the command knows which flags are right.
 
 The next article covers [what happens after a visitor picks a city](/blog/scroll-dive-and-the-way-back).

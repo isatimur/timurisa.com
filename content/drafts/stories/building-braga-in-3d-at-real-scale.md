@@ -1,11 +1,11 @@
 title: Building Braga in 3D at real scale
 slug: building-braga-in-3d-at-real-scale
-excerpt: How I built an interactive map of Braga where every building sits on its real footprint, and the rule that kept it honest.
+excerpt: How I built an interactive map of Braga where every building sits on its real footprint, and the rule that checks it.
 category: Product engineering
 category: Three.js
 date: 2026-11-06T09:00:00.000Z
 
-I love Braga, a city in northern Portugal. I wanted a 3D map of it that felt like the real city. Not a toy. Not a diorama. A map where a church tower has the height of the church tower, and a street has the width of the street.
+I love Braga, a city in northern Portugal. I wanted a 3D map of it that felt like the real city: a church tower with the height of the church tower, a street with the width of the street.
 
 The project is a Three.js app built with Vite and plain JavaScript. The interface speaks Russian, English, and Portuguese. It runs at braga-3d.com. This is the story of how it got built, and what I learned about data on the way.
 
@@ -48,5 +48,3 @@ The hard constraint drove the architecture. "Real scale" shaped the footprints, 
 A rule needs a check. `check-fit` is what turns "real scale" from a wish into a build failure.
 
 Notes about odd data sources earn their place. The working Overpass mirror and the OSRM foot-profile server are in my notes, so I do not rediscover them.
-
-Braga was the first city. It would not be the last.

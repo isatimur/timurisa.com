@@ -53,4 +53,4 @@ Do not blame the data first. Find the layer that changes the data. Here, that la
 
 A fix can move a bug. Capping the cut made the fill worse. Check both sides of any change that balances two quantities.
 
-Give every automatic correction a budget. An algorithm that can move any amount of earth will, sooner or later, move 61 metres of it.
+Give every automatic correction a budget. The uncapped pad algorithm cut 61.6 metres out of a hill.

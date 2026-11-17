@@ -25,7 +25,7 @@ For linters, the tool compares the issues that existed before with the issues th
 
 For tests, he argues the old objections to writing them have faded. An agent can generate hundreds or thousands of synthetic inputs for the unhappy paths and flag outputs that look wrong. Generated unit tests that go stale are often worth throwing away and regenerating. And integration tests written from user-facing test plans are usually more valuable than unit tests.
 
-For review, you can simply ask a model to check for style or spec violations, or for missing details, before the commit.
+For review, you can ask a model to check for style or spec violations, or for missing details, before the commit.
 
 He closes with a tactic: run many sandboxed attempts at a fix in parallel and keep the one that succeeds. His logic is that a problem well stated is half solved.
 
@@ -37,6 +37,6 @@ The lint idea carries over to my gate. A check that fails on old problems teache
 
 ## A practical start
 
-Pick one drift your project already has. Write a ten-line script that detects it. Run the script in your verify step. Then the spec and the code have a referee.
+Pick one drift your project already has. Write a ten-line script that detects it. Run the script in your verify step. Then a check, not a reader, notices when the spec and the code drift apart.
 
 Next: [mentoring the machine](/blog/mentoring-the-machine).

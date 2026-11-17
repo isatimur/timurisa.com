@@ -5988,7 +5988,7 @@
     "authorName": "Timur Isachenko",
     "publishedAt": "2026-11-06T09:00:00.000Z",
     "_updatedAt": "2026-11-06T09:00:00.000Z",
-    "excerpt": "How I built an interactive map of Braga where every building sits on its real footprint, and the rule that kept it honest.",
+    "excerpt": "How I built an interactive map of Braga where every building sits on its real footprint, and the rule that checks it.",
     "categories": [
       "Product engineering",
       "Three.js"
@@ -6003,7 +6003,7 @@
           {
             "_type": "span",
             "_key": "n0s0",
-            "text": "I love Braga, a city in northern Portugal. I wanted a 3D map of it that felt like the real city. Not a toy. Not a diorama. A map where a church tower has the height of the church tower, and a street has the width of the street.",
+            "text": "I love Braga, a city in northern Portugal. I wanted a 3D map of it that felt like the real city: a church tower with the height of the church tower, a street with the width of the street.",
             "marks": []
           }
         ]
@@ -6413,20 +6413,6 @@
             "marks": []
           }
         ]
-      },
-      {
-        "_type": "block",
-        "_key": "n22",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n22s0",
-            "text": "Braga was the first city. It would not be the last. ",
-            "marks": []
-          }
-        ]
       }
     ]
   },
@@ -6692,7 +6678,7 @@
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "An honest limit: the bundles sit on the same disk. That is not a real backup yet. A real one means a second location, and choosing it is still open. I would rather write that down than pretend the problem is solved.",
+            "text": "The bundles sit on the same disk, so this is not a real backup yet. A real one needs a second location, and I have not chosen it.",
             "marks": []
           }
         ]
@@ -6777,20 +6763,6 @@
             "_type": "span",
             "_key": "n18s0",
             "text": "Make destructive scripts dry-run by default. Treat a skipped plan as a result. Keep client and employer code out of personal accounts, and say so in the notes. Fill index gaps when you touch a project, not before.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "A clean folder is nice. A folder whose rules you can explain is better. ",
             "marks": []
           }
         ]
@@ -7498,7 +7470,7 @@
           {
             "_type": "span",
             "_key": "n11s0",
-            "text": "I compared Braga and Porto on eleven axes. Porto led on eight. Braga led on three, among them live weather by default and the variety of its crowds. A comparison like this keeps me honest about what to port next.",
+            "text": "I compared Braga and Porto on eleven axes. Porto led on eight. Braga led on three, among them live weather by default and the variety of its crowds. The comparison shows which features to port next.",
             "marks": []
           }
         ]
@@ -7652,7 +7624,7 @@
           {
             "_type": "span",
             "_key": "n21s0",
-            "text": "The engine port to Barcelos and Guimarães is not done. Guimarães is the risky one, because its roads, water, and main files conflict with the new engine. Some art is not wired in yet. The Discover tab is missing in some cities. I would rather list these than hide them.",
+            "text": "The engine port to Barcelos and Guimarães is not done. Guimarães is the risky one, because its roads, water, and main files conflict with the new engine. Some art is not wired in yet. The Discover tab is missing in some cities.",
             "marks": []
           }
         ]
@@ -8358,7 +8330,7 @@
           {
             "_type": "span",
             "_key": "n24s0",
-            "text": "Give every automatic correction a budget. An algorithm that can move any amount of earth will, sooner or later, move 61 metres of it. ",
+            "text": "Give every automatic correction a budget. The uncapped pad algorithm cut 61.6 metres out of a hill. ",
             "marks": []
           }
         ]
@@ -8882,7 +8854,7 @@
           {
             "_type": "span",
             "_key": "n5s0",
-            "text": "The work comes with scripts: one fetches the coast data, and one checks it. A check that fails when the data is wrong matters more than the data itself. The same idea drives my fit checks.",
+            "text": "The work comes with scripts: one fetches the coast data, and one checks it. My fit checks follow the same idea: a check fails when the data is wrong.",
             "marks": []
           }
         ]
@@ -9050,7 +9022,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "Real data is honest in both directions. It gives you the shape of the coast, and it shows you where the map still has gaps. ",
+            "text": "Real data gave the map the shape of the coast. It also showed where the map still has gaps. ",
             "marks": []
           }
         ]
@@ -9066,7 +9038,7 @@
     "authorName": "Timur Isachenko",
     "publishedAt": "2026-11-06T17:00:00.000Z",
     "_updatedAt": "2026-11-06T17:00:00.000Z",
-    "excerpt": "Lazy-loaded models and a lite scene cut memory and start-up time in my Porto map. Some goals stayed unmet, and I measured them honestly.",
+    "excerpt": "Lazy-loaded models and a lite scene cut memory and start-up time in my Porto map. Some goals stayed unmet, and the article lists them.",
     "categories": [
       "Web performance",
       "Three.js"
@@ -9375,7 +9347,7 @@
           {
             "_type": "span",
             "_key": "n19s0",
-            "text": "Write the numbers that failed next to the ones that passed. A table with only wins is a poster.",
+            "text": "Write the numbers that failed next to the ones that passed.",
             "marks": []
           }
         ]
@@ -9389,21 +9361,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "Measure on a stress bench, and say that it is a bench. Real devices will disagree.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n21",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n21s0",
-            "text": "A lite mode is a safety net. It is not a reason to stop improving the full scene. ",
+            "text": "Measure on a stress bench, and say that it is a bench. ",
             "marks": []
           }
         ]
@@ -18322,7 +18280,7 @@
           {
             "_type": "span",
             "_key": "n18s0",
-            "text": "The same logic keeps agents honest about scope. If a task is not in the list, it is a new feature, and it gets an entry before it gets code.",
+            "text": "The same logic limits scope. If a task is not in the list, it is a new feature, and it gets an entry before it gets code.",
             "marks": []
           }
         ]
@@ -19467,7 +19425,7 @@
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "I could argue that the content earns its place. But the rule exists, and the file breaks it. This is a small, honest example of spec drift: a spec that stops matching the thing it describes. The fix is either to move the table into ",
+            "text": "The content may earn its place. But the rule exists, and the file breaks it. This is a small example of spec drift: a spec that stops matching the thing it describes. The fix is either to move the table into ",
             "marks": []
           },
           {
@@ -19798,7 +19756,7 @@
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "Agents are good at producing a convincing summary of their own work. A rubric moves the question from \"does this sound finished?\" to \"can you show me?\" It also makes reviews comparable. Two changes reviewed a month apart get the same nine questions.",
+            "text": "A rubric moves the question from \"does this sound finished?\" to \"can you show me?\" It also makes reviews comparable. Two changes reviewed a month apart get the same nine questions.",
             "marks": []
           }
         ]
@@ -19905,7 +19863,7 @@
           {
             "_type": "span",
             "_key": "n0s0",
-            "text": "How fast do I move? I would rather answer with data than a feeling, so I counted.",
+            "text": "How fast do I move? I counted.",
             "marks": []
           }
         ]
@@ -20530,7 +20488,7 @@
     "authorName": "Timur Isachenko",
     "publishedAt": "2026-11-15T22:00:00.000Z",
     "_updatedAt": "2026-11-15T22:00:00.000Z",
-    "excerpt": "The rules in my own agent configuration, and the cost that each one was written to stop. A short, honest look at how I run sessions.",
+    "excerpt": "The rules in my own agent configuration, with the reason wherever my notes give one.",
     "categories": [
       "Engineering practice",
       "AI engineering"
@@ -21106,7 +21064,7 @@
           {
             "_type": "span",
             "_key": "n10s0",
-            "text": "For review, you can simply ask a model to check for style or spec violations, or for missing details, before the commit.",
+            "text": "For review, you can ask a model to check for style or spec violations, or for missing details, before the commit.",
             "marks": []
           }
         ]
@@ -21204,7 +21162,7 @@
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "Pick one drift your project already has. Write a ten-line script that detects it. Run the script in your verify step. Then the spec and the code have a referee.",
+            "text": "Pick one drift your project already has. Write a ten-line script that detects it. Run the script in your verify step. Then a check, not a reader, notices when the spec and the code drift apart.",
             "marks": []
           }
         ]
@@ -21499,7 +21457,7 @@
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "I should be honest about the limits. Many entries in my feature list still end in a manual step, such as \"open the local server and confirm that the terrain renders\". A person or a browser script has to look. Some qualities, such as whether a view feels right, resist a property.",
+            "text": "Many entries in my feature list still end in a manual step, such as \"open the local server and confirm that the terrain renders\". A person or a browser script has to look. Some qualities, such as whether a view feels right, resist a property.",
             "marks": []
           }
         ]
@@ -21513,7 +21471,7 @@
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "A good practice is to push each requirement as far toward a check as it will go, and to write down the manual step plainly when it will not go further.",
+            "text": "Push each requirement as far toward a check as it will go. When it will not go further, write the manual step down plainly.",
             "marks": []
           }
         ]
@@ -21541,7 +21499,7 @@
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "Take one requirement from a current project. Rewrite it with a condition, a subject, and a measurable response. Ask what single counterexample would prove it false. If you can name one, you can write the check. If you cannot, the requirement is still ambiguous, and that is worth finding out before an agent builds on it.",
+            "text": "Take one requirement from a current project. Rewrite it with a condition, a subject, and a measurable response. Ask what single counterexample would prove it false. If you can name one, you can write the check. If you cannot, the requirement is still ambiguous. Find that out before an agent builds on it.",
             "marks": []
           }
         ]
@@ -21808,7 +21766,7 @@
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "For each parallel task, write one sentence about which files it may edit. If two sentences name the same file, decide who owns it before you start. The cost is a minute. A shared file costs an hour of untangling later.",
+            "text": "For each parallel task, write one sentence about which files it may edit. If two sentences name the same file, decide who owns it before you start. On 10 October, two shared files had to be committed together after the verify run.",
             "marks": []
           }
         ]
@@ -21985,7 +21943,7 @@
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "If the data a check needs does not exist, the check skips. It does not invent a pass. The smoke test shows the cost of this honesty. It needs a browser engine installed, and without one it reports SKIP. My evaluator rubric then refuses to count a SKIP as a pass. The rubric asks whether the smoke test passed and was not skipped.",
+            "text": "If the data a check needs does not exist, the check skips. It does not invent a pass. The smoke test shows the cost. It needs a browser engine installed, and without one it reports SKIP. My evaluator rubric then refuses to count a SKIP as a pass. The rubric asks whether the smoke test passed and was not skipped.",
             "marks": []
           }
         ]
@@ -22454,7 +22412,7 @@
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "I like the framing. It treats the spec as a living thing that moves through three stages, not as a single file written once.",
+            "text": "He treats the spec as something that moves through three stages, not as a single file written once.",
             "marks": []
           }
         ]
@@ -22795,7 +22753,7 @@
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "The lesson is plain. A spec covers what you thought to specify. Deploying is a separate job, and my specs treated it as an afterthought.",
+            "text": "A spec covers what you thought to specify. Deploying is a separate job, and my specs did not cover it.",
             "marks": []
           }
         ]
@@ -23462,7 +23420,7 @@
           {
             "_type": "span",
             "_key": "n18s0",
-            "text": "Keep the check in the repository. I do not remember which flags are right. The command does.",
+            "text": "Keep the check in the repository, so the command knows which flags are right.",
             "marks": []
           }
         ]
@@ -25149,7 +25107,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "A layout that looks right in one language and one size is an accident. Write the rules as code, then test them in the longest language at the smallest size.",
+            "text": "Write layout rules as code, then test them in the longest language at the smallest size.",
             "marks": []
           }
         ]
@@ -26360,7 +26318,7 @@
           {
             "_type": "span",
             "_key": "n18s0",
-            "text": "The lesson is about the channel, not the wait. If a report does not come, ask why the channel is silent. Do not send the same message again.",
+            "text": "The problem was the channel, not the wait. If a report does not come, ask why the channel is silent. Do not send the same message again.",
             "marks": []
           }
         ]

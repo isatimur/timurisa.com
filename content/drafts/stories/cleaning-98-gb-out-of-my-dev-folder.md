@@ -33,7 +33,7 @@ The first plan was simple: create private repositories on my personal GitHub acc
 
 I used `git bundle` instead. A bundle is a single file that holds a full repository history. It gives the same protection. Nothing is published anywhere.
 
-An honest limit: the bundles sit on the same disk. That is not a real backup yet. A real one means a second location, and choosing it is still open. I would rather write that down than pretend the problem is solved.
+The bundles sit on the same disk, so this is not a real backup yet. A real one needs a second location, and I have not chosen it.
 
 ## One small macOS lesson
 
@@ -42,5 +42,3 @@ macOS is case-insensitive by default. I had a repo called `Skills`. A new folder
 ## Takeaways
 
 Make destructive scripts dry-run by default. Treat a skipped plan as a result. Keep client and employer code out of personal accounts, and say so in the notes. Fill index gaps when you touch a project, not before.
-
-A clean folder is nice. A folder whose rules you can explain is better.

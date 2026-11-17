@@ -35,7 +35,7 @@ This matches advice I found in the research for my book. In [a talk on making co
 
 I counted the lines. The Porto `AGENTS.md` has 137, and it asks to stay under about 100. The performance table and the command list grew it.
 
-I could argue that the content earns its place. But the rule exists, and the file breaks it. This is a small, honest example of spec drift: a spec that stops matching the thing it describes. The fix is either to move the table into `perf/` and link to it, or to change the rule. I have not done either yet.
+The content may earn its place. But the rule exists, and the file breaks it. This is a small example of spec drift: a spec that stops matching the thing it describes. The fix is either to move the table into `perf/` and link to it, or to change the rule. I have not done either yet.
 
 ## A test for your own file
 

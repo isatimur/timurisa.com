@@ -31,6 +31,6 @@ This shows that a file-ownership rule needs a way to handle changes that cross i
 
 ## A cheap test
 
-For each parallel task, write one sentence about which files it may edit. If two sentences name the same file, decide who owns it before you start. The cost is a minute. A shared file costs an hour of untangling later.
+For each parallel task, write one sentence about which files it may edit. If two sentences name the same file, decide who owns it before you start. On 10 October, two shared files had to be committed together after the verify run.
 
 Next: [quality means fewer defects](/blog/quality-means-fewer-defects).

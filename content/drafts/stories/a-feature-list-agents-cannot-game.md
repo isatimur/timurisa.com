@@ -41,7 +41,7 @@ This is useful. The spec shows where the project drifted. Seven open items is a 
 
 My `AGENTS.md` tells agents to prefer durable repository artifacts over chat summaries. A chat message disappears when the session ends. The feature list is in version control. A new session can read it, and a reviewer can read the history.
 
-The same logic keeps agents honest about scope. If a task is not in the list, it is a new feature, and it gets an entry before it gets code.
+The same logic limits scope. If a task is not in the list, it is a new feature, and it gets an entry before it gets code.
 
 ## Try it
 

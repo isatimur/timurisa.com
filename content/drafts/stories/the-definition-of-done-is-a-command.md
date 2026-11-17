@@ -17,7 +17,7 @@ A feature counts as done under four conditions, all written in `AGENTS.md`. The 
 
 One line in the file stands out: missing inputs are skipped, not faked.
 
-If the data a check needs does not exist, the check skips. It does not invent a pass. The smoke test shows the cost of this honesty. It needs a browser engine installed, and without one it reports SKIP. My evaluator rubric then refuses to count a SKIP as a pass. The rubric asks whether the smoke test passed and was not skipped.
+If the data a check needs does not exist, the check skips. It does not invent a pass. The smoke test shows the cost. It needs a browser engine installed, and without one it reports SKIP. My evaluator rubric then refuses to count a SKIP as a pass. The rubric asks whether the smoke test passed and was not skipped.
 
 A gate that quietly passes when it cannot run is worse than no gate. It gives a false green, and agents learn to trust it.
 

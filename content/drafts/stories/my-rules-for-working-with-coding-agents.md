@@ -1,6 +1,6 @@
 title: My rules for working with coding agents
 slug: my-rules-for-working-with-coding-agents
-excerpt: The rules in my own agent configuration, and the cost that each one was written to stop. A short, honest look at how I run sessions.
+excerpt: The rules in my own agent configuration, with the reason wherever my notes give one.
 category: Engineering practice
 category: AI engineering
 date: 2026-11-15T22:00:00.000Z

@@ -31,12 +31,12 @@ Because it is a check, the rule does not depend on anyone's memory. An agent tha
 
 ## Not every requirement checks this way
 
-I should be honest about the limits. Many entries in my feature list still end in a manual step, such as "open the local server and confirm that the terrain renders". A person or a browser script has to look. Some qualities, such as whether a view feels right, resist a property.
+Many entries in my feature list still end in a manual step, such as "open the local server and confirm that the terrain renders". A person or a browser script has to look. Some qualities, such as whether a view feels right, resist a property.
 
-A good practice is to push each requirement as far toward a check as it will go, and to write down the manual step plainly when it will not go further.
+Push each requirement as far toward a check as it will go. When it will not go further, write the manual step down plainly.
 
 ## A short method
 
-Take one requirement from a current project. Rewrite it with a condition, a subject, and a measurable response. Ask what single counterexample would prove it false. If you can name one, you can write the check. If you cannot, the requirement is still ambiguous, and that is worth finding out before an agent builds on it.
+Take one requirement from a current project. Rewrite it with a condition, a subject, and a measurable response. Ask what single counterexample would prove it false. If you can name one, you can write the check. If you cannot, the requirement is still ambiguous. Find that out before an agent builds on it.
 
 The next article, [AGENTS.md as a map](/blog/agents-md-is-a-map-not-a-manual), covers the file that tells an agent where these checks live.

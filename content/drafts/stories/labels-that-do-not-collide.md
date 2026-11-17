@@ -39,6 +39,6 @@ A unit test file checks the merge and placement logic. An end-to-end test checks
 
 ## Lesson
 
-A layout that looks right in one language and one size is an accident. Write the rules as code, then test them in the longest language at the smallest size.
+Write layout rules as code, then test them in the longest language at the smallest size.
 
 The next article is about the words on the page: [claims with a status](/blog/claims-with-a-status).

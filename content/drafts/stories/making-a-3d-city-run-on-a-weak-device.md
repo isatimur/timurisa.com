@@ -1,6 +1,6 @@
 title: Making a 3D city run on a weak device, and where I fell short
 slug: making-a-3d-city-run-on-a-weak-device
-excerpt: Lazy-loaded models and a lite scene cut memory and start-up time in my Porto map. Some goals stayed unmet, and I measured them honestly.
+excerpt: Lazy-loaded models and a lite scene cut memory and start-up time in my Porto map. Some goals stayed unmet, and the article lists them.
 category: Web performance
 category: Three.js
 date: 2026-11-06T17:00:00.000Z
@@ -53,8 +53,6 @@ One more item is unverified. Gold pins lacked glow in the "after" overview shots
 
 ## Lessons
 
-Write the numbers that failed next to the ones that passed. A table with only wins is a poster.
+Write the numbers that failed next to the ones that passed.
 
-Measure on a stress bench, and say that it is a bench. Real devices will disagree.
-
-A lite mode is a safety net. It is not a reason to stop improving the full scene.
+Measure on a stress bench, and say that it is a bench.

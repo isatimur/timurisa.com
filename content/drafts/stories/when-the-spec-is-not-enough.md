@@ -17,7 +17,7 @@ The gate answered "does this branch work?" It had no way to answer "does this br
 
 Two more traps lived outside the checks. One commit imported a file that only arrived in the next commit, so deploying the state between them would have broken the build. And the real build command edits one of the tracked data files before it builds. Both were in my handoff, in prose. Neither was a check.
 
-The lesson is plain. A spec covers what you thought to specify. Deploying is a separate job, and my specs treated it as an afterthought.
+A spec covers what you thought to specify. Deploying is a separate job, and my specs did not cover it.
 
 ## The main branch failing its own gate
 

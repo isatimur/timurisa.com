@@ -15,7 +15,7 @@ The new sea follows the real OSM coastline. It is a ring of 981 points. The sea 
 
 In total, the shore adds 96,800 triangles. The overview of the whole city stands at 1.94 million triangles.
 
-The work comes with scripts: one fetches the coast data, and one checks it. A check that fails when the data is wrong matters more than the data itself. The same idea drives my fit checks.
+The work comes with scripts: one fetches the coast data, and one checks it. My fit checks follow the same idea: a check fails when the data is wrong.
 
 ## One landmark, rebuilt
 
@@ -39,4 +39,4 @@ During this round we found a shadow artefact: a hatch pattern, like a screen doo
 
 I keep this list in the handoff, so I can keep it here too. The Leixões docks are not water in OpenStreetMap, so they are missing. Beaches have no foam line. The Passeio Alegre pools are not done. The rocks and apron have only one level of detail. Green strips still cross the sea at the river mouth. Four tower-like boxes stand beside the Congregados church, because OSM buildings sit inside its outline.
 
-Real data is honest in both directions. It gives you the shape of the coast, and it shows you where the map still has gaps.
+Real data gave the map the shape of the coast. It also showed where the map still has gaps.

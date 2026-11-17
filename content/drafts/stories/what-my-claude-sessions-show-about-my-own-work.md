@@ -41,7 +41,7 @@ The hook caught both, not me.
 
 On 3 November I sent the same message, "I am waiting for the report, then deploy", 17 times in 39 minutes. In the middle of that I told the agents to stop the hung ones and restart the work step by step.
 
-The lesson is about the channel, not the wait. If a report does not come, ask why the channel is silent. Do not send the same message again.
+The problem was the channel, not the wait. If a report does not come, ask why the channel is silent. Do not send the same message again.
 
 ## Finding 6: two mistakes in the briefs
 

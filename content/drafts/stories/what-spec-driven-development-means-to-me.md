@@ -31,7 +31,7 @@ Second, an ordinary product requirements document is usually not enough. Many ar
 
 Al Harris, a principal engineer at Amazon, described the approach his team built into the Kiro IDE in [a conference talk](https://www.youtube.com/watch?v=HY_JyxAZsiE). The flow takes a prompt and turns it into three artifacts: requirements with acceptance criteria, a design, and a task list. He describes the spec as the artifacts that represent the state of the system at a point in time, plus a structured workflow, plus tools on top that make results reproducible.
 
-I like the framing. It treats the spec as a living thing that moves through three stages, not as a single file written once.
+He treats the spec as something that moves through three stages, not as a single file written once.
 
 ## What it looks like in my repos
 

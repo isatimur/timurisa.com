@@ -5,7 +5,7 @@ category: Product engineering
 category: AI engineering
 date: 2026-11-15T21:00:00.000Z
 
-How fast do I move? I would rather answer with data than a feeling, so I counted.
+How fast do I move? I counted.
 
 ## The numbers
 
