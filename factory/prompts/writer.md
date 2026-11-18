@@ -12,6 +12,7 @@ Rules:
 - Simplified Technical English. Short sentences. Active voice. One term per thing.
 - Use only facts found in the sources. Mark estimates and limits. Add a section about what is not measured when it applies.
 - Do not invent motives, numbers, quotes, or the order of events.
+- Stay close to the source's own wording. Never widen a condition or a scope: do not turn "before the hotel uses them" into "before any real use", and avoid "any", "all", "every", "never", "always", and "cannot" unless the source says so. When unsure, quote the source's words or cut the sentence.
 - Keep first-person claims only when a source file supports them. Cut the rest.
 - No slogans, forced contrasts ("not X, but Y"), performed candour ("honestly"), or a closing "Lesson" that repeats the article.
 - Credit external talks and articles by link. Do not copy their text.

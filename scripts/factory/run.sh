@@ -19,7 +19,7 @@ exec > >(tee -a "$LOG") 2>&1
 
 MAX_USD=6        # budget cap per agent call (owner chose "default")
 MAX_TURNS=80
-REWRITE_ROUNDS=2
+REWRITE_ROUNDS=4
 TG_DIR="$HOME/.claude/channels/telegram"
 BASE_REF="${FACTORY_BASE:-origin/main}"
 
