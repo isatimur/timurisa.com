@@ -17,4 +17,6 @@ Write `factory/reviews/<slug>.md` with:
 - a line `Checked: <n> sentences`
 - a last line, exactly `VERDICT: PASS` (zero problems) or `VERDICT: FAIL`.
 
+The draft's header format (plain `title:` lines, repeated `category:` lines, no `---` delimiters) is correct for this repo. Do not flag it.
+
 Do not edit the post. Do not run git commands. Be adversarial and specific.

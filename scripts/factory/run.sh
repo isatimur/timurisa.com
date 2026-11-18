@@ -52,10 +52,11 @@ BRANCH="factory/$(date +%Y-%m-%d-%H%M)"
 git checkout -q -B "$BRANCH" "$BASE_REF"
 # A private clone of node_modules (APFS copy-on-write), so nothing links back to the owner's checkout.
 if [ ! -d node_modules ]; then cp -Rc "$HOME_REPO/node_modules" node_modules; fi
-[ -f .env.local ] || { [ -f "$HOME_REPO/.env.local" ] && cp "$HOME_REPO/.env.local" .env.local || true; }
+rm -f .env.local   # secrets stay out of the agents' directory; copied in only for the build
 
 # Allowlisted source dirs, read from the trusted base ref, never from an agent-writable file.
 ADD_DIRS=()
+READ_RULES="Read(./**)"
 while IFS= read -r line; do
   case "$line" in ''|\#*) continue ;; esac
   p="${line/#\~/$HOME}"
@@ -63,18 +64,23 @@ while IFS= read -r line; do
     [ -d "$d" ] || continue
     [ "$d" = "$HOME_REPO" ] && continue
     ADD_DIRS+=(--add-dir "$d")
+    READ_RULES="$READ_RULES,Read(//${d#/}/**)"
   done
 done < <(git show "$BASE_REF:factory/sources.txt")
+# Explicit denies for secret locations. Deny rules win over allow rules.
+DENY_RULES="Read(//${HOME#/}/.claude/**),Read(//${HOME#/}/.ssh/**),Read(//${HOME#/}/.config/**),Read(//${HOME#/}/.factory/**),Read(**/.env*)"
 
-agent() {  # agent <prompt-file> <write-rules> <extra-text>
+agent() {  # agent <prompt-file> <edit-rules> <extra-text>
   claude -p "$(git show "$BASE_REF:$1")"$'\n\n'"$3" \
     --permission-mode dontAsk \
-    --allowedTools "Read,Glob,Grep,$2" \
+    --allowedTools "$READ_RULES,Glob,Grep,$2" \
+    --disallowedTools "$DENY_RULES" \
     --max-turns "$MAX_TURNS" --max-budget-usd "$MAX_USD" \
     "${ADD_DIRS[@]}"
 }
-WRITER_RULES="Write(content/drafts/stories/**),Edit(content/drafts/stories/**),Write(factory/sources/**),Edit(factory/sources/**),Write(factory/state.json),Edit(factory/state.json),Write(factory/backlog.md),Edit(factory/backlog.md),Write(factory/ESCALATE.md)"
-REVIEWER_RULES="Write(factory/reviews/**)"
+# This CLI matches only Edit(path) rules; they cover Write too.
+WRITER_RULES="Edit(content/drafts/stories/**),Edit(factory/sources/**),Edit(factory/state.json),Edit(factory/backlog.md),Edit(factory/ESCALATE.md)"
+REVIEWER_RULES="Edit(factory/reviews/**)"
 
 ALLOWED_PATHS='^(content/drafts/stories/[a-z0-9-]+\.md|factory/(sources|reviews)/[a-z0-9-]+\.md|factory/(state\.json|backlog\.md|ESCALATE\.md))$'
 check_paths() {
@@ -111,6 +117,13 @@ $(cat "factory/reviews/$SLUG.md")" | tail -2
   check_paths
 done
 
+# Commit scoping: exactly one new draft, and its slug header matches.
+DRAFT="content/drafts/stories/$SLUG.md"
+CHANGED=$(git status --porcelain --untracked-files=all -- content/drafts/stories | sed 's/^...//')
+[ "$CHANGED" = "$DRAFT" ] || escalate "writer changed drafts other than $DRAFT"
+git ls-files --error-unmatch "$DRAFT" >/dev/null 2>&1 && escalate "$DRAFT already exists on the base ref"
+grep -q "^slug: $SLUG\$" "$DRAFT" || escalate "slug header does not match $SLUG"
+
 # Restore every trusted file from the base ref before running any import or build code.
 git checkout "$BASE_REF" -- scripts .github package.json package-lock.json next.config.js \
   factory/sources.txt factory/banned-terms.txt factory/prompts app components lib
@@ -119,10 +132,26 @@ check_paths  # also proves nothing else drifted
 echo "== build"
 node scripts/import-story-drafts.mjs | tail -1
 node scripts/generate-blog-covers.mjs | tail -1
-node scripts/factory/verify.mjs --build || {
+# archive.json: only the new slug may be added; every other entry must be unchanged.
+git show "$BASE_REF:content/posts/archive.json" > "/tmp/factory-base-archive-$$.json"
+python3 - "$SLUG" "/tmp/factory-base-archive-$$.json" <<'PY' || escalate "archive.json changed beyond the new post $SLUG"
+import json,sys
+slug,basep=sys.argv[1],sys.argv[2]
+base={p['slug']['current']:p for p in json.load(open(basep))}
+new={p['slug']['current']:p for p in json.load(open('content/posts/archive.json'))}
+added=set(new)-set(base)
+ok = added=={slug} and all(new[s]==base[s] for s in base)
+sys.exit(0 if ok else 1)
+PY
+# Secrets are available only for the build, and removed right after.
+[ -f "$HOME_REPO/.env.local" ] && cp "$HOME_REPO/.env.local" .env.local || true
+GATE_OK=0
+node scripts/factory/verify.mjs --build && GATE_OK=1 || {
   echo "gate failed once, retrying"
-  node scripts/factory/verify.mjs --build || escalate "gate failed twice for $SLUG"
+  node scripts/factory/verify.mjs --build && GATE_OK=1 || true
 }
+rm -f .env.local
+[ "$GATE_OK" = 1 ] || escalate "gate failed twice for $SLUG"
 
 python3 - <<PY
 import json,datetime

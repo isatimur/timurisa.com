@@ -5,7 +5,7 @@ Task: write ONE post.
 1. Pick the first unchecked backlog topic. If the backlog has none, scan only the allowlisted sources for changes since `lastSourceScan`, add 5 topics, and pick one. Update `lastSourceScan` in `factory/state.json` to the current ISO time.
 2. Read the cited source files in full where they are small, or the relevant windows where they are large. Do not read anything outside the allowlist. If you meet a secret or client data, stop, write the fact and the file path (never the value) to `factory/ESCALATE.md`, and end.
 3. Write `content/drafts/stories/<slug>.md` in the same format as the other files there. Header lines: `title:`, `slug:`, `excerpt:`, one or more `category:`, `date:`. Then a blank line, then the body. Use `## ` for headings and `[text](url)` for links. Inline code uses backticks.
-4. Write `factory/sources/<slug>.md`. For every factual sentence in the post, list the claim and a line `Source: <path>` that supports it. Put estimates and unknowns under a heading `Not measured`.
+4. Write `factory/sources/<slug>.md`. Write source paths in the form `~/Dev/<repo>/<file>`. Never write an absolute `/Users/...` path, an email, or a key. For every factual sentence in the post, list the claim and a line `Source: <path>` that supports it. Put estimates and unknowns under a heading `Not measured`.
 5. Add the slug to `factoryPosts` in `factory/state.json`. Tick the backlog item and add the slug.
 
 Rules:

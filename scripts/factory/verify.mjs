@@ -30,7 +30,10 @@ const slugs = archive.map((p) => p.slug.current)
     for (const b of p.body || [])
       for (const d of b.markDefs || []) {
         const h = d.href || ''
-        if (h.startsWith('/blog/') && !set.has(h.slice(6))) {
+        if (!/^(https?:\/\/|\/blog\/)/.test(h)) {
+          bad++
+          fail('links', `${p.slug.current}: href not allowed (only http(s) and /blog/): ${h.slice(0, 40)}`)
+        } else if (h.startsWith('/blog/') && !set.has(h.slice(6))) {
           bad++
           fail('links', `${p.slug.current} -> ${h}`)
         }
@@ -66,6 +69,10 @@ const slugs = archive.map((p) => p.slug.current)
   const targets = [archivePath]
   const dir = rel('content/drafts/stories')
   for (const f of fs.readdirSync(dir)) if (f.endsWith('.md')) targets.push(path.join(dir, f))
+  // Every factory file that gets committed is scanned too.
+  for (const sub of ['sources', 'reviews'])
+    for (const f of fs.readdirSync(rel(`factory/${sub}`))) if (f.endsWith('.md')) targets.push(rel(`factory/${sub}/${f}`))
+  targets.push(rel('factory/backlog.md'), rel('factory/state.json'))
   let bad = 0
   for (const t of targets) {
     const text = fs.readFileSync(t, 'utf8')
