@@ -12,7 +12,7 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/v24.22.
 DRY=0; [ "${1:-}" = "--dry" ] && DRY=1
 
 HOME_REPO="$HOME/Dev/timurisa.com"
-WORK="$HOME/.factory/timurisa.com-work"
+WORK="$HOME/.factory-work/timurisa.com"   # outside ~/.factory, which agents may not read
 LOG_DIR="$HOME/.factory/logs"; mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/run-$(date +%Y%m%d-%H%M%S).log"
 exec > >(tee -a "$LOG") 2>&1
