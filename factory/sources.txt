@@ -1,0 +1,12 @@
+# Allowlist of places the factory may read. One path per line. Anything else is off limits.
+# Client and employer work is excluded.
+~/Dev/porto-3d
+~/Dev/portugal-3d
+~/Dev/braga-3d
+~/Dev/pena-park-3d
+~/Dev/life-mcp
+~/Dev/chip-mascot-lab
+~/Dev/haru
+~/Dev/timurisa.com
+~/Dev/HANDOFF-*.md
+~/Dev/LifeOS/knowledge-bases/ai-engineer-book

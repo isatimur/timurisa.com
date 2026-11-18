@@ -52,7 +52,7 @@ Three of the findings show how the method works.
 
 **A wrong claim in the text.** One section proposed an umbrella repository that "pins branches". Submodules pin commits. The same section was a speculative proposal that nobody had pushed. The fix was to delete it.
 
-**Whose numbers.** One person's 30-day usage stats led the guide under a heading that said "team". The report said the stats tell a newcomer nothing they can act on.
+**Whose numbers.** One person's 30-day usage stats led the guide under the heading "team". The report said the stats tell a newcomer nothing they can act on.
 
 The escalated item shows the third role. A repository was missing from the workspace list, and the reviewers could not tell if that was a mistake. It was my call to make, not theirs. I said the omission was deliberate, because that repository is locked down. The fact then went into the guide as a note.
 
