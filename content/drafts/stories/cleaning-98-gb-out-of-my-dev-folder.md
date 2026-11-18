@@ -38,7 +38,3 @@ The bundles sit on the same disk, so this is not a real backup yet. A real one n
 ## One small macOS lesson
 
 macOS is case-insensitive by default. I had a repo called `Skills`. A new folder called `skills` would have collided with it. If your restructure moves things between names that differ only in case, check this first.
-
-## Takeaways
-
-Make destructive scripts dry-run by default. Treat a skipped plan as a result. Keep client and employer code out of personal accounts, and say so in the notes. Fill index gaps when you touch a project, not before.

@@ -41,8 +41,4 @@ Pena Park has no ready flag and no back link to the globe. The README states bot
 
 The repository has a unit test for the dive and one for the return path. An end-to-end test covers the return. Together they cover the loop: pick, dive, arrive, return.
 
-## Lesson
-
-Keep the contract between two sites small and explicit. Three named values are easy to document, to test, and to explain to the next agent that touches either side.
-
 The next article looks at what all of this costs on a phone: [the globe costs five draw calls](/blog/the-globe-costs-five-draw-calls).

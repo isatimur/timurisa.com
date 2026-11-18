@@ -46,11 +46,3 @@ The agent read the screenshots from before and after. The grey pit wall was gone
 The terrain data was not the cause, but it is not perfect. I compared it against the EU-DEM source on six reference points. The mean error was 12.0 metres for the data I use, and 12.4 metres for EU-DEM. They are about equally accurate. Hill tops still read 10 to 30 metres too low. Serra do Pilar shows 70 metres, and the real value is about 100.
 
 I wrote this limit into the notes. A map that states its own error is easier to trust.
-
-## Lessons
-
-Do not blame the data first. Find the layer that changes the data. Here, that layer was the pad algorithm.
-
-A fix can move a bug. Capping the cut made the fill worse. Check both sides of any change that balances two quantities.
-
-Give every automatic correction a budget. The uncapped pad algorithm cut 61.6 metres out of a hill.

@@ -37,8 +37,4 @@ He proposes eight areas to audit: linter quality, `AGENTS.md` files, test covera
 
 Reading his list against my repository, I can confirm two items: there is an `AGENTS.md`, and there is a gate with 11 checks. I cannot confirm the others from the files I have in front of me. For example, I do not have a measured flaky-test rate. That is a fair place to begin an audit.
 
-## Takeaway
-
-Write down the command that proves a change works. Make sure it fails loudly. Make sure a skipped check is never read as a passing one.
-
 Next: [an evaluator rubric for AI changes](/blog/an-evaluator-rubric-for-ai-changes).

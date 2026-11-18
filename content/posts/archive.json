@@ -6339,77 +6339,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n18",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Lessons",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "The hard constraint drove the architecture. \"Real scale\" shaped the footprints, the terrain, the checks, and the way the models are authored.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n20",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n20s0",
-            "text": "A rule needs a check. ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s1",
-            "text": "check-fit",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s2",
-            "text": " is what turns \"real scale\" from a wish into a build failure.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n21",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n21s0",
-            "text": "Notes about odd data sources earn their place. The working Overpass mirror and the OSRM foot-profile server are in my notes, so I do not rediscover them.",
+            "text": "I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine. ",
             "marks": []
           }
         ]
@@ -6734,35 +6664,7 @@
           {
             "_type": "span",
             "_key": "n16s4",
-            "text": " would have collided with it. If your restructure moves things between names that differ only in case, check this first.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n17",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n17s0",
-            "text": "Takeaways",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n18",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Make destructive scripts dry-run by default. Treat a skipped plan as a result. Keep client and employer code out of personal accounts, and say so in the notes. Fill index gaps when you touch a project, not before.",
+            "text": " would have collided with it. If your restructure moves things between names that differ only in case, check this first. ",
             "marks": []
           }
         ]
@@ -7229,35 +7131,7 @@
           {
             "_type": "span",
             "_key": "n22s0",
-            "text": "One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n23",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n23s0",
-            "text": "Lessons",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n24",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n24s0",
-            "text": "Measure before you tune. Keep a backup of the old public folder, and keep it out of the deploy. Write the manual for the owner on day one. And never trust one browser to tell you that DNS has changed. ",
+            "text": "One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture. ",
             "marks": []
           }
         ]
@@ -8274,63 +8148,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "I wrote this limit into the notes. A map that states its own error is easier to trust.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n21",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n21s0",
-            "text": "Lessons",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n22",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n22s0",
-            "text": "Do not blame the data first. Find the layer that changes the data. Here, that layer was the pad algorithm.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n23",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n23s0",
-            "text": "A fix can move a bug. Capping the cut made the fill worse. Check both sides of any change that balances two quantities.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n24",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n24s0",
-            "text": "Give every automatic correction a budget. The uncapped pad algorithm cut 61.6 metres out of a hill. ",
+            "text": "I wrote this limit into the notes. A map that states its own error is easier to trust. ",
             "marks": []
           }
         ]
@@ -8697,63 +8515,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n21",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n21s0",
-            "text": "Lessons",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n22",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n22s0",
-            "text": "Treat deploying as its own job. The code can be right while the deploy is wrong.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n23",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n23s0",
-            "text": "Do not trust a green check to mean \"complete\". Compare what a branch contains with what the live site already has.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n24",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n24s0",
-            "text": "Write the traps down. The next reader, including me, will not know them. ",
+            "text": "Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause. ",
             "marks": []
           }
         ]
@@ -9319,49 +9081,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "One more item is unverified. Gold pins lacked glow in the \"after\" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n18",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Lessons",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "Write the numbers that failed next to the ones that passed.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n20",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n20s0",
-            "text": "Measure on a stress bench, and say that it is a bench. ",
+            "text": "One more item is unverified. Gold pins lacked glow in the \"after\" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it. ",
             "marks": []
           }
         ]
@@ -22125,60 +21845,32 @@
       {
         "_type": "block",
         "_key": "n16",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n16s0",
-            "text": "Takeaway",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n17",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n17s0",
-            "text": "Write down the command that proves a change works. Make sure it fails loudly. Make sure a skipped check is never read as a passing one.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n18",
         "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n18l0",
+            "_key": "n16l0",
             "href": "/blog/an-evaluator-rubric-for-ai-changes"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n18s0",
+            "_key": "n16s0",
             "text": "Next: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n18s1",
+            "_key": "n16s1",
             "text": "an evaluator rubric for AI changes",
             "marks": [
-              "n18l0"
+              "n16l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n18s2",
+            "_key": "n16s2",
             "text": ". ",
             "marks": []
           }
@@ -24383,60 +24075,32 @@
       {
         "_type": "block",
         "_key": "n18",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Lesson",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "A claim without a file is an idea. Give every sentence a status, and make the status visible to the person who reads the page. When a new place joins, rerun the list. The sentences that were true for five places may be false for eighteen.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n20",
         "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n20l0",
+            "_key": "n18l0",
             "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n20s0",
+            "_key": "n18s0",
             "text": "Next: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n20s1",
+            "_key": "n18s1",
             "text": "eleven city maps in three days, and the limits behind them",
             "marks": [
-              "n20l0"
+              "n18l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n20s2",
+            "_key": "n18s2",
             "text": ". ",
             "marks": []
           }
@@ -24756,74 +24420,32 @@
       {
         "_type": "block",
         "_key": "n18",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Lesson",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "Speed here has four limits, and none is typing. They are usage, data, permission to read a source, and measurement. The first two have written fallbacks now: the commit rule and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s1",
-            "text": "OSM_API=1",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s2",
-            "text": ". I respected the third. The fourth is still open, and I say so.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n20",
         "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n20l0",
+            "_key": "n18l0",
             "href": "/blog/what-my-claude-sessions-show-about-my-own-work"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n20s0",
+            "_key": "n18s0",
             "text": "The last article in this series looks at the logs behind all of this: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n20s1",
+            "_key": "n18s1",
             "text": "what my Claude sessions show about my own work",
             "marks": [
-              "n20l0"
+              "n18l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n20s2",
+            "_key": "n18s2",
             "text": ". ",
             "marks": []
           }
@@ -25600,60 +25222,32 @@
       {
         "_type": "block",
         "_key": "n18",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n18s0",
-            "text": "Lesson",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n19",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n19s0",
-            "text": "Keep the contract between two sites small and explicit. Three named values are easy to document, to test, and to explain to the next agent that touches either side.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n20",
         "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n20l0",
+            "_key": "n18l0",
             "href": "/blog/the-globe-costs-five-draw-calls"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n20s0",
+            "_key": "n18s0",
             "text": "The next article looks at what all of this costs on a phone: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n20s1",
+            "_key": "n18s1",
             "text": "the globe costs five draw calls",
             "marks": [
-              "n20l0"
+              "n18l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n20s2",
+            "_key": "n18s2",
             "text": ". ",
             "marks": []
           }
@@ -25981,60 +25575,32 @@
       {
         "_type": "block",
         "_key": "n20",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n20s0",
-            "text": "Lesson",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n21",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n21s0",
-            "text": "Measure before you add features, and keep the probe in the repository. A table where a row says \"no change\" is still useful. It tells you where the cost is not.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n22",
         "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n22l0",
+            "_key": "n20l0",
             "href": "/blog/labels-that-do-not-collide"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n22s0",
+            "_key": "n20s0",
             "text": "Next: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n22s1",
+            "_key": "n20s1",
             "text": "labels that do not collide",
             "marks": [
-              "n22l0"
+              "n20l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n22s2",
+            "_key": "n20s2",
             "text": ". ",
             "marks": []
           }
@@ -26402,7 +25968,506 @@
           {
             "_type": "span",
             "_key": "n24s0",
-            "text": "They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome.",
+            "text": "They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-elephant-goldfish-model-fresh-eyes-for-specs",
+    "title": "Elephant, goldfish, me: reviewing a spec with fresh eyes",
+    "slug": {
+      "current": "elephant-goldfish-model-fresh-eyes-for-specs"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-18T10:00:00.000Z",
+    "_updatedAt": "2026-11-18T10:00:00.000Z",
+    "excerpt": "The Elephant-Goldfish Model gives the author a full memory and the reviewers none. How the method works, and what a real run found in an onboarding guide.",
+    "categories": [
+      "Spec-driven development",
+      "AI engineering"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "The author of a document knows too much to review it. Every gap in the text fills itself from memory. The author reads what they meant, not what they wrote.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n1l0",
+            "href": "https://github.com/google/elephant-goldfish-model"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The Elephant-Goldfish Model, EGM, treats that as a design problem. It comes from Google's open-source ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "elephant-goldfish-model",
+            "marks": [
+              "n1l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": " project. Its docs credit Dave Rensin's article \"Elephants, Goldfish, and the New Golden Age of Software Engineering\" as the base, and describe EGM as an implementation of spec-driven development. I have the plugin installed in Claude Code. This article covers the method and the one run I can report.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Three roles",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The README gives the split in one table.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The **Elephant** holds your project, your requirements, and your earlier decisions. It explores the problem and drafts the specification.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The **Goldfish** reviewers get the document and the source material it references. They do not get the earlier conversation. Their job is to find missing assumptions, unclear requirements, and implementation risks.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "**You** resolve the trade-offs, approve the design, and decide what to build.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A goldfish forgets, and here that is the feature. A reviewer who has never heard your reasoning cannot fill the gaps with it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The skills",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "The plugin ships seven skills. Four of them make the core loop:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "- ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "/egm-brainstorm",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": " clarifies the idea with you, runs fresh reviewers against it, and saves a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": "concepts_brief.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": ". - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s5",
+            "text": "/egm-draft",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s6",
+            "text": " turns the brief into a design document, one section at a time, and pauses after each section for your feedback. - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s7",
+            "text": "/egm-review",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s8",
+            "text": " sends the draft to fresh reviewers in a zero-context session. - ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s9",
+            "text": "/egm-drift-report",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s10",
+            "text": " compares the documents in a folder with the current source code and reports where they diverge.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The docs also list ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "egm-bootstrap",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "egm-resolve",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s5",
+            "text": "egm-review-loop",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s6",
+            "text": ". The loop skill lets you pick your own reviewers and standards for documents that are not software specs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The reviewers are personas, each a separate file. The names include a hostile design critic, a naive reader with zero institutional knowledge, a pedantic checker of documentation against the code, a copy editor, a structural validator, a pragmatic tech lead who checks that a plan leaves no design decisions to the implementer, and a \"zoom out\" reviewer. A synthesizer merges and deduplicates what they find.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Two lines in the docs matter to me. The review gives \"a lot of feedback by design\", and you take what is relevant and ignore the rest. And a human review of the design still comes before implementation. EGM does not replace it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "One real run",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "On 17 November I ran a review on an onboarding guide for a team codebase. The target was one Markdown file of 87 lines. The reviewers worked in stages, and a later stage merged and deduplicated the earlier findings into twelve items.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The final report sorted them like this:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "- 11 proposed fixes, applied. - 1 escalated to me. - 0 contested, 0 declined.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Three of the findings show how the method works.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "**A dead remote.** The guide sent iOS work to a repository that was a stale export with a foreign remote. It also named a clone that does not exist on disk. The report rated it a blocker, with the reason \"a new engineer would commit to a dead remote\". The Elephant, the session with the project context, checked the disk and the project's context files beyond what the reviewers read. The fix followed from those.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "**A wrong claim in the text.** One section proposed an umbrella repository that \"pins branches\". Submodules pin commits. The same section was a speculative proposal that nobody had pushed. The fix was to delete it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "**Whose numbers.** One person's 30-day usage stats led the guide under a heading that said \"team\". The report said the stats tell a newcomer nothing they can act on.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "The escalated item shows the third role. A repository was missing from the workspace list, and the reviewers could not tell if that was a mistake. It was my call to make, not theirs. I said the omission was deliberate, because that repository is locked down. The fact then went into the guide as a note.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "The guide ended at 79 lines, down from 87.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "One more detail from the report. Its first draft gave the new length as 70 lines. That number was wrong, and the report was corrected. A review that checks documents should be able to catch its own figures.",
             "marks": []
           }
         ]
@@ -26416,7 +26481,7 @@
           {
             "_type": "span",
             "_key": "n25s0",
-            "text": "Lesson",
+            "text": "Where it fits in my other spec work",
             "marks": []
           }
         ]
@@ -26430,7 +26495,69 @@
           {
             "_type": "span",
             "_key": "n26s0",
-            "text": "Read your own logs at least once. They hold patterns you cannot see from inside a session: where the limits fall, which checks fire, and which mistakes repeat. Then turn each pattern into a rule, a hook, or a line in a brief. ",
+            "text": "My own checks in the city map repos test a build: the verify command, the fit checks, the evaluator rubric. EGM tests a document before anything is built. The two catch different mistakes. A verify gate cannot see a guide that points to a repository that does not exist. A document review cannot see a model that fails the fit check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "What I have not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "I have one run. I do not know how many of the twelve findings I would have found by reading the guide again myself. I also cannot say how much of the value came from the fresh reviewers, and how much from the session that held the context and checked the disk. I would need several runs, with a count of accepted findings each time, to say more.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n29l0",
+            "href": "/blog/an-evaluator-rubric-for-ai-changes"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "Next: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n29s1",
+            "text": "an evaluator rubric for AI changes",
+            "marks": [
+              "n29l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n29s2",
+            "text": ". ",
             "marks": []
           }
         ]

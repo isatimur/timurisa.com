@@ -54,7 +54,3 @@ In both cases the fix went into the brief.
 ## What logs cannot tell you
 
 They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome.
-
-## Lesson
-
-Read your own logs at least once. They hold patterns you cannot see from inside a session: where the limits fall, which checks fire, and which mistakes repeat. Then turn each pattern into a rule, a hook, or a line in a brief.

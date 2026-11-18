@@ -44,8 +44,4 @@ The list also counted photos. Eight of the 301 town-map landmarks have no photo.
 
 The list records conflicts between sources. One map's README still says "not deployed", while its progress log and data say the map is built. The page follows the progress log and the data.
 
-## Lesson
-
-A claim without a file is an idea. Give every sentence a status, and make the status visible to the person who reads the page. When a new place joins, rerun the list. The sentences that were true for five places may be false for eighteen.
-
 Next: [eleven city maps in three days, and the limits behind them](/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them).

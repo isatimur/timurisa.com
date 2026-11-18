@@ -45,8 +45,4 @@ The first result came on Porto. Roads are now drawn by the cells in view. A deep
 
 I report both parts. The deep link got much faster. The two numbers I hoped to move stayed where they were. An earlier round on Porto cut draw calls from 499 to 281 at the same image.
 
-## Lesson
-
-Measure before you add features, and keep the probe in the repository. A table where a row says "no change" is still useful. It tells you where the cost is not.
-
 Next: [labels that do not collide](/blog/labels-that-do-not-collide).

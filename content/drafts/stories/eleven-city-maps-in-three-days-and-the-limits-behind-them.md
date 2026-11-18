@@ -41,8 +41,4 @@ When the eleven maps first passed `verify`, I had not run the performance bench 
 
 The engine was shared. A map is mostly data: a city config, landmark records, and a data pipeline that is resumable and writes into the repository. The checks from the first city came along, and all eleven forks passed them on 14 November.
 
-## Lesson
-
-Speed here has four limits, and none is typing. They are usage, data, permission to read a source, and measurement. The first two have written fallbacks now: the commit rule and `OSM_API=1`. I respected the third. The fourth is still open, and I say so.
-
 The last article in this series looks at the logs behind all of this: [what my Claude sessions show about my own work](/blog/what-my-claude-sessions-show-about-my-own-work).

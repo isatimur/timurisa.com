@@ -40,11 +40,3 @@ One group owned models, fit checks, and landmarks. One owned the scene, effects,
 Two habits saved me. Before each big round, I commit a work-in-progress checkpoint and make a snapshot tarball. Agent rounds sometimes stop halfway when usage limits hit. A checkpoint turns a mess into a clean restart.
 
 I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine.
-
-## Lessons
-
-The hard constraint drove the architecture. "Real scale" shaped the footprints, the terrain, the checks, and the way the models are authored.
-
-A rule needs a check. `check-fit` is what turns "real scale" from a wish into a build failure.
-
-Notes about odd data sources earn their place. The working Overpass mirror and the OSRM foot-profile server are in my notes, so I do not rediscover them.

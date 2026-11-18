@@ -50,7 +50,3 @@ A browser can lie about DNS for a day. A direct request cannot.
 "Pixel-identical" needs proof. I took before and after screenshots of all six routes at 390 pixels and at 1440 pixels. Then I compared them.
 
 One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture.
-
-## Lessons
-
-Measure before you tune. Keep a backup of the old public folder, and keep it out of the deploy. Write the manual for the owner on day one. And never trust one browser to tell you that DNS has changed.

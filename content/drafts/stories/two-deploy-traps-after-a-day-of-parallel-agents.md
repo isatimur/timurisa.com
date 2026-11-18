@@ -46,11 +46,3 @@ These are test-bench numbers, not real devices. The handoff says so, and it list
 The handoff file listed each agent, what it finished, what it left half done, and which commits were local only. It named both traps. It gave the state of each repository and the live site. It also said which two verify checks were failing on `main`, so the first job on the next day was clear.
 
 Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause.
-
-## Lessons
-
-Treat deploying as its own job. The code can be right while the deploy is wrong.
-
-Do not trust a green check to mean "complete". Compare what a branch contains with what the live site already has.
-
-Write the traps down. The next reader, including me, will not know them.

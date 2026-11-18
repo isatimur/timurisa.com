@@ -50,9 +50,3 @@ The soak test fails. Over five minutes, GL memory grows past the gate by a hair 
 It has no weather, people, vehicles, or trees. Browsers with only WebGL 1 cannot run three.js r186, so those users see a message. The performance governor cannot switch scenes at run time. If it learns that a device is weak, the next visit starts in the lite scene. And the lite scene is not yet the default for the Low class, because I need real-device numbers first.
 
 One more item is unverified. Gold pins lacked glow in the "after" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it.
-
-## Lessons
-
-Write the numbers that failed next to the ones that passed.
-
-Measure on a stress bench, and say that it is a bench.
