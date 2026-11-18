@@ -8,5 +8,4 @@
 ~/Dev/chip-mascot-lab
 ~/Dev/haru
 ~/Dev/timurisa.com
-~/Dev/HANDOFF-*.md
 ~/Dev/LifeOS/knowledge-bases/ai-engineer-book
