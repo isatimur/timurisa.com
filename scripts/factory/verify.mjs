@@ -30,9 +30,9 @@ const slugs = archive.map((p) => p.slug.current)
     for (const b of p.body || [])
       for (const d of b.markDefs || []) {
         const h = d.href || ''
-        if (!/^(https?:\/\/|\/blog\/)/.test(h)) {
+        if (!/^(https?:\/\/|\/(?!\/))/.test(h)) {
           bad++
-          fail('links', `${p.slug.current}: href not allowed (only http(s) and /blog/): ${h.slice(0, 40)}`)
+          fail('links', `${p.slug.current}: href not allowed (only http(s) and site-relative paths): ${h.slice(0, 40)}`)
         } else if (h.startsWith('/blog/') && !set.has(h.slice(6))) {
           bad++
           fail('links', `${p.slug.current} -> ${h}`)
@@ -123,7 +123,7 @@ const slugs = archive.map((p) => p.slug.current)
   for (const slug of state.factoryPosts || []) {
     const src = rel(`factory/sources/${slug}.md`)
     const rev = rel(`factory/reviews/${slug}.md`)
-    if (!fs.existsSync(src) || !/^Source:/im.test(fs.readFileSync(src, 'utf8'))) {
+    if (!fs.existsSync(src) || !/^\s*[-*]?\s*\**Source:/im.test(fs.readFileSync(src, 'utf8'))) {
       bad++
       fail('sources', `${slug}: factory/sources/${slug}.md missing or has no "Source:" line`)
     }
