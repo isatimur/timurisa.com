@@ -10,6 +10,8 @@ For every factual sentence in the post:
 2. Open the cited source and confirm it says what the post says. Numbers, names, dates, and order of events must match exactly.
 3. Flag invented motives, invented numbers, first-person claims that no source backs, and quotes that are not in the source.
 
+Also read `factory/WRITING-STANDARD.md` and flag a post that breaks it: no real question, a sensational title, no answer in the first paragraph, headings that say nothing, claims with no command or number behind them, or a missing "How this post was made" closing line.
+
 Also flag: copied text from an external talk or article, client or employer names, anything that looks like a secret, and a closing section that only restates the article.
 
 Write `factory/reviews/<slug>.md` with:

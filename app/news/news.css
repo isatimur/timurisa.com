@@ -1,0 +1,14 @@
+/* Signal digest. Uses currentColor so it follows the site theme. */
+.news-list { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 0; }
+.news-item { padding: 1.25rem 0; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+.news-item:last-child { border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+.news-item h3 { margin: 0.35rem 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }
+.news-item h3 a { text-decoration: none; }
+.news-item h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.news-item p { margin: 0; max-width: 62ch; opacity: 0.85; }
+.news-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; align-items: center; font-size: 0.8rem; opacity: 0.8; }
+.news-kind { padding: 0.1rem 0.5rem; border: 1px solid currentColor; border-radius: 999px; font-weight: 600; letter-spacing: 0.02em; }
+.news-kind-vendor-claim, .news-kind-talked-about { border-style: dashed; }
+.news-date { opacity: 0.7; margin: 0; }
+.news-disclosure { font-size: 0.85rem; opacity: 0.7; max-width: 62ch; }
+.news-archive { list-style: none; padding: 0; display: grid; gap: 0.6rem; }

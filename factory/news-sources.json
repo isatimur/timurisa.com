@@ -1,0 +1,13 @@
+[
+  { "id": "simonwillison", "name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/" },
+  { "id": "github", "name": "GitHub Blog", "url": "https://github.blog/feed/" },
+  { "id": "nextjs", "name": "Next.js", "url": "https://nextjs.org/feed.xml" },
+  { "id": "vercel", "name": "Vercel", "url": "https://vercel.com/atom" },
+  { "id": "cloudflare", "name": "Cloudflare Blog", "url": "https://blog.cloudflare.com/rss/" },
+  { "id": "openai", "name": "OpenAI", "url": "https://openai.com/news/rss.xml" },
+  { "id": "fowler", "name": "Martin Fowler", "url": "https://martinfowler.com/feed.atom" },
+  { "id": "pragmatic", "name": "The Pragmatic Engineer", "url": "https://newsletter.pragmaticengineer.com/feed" },
+  { "id": "latentspace", "name": "Latent Space", "url": "https://www.latent.space/feed" },
+  { "id": "lobsters", "name": "Lobsters", "url": "https://lobste.rs/rss" },
+  { "id": "hn", "name": "Hacker News (300+ points)", "url": "https://hnrss.org/frontpage?points=300", "signal": true }
+]

@@ -47,3 +47,15 @@ Only these. Read `factory/sources.txt` for the list. Anything else is off limits
 - `scripts/factory/verify.mjs` is the gate. `scripts/factory/run.sh` is the runner. `factory/launchd/` holds the schedule.
 - `.github/workflows/verify.yml` runs the gate on every PR. `.github/workflows/dependabot-automerge.yml` handles maintenance.
 - `factory/state.json` holds run state. `factory/backlog.md` holds topics.
+
+## News digest (Signal)
+
+A weekly lane, separate from posts. `scripts/factory/news-run.sh` runs Fridays 16:00 via `com.timurisa.news.plist`.
+
+1. `news-fetch.mjs` reads the feeds in `factory/news-sources.json` (public, https only). No agent touches it.
+2. An agent with no web access reads `factory/news/candidates.json` and writes only `factory/news/commentary.json`: ids, a label, and a short note per item. Prompt: `factory/prompts/news.md`.
+3. `news-assemble.mjs` builds `content/news/<date>.json`. Links, titles, sources and point counts come from the feeds, never from the agent.
+4. `verify.mjs` checks the digest (6 to 8 items, 4+ sources, https links, allowlisted sources, short notes, no hype words, `talked-about` needs 300+ Hacker News points) and builds the site.
+5. A PR opens for one-tap merge. The site shows it at `/news`, with an Atom feed at `/news/feed.xml`.
+
+Writing rules for posts and digests live in `factory/WRITING-STANDARD.md`, with sources.

@@ -73,6 +73,8 @@ const slugs = archive.map((p) => p.slug.current)
   for (const sub of ['sources', 'reviews'])
     for (const f of fs.readdirSync(rel(`factory/${sub}`))) if (f.endsWith('.md')) targets.push(rel(`factory/${sub}/${f}`))
   targets.push(rel('factory/backlog.md'), rel('factory/state.json'))
+  if (fs.existsSync(rel('content/news')))
+    for (const f of fs.readdirSync(rel('content/news'))) if (f.endsWith('.json')) targets.push(rel(`content/news/${f}`))
   let bad = 0
   for (const t of targets) {
     const text = fs.readFileSync(t, 'utf8')
@@ -137,6 +139,36 @@ const slugs = archive.map((p) => p.slug.current)
     }
   }
   if (!bad) passed.push(`factory posts sourced and reviewed (${(state.factoryPosts || []).length})`)
+}
+
+// 6b. News digests: shape, https links, allowlisted sources, short notes, no hype words
+{
+  const dir = rel('content/news')
+  const KINDS = ['release', 'spec', 'research', 'opinion', 'vendor-claim', 'talked-about']
+  const allowed = new Set(JSON.parse(fs.readFileSync(rel('factory/news-sources.json'), 'utf8')).map((s) => s.name))
+  const hype = /\b(game[- ]?chang\w*|revolutionar\w*|groundbreaking|mind[- ]?blowing|unprecedented|must[- ]read|you won'?t believe)\b/i
+  let bad = 0, count = 0
+  for (const f of fs.existsSync(dir) ? fs.readdirSync(dir) : []) {
+    if (!f.endsWith('.json')) continue
+    count++
+    const bail = (m) => { bad++; fail('news', `${f}: ${m}`) }
+    let d
+    try { d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) } catch { bail('not JSON'); continue }
+    if (f !== `${d.date}.json` || !/^\d{4}-\d{2}-\d{2}$/.test(d.date || '')) bail('file name must match its date')
+    if (!d.headline || d.headline.length > 90) bail('headline missing or over 90 characters')
+    if (!Array.isArray(d.items) || d.items.length < 6 || d.items.length > 8) { bail('need 6 to 8 items'); continue }
+    if (new Set(d.items.map((i) => i.source)).size < 4) bail('need at least 4 sources')
+    if (new Set(d.items.map((i) => i.url)).size !== d.items.length) bail('duplicate links')
+    for (const i of d.items) {
+      if (!/^https:\/\/[^\s"<>]+$/.test(i.url || '')) bail(`link not https: ${String(i.url).slice(0, 40)}`)
+      if (!allowed.has(i.source)) bail(`source not on the allowlist: ${i.source}`)
+      if (!KINDS.includes(i.kind)) bail(`bad kind: ${i.kind}`)
+      if (i.kind === 'talked-about' && !(i.points >= 300)) bail(`talked-about without 300+ points: ${String(i.title).slice(0, 30)}`)
+      if (typeof i.note !== 'string' || i.note.length < 20 || i.note.length > 280) bail(`note length: ${String(i.title).slice(0, 30)}`)
+      else if (hype.test(i.note) || hype.test(d.headline || '')) bail(`hype word in: ${String(i.title).slice(0, 30)}`)
+    }
+  }
+  if (!bad) passed.push(`news digests valid (${count})`)
 }
 
 // 7. Build (opt-in flag; CI and the runner always pass it)

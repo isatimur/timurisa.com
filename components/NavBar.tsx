@@ -12,6 +12,7 @@ export function NavBar() {
     ["Home", "/"],
     ["Projects", "/projects"],
     ["Writing", "/blog"],
+    ["Signal", "/news"],
     ["Books", "/book"],
   ];
   return (
