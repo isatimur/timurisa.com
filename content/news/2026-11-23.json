@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-23",
+  "headline": "PostgreSQL 19, the nginx2root bugs, and 20MiB request bodies on Vercel Functions",
+  "items": [
+    {
+      "title": "PostgreSQL 19 Released",
+      "url": "https://simonwillison.net/2026/Nov/19/postgresql-19/",
+      "source": "Simon Willison",
+      "published": "2026-11-19",
+      "kind": "release",
+      "note": "PostgreSQL 19 is out, two months after the usual September slot. Simon Willison says the delay came mainly from fixing AI-reported vulnerabilities, and that the release was worth the wait."
+    },
+    {
+      "title": "nginx2root: Five new nginx vulnerabilities, and how Cloudflare protects origins from the worst of them",
+      "url": "https://blog.cloudflare.com/nginx2root/",
+      "source": "Cloudflare Blog",
+      "published": "2026-11-20",
+      "kind": "vendor-claim",
+      "note": "Five memory corruption bugs in nginx, called nginx2root, can let an unauthenticated attacker run code on a server. Cloudflare says its proxy shields origins from the most serious of them."
+    },
+    {
+      "title": "Vercel Functions now support request bodies up to 20MiB",
+      "url": "https://vercel.com/changelog/vercel-functions-now-support-request-bodies-up-to-20mib",
+      "source": "Vercel",
+      "published": "2026-11-20",
+      "kind": "release",
+      "note": "Vercel Functions now accept request bodies up to 20MiB, up from 4.5MB, in public beta. Set VERCEL_SUPPORT_LARGE_REQUEST_BODY=1 to opt in for one environment, so you can test on preview first."
+    },
+    {
+      "title": "Maintainers don’t need more AI bug reports. They need fixes.",
+      "url": "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
+      "source": "GitHub Blog",
+      "published": "2026-11-17",
+      "kind": "vendor-claim",
+      "note": "GitHub says its MDASH pilot with Microsoft turned thousands of raw AI findings into 99 checked, private reports with suggested fixes for six open source projects. GitHub says maintainers fixed more than half."
+    },
+    {
+      "title": "Fragments: November 20",
+      "url": "https://martinfowler.com/fragments/2026-11-20.html",
+      "source": "Martin Fowler",
+      "published": "2026-11-20",
+      "kind": "research",
+      "note": "Martin Fowler points to an experiment by Marcus Borg on whether healthy code is cheaper for agents to review. It used CodeScene health scores, three LLMs, and 465 pull requests."
+    },
+    {
+      "title": "Inference engineering for software engineers",
+      "url": "https://newsletter.pragmaticengineer.com/p/inference-engineering-for-software-engineers",
+      "source": "The Pragmatic Engineer",
+      "published": "2026-11-17",
+      "kind": "opinion",
+      "note": "The Pragmatic Engineer looks at when to drop frontier lab APIs. It covers how to choose models and providers, caching, dedicated GPUs, and KV cache concerns."
+    },
+    {
+      "title": "Building the Agent Host Protocol for sessions that continue across devices",
+      "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+      "source": "GitHub Blog",
+      "published": "2026-11-17",
+      "kind": "release",
+      "note": "GitHub describes how it built the open Agent Host Protocol. GitHub says the protocol keeps agent sessions available across editors, apps, phones, and the cloud."
+    }
+  ]
+}
