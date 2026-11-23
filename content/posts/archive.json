@@ -26563,5 +26563,1104 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-presentation-md-decks-in-any-language-and-right-to-left-pptx",
+    "title": "How presentation-md got right-to-left decks and script fonts into PowerPoint export",
+    "slug": {
+      "current": "presentation-md-decks-in-any-language-and-right-to-left-pptx"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-23T19:00:00.000Z",
+    "_updatedAt": "2026-11-23T19:00:00.000Z",
+    "excerpt": "A deck tool learned to render Hebrew, Persian and Arabic right to left, and its PPTX export learned which fonts Office expects for Arabic, Thai and CJK text. Here is the commit timeline and what broke on the way.",
+    "categories": [
+      "Product engineering",
+      "Open source"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "What does a slide tool need before a deck in Hebrew or Japanese looks right in PowerPoint? In presentation-md, it needs the deck language on every run, including tables and charts, right-to-left paragraphs with mirrored alignment, and Office script fonts in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "ea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s3",
+            "text": "cs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s4",
+            "text": " slots. This post is for developers who export slides to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s5",
+            "text": ".pptx",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s6",
+            "text": " and want to support non-Latin languages.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n1l0",
+            "href": "https://github.com/isatimur/presentation-md"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The post follows ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "presentation-md",
+            "marks": [
+              "n1l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": ", an open-source tool that turns Deck JSON into HTML and editable PPTX. You get the order of the changes, four problems the changelogs name, and the fixes. The facts come from the repo's changelogs, tests and git log.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The timeline: two days in November",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The repo has 704 commits between 2026-06-05 and 2026-11-23. July has 384 of them and August has 246. After 2026-08-05 the log shows no commits until 2026-11-22. The language work then ran over two days:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n4l0",
+            "href": "https://github.com/isatimur/presentation-md/commit/633450b"
+          },
+          {
+            "_type": "link",
+            "_key": "n4l1",
+            "href": "https://github.com/isatimur/presentation-md/commit/993adb2"
+          },
+          {
+            "_type": "link",
+            "_key": "n4l2",
+            "href": "https://github.com/isatimur/presentation-md/commit/629f438"
+          },
+          {
+            "_type": "link",
+            "_key": "n4l3",
+            "href": "https://github.com/isatimur/presentation-md/commit/d21ea8a"
+          },
+          {
+            "_type": "link",
+            "_key": "n4l4",
+            "href": "https://github.com/isatimur/presentation-md/commit/1ef7fa6"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "- 2026-11-22: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "`633450b`",
+            "marks": [
+              "n4l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " \"decks in any language and Studio UI in 10 languages\". - 2026-11-22: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "`993adb2`",
+            "marks": [
+              "n4l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": " deck language on PPTX tables and charts. - 2026-11-22: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": "`629f438`",
+            "marks": [
+              "n4l2"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": " presenter controls in the deck's language. - 2026-11-23: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s7",
+            "text": "`d21ea8a`",
+            "marks": [
+              "n4l3"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s8",
+            "text": " \"prove Hebrew and Persian decks in HTML and PPTX\". - 2026-11-23: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s9",
+            "text": "`1ef7fa6`",
+            "marks": [
+              "n4l4"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s10",
+            "text": " Office script fonts for Arabic, Hebrew, Thai and CJK runs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Two kinds of language: the deck and the Studio interface",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "The deck language is a new optional field, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": ". It takes a BCP 47 tag and defaults to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "en",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": ". The Hebrew example deck sets these ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s5",
+            "text": "meta",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s6",
+            "text": " fields:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "json \"meta\": {   \"title\": \"נווה — מצגת משקיעים\",   ...   \"theme\": \"fintech-clean\",   \"lang\": \"he\" } ",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": "",
+            "marks": [
+              "code"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "The Studio interface language is separate. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "locales.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " lists ten: English, Chinese, Spanish, Arabic, Portuguese (Brazil), Indonesian, French, Japanese, Russian and German. The file says they are \"the ten most-used languages on the web\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Arabic is the only one marked ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": "rtl",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": ". Hebrew and Persian are deck languages, not Studio interface languages.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "What ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": " changes in HTML and PPTX",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "633450b",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": " made these changes:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "- HTML sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "<html lang dir>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ". Arabic, Hebrew, Persian and Urdu render right to left. - Non-Latin scripts get Noto font fallbacks in the theme font stack and the Google Fonts URL. - PPTX text runs carry the deck language. Right-to-left decks get paragraph RTL and mirrored left and right alignment.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The export tests check this in the slide XML. For ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "he",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s3",
+            "text": "fa",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s5",
+            "text": "fa-IR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s6",
+            "text": " they expect the language tag, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s7",
+            "text": "rtl=\"1\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s8",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s9",
+            "text": "algn=\"r\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s10",
+            "text": " where the theme said left.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Four things that broke, and the fixes",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "**Word counts were wrong.** The word-count gates counted Cyrillic, Arabic and other non-Latin words as zero. CJK text without spaces counted as one word per paragraph. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "633450b",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": " counts them. The changelog says English counts are unchanged.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "**Tables and charts did not carry the deck language.** Text boxes carried it, but PPTX tables and charts did not. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": "993adb2",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": " added ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s3",
+            "text": "meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s4",
+            "text": " to them, and table cells now mirror alignment in right-to-left decks. A test builds an Arabic table and chart and checks that neither holds ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s5",
+            "text": "lang=\"en-US\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "**PowerPoint had to guess the font.** The changelog for ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": "1ef7fa6",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": " explains it. pptxgenjs writes the theme font into the East Asian (",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s3",
+            "text": "ea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s4",
+            "text": ") and complex-script (",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s5",
+            "text": "cs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s6",
+            "text": ") run slots too. Theme fonts are mostly Latin-only, \"so PowerPoint had to guess a font\" for Arabic, Hebrew, Persian, Thai, Chinese, Japanese and Korean text.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The fix sets those slots to the font that Office's own default theme uses for the script. The Latin slot keeps the theme font. The test pins the mapping:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "ts expect(scriptFontSlots(\"ar\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"fa-IR\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"he\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"th\")).toEqual({ cs: \"Tahoma\" }); expect(scriptFontSlots(\"ja\")).toEqual({ ea: \"Yu Gothic\" }); expect(scriptFontSlots(\"ko\")).toEqual({ ea: \"Malgun Gothic\" }); expect(scriptFontSlots(\"zh\")).toEqual({ ea: \"DengXian\" }); expect(scriptFontSlots(\"zh-Hant\")).toEqual({ ea: \"Microsoft JhengHei\" }); expect(scriptFontSlots(\"zh-TW\")).toEqual({ ea: \"Microsoft JhengHei\" }); ",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": "",
+            "marks": [
+              "code"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "For ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "en",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s3",
+            "text": "de",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s5",
+            "text": "ru",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s6",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s7",
+            "text": "pt-BR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s8",
+            "text": " the function returns ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s9",
+            "text": "null",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s10",
+            "text": ". The changelog says decks in Latin-script languages are unchanged, and the English test deck keeps the theme font in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s11",
+            "text": "cs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s12",
+            "text": " slot.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "**SVG images vanished.** This one is not about language. pptxgenjs silently dropped URL-encoded SVG data URIs. The changelog says 75 of 77 example decks use them. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": "c7357ed",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": " base64-encodes them before embed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "The same commit adds a fidelity report that lists each export warning with a kind and a slide number.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "Office-safe mode swaps theme fonts for Office fonts",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "a9a253a",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": " added a second font mode. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s3",
+            "text": "--font-mode office-safe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s4",
+            "text": " on the CLI swaps theme fonts for Office fonts of the same style. The first Office font in the theme's own stack wins. Otherwise serif goes to Georgia, monospace to Consolas, and anything else to Arial.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "The changelog says this makes the deck look the same \"on every Office install\". The default, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s1",
+            "text": "\"theme\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s2",
+            "text": ", is unchanged.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "- No file shows a test run, its output, or a pass count. The tests exist; their results are not in the sources. - No file shows a screenshot of these decks opened in PowerPoint, Keynote or Google Slides. - The presenter-control strings are \"machine translations pending native review\". The sources do not say who translated the Studio interface strings. - Urdu is named as right to left in HTML, but the PPTX tests cover Arabic, Hebrew and Persian only.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n28l0",
+            "href": "/blog/the-definition-of-done-is-a-command"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "To check the claims yourself, read ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s1",
+            "text": "packages/export/test/lang.test.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s3",
+            "text": "packages/renderer-node/tests/render-lang.test.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s4",
+            "text": " in the repo. A related post: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s5",
+            "text": "the definition of done is a command",
+            "marks": [
+              "n28l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "*How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.* ",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]
