@@ -10,6 +10,8 @@ For every factual sentence:
 2. Fetch the cited URL and confirm the page says what the post says. Names, numbers, versions, and dates must match.
 3. Flag widened scope ("any", "all", "never", "always"), invented numbers or motives, long quotes, first-person claims about building or using something (the owner has no project on this topic), and any named business described as a client or partner.
 
+Also read `factory/WRITING-STANDARD.md` and flag a post that only summarises its sources without adding a comparison, checklist, or open question, a sensational title, an unclear first paragraph, or a missing "How this post was made" closing line.
+
 Also flag: fewer than 4 sources or fewer than 2 primary sources, marketing claims presented as fact, and a missing "What I could not confirm" section.
 
 Write `factory/reviews/<slug>.md` with:

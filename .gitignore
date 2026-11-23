@@ -30,3 +30,7 @@ dist-ssr
 # vscode
 .vscode
 .vercel
+
+# factory news intermediates
+factory/news/candidates.json
+factory/news/commentary.json
