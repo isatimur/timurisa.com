@@ -59,6 +59,21 @@ const slugs = archive.map((p) => p.slug.current)
   if (!bad) passed.push('covers and fields present')
 }
 
+// 3b. No raw markdown in rendered post bodies (it means the importer did not understand a construct)
+{
+  let bad = 0
+  for (const p of archive)
+    for (const b of p.body || []) {
+      if (b._type !== 'block') continue
+      const t = (b.children || []).map((c) => c.text).join('')
+      if (!b.listItem && /(\*\*[^*]+\*\*|^\s*[-*]\s|^#{1,6}\s|```|^\|.*\|\s*$)/m.test(t)) {
+        bad++
+        fail('markdown', `${p.slug.current}: raw markdown in a rendered block: ${t.slice(0, 50)}`)
+      }
+    }
+  if (!bad) passed.push('no raw markdown in post bodies')
+}
+
 // 4. Banned terms and secrets in drafts and archive
 {
   const patterns = fs
