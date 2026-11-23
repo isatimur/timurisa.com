@@ -115,7 +115,8 @@ WRITER_PROMPT=factory/prompts/writer.md; REVIEWER_PROMPT=factory/prompts/reviewe
 if git show "$BASE_REF:factory/backlog.md" | grep -m1 '^- \[ \]' | grep -q '^- \[ \] \[research\]'; then
   WRITER_PROMPT=factory/prompts/writer-research.md; REVIEWER_PROMPT=factory/prompts/reviewer-research.md
   WEB_TOOLS="WebSearch,WebFetch"
-  echo "mode: research (web tools on)"
+  REWRITE_ROUNDS=6   # research posts have more claims, and a fresh reviewer finds new ones each round
+  echo "mode: research (web tools on, up to $REWRITE_ROUNDS rewrites)"
 fi
 
 echo "== writer"

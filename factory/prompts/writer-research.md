@@ -17,7 +17,8 @@ Rules:
 - No invented numbers, motives, or product comparisons. No slogans or forced contrasts.
 - Never describe a named business as a client or partner of the owner.
 - Add a section named "What I could not confirm" listing claims you could not verify.
-- 600 to 1000 words.
+- 600 to 1000 words. Count them before you finish. A longer draft fails review.
+- The slug is a public URL. It must describe the topic and make no claim. Avoid "most", "best", "only", "one standard", "without", and "the minimum". If the backlog slug makes a claim, choose a neutral slug yourself, use it for the draft, the sidecar, and `factoryPosts`, and keep the backlog line's text otherwise unchanged.
 - Follow `factory/WRITING-STANDARD.md`: start from a real question, say who the post is for and what the reader gets in the first paragraph, give a descriptive title, and make every heading say what its section holds. A summary of other pages adds nothing, so the post must add a comparison, a checklist, or an open question that the sources leave unanswered.
 - End the body with one italic line: `*How this post was made: an AI agent researched and drafted it from the sources linked above, a second agent checked it against those sources, and Timur merged it.*`
 
