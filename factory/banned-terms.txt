@@ -1,0 +1,14 @@
+# One case-insensitive regex per line. A match in any draft or post fails the gate.
+# Client and employer names (sources rule: no client or employer work).
+\bswiirl\b
+# Emails
+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}
+# Keys and tokens
+sk-or-v1-
+sk-[A-Za-z0-9_-]{20,}
+ghp_[A-Za-z0-9]{20,}
+AKIA[0-9A-Z]{16}
+xox[baprs]-[A-Za-z0-9-]{10,}
+BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY
+# Local paths that leak a username
+/Users/[a-z0-9_.-]+/
