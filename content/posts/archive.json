@@ -6339,7 +6339,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine. ",
+            "text": "I also keep one dev server on port 5173 and take screenshots with Playwright. The screenshots run on a software renderer, so they work on any machine.",
             "marks": []
           }
         ]
@@ -6664,7 +6664,7 @@
           {
             "_type": "span",
             "_key": "n16s4",
-            "text": " would have collided with it. If your restructure moves things between names that differ only in case, check this first. ",
+            "text": " would have collided with it. If your restructure moves things between names that differ only in case, check this first.",
             "marks": []
           }
         ]
@@ -7131,7 +7131,7 @@
           {
             "_type": "span",
             "_key": "n22s0",
-            "text": "One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture. ",
+            "text": "One gotcha: full-page screenshots leave lazy images blank. Scroll the page first, then capture.",
             "marks": []
           }
         ]
@@ -7512,7 +7512,7 @@
           {
             "_type": "span",
             "_key": "n22s0",
-            "text": "One engine, many cities works. It works because each piece has an owner, each rule has a check, and each run leaves a note for the next one. ",
+            "text": "One engine, many cities works. It works because each piece has an owner, each rule has a check, and each run leaves a note for the next one.",
             "marks": []
           }
         ]
@@ -7837,7 +7837,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "The capture scripts live in a temporary folder, so I rebuild them from my notes when they disappear. The rules above are what survives. The duplicate checker is the one script that lives in the repository. ",
+            "text": "The capture scripts live in a temporary folder, so I rebuild them from my notes when they disappear. The rules above are what survives. The duplicate checker is the one script that lives in the repository.",
             "marks": []
           }
         ]
@@ -8148,7 +8148,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "I wrote this limit into the notes. A map that states its own error is easier to trust. ",
+            "text": "I wrote this limit into the notes. A map that states its own error is easier to trust.",
             "marks": []
           }
         ]
@@ -8515,7 +8515,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause. ",
+            "text": "Agents can stop at any time, because of usage limits or errors. A handoff written before the stop turns a stop into a pause.",
             "marks": []
           }
         ]
@@ -8784,7 +8784,7 @@
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "Real data gave the map the shape of the coast. It also showed where the map still has gaps. ",
+            "text": "Real data gave the map the shape of the coast. It also showed where the map still has gaps.",
             "marks": []
           }
         ]
@@ -8885,7 +8885,7 @@
           {
             "_type": "span",
             "_key": "n5s0",
-            "text": "Results: - The critical chunk fell from 299.5 KB to 237.5 KB gzipped, a drop of 21 percent. - GPU memory fell from 672 MB to 543 MB on desktop, and from 335 MB to 214 MB on a high-end phone. - CPU-side vertex arrays for the largest class fell from 124 MB to 61 MB. - First frame and time to ready stayed the same, within noise. - V8 heap stayed the same, because typed arrays live outside it.",
+            "text": "Results:",
             "marks": []
           }
         ]
@@ -8893,13 +8893,15 @@
       {
         "_type": "block",
         "_key": "n6",
-        "style": "h2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "The lite scene",
+            "text": "The critical chunk fell from 299.5 KB to 237.5 KB gzipped, a drop of 21 percent.",
             "marks": []
           }
         ]
@@ -8908,26 +8910,14 @@
         "_type": "block",
         "_key": "n7",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n7s0",
-            "text": "For the weakest devices, there is now a separate lite scene. It runs with ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n7s1",
-            "text": "?scene=lite",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n7s2",
-            "text": ", and the menu offers it as \"Potato — lite scene\". I measured it on a software renderer, with 1280 by 720 pixels and the CPU slowed four times.",
+            "text": "GPU memory fell from 672 MB to 543 MB on desktop, and from 335 MB to 214 MB on a high-end phone.",
             "marks": []
           }
         ]
@@ -8936,12 +8926,14 @@
         "_type": "block",
         "_key": "n8",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n8s0",
-            "text": "- Time to ready fell from 58.1 s to 5.0 s. - Mean frame time fell from 2,742 ms to 45 ms, which is 22 to 36 frames per second. - The 95th percentile frame fell from 6,133 ms to 67 ms. - The overview fell from 0.88 million triangles to 0.126 million. - Draw calls fell from 159 to 9. - GPU memory fell from 349 MB to 6.4 MB, and heap from 178 MB to 18 MB.",
+            "text": "CPU-side vertex arrays for the largest class fell from 124 MB to 61 MB.",
             "marks": []
           }
         ]
@@ -8950,26 +8942,14 @@
         "_type": "block",
         "_key": "n9",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n9s0",
-            "text": "On a simulated low phone with ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n9s1",
-            "text": "?quality=potato",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n9s2",
-            "text": ", time to ready fell from 38.3 s to 13.7 s, and it ran at 60 frames per second.",
+            "text": "First frame and time to ready stayed the same, within noise.",
             "marks": []
           }
         ]
@@ -8978,12 +8958,14 @@
         "_type": "block",
         "_key": "n10",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n10s0",
-            "text": "These come from a test bench. They are not real devices.",
+            "text": "V8 heap stayed the same, because typed arrays live outside it.",
             "marks": []
           }
         ]
@@ -8997,7 +8979,7 @@
           {
             "_type": "span",
             "_key": "n11s0",
-            "text": "What I did not achieve",
+            "text": "The lite scene",
             "marks": []
           }
         ]
@@ -9011,7 +8993,21 @@
           {
             "_type": "span",
             "_key": "n12s0",
-            "text": "I did not make hitches near landmarks go away. Frames over 50 ms, when the camera approaches a landmark, were about the same before and after: 8, 6, and 10 before, and 8, 7, and 7 after, at four times CPU slowdown on the Low setting. The remaining hitches come from tile integration, clustered copies, and the first GPU upload.",
+            "text": "For the weakest devices, there is now a separate lite scene. It runs with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "?scene=lite",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ", and the menu offers it as \"Potato — lite scene\". I measured it on a software renderer, with 1280 by 720 pixels and the CPU slowed four times.",
             "marks": []
           }
         ]
@@ -9020,12 +9016,14 @@
         "_type": "block",
         "_key": "n13",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "I did not show the 1 ms phone slice that I aimed for.",
+            "text": "Time to ready fell from 58.1 s to 5.0 s.",
             "marks": []
           }
         ]
@@ -9034,12 +9032,14 @@
         "_type": "block",
         "_key": "n14",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "The soak test fails. Over five minutes, GL memory grows past the gate by a hair on the Ultra setting, at 5.0 percent. It fails clearly on Low, at 14 percent. The working set of 70 models is larger than the Low cap of 14, so the map built 455 models and freed 403 in 300 seconds. The fix is to raise the Low cap or to stop freeing models near the camera.",
+            "text": "Mean frame time fell from 2,742 ms to 45 ms, which is 22 to 36 frames per second.",
             "marks": []
           }
         ]
@@ -9047,13 +9047,15 @@
       {
         "_type": "block",
         "_key": "n15",
-        "style": "h2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "The lite scene has limits",
+            "text": "The 95th percentile frame fell from 6,133 ms to 67 ms.",
             "marks": []
           }
         ]
@@ -9062,12 +9064,14 @@
         "_type": "block",
         "_key": "n16",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "It has no weather, people, vehicles, or trees. Browsers with only WebGL 1 cannot run three.js r186, so those users see a message. The performance governor cannot switch scenes at run time. If it learns that a device is weak, the next visit starts in the lite scene. And the lite scene is not yet the default for the Low class, because I need real-device numbers first.",
+            "text": "The overview fell from 0.88 million triangles to 0.126 million.",
             "marks": []
           }
         ]
@@ -9076,12 +9080,170 @@
         "_type": "block",
         "_key": "n17",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "One more item is unverified. Gold pins lacked glow in the \"after\" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it. ",
+            "text": "Draw calls fell from 159 to 9.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "GPU memory fell from 349 MB to 6.4 MB, and heap from 178 MB to 18 MB.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "On a simulated low phone with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "?quality=potato",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ", time to ready fell from 38.3 s to 13.7 s, and it ran at 60 frames per second.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "These come from a test bench. They are not real devices.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "What I did not achieve",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "I did not make hitches near landmarks go away. Frames over 50 ms, when the camera approaches a landmark, were about the same before and after: 8, 6, and 10 before, and 8, 7, and 7 after, at four times CPU slowdown on the Low setting. The remaining hitches come from tile integration, clustered copies, and the first GPU upload.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "I did not show the 1 ms phone slice that I aimed for.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "The soak test fails. Over five minutes, GL memory grows past the gate by a hair on the Ultra setting, at 5.0 percent. It fails clearly on Low, at 14 percent. The working set of 70 models is larger than the Low cap of 14, so the map built 455 models and freed 403 in 300 seconds. The fix is to raise the Low cap or to stop freeing models near the camera.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "The lite scene has limits",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "It has no weather, people, vehicles, or trees. Browsers with only WebGL 1 cannot run three.js r186, so those users see a message. The performance governor cannot switch scenes at run time. If it learns that a device is weak, the next visit starts in the lite scene. And the lite scene is not yet the default for the Low class, because I need real-device numbers first.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "One more item is unverified. Gold pins lacked glow in the \"after\" overview shots. I suspect the governor turned effects off under load, not the lazy models. I have not confirmed it.",
             "marks": []
           }
         ]
@@ -9526,14 +9688,48 @@
       },
       {
         "_type": "block",
-        "_key": "b8",
+        "_key": "b8i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b8s0",
-            "text": "- An assistant suggests. - A copilot collaborates inside a tight human loop. - A delegate takes a unit of work and returns an artifact, a recommendation, or a completed step.",
+            "_key": "b8i0s0",
+            "text": "An assistant suggests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i1s0",
+            "text": "A copilot collaborates inside a tight human loop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i2s0",
+            "text": "A delegate takes a unit of work and returns an artifact, a recommendation, or a completed step.",
             "marks": []
           }
         ]
@@ -10675,7 +10871,21 @@
           {
             "_type": "span",
             "_key": "b8s0",
-            "text": "Armin Ronacher and Cristina Poncela Cubeiro argue in *The Friction Is Your Judgment* that some friction is judgment in disguise. The chapter gives a simple test. Cut a pause if removing it only costs keystrokes, such as boilerplate, glue, or scaffolding the model can regenerate on demand. Keep a pause if removing it costs a decision, such as whether the architecture can carry this change or whether the draft is right or merely plausible.",
+            "text": "Armin Ronacher and Cristina Poncela Cubeiro argue in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "b8s1",
+            "text": "The Friction Is Your Judgment",
+            "marks": [
+              "em"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b8s2",
+            "text": " that some friction is judgment in disguise. The chapter gives a simple test. Cut a pause if removing it only costs keystrokes, such as boilerplate, glue, or scaffolding the model can regenerate on demand. Keep a pause if removing it costs a decision, such as whether the architecture can carry this change or whether the draft is right or merely plausible.",
             "marks": []
           }
         ]
@@ -11528,14 +11738,112 @@
       },
       {
         "_type": "block",
-        "_key": "b11",
+        "_key": "b11i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b11s0",
-            "text": "- A stable folder structure. - Explicit setup, build, and run commands. - Type, lint, and test gates the agent can run repeatedly. - Architecture decisions stored in files. - Examples of accepted patterns for tests, APIs, migrations, and reviews. - Specs close enough to the work to survive handoff. - Narrow scripts for common operations.",
+            "_key": "b11i0s0",
+            "text": "A stable folder structure.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i1s0",
+            "text": "Explicit setup, build, and run commands.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i2s0",
+            "text": "Type, lint, and test gates the agent can run repeatedly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i3s0",
+            "text": "Architecture decisions stored in files.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i4s0",
+            "text": "Examples of accepted patterns for tests, APIs, migrations, and reviews.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i5s0",
+            "text": "Specs close enough to the work to survive handoff.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b11i6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b11i6s0",
+            "text": "Narrow scripts for common operations.",
             "marks": []
           }
         ]
@@ -12022,14 +12330,64 @@
       },
       {
         "_type": "block",
-        "_key": "b7",
+        "_key": "b7i0x0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b7s0",
-            "text": "- whether a new model is better on your work or only different - whether a prompt revision helped one slice and quietly hurt another - whether a new tool description raised completion rate but also raised latency or cost - whether the agent still handles the failures that hurt you last month",
+            "_key": "b7i0x0s0",
+            "text": "whether a new model is better on your work or only different",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i0x1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i0x1s0",
+            "text": "whether a prompt revision helped one slice and quietly hurt another",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i0x2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i0x2s0",
+            "text": "whether a new tool description raised completion rate but also raised latency or cost",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i0x3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i0x3s0",
+            "text": "whether the agent still handles the failures that hurt you last month",
             "marks": []
           }
         ]
@@ -12402,14 +12760,120 @@
       },
       {
         "_type": "block",
-        "_key": "b13",
+        "_key": "b13i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b13s0",
-            "text": "- **Monday:** pick one painful failure from your history and write it as a case. - **Tuesday:** decide how you will grade the path as well as the result. - **Wednesday:** name the one slice that costs you most when it fails. - **Thursday:** confirm that production runs leave traces you can replay. - **Friday:** name an owner for the dataset.",
+            "_key": "b13i0s0",
+            "text": "Monday:",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13i0s1",
+            "text": " pick one painful failure from your history and write it as a case.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i1s0",
+            "text": "Tuesday:",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13i1s1",
+            "text": " decide how you will grade the path as well as the result.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i2s0",
+            "text": "Wednesday:",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13i2s1",
+            "text": " name the one slice that costs you most when it fails.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i3s0",
+            "text": "Thursday:",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13i3s1",
+            "text": " confirm that production runs leave traces you can replay.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i4s0",
+            "text": "Friday:",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "b13i4s1",
+            "text": " name an owner for the dataset.",
             "marks": []
           }
         ]
@@ -12670,14 +13134,64 @@
       },
       {
         "_type": "block",
-        "_key": "b13",
+        "_key": "b13i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b13s0",
-            "text": "- The team adds a regression case for the admin override path. They later call it the admin-override regression. - They mine earlier incidents for similar special-path behavior. - They create a task slice for patches that touch both product logic and operations logic. - They stop asking only whether a patch passes. They ask which real failure families it still protects against.",
+            "_key": "b13i0s0",
+            "text": "The team adds a regression case for the admin override path. They later call it the admin-override regression.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i1s0",
+            "text": "They mine earlier incidents for similar special-path behavior.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i2s0",
+            "text": "They create a task slice for patches that touch both product logic and operations logic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i3s0",
+            "text": "They stop asking only whether a patch passes. They ask which real failure families it still protects against.",
             "marks": []
           }
         ]
@@ -13418,14 +13932,48 @@
       },
       {
         "_type": "block",
-        "_key": "b8",
+        "_key": "b8i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b8s0",
-            "text": "- Source typing ranks internal precedent above public background. - Access boundaries apply per matter. - The retrieval surface carries provenance, so the associate can see which layer an answer came from.",
+            "_key": "b8i0s0",
+            "text": "Source typing ranks internal precedent above public background.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i1s0",
+            "text": "Access boundaries apply per matter.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i2s0",
+            "text": "The retrieval surface carries provenance, so the associate can see which layer an answer came from.",
             "marks": []
           }
         ]
@@ -14010,14 +14558,80 @@
       },
       {
         "_type": "block",
-        "_key": "b12",
+        "_key": "b12i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b12s0",
-            "text": "- Replay or snapshots, and why. - Where humans review. - Which model runs which step. - How each worker is isolated. - Who sees which trace.",
+            "_key": "b12i0s0",
+            "text": "Replay or snapshots, and why.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12i1s0",
+            "text": "Where humans review.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12i2s0",
+            "text": "Which model runs which step.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12i3s0",
+            "text": "How each worker is isolated.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b12i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b12i4s0",
+            "text": "Who sees which trace.",
             "marks": []
           }
         ]
@@ -14278,14 +14892,48 @@
       },
       {
         "_type": "block",
-        "_key": "b13",
+        "_key": "b13i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b13s0",
-            "text": "- Which worker owns each task? - Where is the shared record of what is done, so a retry does not repeat finished work? - Where does the human see one roll-up instead of fragments?",
+            "_key": "b13i0s0",
+            "text": "Which worker owns each task?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i1s0",
+            "text": "Where is the shared record of what is done, so a retry does not repeat finished work?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b13i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b13i2s0",
+            "text": "Where does the human see one roll-up instead of fragments?",
             "marks": []
           }
         ]
@@ -14786,14 +15434,80 @@
       },
       {
         "_type": "block",
-        "_key": "b10",
+        "_key": "b10i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b10s0",
-            "text": "- Day one: list your agents. - Day two: mark which of the four controls each has. - Day three: write the permission rows. - Day four: review every connected tool server against the governance test. - Day five: replace one standing credential with a scoped one, and log what you could not fix yet.",
+            "_key": "b10i0s0",
+            "text": "Day one: list your agents.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10i1s0",
+            "text": "Day two: mark which of the four controls each has.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10i2s0",
+            "text": "Day three: write the permission rows.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10i3s0",
+            "text": "Day four: review every connected tool server against the governance test.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b10i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b10i4s0",
+            "text": "Day five: replace one standing credential with a scoped one, and log what you could not fix yet.",
             "marks": []
           }
         ]
@@ -15210,14 +15924,80 @@
       },
       {
         "_type": "block",
-        "_key": "b5",
+        "_key": "b5i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b5s0",
-            "text": "- Weak context architecture: the system fumbles the thread. - Brittle runtime: interruptions break it. - Sloppy security model: approvals turn casual and authority turns ambient. - Underdesigned control plane: the user rescues the interaction again and again. - Slow tool layer: the product sounds incompetent, however good the core model is.",
+            "_key": "b5i0s0",
+            "text": "Weak context architecture: the system fumbles the thread.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5i1s0",
+            "text": "Brittle runtime: interruptions break it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5i2s0",
+            "text": "Sloppy security model: approvals turn casual and authority turns ambient.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5i3s0",
+            "text": "Underdesigned control plane: the user rescues the interaction again and again.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b5i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b5i4s0",
+            "text": "Slow tool layer: the product sounds incompetent, however good the core model is.",
             "marks": []
           }
         ]
@@ -15788,14 +16568,48 @@
       },
       {
         "_type": "block",
-        "_key": "b4",
+        "_key": "b4i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b4s0",
-            "text": "- The caller corrects their own account number halfway through a sentence. The system has to revise state. - The caller says, \"No, wait, that was the old policy.\" The system has to tell abandoned context from active context. - The agent announces a short wait while it checks, then goes silent. The caller does not feel a neutral backend delay. The caller feels incompetence.",
+            "_key": "b4i0s0",
+            "text": "The caller corrects their own account number halfway through a sentence. The system has to revise state.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4i1s0",
+            "text": "The caller says, \"No, wait, that was the old policy.\" The system has to tell abandoned context from active context.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b4i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b4i2s0",
+            "text": "The agent announces a short wait while it checks, then goes silent. The caller does not feel a neutral backend delay. The caller feels incompetence.",
             "marks": []
           }
         ]
@@ -15844,14 +16658,80 @@
       },
       {
         "_type": "block",
-        "_key": "b8",
+        "_key": "b8i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b8s0",
-            "text": "- What state is preserved? - Which partial output is discarded? - Does a tool call continue in the background? If so, how does the result surface later? - If the user answers a question indirectly, how much of the prior plan stays binding? - If a user correction and a returning tool result arrive together, which one takes priority?",
+            "_key": "b8i0s0",
+            "text": "What state is preserved?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i1s0",
+            "text": "Which partial output is discarded?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i2s0",
+            "text": "Does a tool call continue in the background? If so, how does the result surface later?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i3s0",
+            "text": "If the user answers a question indirectly, how much of the prior plan stays binding?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b8i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b8i4s0",
+            "text": "If a user correction and a returning tool result arrive together, which one takes priority?",
             "marks": []
           }
         ]
@@ -16380,14 +17260,64 @@
       },
       {
         "_type": "block",
-        "_key": "b6",
+        "_key": "b6i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b6s0",
-            "text": "- Who owns the production path? - Who owns domain correctness? - Who owns the security boundaries? - Which workflows stay human-gated?",
+            "_key": "b6i0s0",
+            "text": "Who owns the production path?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6i1s0",
+            "text": "Who owns domain correctness?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6i2s0",
+            "text": "Who owns the security boundaries?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b6i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b6i3s0",
+            "text": "Which workflows stay human-gated?",
             "marks": []
           }
         ]
@@ -17310,14 +18240,112 @@
       },
       {
         "_type": "block",
-        "_key": "b14",
+        "_key": "b14i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b14s0",
-            "text": "- Make the task legible. - Make the standards explicit. - Make the context usable. - Make the runtime durable. - Make authority narrow enough to trust. - Make review proportionate to risk. - Make the organization capable of learning.",
+            "_key": "b14i0s0",
+            "text": "Make the task legible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i1s0",
+            "text": "Make the standards explicit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i2s0",
+            "text": "Make the context usable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i3s0",
+            "text": "Make the runtime durable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i4s0",
+            "text": "Make authority narrow enough to trust.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i5s0",
+            "text": "Make review proportionate to risk.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b14i6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b14i6s0",
+            "text": "Make the organization capable of learning.",
             "marks": []
           }
         ]
@@ -17508,14 +18536,80 @@
       },
       {
         "_type": "block",
-        "_key": "b7",
+        "_key": "b7i0",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "b7s0",
-            "text": "- Responsibility for standards. - Responsibility for scoping. - Responsibility for the boundaries within which machines act. - Responsibility for deciding when evidence is sufficient. - Responsibility for noticing when the system is producing motion without progress.",
+            "_key": "b7i0s0",
+            "text": "Responsibility for standards.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i1",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i1s0",
+            "text": "Responsibility for scoping.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i2s0",
+            "text": "Responsibility for the boundaries within which machines act.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i3s0",
+            "text": "Responsibility for deciding when evidence is sufficient.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b7i4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "b7i4s0",
+            "text": "Responsibility for noticing when the system is producing motion without progress.",
             "marks": []
           }
         ]
@@ -18062,7 +19156,7 @@
           {
             "_type": "span",
             "_key": "n21s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -18379,7 +19473,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -18744,7 +19838,7 @@
           {
             "_type": "span",
             "_key": "n21s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -18929,7 +20023,15 @@
           {
             "_type": "span",
             "_key": "n5s0",
-            "text": "**A startup workflow.** Six steps before any code is written: confirm the directory, read the progress file, read the feature list and pick the highest-priority unfinished feature, look at the last five commits, run the init script, and fix the baseline first if verification fails.",
+            "text": "A startup workflow.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": " Six steps before any code is written: confirm the directory, read the progress file, read the feature list and pick the highest-priority unfinished feature, look at the last five commits, run the init script, and fix the baseline first if verification fails.",
             "marks": []
           }
         ]
@@ -18943,7 +20045,15 @@
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "**Working rules.** Work on one feature at a time. Do not mark a feature passing because code was added. Stay inside the feature's scope. Never hand-edit generated geodata, regenerate it through the pipeline. Do not silently weaken a check to make a feature pass. Prefer durable repository artifacts over chat summaries.",
+            "text": "Working rules.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": " Work on one feature at a time. Do not mark a feature passing because code was added. Stay inside the feature's scope. Never hand-edit generated geodata, regenerate it through the pipeline. Do not silently weaken a check to make a feature pass. Prefer durable repository artifacts over chat summaries.",
             "marks": []
           }
         ]
@@ -18957,12 +20067,20 @@
           {
             "_type": "span",
             "_key": "n7s0",
-            "text": "**A definition of done.** A command, ",
-            "marks": []
+            "text": "A definition of done.",
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
             "_key": "n7s1",
+            "text": " A command, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
             "text": "npm run verify",
             "marks": [
               "code"
@@ -18970,7 +20088,7 @@
           },
           {
             "_type": "span",
-            "_key": "n7s2",
+            "_key": "n7s3",
             "text": ", is the gate. The file lists the checks behind it and says what each one guards.",
             "marks": []
           }
@@ -18985,7 +20103,15 @@
           {
             "_type": "span",
             "_key": "n8s0",
-            "text": "**Hard constraints.** Node 22, plain ES modules, models authored in metres on real OSM footprints, free-licensed photos only.",
+            "text": "Hard constraints.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": " Node 22, plain ES modules, models authored in metres on real OSM footprints, free-licensed photos only.",
             "marks": []
           }
         ]
@@ -18999,7 +20125,15 @@
           {
             "_type": "span",
             "_key": "n9s0",
-            "text": "**An end-of-session routine.** Update the progress file and the feature list, record blockers, commit only in a safe state, and leave the repo ready to restart.",
+            "text": "An end-of-session routine.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": " Update the progress file and the feature list, record blockers, commit only in a safe state, and leave the repo ready to restart.",
             "marks": []
           }
         ]
@@ -19235,7 +20369,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -19552,7 +20686,7 @@
           {
             "_type": "span",
             "_key": "n19s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -19869,7 +21003,7 @@
           {
             "_type": "span",
             "_key": "n19s0",
-            "text": "Pace is a property of the whole system. The agents are fast. The checks, the decisions, and the review set the speed of the loop. ",
+            "text": "Pace is a property of the whole system. The agents are fast. The checks, the decisions, and the review set the speed of the loop.",
             "marks": []
           }
         ]
@@ -20192,7 +21326,7 @@
           {
             "_type": "span",
             "_key": "n17s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -20593,7 +21727,7 @@
           {
             "_type": "span",
             "_key": "n24s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -20916,7 +22050,7 @@
           {
             "_type": "span",
             "_key": "n17s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -21253,7 +22387,7 @@
           {
             "_type": "span",
             "_key": "n17s2",
-            "text": ", covers the file that tells an agent where these checks live. ",
+            "text": ", covers the file that tells an agent where these checks live.",
             "marks": []
           }
         ]
@@ -21520,7 +22654,7 @@
           {
             "_type": "span",
             "_key": "n14s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -21871,7 +23005,7 @@
           {
             "_type": "span",
             "_key": "n16s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -22330,7 +23464,7 @@
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "The thread through the series is simple. Cheap generation does not remove the need for judgement. It moves the judgement into the spec. ",
+            "text": "The thread through the series is simple. Cheap generation does not remove the need for judgement. It moves the judgement into the spec.",
             "marks": []
           }
         ]
@@ -22633,7 +23767,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -23146,7 +24280,7 @@
           {
             "_type": "span",
             "_key": "n19s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -23494,121 +24628,22 @@
         "_type": "block",
         "_key": "n19",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [
           {
             "_type": "link",
             "_key": "n19l0",
             "href": "/blog/a-200-is-not-enough-to-call-a-city-live"
-          },
-          {
-            "_type": "link",
-            "_key": "n19l1",
-            "href": "/blog/scroll-dive-and-the-way-back"
-          },
-          {
-            "_type": "link",
-            "_key": "n19l2",
-            "href": "/blog/labels-that-do-not-collide"
-          },
-          {
-            "_type": "link",
-            "_key": "n19l3",
-            "href": "/blog/claims-with-a-status"
-          },
-          {
-            "_type": "link",
-            "_key": "n19l4",
-            "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
-          },
-          {
-            "_type": "link",
-            "_key": "n19l5",
-            "href": "/blog/what-my-claude-sessions-show-about-my-own-work"
           }
         ],
         "children": [
           {
             "_type": "span",
             "_key": "n19s0",
-            "text": "- ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s1",
             "text": "A 200 is not enough to call a city live",
             "marks": [
               "n19l0"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s2",
-            "text": " - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s3",
-            "text": "Scroll, dive, and the way back",
-            "marks": [
-              "n19l1"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s4",
-            "text": " - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s5",
-            "text": "Labels that do not collide",
-            "marks": [
-              "n19l2"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s6",
-            "text": " - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s7",
-            "text": "Claims with a status",
-            "marks": [
-              "n19l3"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s8",
-            "text": " - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s9",
-            "text": "Eleven city maps in three days, and the limits behind them",
-            "marks": [
-              "n19l4"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n19s10",
-            "text": " - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n19s11",
-            "text": "What my Claude sessions show about my own work",
-            "marks": [
-              "n19l5"
             ]
           }
         ]
@@ -23617,12 +24652,132 @@
         "_type": "block",
         "_key": "n20",
         "style": "normal",
-        "markDefs": [],
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n20l0",
+            "href": "/blog/scroll-dive-and-the-way-back"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "The lesson from the first week is small. Start the front door with a list in plain HTML. The globe is a layer on top of the list, not a replacement for it. ",
+            "text": "Scroll, dive, and the way back",
+            "marks": [
+              "n20l0"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n21l0",
+            "href": "/blog/labels-that-do-not-collide"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Labels that do not collide",
+            "marks": [
+              "n21l0"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n22l0",
+            "href": "/blog/claims-with-a-status"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Claims with a status",
+            "marks": [
+              "n22l0"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n23l0",
+            "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "Eleven city maps in three days, and the limits behind them",
+            "marks": [
+              "n23l0"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n24l0",
+            "href": "/blog/what-my-claude-sessions-show-about-my-own-work"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "What my Claude sessions show about my own work",
+            "marks": [
+              "n24l0"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "The lesson from the first week is small. Start the front door with a list in plain HTML. The globe is a layer on top of the list, not a replacement for it.",
             "marks": []
           }
         ]
@@ -23992,12 +25147,14 @@
         "_type": "block",
         "_key": "n13",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "- A guide that answers questions is built but parked. It loads only with ",
+            "text": "A guide that answers questions is built but parked. It loads only with ",
             "marks": []
           },
           {
@@ -24011,7 +25168,7 @@
           {
             "_type": "span",
             "_key": "n13s2",
-            "text": ", and no API key is set, so it has never answered a real question. - \"Tested on phones\" stays out. No map has had a test on a real phone. - A statement that a trail is official stays out. Its official status is not confirmed. - \"Reconstructions are labelled\" stays out. No map shows a reconstruction label yet.",
+            "text": ", and no API key is set, so it has never answered a real question.",
             "marks": []
           }
         ]
@@ -24019,13 +25176,15 @@
       {
         "_type": "block",
         "_key": "n14",
-        "style": "h2",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "What a claims list finds",
+            "text": "\"Tested on phones\" stays out. No map has had a test on a real phone.",
             "marks": []
           }
         ]
@@ -24034,12 +25193,14 @@
         "_type": "block",
         "_key": "n15",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "Two sentences changed on 17 November when Pena Park joined. \"Day and night on every map\" became \"on the town maps and Madeira\", because Pena Park has no night. \"Weather on every map except Madeira\" became \"on the town maps\", because Madeira and Pena Park have none.",
+            "text": "A statement that a trail is official stays out. Its official status is not confirmed.",
             "marks": []
           }
         ]
@@ -24048,12 +25209,14 @@
         "_type": "block",
         "_key": "n16",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "The list also counted photos. Eight of the 301 town-map landmarks have no photo. So \"a photo for every landmark\" is false, and the page says \"a photo where a free one exists\".",
+            "text": "\"Reconstructions are labelled\" stays out. No map shows a reconstruction label yet.",
             "marks": []
           }
         ]
@@ -24061,13 +25224,13 @@
       {
         "_type": "block",
         "_key": "n17",
-        "style": "normal",
+        "style": "h2",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "The list records conflicts between sources. One map's README still says \"not deployed\", while its progress log and data say the map is built. The page follows the progress log and the data.",
+            "text": "What a claims list finds",
             "marks": []
           }
         ]
@@ -24076,32 +25239,74 @@
         "_type": "block",
         "_key": "n18",
         "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Two sentences changed on 17 November when Pena Park joined. \"Day and night on every map\" became \"on the town maps and Madeira\", because Pena Park has no night. \"Weather on every map except Madeira\" became \"on the town maps\", because Madeira and Pena Park have none.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "The list also counted photos. Eight of the 301 town-map landmarks have no photo. So \"a photo for every landmark\" is false, and the page says \"a photo where a free one exists\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "The list records conflicts between sources. One map's README still says \"not deployed\", while its progress log and data say the map is built. The page follows the progress log and the data.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n18l0",
+            "_key": "n21l0",
             "href": "/blog/eleven-city-maps-in-three-days-and-the-limits-behind-them"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n18s0",
+            "_key": "n21s0",
             "text": "Next: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n18s1",
+            "_key": "n21s1",
             "text": "eleven city maps in three days, and the limits behind them",
             "marks": [
-              "n18l0"
+              "n21l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n18s2",
-            "text": ". ",
+            "_key": "n21s2",
+            "text": ".",
             "marks": []
           }
         ]
@@ -24446,7 +25651,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -24763,7 +25968,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -25248,7 +26453,7 @@
           {
             "_type": "span",
             "_key": "n18s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -25601,7 +26806,7 @@
           {
             "_type": "span",
             "_key": "n20s2",
-            "text": ". ",
+            "text": ".",
             "marks": []
           }
         ]
@@ -25968,7 +27173,7 @@
           {
             "_type": "span",
             "_key": "n24s0",
-            "text": "They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome. ",
+            "text": "They cannot show whether a map is good. They cannot show whether a visitor understood a page. They cannot show what a real phone does. They record the process, not the outcome.",
             "marks": []
           }
         ]
@@ -26075,7 +27280,21 @@
           {
             "_type": "span",
             "_key": "n4s0",
-            "text": "The **Elephant** holds your project, your requirements, and your earlier decisions. It explores the problem and drafts the specification.",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "Elephant",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " holds your project, your requirements, and your earlier decisions. It explores the problem and drafts the specification.",
             "marks": []
           }
         ]
@@ -26089,7 +27308,21 @@
           {
             "_type": "span",
             "_key": "n5s0",
-            "text": "The **Goldfish** reviewers get the document and the source material it references. They do not get the earlier conversation. Their job is to find missing assumptions, unclear requirements, and implementation risks.",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "Goldfish",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": " reviewers get the document and the source material it references. They do not get the earlier conversation. Their job is to find missing assumptions, unclear requirements, and implementation risks.",
             "marks": []
           }
         ]
@@ -26103,7 +27336,15 @@
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "**You** resolve the trade-offs, approve the design, and decide what to build.",
+            "text": "You",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": " resolve the trade-offs, approve the design, and decide what to build.",
             "marks": []
           }
         ]
@@ -26154,17 +27395,13 @@
         "_type": "block",
         "_key": "n10",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n10s0",
-            "text": "- ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n10s1",
             "text": "/egm-brainstorm",
             "marks": [
               "code"
@@ -26172,13 +27409,13 @@
           },
           {
             "_type": "span",
-            "_key": "n10s2",
+            "_key": "n10s1",
             "text": " clarifies the idea with you, runs fresh reviewers against it, and saves a ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n10s3",
+            "_key": "n10s2",
             "text": "concepts_brief.md",
             "marks": [
               "code"
@@ -26186,50 +27423,8 @@
           },
           {
             "_type": "span",
-            "_key": "n10s4",
-            "text": ". - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n10s5",
-            "text": "/egm-draft",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n10s6",
-            "text": " turns the brief into a design document, one section at a time, and pauses after each section for your feedback. - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n10s7",
-            "text": "/egm-review",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n10s8",
-            "text": " sends the draft to fresh reviewers in a zero-context session. - ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n10s9",
-            "text": "/egm-drift-report",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n10s10",
-            "text": " compares the documents in a folder with the current source code and reports where they diverge.",
+            "_key": "n10s3",
+            "text": ".",
             "marks": []
           }
         ]
@@ -26238,54 +27433,22 @@
         "_type": "block",
         "_key": "n11",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n11s0",
-            "text": "The docs also list ",
-            "marks": []
+            "text": "/egm-draft",
+            "marks": [
+              "code"
+            ]
           },
           {
             "_type": "span",
             "_key": "n11s1",
-            "text": "egm-bootstrap",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n11s2",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n11s3",
-            "text": "egm-resolve",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n11s4",
-            "text": ", and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n11s5",
-            "text": "egm-review-loop",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n11s6",
-            "text": ". The loop skill lets you pick your own reviewers and standards for documents that are not software specs.",
+            "text": " turns the brief into a design document, one section at a time, and pauses after each section for your feedback.",
             "marks": []
           }
         ]
@@ -26294,12 +27457,22 @@
         "_type": "block",
         "_key": "n12",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n12s0",
-            "text": "The reviewers are personas, each a separate file. The names include a hostile design critic, a naive reader with zero institutional knowledge, a pedantic checker of documentation against the code, a copy editor, a structural validator, a pragmatic tech lead who checks that a plan leaves no design decisions to the implementer, and a \"zoom out\" reviewer. A synthesizer merges and deduplicates what they find.",
+            "text": "/egm-review",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": " sends the draft to fresh reviewers in a zero-context session.",
             "marks": []
           }
         ]
@@ -26308,12 +27481,22 @@
         "_type": "block",
         "_key": "n13",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "Two lines in the docs matter to me. The review gives \"a lot of feedback by design\", and you take what is relevant and ignore the rest. And a human review of the design still comes before implementation. EGM does not replace it.",
+            "text": "/egm-drift-report",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": " compares the documents in a folder with the current source code and reports where they diverge.",
             "marks": []
           }
         ]
@@ -26321,13 +27504,55 @@
       {
         "_type": "block",
         "_key": "n14",
-        "style": "h2",
+        "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "One real run",
+            "text": "The docs also list ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "egm-bootstrap",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s3",
+            "text": "egm-resolve",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s4",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s5",
+            "text": "egm-review-loop",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s6",
+            "text": ". The loop skill lets you pick your own reviewers and standards for documents that are not software specs.",
             "marks": []
           }
         ]
@@ -26341,7 +27566,7 @@
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "On 17 November I ran a review on an onboarding guide for a team codebase. The target was one Markdown file of 87 lines. The reviewers worked in stages, and a later stage merged and deduplicated the earlier findings into twelve items.",
+            "text": "The reviewers are personas, each a separate file. The names include a hostile design critic, a naive reader with zero institutional knowledge, a pedantic checker of documentation against the code, a copy editor, a structural validator, a pragmatic tech lead who checks that a plan leaves no design decisions to the implementer, and a \"zoom out\" reviewer. A synthesizer merges and deduplicates what they find.",
             "marks": []
           }
         ]
@@ -26355,7 +27580,7 @@
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "The final report sorted them like this:",
+            "text": "Two lines in the docs matter to me. The review gives \"a lot of feedback by design\", and you take what is relevant and ignore the rest. And a human review of the design still comes before implementation. EGM does not replace it.",
             "marks": []
           }
         ]
@@ -26363,13 +27588,13 @@
       {
         "_type": "block",
         "_key": "n17",
-        "style": "normal",
+        "style": "h2",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "- 11 proposed fixes, applied. - 1 escalated to me. - 0 contested, 0 declined.",
+            "text": "One real run",
             "marks": []
           }
         ]
@@ -26383,7 +27608,7 @@
           {
             "_type": "span",
             "_key": "n18s0",
-            "text": "Three of the findings show how the method works.",
+            "text": "On 17 November I ran a review on an onboarding guide for a team codebase. The target was one Markdown file of 87 lines. The reviewers worked in stages, and a later stage merged and deduplicated the earlier findings into twelve items.",
             "marks": []
           }
         ]
@@ -26397,7 +27622,7 @@
           {
             "_type": "span",
             "_key": "n19s0",
-            "text": "**A dead remote.** The guide sent iOS work to a repository that was a stale export with a foreign remote. It also named a clone that does not exist on disk. The report rated it a blocker, with the reason \"a new engineer would commit to a dead remote\". The Elephant, the session with the project context, checked the disk and the project's context files beyond what the reviewers read. The fix followed from those.",
+            "text": "The final report sorted them like this:",
             "marks": []
           }
         ]
@@ -26406,12 +27631,14 @@
         "_type": "block",
         "_key": "n20",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "**A wrong claim in the text.** One section proposed an umbrella repository that \"pins branches\". Submodules pin commits. The same section was a speculative proposal that nobody had pushed. The fix was to delete it.",
+            "text": "11 proposed fixes, applied.",
             "marks": []
           }
         ]
@@ -26420,12 +27647,14 @@
         "_type": "block",
         "_key": "n21",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n21s0",
-            "text": "**Whose numbers.** One person's 30-day usage stats led the guide under the heading \"team\". The report said the stats tell a newcomer nothing they can act on.",
+            "text": "1 escalated to me.",
             "marks": []
           }
         ]
@@ -26434,12 +27663,14 @@
         "_type": "block",
         "_key": "n22",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n22s0",
-            "text": "The escalated item shows the third role. A repository was missing from the workspace list, and the reviewers could not tell if that was a mistake. It was my call to make, not theirs. I said the omission was deliberate, because that repository is locked down. The fact then went into the guide as a note.",
+            "text": "0 contested, 0 declined.",
             "marks": []
           }
         ]
@@ -26453,7 +27684,7 @@
           {
             "_type": "span",
             "_key": "n23s0",
-            "text": "The guide ended at 79 lines, down from 87.",
+            "text": "Three of the findings show how the method works.",
             "marks": []
           }
         ]
@@ -26467,7 +27698,15 @@
           {
             "_type": "span",
             "_key": "n24s0",
-            "text": "One more detail from the report. Its first draft gave the new length as 70 lines. That number was wrong, and the report was corrected. A review that checks documents should be able to catch its own figures.",
+            "text": "A dead remote.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": " The guide sent iOS work to a repository that was a stale export with a foreign remote. It also named a clone that does not exist on disk. The report rated it a blocker, with the reason \"a new engineer would commit to a dead remote\". The Elephant, the session with the project context, checked the disk and the project's context files beyond what the reviewers read. The fix followed from those.",
             "marks": []
           }
         ]
@@ -26475,13 +27714,21 @@
       {
         "_type": "block",
         "_key": "n25",
-        "style": "h2",
+        "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n25s0",
-            "text": "Where it fits in my other spec work",
+            "text": "A wrong claim in the text.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s1",
+            "text": " One section proposed an umbrella repository that \"pins branches\". Submodules pin commits. The same section was a speculative proposal that nobody had pushed. The fix was to delete it.",
             "marks": []
           }
         ]
@@ -26495,7 +27742,15 @@
           {
             "_type": "span",
             "_key": "n26s0",
-            "text": "My own checks in the city map repos test a build: the verify command, the fit checks, the evaluator rubric. EGM tests a document before anything is built. The two catch different mistakes. A verify gate cannot see a guide that points to a repository that does not exist. A document review cannot see a model that fails the fit check.",
+            "text": "Whose numbers.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": " One person's 30-day usage stats led the guide under the heading \"team\". The report said the stats tell a newcomer nothing they can act on.",
             "marks": []
           }
         ]
@@ -26503,13 +27758,13 @@
       {
         "_type": "block",
         "_key": "n27",
-        "style": "h2",
+        "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n27s0",
-            "text": "What I have not measured",
+            "text": "The escalated item shows the third role. A repository was missing from the workspace list, and the reviewers could not tell if that was a mistake. It was my call to make, not theirs. I said the omission was deliberate, because that repository is locked down. The fact then went into the guide as a note.",
             "marks": []
           }
         ]
@@ -26523,7 +27778,7 @@
           {
             "_type": "span",
             "_key": "n28s0",
-            "text": "I have one run. I do not know how many of the twelve findings I would have found by reading the guide again myself. I also cannot say how much of the value came from the fresh reviewers, and how much from the session that held the context and checked the disk. I would need several runs, with a count of accepted findings each time, to say more.",
+            "text": "The guide ended at 79 lines, down from 87.",
             "marks": []
           }
         ]
@@ -26532,32 +27787,102 @@
         "_type": "block",
         "_key": "n29",
         "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "One more detail from the report. Its first draft gave the new length as 70 lines. That number was wrong, and the report was corrected. A review that checks documents should be able to catch its own figures.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "Where it fits in my other spec work",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "My own checks in the city map repos test a build: the verify command, the fit checks, the evaluator rubric. EGM tests a document before anything is built. The two catch different mistakes. A verify gate cannot see a guide that points to a repository that does not exist. A document review cannot see a model that fails the fit check.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "What I have not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "I have one run. I do not know how many of the twelve findings I would have found by reading the guide again myself. I also cannot say how much of the value came from the fresh reviewers, and how much from the session that held the context and checked the disk. I would need several runs, with a count of accepted findings each time, to say more.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "normal",
         "markDefs": [
           {
             "_type": "link",
-            "_key": "n29l0",
+            "_key": "n34l0",
             "href": "/blog/an-evaluator-rubric-for-ai-changes"
           }
         ],
         "children": [
           {
             "_type": "span",
-            "_key": "n29s0",
+            "_key": "n34s0",
             "text": "Next: ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n29s1",
+            "_key": "n34s1",
             "text": "an evaluator rubric for AI changes",
             "marks": [
-              "n29l0"
+              "n34l0"
             ]
           },
           {
             "_type": "span",
-            "_key": "n29s2",
-            "text": ". ",
+            "_key": "n34s2",
+            "text": ".",
             "marks": []
           }
         ]
@@ -26701,38 +28026,20 @@
         "_type": "block",
         "_key": "n4",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [
           {
             "_type": "link",
             "_key": "n4l0",
             "href": "https://github.com/isatimur/presentation-md/commit/633450b"
-          },
-          {
-            "_type": "link",
-            "_key": "n4l1",
-            "href": "https://github.com/isatimur/presentation-md/commit/993adb2"
-          },
-          {
-            "_type": "link",
-            "_key": "n4l2",
-            "href": "https://github.com/isatimur/presentation-md/commit/629f438"
-          },
-          {
-            "_type": "link",
-            "_key": "n4l3",
-            "href": "https://github.com/isatimur/presentation-md/commit/d21ea8a"
-          },
-          {
-            "_type": "link",
-            "_key": "n4l4",
-            "href": "https://github.com/isatimur/presentation-md/commit/1ef7fa6"
           }
         ],
         "children": [
           {
             "_type": "span",
             "_key": "n4s0",
-            "text": "- 2026-11-22: ",
+            "text": "2026-11-22: ",
             "marks": []
           },
           {
@@ -26746,63 +28053,7 @@
           {
             "_type": "span",
             "_key": "n4s2",
-            "text": " \"decks in any language and Studio UI in 10 languages\". - 2026-11-22: ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n4s3",
-            "text": "`993adb2`",
-            "marks": [
-              "n4l1"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n4s4",
-            "text": " deck language on PPTX tables and charts. - 2026-11-22: ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n4s5",
-            "text": "`629f438`",
-            "marks": [
-              "n4l2"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n4s6",
-            "text": " presenter controls in the deck's language. - 2026-11-23: ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n4s7",
-            "text": "`d21ea8a`",
-            "marks": [
-              "n4l3"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n4s8",
-            "text": " \"prove Hebrew and Persian decks in HTML and PPTX\". - 2026-11-23: ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n4s9",
-            "text": "`1ef7fa6`",
-            "marks": [
-              "n4l4"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n4s10",
-            "text": " Office script fonts for Arabic, Hebrew, Thai and CJK runs.",
+            "text": " \"decks in any language and Studio UI in 10 languages\".",
             "marks": []
           }
         ]
@@ -26810,13 +28061,35 @@
       {
         "_type": "block",
         "_key": "n5",
-        "style": "h2",
-        "markDefs": [],
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n5l0",
+            "href": "https://github.com/isatimur/presentation-md/commit/993adb2"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "n5s0",
-            "text": "Two kinds of language: the deck and the Studio interface",
+            "text": "2026-11-22: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "`993adb2`",
+            "marks": [
+              "n5l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": " deck language on PPTX tables and charts.",
             "marks": []
           }
         ]
@@ -26825,54 +28098,34 @@
         "_type": "block",
         "_key": "n6",
         "style": "normal",
-        "markDefs": [],
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n6l0",
+            "href": "https://github.com/isatimur/presentation-md/commit/629f438"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "n6s0",
-            "text": "The deck language is a new optional field, ",
+            "text": "2026-11-22: ",
             "marks": []
           },
           {
             "_type": "span",
             "_key": "n6s1",
-            "text": "meta.lang",
+            "text": "`629f438`",
             "marks": [
-              "code"
+              "n6l0"
             ]
           },
           {
             "_type": "span",
             "_key": "n6s2",
-            "text": ". It takes a BCP 47 tag and defaults to ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n6s3",
-            "text": "en",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n6s4",
-            "text": ". The Hebrew example deck sets these ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n6s5",
-            "text": "meta",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n6s6",
-            "text": " fields:",
+            "text": " presenter controls in the deck's language.",
             "marks": []
           }
         ]
@@ -26881,31 +28134,35 @@
         "_type": "block",
         "_key": "n7",
         "style": "normal",
-        "markDefs": [],
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n7l0",
+            "href": "https://github.com/isatimur/presentation-md/commit/d21ea8a"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "n7s0",
-            "text": "",
-            "marks": [
-              "code"
-            ]
+            "text": "2026-11-23: ",
+            "marks": []
           },
           {
             "_type": "span",
             "_key": "n7s1",
-            "text": "json \"meta\": {   \"title\": \"נווה — מצגת משקיעים\",   ...   \"theme\": \"fintech-clean\",   \"lang\": \"he\" } ",
+            "text": "`d21ea8a`",
             "marks": [
-              "code"
+              "n7l0"
             ]
           },
           {
             "_type": "span",
             "_key": "n7s2",
-            "text": "",
-            "marks": [
-              "code"
-            ]
+            "text": " \"prove Hebrew and Persian decks in HTML and PPTX\".",
+            "marks": []
           }
         ]
       },
@@ -26913,26 +28170,34 @@
         "_type": "block",
         "_key": "n8",
         "style": "normal",
-        "markDefs": [],
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n8l0",
+            "href": "https://github.com/isatimur/presentation-md/commit/1ef7fa6"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "n8s0",
-            "text": "The Studio interface language is separate. ",
+            "text": "2026-11-23: ",
             "marks": []
           },
           {
             "_type": "span",
             "_key": "n8s1",
-            "text": "locales.ts",
+            "text": "`1ef7fa6`",
             "marks": [
-              "code"
+              "n8l0"
             ]
           },
           {
             "_type": "span",
             "_key": "n8s2",
-            "text": " lists ten: English, Chinese, Spanish, Arabic, Portuguese (Brazil), Indonesian, French, Japanese, Russian and German. The file says they are \"the ten most-used languages on the web\".",
+            "text": " Office script fonts for Arabic, Hebrew, Thai and CJK runs.",
             "marks": []
           }
         ]
@@ -26940,27 +28205,13 @@
       {
         "_type": "block",
         "_key": "n9",
-        "style": "normal",
+        "style": "h2",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n9s0",
-            "text": "Arabic is the only one marked ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n9s1",
-            "text": "rtl",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n9s2",
-            "text": ". Hebrew and Persian are deck languages, not Studio interface languages.",
+            "text": "Two kinds of language: the deck and the Studio interface",
             "marks": []
           }
         ]
@@ -26968,13 +28219,13 @@
       {
         "_type": "block",
         "_key": "n10",
-        "style": "h2",
+        "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n10s0",
-            "text": "What ",
+            "text": "The deck language is a new optional field, ",
             "marks": []
           },
           {
@@ -26988,38 +28239,44 @@
           {
             "_type": "span",
             "_key": "n10s2",
-            "text": " changes in HTML and PPTX",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n11",
-        "style": "normal",
-        "markDefs": [],
-        "children": [
-          {
-            "_type": "span",
-            "_key": "n11s0",
-            "text": "Commit ",
+            "text": ". It takes a BCP 47 tag and defaults to ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n11s1",
-            "text": "633450b",
+            "_key": "n10s3",
+            "text": "en",
             "marks": [
               "code"
             ]
           },
           {
             "_type": "span",
-            "_key": "n11s2",
-            "text": " made these changes:",
+            "_key": "n10s4",
+            "text": ". The Hebrew example deck sets these ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s5",
+            "text": "meta",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s6",
+            "text": " fields:",
             "marks": []
           }
         ]
+      },
+      {
+        "_type": "code",
+        "_key": "n11",
+        "language": "json",
+        "code": "\"meta\": {\n  \"title\": \"נווה — מצגת משקיעים\",\n  ...\n  \"theme\": \"fintech-clean\",\n  \"lang\": \"he\"\n}"
       },
       {
         "_type": "block",
@@ -27030,13 +28287,13 @@
           {
             "_type": "span",
             "_key": "n12s0",
-            "text": "- HTML sets ",
+            "text": "The Studio interface language is separate. ",
             "marks": []
           },
           {
             "_type": "span",
             "_key": "n12s1",
-            "text": "<html lang dir>",
+            "text": "locales.ts",
             "marks": [
               "code"
             ]
@@ -27044,7 +28301,7 @@
           {
             "_type": "span",
             "_key": "n12s2",
-            "text": ". Arabic, Hebrew, Persian and Urdu render right to left. - Non-Latin scripts get Noto font fallbacks in the theme font stack and the Google Fonts URL. - PPTX text runs carry the deck language. Right-to-left decks get paragraph RTL and mirrored left and right alignment.",
+            "text": " lists ten: English, Chinese, Spanish, Arabic, Portuguese (Brazil), Indonesian, French, Japanese, Russian and German. The file says they are \"the ten most-used languages on the web\".",
             "marks": []
           }
         ]
@@ -27058,13 +28315,13 @@
           {
             "_type": "span",
             "_key": "n13s0",
-            "text": "The export tests check this in the slide XML. For ",
+            "text": "Arabic is the only one marked ",
             "marks": []
           },
           {
             "_type": "span",
             "_key": "n13s1",
-            "text": "he",
+            "text": "rtl",
             "marks": [
               "code"
             ]
@@ -27072,63 +28329,7 @@
           {
             "_type": "span",
             "_key": "n13s2",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n13s3",
-            "text": "fa",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n13s4",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n13s5",
-            "text": "fa-IR",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n13s6",
-            "text": " they expect the language tag, ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n13s7",
-            "text": "rtl=\"1\"",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n13s8",
-            "text": ", and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n13s9",
-            "text": "algn=\"r\"",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n13s10",
-            "text": " where the theme said left.",
+            "text": ". Hebrew and Persian are deck languages, not Studio interface languages.",
             "marks": []
           }
         ]
@@ -27142,7 +28343,21 @@
           {
             "_type": "span",
             "_key": "n14s0",
-            "text": "Four things that broke, and the fixes",
+            "text": "What ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " changes in HTML and PPTX",
             "marks": []
           }
         ]
@@ -27156,7 +28371,7 @@
           {
             "_type": "span",
             "_key": "n15s0",
-            "text": "**Word counts were wrong.** The word-count gates counted Cyrillic, Arabic and other non-Latin words as zero. CJK text without spaces counted as one word per paragraph. Commit ",
+            "text": "Commit ",
             "marks": []
           },
           {
@@ -27170,7 +28385,7 @@
           {
             "_type": "span",
             "_key": "n15s2",
-            "text": " counts them. The changelog says English counts are unchanged.",
+            "text": " made these changes:",
             "marks": []
           }
         ]
@@ -27179,18 +28394,20 @@
         "_type": "block",
         "_key": "n16",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n16s0",
-            "text": "**Tables and charts did not carry the deck language.** Text boxes carried it, but PPTX tables and charts did not. Commit ",
+            "text": "HTML sets ",
             "marks": []
           },
           {
             "_type": "span",
             "_key": "n16s1",
-            "text": "993adb2",
+            "text": "<html lang dir>",
             "marks": [
               "code"
             ]
@@ -27198,35 +28415,7 @@
           {
             "_type": "span",
             "_key": "n16s2",
-            "text": " added ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n16s3",
-            "text": "meta.lang",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n16s4",
-            "text": " to them, and table cells now mirror alignment in right-to-left decks. A test builds an Arabic table and chart and checks that neither holds ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n16s5",
-            "text": "lang=\"en-US\"",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n16s6",
-            "text": ".",
+            "text": ". Arabic, Hebrew, Persian and Urdu render right to left.",
             "marks": []
           }
         ]
@@ -27235,54 +28424,14 @@
         "_type": "block",
         "_key": "n17",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n17s0",
-            "text": "**PowerPoint had to guess the font.** The changelog for ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n17s1",
-            "text": "1ef7fa6",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n17s2",
-            "text": " explains it. pptxgenjs writes the theme font into the East Asian (",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n17s3",
-            "text": "ea",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n17s4",
-            "text": ") and complex-script (",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n17s5",
-            "text": "cs",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n17s6",
-            "text": ") run slots too. Theme fonts are mostly Latin-only, \"so PowerPoint had to guess a font\" for Arabic, Hebrew, Persian, Thai, Chinese, Japanese and Korean text.",
+            "text": "Non-Latin scripts get Noto font fallbacks in the theme font stack and the Google Fonts URL.",
             "marks": []
           }
         ]
@@ -27291,12 +28440,14 @@
         "_type": "block",
         "_key": "n18",
         "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n18s0",
-            "text": "The fix sets those slots to the font that Office's own default theme uses for the script. The Latin slot keeps the theme font. The test pins the mapping:",
+            "text": "PPTX text runs carry the deck language. Right-to-left decks get paragraph RTL and mirrored left and right alignment.",
             "marks": []
           }
         ]
@@ -27310,15 +28461,13 @@
           {
             "_type": "span",
             "_key": "n19s0",
-            "text": "",
-            "marks": [
-              "code"
-            ]
+            "text": "The export tests check this in the slide XML. For ",
+            "marks": []
           },
           {
             "_type": "span",
             "_key": "n19s1",
-            "text": "ts expect(scriptFontSlots(\"ar\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"fa-IR\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"he\")).toEqual({ cs: \"Arial\" }); expect(scriptFontSlots(\"th\")).toEqual({ cs: \"Tahoma\" }); expect(scriptFontSlots(\"ja\")).toEqual({ ea: \"Yu Gothic\" }); expect(scriptFontSlots(\"ko\")).toEqual({ ea: \"Malgun Gothic\" }); expect(scriptFontSlots(\"zh\")).toEqual({ ea: \"DengXian\" }); expect(scriptFontSlots(\"zh-Hant\")).toEqual({ ea: \"Microsoft JhengHei\" }); expect(scriptFontSlots(\"zh-TW\")).toEqual({ ea: \"Microsoft JhengHei\" }); ",
+            "text": "he",
             "marks": [
               "code"
             ]
@@ -27326,107 +28475,77 @@
           {
             "_type": "span",
             "_key": "n19s2",
-            "text": "",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": "fa",
             "marks": [
               "code"
             ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s5",
+            "text": "fa-IR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s6",
+            "text": " they expect the language tag, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s7",
+            "text": "rtl=\"1\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s8",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s9",
+            "text": "algn=\"r\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s10",
+            "text": " where the theme said left.",
+            "marks": []
           }
         ]
       },
       {
         "_type": "block",
         "_key": "n20",
-        "style": "normal",
+        "style": "h2",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n20s0",
-            "text": "For ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s1",
-            "text": "en",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s2",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s3",
-            "text": "de",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s4",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s5",
-            "text": "ru",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s6",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s7",
-            "text": "pt-BR",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s8",
-            "text": " the function returns ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s9",
-            "text": "null",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s10",
-            "text": ". The changelog says decks in Latin-script languages are unchanged, and the English test deck keeps the theme font in the ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n20s11",
-            "text": "cs",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n20s12",
-            "text": " slot.",
+            "text": "Four things that broke, and the fixes",
             "marks": []
           }
         ]
@@ -27440,21 +28559,29 @@
           {
             "_type": "span",
             "_key": "n21s0",
-            "text": "**SVG images vanished.** This one is not about language. pptxgenjs silently dropped URL-encoded SVG data URIs. The changelog says 75 of 77 example decks use them. Commit ",
-            "marks": []
+            "text": "Word counts were wrong.",
+            "marks": [
+              "strong"
+            ]
           },
           {
             "_type": "span",
             "_key": "n21s1",
-            "text": "c7357ed",
+            "text": " The word-count gates counted Cyrillic, Arabic and other non-Latin words as zero. CJK text without spaces counted as one word per paragraph. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": "633450b",
             "marks": [
               "code"
             ]
           },
           {
             "_type": "span",
-            "_key": "n21s2",
-            "text": " base64-encodes them before embed.",
+            "_key": "n21s3",
+            "text": " counts them. The changelog says English counts are unchanged.",
             "marks": []
           }
         ]
@@ -27468,7 +28595,57 @@
           {
             "_type": "span",
             "_key": "n22s0",
-            "text": "The same commit adds a fidelity report that lists each export warning with a kind and a slide number.",
+            "text": "Tables and charts did not carry the deck language.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": " Text boxes carried it, but PPTX tables and charts did not. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": "993adb2",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s3",
+            "text": " added ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s4",
+            "text": "meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s5",
+            "text": " to them, and table cells now mirror alignment in right-to-left decks. A test builds an Arabic table and chart and checks that neither holds ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s6",
+            "text": "lang=\"en-US\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s7",
+            "text": ".",
             "marks": []
           }
         ]
@@ -27476,13 +28653,63 @@
       {
         "_type": "block",
         "_key": "n23",
-        "style": "h2",
+        "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n23s0",
-            "text": "Office-safe mode swaps theme fonts for Office fonts",
+            "text": "PowerPoint had to guess the font.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s1",
+            "text": " The changelog for ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n23s2",
+            "text": "1ef7fa6",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s3",
+            "text": " explains it. pptxgenjs writes the theme font into the East Asian (",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n23s4",
+            "text": "ea",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s5",
+            "text": ") and complex-script (",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n23s6",
+            "text": "cs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s7",
+            "text": ") run slots too. Theme fonts are mostly Latin-only, \"so PowerPoint had to guess a font\" for Arabic, Hebrew, Persian, Thai, Chinese, Japanese and Korean text.",
             "marks": []
           }
         ]
@@ -27496,77 +28723,111 @@
           {
             "_type": "span",
             "_key": "n24s0",
-            "text": "Commit ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n24s1",
-            "text": "a9a253a",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n24s2",
-            "text": " added a second font mode. ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n24s3",
-            "text": "--font-mode office-safe",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n24s4",
-            "text": " on the CLI swaps theme fonts for Office fonts of the same style. The first Office font in the theme's own stack wins. Otherwise serif goes to Georgia, monospace to Consolas, and anything else to Arial.",
+            "text": "The fix sets those slots to the font that Office's own default theme uses for the script. The Latin slot keeps the theme font. The test pins the mapping:",
             "marks": []
           }
         ]
       },
       {
-        "_type": "block",
+        "_type": "code",
         "_key": "n25",
+        "language": "ts",
+        "code": "expect(scriptFontSlots(\"ar\")).toEqual({ cs: \"Arial\" });\nexpect(scriptFontSlots(\"fa-IR\")).toEqual({ cs: \"Arial\" });\nexpect(scriptFontSlots(\"he\")).toEqual({ cs: \"Arial\" });\nexpect(scriptFontSlots(\"th\")).toEqual({ cs: \"Tahoma\" });\nexpect(scriptFontSlots(\"ja\")).toEqual({ ea: \"Yu Gothic\" });\nexpect(scriptFontSlots(\"ko\")).toEqual({ ea: \"Malgun Gothic\" });\nexpect(scriptFontSlots(\"zh\")).toEqual({ ea: \"DengXian\" });\nexpect(scriptFontSlots(\"zh-Hant\")).toEqual({ ea: \"Microsoft JhengHei\" });\nexpect(scriptFontSlots(\"zh-TW\")).toEqual({ ea: \"Microsoft JhengHei\" });"
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
         "style": "normal",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
-            "_key": "n25s0",
-            "text": "The changelog says this makes the deck look the same \"on every Office install\". The default, ",
+            "_key": "n26s0",
+            "text": "For ",
             "marks": []
           },
           {
             "_type": "span",
-            "_key": "n25s1",
-            "text": "\"theme\"",
+            "_key": "n26s1",
+            "text": "en",
             "marks": [
               "code"
             ]
           },
           {
             "_type": "span",
-            "_key": "n25s2",
-            "text": ", is unchanged.",
+            "_key": "n26s2",
+            "text": ", ",
             "marks": []
-          }
-        ]
-      },
-      {
-        "_type": "block",
-        "_key": "n26",
-        "style": "h2",
-        "markDefs": [],
-        "children": [
+          },
           {
             "_type": "span",
-            "_key": "n26s0",
-            "text": "What is not measured",
+            "_key": "n26s3",
+            "text": "de",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s5",
+            "text": "ru",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s6",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s7",
+            "text": "pt-BR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s8",
+            "text": " the function returns ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s9",
+            "text": "null",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s10",
+            "text": ". The changelog says decks in Latin-script languages are unchanged, and the English test deck keeps the theme font in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s11",
+            "text": "cs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s12",
+            "text": " slot.",
             "marks": []
           }
         ]
@@ -27580,7 +28841,29 @@
           {
             "_type": "span",
             "_key": "n27s0",
-            "text": "- No file shows a test run, its output, or a pass count. The tests exist; their results are not in the sources. - No file shows a screenshot of these decks opened in PowerPoint, Keynote or Google Slides. - The presenter-control strings are \"machine translations pending native review\". The sources do not say who translated the Studio interface strings. - Urdu is named as right to left in HTML, but the PPTX tests cover Arabic, Hebrew and Persian only.",
+            "text": "SVG images vanished.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s1",
+            "text": " This one is not about language. pptxgenjs silently dropped URL-encoded SVG data URIs. The changelog says 75 of 77 example decks use them. Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s2",
+            "text": "c7357ed",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s3",
+            "text": " base64-encodes them before embed.",
             "marks": []
           }
         ]
@@ -27589,60 +28872,12 @@
         "_type": "block",
         "_key": "n28",
         "style": "normal",
-        "markDefs": [
-          {
-            "_type": "link",
-            "_key": "n28l0",
-            "href": "/blog/the-definition-of-done-is-a-command"
-          }
-        ],
+        "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n28s0",
-            "text": "To check the claims yourself, read ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n28s1",
-            "text": "packages/export/test/lang.test.ts",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n28s2",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n28s3",
-            "text": "packages/renderer-node/tests/render-lang.test.ts",
-            "marks": [
-              "code"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n28s4",
-            "text": " in the repo. A related post: ",
-            "marks": []
-          },
-          {
-            "_type": "span",
-            "_key": "n28s5",
-            "text": "the definition of done is a command",
-            "marks": [
-              "n28l0"
-            ]
-          },
-          {
-            "_type": "span",
-            "_key": "n28s6",
-            "text": ".",
+            "text": "The same commit adds a fidelity report that lists each export warning with a kind and a slide number.",
             "marks": []
           }
         ]
@@ -27650,14 +28885,240 @@
       {
         "_type": "block",
         "_key": "n29",
-        "style": "normal",
+        "style": "h2",
         "markDefs": [],
         "children": [
           {
             "_type": "span",
             "_key": "n29s0",
-            "text": "*How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.* ",
+            "text": "Office-safe mode swaps theme fonts for Office fonts",
             "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": "a9a253a",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s2",
+            "text": " added a second font mode. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s3",
+            "text": "--font-mode office-safe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s4",
+            "text": " on the CLI swaps theme fonts for Office fonts of the same style. The first Office font in the theme's own stack wins. Otherwise serif goes to Georgia, monospace to Consolas, and anything else to Arial.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "The changelog says this makes the deck look the same \"on every Office install\". The default, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": "\"theme\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s2",
+            "text": ", is unchanged.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "No file shows a test run, its output, or a pass count. The tests exist; their results are not in the sources.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n34s0",
+            "text": "No file shows a screenshot of these decks opened in PowerPoint, Keynote or Google Slides.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "The presenter-control strings are \"machine translations pending native review\". The sources do not say who translated the Studio interface strings.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "Urdu is named as right to left in HTML, but the PPTX tests cover Arabic, Hebrew and Persian only.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n37l0",
+            "href": "/blog/the-definition-of-done-is-a-command"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "To check the claims yourself, read ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s1",
+            "text": "packages/export/test/lang.test.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s3",
+            "text": "packages/renderer-node/tests/render-lang.test.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s4",
+            "text": " in the repo. A related post: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s5",
+            "text": "the definition of done is a command",
+            "marks": [
+              "n37l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
           }
         ]
       }
