@@ -34,3 +34,4 @@ dist-ssr
 # factory news intermediates
 factory/news/candidates.json
 factory/news/commentary.json
+factory/evidence/

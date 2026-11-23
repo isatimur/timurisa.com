@@ -8,7 +8,7 @@ It comes from two kinds of source. Google's own guidance on helpful content is t
 
 1. **A real question.** Start from a problem someone met, not a broad topic. "Why did the cache stop invalidating after we added a read replica" beats "Redis caching".
 2. **Original information.** The post says something the sources alone do not: a measurement, a failure, a decision, a run of real commands. A summary of other people's work adds nothing and fails.
-3. **Proof the reader can check.** Real commands, real output, versions, links to the repo. No "really fast" without a number. Say what you did not measure.
+3. **Proof the reader can check.** Real commands and output where a file shows them, versions, dates, commit counts, and links to the repo and its commits. No "really fast" without a number. Never claim a run that did not happen. Say what you did not measure. Factory writers cannot run commands, so the runner supplies git facts in `factory/evidence/`.
 4. **A descriptive, non-sensational title** that states what the reader will learn. No clickbait.
 5. **The answer early.** The first paragraph says who the post is for, what problem it solves, and what the reader gets. Headings alone tell the story.
 6. **Short paragraphs** of two to four sentences. Simplified Technical English. Active voice. One term per thing.
