@@ -7,5 +7,9 @@
 ~/Dev/life-mcp
 ~/Dev/chip-mascot-lab
 ~/Dev/haru
+~/Dev/presentation-skill-pack
+~/Dev/arouca-3d
+~/Dev/ai-usage-meter
+~/Dev/sim-pane-demo
 ~/Dev/timurisa.com
 ~/Dev/LifeOS/knowledge-bases/ai-engineer-book
