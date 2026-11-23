@@ -1,0 +1,29 @@
+name: verify
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Factory gate
+        env:
+          # Public values, already shipped to every browser. The build needs them to start.
+          NEXT_PUBLIC_SANITY_PROJECT_ID: 93gwf6o3
+          NEXT_PUBLIC_SANITY_DATASET: production
+        run: node scripts/factory/verify.mjs --build
