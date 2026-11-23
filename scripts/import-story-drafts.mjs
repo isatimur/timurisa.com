@@ -19,7 +19,9 @@ function inline(text, key) {
     if (link) {
       const defKey = `${key}l${markDefs.length}`;
       markDefs.push({ _type: 'link', _key: defKey, href: link[2] });
-      return { _type: 'span', _key: k, text: link[1], marks: [defKey] };
+      // [`code`](url): a link whose text is code keeps both marks and drops the backticks.
+      const asCode = link[1].match(/^`([^`]+)`$/);
+      return { _type: 'span', _key: k, text: asCode ? asCode[1] : link[1], marks: asCode ? [defKey, 'code'] : [defKey] };
     }
     if (part.length > 1 && part.startsWith('`') && part.endsWith('`')) return { _type: 'span', _key: k, text: part.slice(1, -1), marks: ['code'] };
     if (part.length > 4 && part.startsWith('**') && part.endsWith('**')) return { _type: 'span', _key: k, text: part.slice(2, -2), marks: ['strong'] };
