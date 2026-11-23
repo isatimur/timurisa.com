@@ -1,7 +1,8 @@
 {
   "factoryPosts": [
-    "presentation-md-decks-in-any-language-and-right-to-left-pptx"
+    "presentation-md-decks-in-any-language-and-right-to-left-pptx",
+    "iot-mqtt-topics-qos-retained-messages-and-last-will"
   ],
-  "lastRun": "2026-11-23T19:12:06.186518",
+  "lastRun": "2026-11-23T22:31:37.855781",
   "lastSourceScan": null
 }

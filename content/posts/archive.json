@@ -29128,5 +29128,951 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-iot-mqtt-topics-qos-retained-messages-and-last-will",
+    "title": "MQTT topics, QoS levels, retained messages and Last Will: what the spec says and where brokers differ",
+    "slug": {
+      "current": "iot-mqtt-topics-qos-retained-messages-and-last-will"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-23T22:30:00.000Z",
+    "_updatedAt": "2026-11-23T22:30:00.000Z",
+    "excerpt": "A reading of the OASIS MQTT 3.1.1 and 5.0 specs on topics, QoS 0 to 2, retained messages and the Will Message, set next to what Mosquitto and Azure IoT Hub document. Ends with a checklist for an online/offline status topic.",
+    "categories": [
+      "IoT",
+      "Research"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "If a device publishes its status over MQTT, will a new subscriber see it, and will anyone learn when the device drops off the network? This post is for developers who start with MQTT on devices. You get what the spec says about topics, QoS, retained messages and the Will Message, where Mosquitto and Azure IoT Hub document different behaviour, and a checklist for a status topic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n1l0",
+            "href": "https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html"
+          },
+          {
+            "_type": "link",
+            "_key": "n1l1",
+            "href": "https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html"
+          },
+          {
+            "_type": "link",
+            "_key": "n1l2",
+            "href": "https://mosquitto.org/man/mosquitto-conf-5.html"
+          },
+          {
+            "_type": "link",
+            "_key": "n1l3",
+            "href": "https://learn.microsoft.com/en-us/azure/iot/iot-mqtt-connect-to-iot-hub"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The facts come from the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "MQTT 5.0 OASIS Standard",
+            "marks": [
+              "n1l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": " of 7 March 2019 and the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s3",
+            "text": "MQTT 3.1.1 OASIS Standard",
+            "marks": [
+              "n1l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s4",
+            "text": " of 29 October 2014. MQTT 5.0 supersedes 3.1.1. Product behaviour comes from the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s5",
+            "text": "Mosquitto configuration manual",
+            "marks": [
+              "n1l2"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s6",
+            "text": ", version not stated, read 23 November 2026, and the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s7",
+            "text": "Azure IoT Hub MQTT page",
+            "marks": [
+              "n1l3"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s8",
+            "text": ", dated 16 November 2026. That page says IoT Hub with the classic connection profile is not a full-featured MQTT broker.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "Topics: levels, wildcards and the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "$",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": " prefix",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "A client publishes to a Topic Name. A subscriber gives a Topic Filter. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": "/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": " character splits a topic into levels. Topic Names and Topic Filters are case sensitive, so ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s3",
+            "text": "ACCOUNTS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s5",
+            "text": "Accounts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s6",
+            "text": " are two topics.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "Only filters can hold wildcards. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "+",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " wildcard matches one level and must fill the whole level. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "#",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": " wildcard matches the parent level and any number of child levels. It must come last in the filter. A filter that starts with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": "#",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s7",
+            "text": "+",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s8",
+            "text": " does not match topics that start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s9",
+            "text": "$",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s10",
+            "text": ". Mosquitto updates its ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s11",
+            "text": "$SYS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s12",
+            "text": " topics every 10 seconds by default, and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s13",
+            "text": "sys_interval 0",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s14",
+            "text": " turns them off.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "QoS 0, 1 and 2: what each level promises",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "The spec defines three levels. QoS 0 is \"at most once\": there is no acknowledgement and no retry, so a message can be lost. QoS 1 is \"at least once\": the receiver answers with PUBACK, and duplicates can arrive. QoS 2 is \"exactly once\": a four-step flow runs PUBLISH, PUBREC, PUBREL and PUBCOMP.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A subscription carries a maximum QoS. The server delivers at the lower of the published QoS and the granted QoS.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Mosquitto has a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "max_qos",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " option per listener, with a default of 2. A client that publishes above it gets disconnected. Azure IoT Hub, in its classic profile, does not support QoS 2. A device that publishes at QoS 2 loses its connection. A device that subscribes at QoS 2 gets a grant of QoS 1.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "Retained messages: the last value on a topic",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "A PUBLISH with the RETAIN flag set to 1 tells the server to store the message. It replaces the earlier retained message for that topic. A retained message with a zero-byte payload removes the stored one. By default, a new subscriber receives the last retained message on each matching topic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "In MQTT 5.0, Retain Handling 0 sends retained messages on each subscribe, 1 sends them only for a new subscription, and 2 sends none. A Message Expiry Interval can discard a retained message when it runs out.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "Mosquitto has ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "retain_available",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": ", true by default. When it is false, a client that sends a retained message gets disconnected. Azure IoT Hub classic does not store retained messages. It adds an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s3",
+            "text": "mqtt-retain",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s4",
+            "text": " property and passes the message to the backend.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The Will Message: news of an unclean disconnect",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "A client can put a Will Message in its CONNECT packet. The server publishes it when the network connection closes without a normal DISCONNECT, for example after a missed keep-alive. In 5.0, a DISCONNECT with reason code 0x00 removes the Will Message unsent. In 3.1.1, any DISCONNECT removes it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "MQTT 5.0 adds a Will Delay Interval, 0 by default. The server waits for the interval or for the session end. If the client reconnects first, the server does not send the will. 3.1.1 defines no such interval. With Will Retain set, the server publishes the will as a retained message.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Azure IoT Hub classic tells devices to use its telemetry topics as the will topic. It forwards the will as telemetry, marked with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": "iothub-MessageType",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": " set to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s3",
+            "text": "Will",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Checklist: an online/offline status topic",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n18l0",
+            "href": "https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "HiveMQ",
+            "marks": [
+              "n18l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": ", a broker vendor, describes a pattern in a February 2026 article. It is vendor guidance, not part of the spec. The checklist adds steps from the spec and product docs:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "At CONNECT, set a will of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "offline",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": " on a topic such as ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": "client1/status",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s4",
+            "text": ", with Will Retain on.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "After CONNECT, publish a retained ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "online",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": " to the same topic.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Before a planned DISCONNECT, publish a retained ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": "offline",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": " yourself. A normal DISCONNECT deletes the will, so the topic would still say ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s3",
+            "text": "online",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "On MQTT 5.0, decide on a Will Delay Interval. A short reconnect inside the interval sends no ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": "offline",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "On Azure IoT Hub classic this pattern does not apply. The hub accepts only its own predefined topics, does not store retained messages, and does not support device-to-device communication.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "number",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "Check if retained messages must survive a broker restart. On Mosquitto, turn on persistence: the built-in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "persistence true",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": " or, as the manual recommends, a persistence plugin. Its ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s3",
+            "text": "autosave_on_changes",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s4",
+            "text": " entry counts retained messages received toward a save of the built-in database.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "HiveMQ's article does not mention step 3. One question stays open. With persistence on, a retained ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s1",
+            "text": "online",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s2",
+            "text": " can outlive a broker restart. The 3.1.1 spec lets a server defer the will after its own failure. The sources do not say when Mosquitto then sends it, so a subscriber could read a stale ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s3",
+            "text": "online",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "What I could not confirm",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n27l0",
+            "href": "https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s1",
+            "text": "AWS IoT Core MQTT page",
+            "marks": [
+              "n27l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s2",
+            "text": " says AWS has \"some differences\" from the specs. The page was too long to read in full, so this post gives no AWS details.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "I did not read sections 4.3 and 4.7 of the 5.0 spec in full. The QoS flow and topic rules come from the 3.1.1 text and the 5.0 packet sections.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "No broker was run, so step 6 is not tested.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "How this post was made: an AI agent researched and drafted it from the sources linked above, a second agent checked it against those sources, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

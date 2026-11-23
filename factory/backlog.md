@@ -13,7 +13,7 @@ Build stories first. Each one must come from the repo's own files: what shipped,
 - [ ] pena-park-29-languages | ~/Dev/pena-park-3d | How a 3D park site ships in 29 languages, and where translation checks sit.
 - [ ] life-mcp-a-tracker-agents-can-write-to | ~/Dev/life-mcp | A Cloudflare Worker and Neon Postgres MCP for workouts and meals. What the tool schema looks like.
 - [ ] chip-mascot-lip-sync | ~/Dev/chip-mascot-lab | Blender shape keys, Three.js, and realtime voice: how the lips follow the audio. Check LIVE.md for open gaps.
-- [ ] [research] iot-mqtt-topics-qos-retained-messages-and-last-will | web: MQTT specification (OASIS), broker docs | What MQTT is, topics, QoS levels 0 to 2, retained messages, last will. Use the spec for facts.
+- [x] [research] iot-mqtt-topics-qos-retained-messages-and-last-will | web: MQTT specification (OASIS), broker docs | What MQTT is, topics, QoS levels 0 to 2, retained messages, last will. Use the spec for facts.
 - [ ] [research] iot-matter-what-it-is-and-what-it-runs-on | web: Connectivity Standards Alliance, Matter spec and docs | What Matter is, what it runs on, which transports it uses, and what it does not replace. Give versions.
 - [ ] [research] iot-edge-and-cloud-trade-offs-for-device-decisions | web: vendor and standards docs on edge computing for devices | Latency, bandwidth, offline behaviour, and privacy as trade-offs. Mark vendor claims as vendor claims.
 - [ ] [research] iot-device-security-owasp-nist-and-etsi-compared | web: OWASP IoT project, NIST IR 8259, ETSI EN 303 645 | What the three baselines ask of a device maker. Name the overlap and the differences.
