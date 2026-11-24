@@ -57,9 +57,16 @@ function motif(slug) {
 
 function svg(post) {
   const slug = post.slug.current;
-  const roomy = wrap(post.title);
-  const lines = roomy.length > 3 ? wrap(post.title, 24) : roomy;
-  const size = roomy.length > 3 ? 48 : 56;
+  const roomy = wrap(post.title, 20, 99);
+  let lines = roomy.length > 3 ? wrap(post.title, 24, 99) : roomy;
+  let size = roomy.length > 3 ? 48 : 56;
+  // A title that still needs more than 4 lines gets smaller type, so it is never cut with "…".
+  for (const s of [42, 36, 32]) {
+    if (lines.length <= 4) break;
+    size = s;
+    lines = wrap(post.title, Math.floor(660 / (s * 0.56)), 99);
+  }
+  if (lines.length > 4) lines = wrap(post.title, Math.floor(660 / (size * 0.56)), 4);
   const tspans = lines
     .map((l, i) => `<tspan x="72" dy="${i === 0 ? 0 : size * 1.18}">${esc(l)}</tspan>`)
     .join('');
