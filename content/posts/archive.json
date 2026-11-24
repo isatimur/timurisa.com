@@ -30074,5 +30074,1256 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-arouca-3d-delta-contract-against-braga",
+    "title": "What a delta contract shows about the Arouca 3D map and the Braga engine",
+    "slug": {
+      "current": "arouca-3d-delta-contract-against-braga"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-24T19:00:00.000Z",
+    "_updatedAt": "2026-11-24T19:00:00.000Z",
+    "excerpt": "The Arouca 3D map was forked from porto-3d, took its Layers panel from braga-3d, and only then got a written comparison against Braga. Here is the timeline, what the comparison records, and what it leaves open.",
+    "categories": [
+      "Product engineering",
+      "3D maps"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/arouca-3d"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "When a 3D map is forked from one engine and later takes code from another, how do you know what it still shares with the engine it borrowed from? This post is for developers who keep several forks of one engine. It follows ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "arouca-3d",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", an interactive 3D map of Arouca, Portugal. The repo's delta contract against braga-3d gives the answer: 15 files are identical to Braga, 88 shared files differ, and 62 files exist only in Braga.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The first commit forks porto-3d at ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "4996c26",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": ", and the contract warns that \"a large part of the 'changed' list below is engine lineage drift\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The facts come from the repo's ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "README.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s3",
+            "text": "claude-progress.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s5",
+            "text": "EGM.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s6",
+            "text": " and git log, and the braga-3d git log.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The timeline: fork, port, then contract",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The repo has 204 commits, from 2026-10-26 to 2026-11-22.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n5l0",
+            "href": "https://github.com/isatimur/arouca-3d/commit/b2febfb"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "2026-10-26.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": "b2febfb",
+            "marks": [
+              "n5l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s3",
+            "text": ": \"W0 skeleton, fork of porto-3d 4996c26 with Arouca config and 20 seed places\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n6l0",
+            "href": "https://github.com/isatimur/arouca-3d/commit/c1bc8bc"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "2026-11-18.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": "c1bc8bc",
+            "marks": [
+              "n6l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": ": \"Layers: definitions, manifest and status logic with tests (ported from braga-3d)\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n7l0",
+            "href": "https://github.com/isatimur/arouca-3d/commit/dda1978"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "2026-11-19.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": "dda1978",
+            "marks": [
+              "n7l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s3",
+            "text": " merges the branch: \"Layers panel, loading status and Retry; phones start on Compact\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n8l0",
+            "href": "https://github.com/isatimur/arouca-3d/commit/293f034"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "2026-11-22.",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": "293f034",
+            "marks": [
+              "n8l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": ": \"docs: add EGM delta contract against braga-3d 431ff94\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "What the Layers port from braga-3d brought",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The progress log lists six files ported from braga-3d: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "src/layer-defs.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": "src/layers.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s5",
+            "text": "src/layers-ui.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s6",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s7",
+            "text": "src/load-status.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s8",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s9",
+            "text": "scripts/layers-manifest.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s10",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s11",
+            "text": "scripts/layers.test.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s12",
+            "text": ". The port also added engine hooks in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s13",
+            "text": "tiles.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s14",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s15",
+            "text": "buildings-ms.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s16",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s17",
+            "text": "life.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s18",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Arouca has three optional layers: the ring tiles around the centre (up to 464 KB), extra buildings (up to 365 KB) and aircraft (14 KB plus live data). The panel offers Light, Compact and Full. Compact is the extra buildings only.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "On 2026-11-18 the owner decided that phones of class S and P start on Compact, not on Light. The lite scene (class P) builds no ring, no extra buildings and no life. So class P gets no panel and no status pill.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "The checks, and three faults in the first draft",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The progress log summarises the checks on 2026-11-19, on Node 22, as:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "npm test",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": ": 30/30 (was 6/6).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": ": OK, 12 passed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "check-layers",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": ": five runs in a row, 41 of 41 at 1440x900 and 42 of 42 at 360x740.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "No file shows the terminal output of these runs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "The progress log lists three faults in the first draft of the check and marks them \"fixed\". No file says whether the fixes came before the five runs. The first draft demanded trail ribbons on a device class that builds none. It read the Retry button one round trip too late, when the pill had gone back to loading. It failed a 43.99 px box against a 44 px limit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "What the delta contract records",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "EGM.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": " compares the fork at ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": "dda1978",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s3",
+            "text": " with braga-3d at ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s4",
+            "text": "431ff94",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s5",
+            "text": ". It puts the files in four groups:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "89 files exist only in the fork.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "88 shared files differ.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "62 files exist only in Braga.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "15 files are identical to Braga.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "Two of the six ported Layers files, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "src/layers.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s3",
+            "text": "src/load-status.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s4",
+            "text": ", are in the identical group. The other four differ. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s5",
+            "text": "src/layer-defs.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s6",
+            "text": " differs by 74 lines, and the contract lists it as a file \"where Braga is clearly ahead\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The contract's overview calls the repo \"a single-city fork of the Braga 3D engine\". Ten lines later it says: \"The fork was not cut from Braga. It was cut from porto-3d at ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s1",
+            "text": "4996c26",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s2",
+            "text": ".\" Porto names remain in the fork, for example the storage keys ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s3",
+            "text": "porto-fx",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s5",
+            "text": "porto-time",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n28l0",
+            "href": "/blog/one-engine-many-cities"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "For Braga's several city maps on one engine, see ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s1",
+            "text": "One engine, many cities",
+            "marks": [
+              "n28l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "What the contract leaves open",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "The contract names these limits:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "In the table of changed files, 70 rows say \"Not read\": a line count with no inspection of the diff.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "\"Which side is newer for a given shared file is not determined, except where Braga has files the fork lacks.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "For the 62 Braga-only files, \"Whether the fork needs each one is not determined.\" They include walk, game and quest modes, discovery, events and news. They also include 31 files the contract calls landmark models, plus ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n33s1",
+            "text": "index.guimaraes.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n33s2",
+            "text": ". The contract calls these \"Braga content\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n34s0",
+            "text": "AGENTS.md",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n34s1",
+            "text": " \"still says 'W0 skeleton'; it is stale against the git log.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "The progress log lists what the Layers work did not test:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "No one measured load time on a throttled phone.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "No one ran a negative control for the ring-off step.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "No one checked physical phones, Safari or Firefox.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "The log also notes one bug it did not fix. On a phone with every layer on, the loading pill covers the start marker of an open trail while the area loads.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n41",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n41s0",
+            "text": "No file shows a load time for the Layers panel or the Compact preset on a real phone.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n42",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n42s0",
+            "text": "The changed-files table has 87 rows. The contract text says 88 shared files differ. No file explains the difference.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n43",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n43s0",
+            "text": "The contract counts \"31 files\" of landmark models but names 30 landmarks. Its Braga-only groups add up to 63 files with 31 models, and to 62 with the 30 names it lists.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n44",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n44s0",
+            "text": "No file compares the fork with porto-3d after ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n44s1",
+            "text": "4996c26",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n44s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n45",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n45s0",
+            "text": "No file shows that the fork was re-compared with braga-3d after 2026-11-22. Braga had more commits after ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n45s1",
+            "text": "431ff94",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n45s2",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n46",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n46s0",
+            "text": "How this post was made: an AI agent drafted it from the sources listed above, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
