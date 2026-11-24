@@ -9,7 +9,7 @@
 .news-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; align-items: center; font-size: 0.8rem; opacity: 0.8; }
 .news-kind { padding: 0.1rem 0.5rem; border: 1px solid currentColor; border-radius: 999px; font-weight: 600; letter-spacing: 0.02em; }
 .news-kind-vendor-claim, .news-kind-talked-about { border-style: dashed; }
-.news-hero { display: block; width: 100%; height: auto; max-height: 280px; object-fit: cover; border-radius: 8px; margin-top: 1.5rem; }
+.news-hero { display: block; width: 100%; height: auto; max-height: 280px; object-fit: cover; object-position: center 82%; border-radius: 8px; margin-top: 1.5rem; }
 .news-date { opacity: 0.7; margin: 0; }
 .news-disclosure { font-size: 0.85rem; opacity: 0.7; max-width: 62ch; }
 .news-archive { list-style: none; padding: 0; display: grid; gap: 0.6rem; }
