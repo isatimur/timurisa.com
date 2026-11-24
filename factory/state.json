@@ -1,8 +1,9 @@
 {
   "factoryPosts": [
     "presentation-md-decks-in-any-language-and-right-to-left-pptx",
-    "iot-mqtt-topics-qos-retained-messages-and-last-will"
+    "iot-mqtt-topics-qos-retained-messages-and-last-will",
+    "arouca-3d-delta-contract-against-braga"
   ],
-  "lastRun": "2026-11-23T22:31:37.855781",
+  "lastRun": "2026-11-24T18:39:52.669292",
   "lastSourceScan": null
 }
