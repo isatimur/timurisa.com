@@ -18,7 +18,7 @@
     "@radix-ui/react-slot": "^1.5.0",
     "@radix-ui/react-tabs": "^1.2.1",
     "@sanity/cli": "3.65.1",
-    "@sanity/icons": "3.5.0",
+    "@sanity/icons": "5.4.0",
     "@sanity/image-url": "1.1.0",
     "@sanity/presentation": "1.19.1",
     "@sanity/vision": "3.65.1",
