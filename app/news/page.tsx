@@ -20,6 +20,8 @@ export default function NewsPage() {
           <h1>Signal<span>.</span></h1>
           <p>A weekly digest of engineering news. Each item carries a label, so a spec does not look like hype.</p>
           <p><Link className="text-action" href="/news/feed.xml">Atom feed</Link></p>
+          {/* Decorative art made with an AI image model; the page text carries all the meaning. */}
+          <img className="news-hero" src="/news-hero.webp" alt="" width={1600} height={895} />
         </header>
         {latest ? (
           <section aria-label="Latest issue">
