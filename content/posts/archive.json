@@ -31325,5 +31325,3976 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-ai-usage-meter-read-first-then-switch-off-telemetry",
+    "title": "How ai-usage-meter reads AI tool telemetry switches, then turns them off with a diff and a backup",
+    "slug": {
+      "current": "ai-usage-meter-read-first-then-switch-off-telemetry"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-24T20:00:00.000Z",
+    "_updatedAt": "2026-11-24T20:00:00.000Z",
+    "excerpt": "The privacy feature in ai-usage-meter started as a read-only check of telemetry switches for Claude Code and Codex. A second commit added OpenCode and Gemini CLI, and a later commit added a dry-run diff, a backup and a confirm step. Here is what it changes, how it guards config files, and what one measured traffic run showed.",
+    "categories": [
+      "AI engineering",
+      "Developer workflow"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/ai-usage-meter"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "Which telemetry switches are on for your AI coding tools, and how do you turn them off without damaging their config files? This post is for developers who use Claude Code, Codex, OpenCode or Gemini CLI. It follows the privacy feature of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "ai-usage-meter",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", a macOS menu-bar app that shows what AI coding tools cost and how much of a plan limit you have used. You get the commands, the exact switches they change, the guards around each file write, and the results of one measured traffic run.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "When the privacy feature landed in the repo",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The repo has 36 commits, from 2026-11-13 to 2026-11-22, and five tags: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "v0.1.0",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s3",
+            "text": "v0.1.1",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s5",
+            "text": "v0.1.2",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s6",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s7",
+            "text": "v0.1.4",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s8",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s9",
+            "text": "v0.1.5",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s10",
+            "text": ". The privacy work is four commits on 2026-11-22. Oldest first:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n3l0",
+            "href": "https://github.com/isatimur/ai-usage-meter/commit/0d094e6"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "0d094e6",
+            "marks": [
+              "n3l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": ": \"aium privacy, a read-only check of telemetry and feedback switches\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n4l0",
+            "href": "https://github.com/isatimur/ai-usage-meter/commit/22497a8"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "22497a8",
+            "marks": [
+              "n4l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": ": \"OpenCode and Gemini CLI switches\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n5l0",
+            "href": "https://github.com/isatimur/ai-usage-meter/commit/d0f1e51"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "d0f1e51",
+            "marks": [
+              "n5l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": ": \"Privacy section in Settings, backed by aium_privacy\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n6l0",
+            "href": "https://github.com/isatimur/ai-usage-meter/commit/72e02d1"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "72e02d1",
+            "marks": [
+              "n6l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": ": \"turn off telemetry switches with diff, backup and confirm; measured traffic doc\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The CHANGELOG lists the check, the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "--disable",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": " option and the traffic doc under ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s3",
+            "text": "[Unreleased]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "What ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": "aium privacy",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": " reads",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n9",
+        "language": "sh",
+        "code": "aium privacy                         # which telemetry and feedback switches are set"
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The check looks at the process environment and local config files, \"and at nothing else\". It reports the switches a tool ships, not what the tool sends. Each switch is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "Off",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": "Default",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": " (not set, and \"for telemetry that default is on\") or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s5",
+            "text": "On",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s6",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "For Claude Code, it checks five environment switches: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "DISABLE_TELEMETRY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "DISABLE_ERROR_REPORTING",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s5",
+            "text": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s6",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s7",
+            "text": "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s8",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s9",
+            "text": "CLAUDE_CODE_ENABLE_TELEMETRY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s10",
+            "text": ". For Codex, it reads ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s11",
+            "text": "enabled",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s12",
+            "text": " under ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s13",
+            "text": "[analytics]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s14",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s15",
+            "text": "[feedback]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s16",
+            "text": ", and whether an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s17",
+            "text": "[otel]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s18",
+            "text": " section exists. For OpenCode, it reads the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s19",
+            "text": "share",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s20",
+            "text": " setting, the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s21",
+            "text": "OPENCODE_DISABLE_SHARE",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s22",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s23",
+            "text": "OPENCODE_AUTO_SHARE",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s24",
+            "text": " environment switches, and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s25",
+            "text": "OPENCODE_DISABLE_MODELS_FETCH",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s26",
+            "text": ". For Gemini CLI, it reads ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s27",
+            "text": "usageStatisticsEnabled",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s28",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "What ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n12s1",
+            "text": "--disable",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n12s2",
+            "text": " changes, and what it leaves alone",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n13",
+        "language": "sh",
+        "code": "aium privacy --disable               # show the diff, write nothing\naium privacy --disable --yes         # back up each file, then write"
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Without ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "--yes",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": ", the CLI prints the diff and then: \"Dry run: nothing was written. Run again with --yes to apply. Each file gets a backup first.\" When there is nothing to change, it prints this line instead: \"Nothing to change: the switches I can set are already off, or the tools are not installed.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "--disable",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": " covers three files, and only when the tool's folder exists:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "~/.claude/settings.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": ": sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": "DISABLE_TELEMETRY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s3",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s4",
+            "text": "DISABLE_ERROR_REPORTING",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s5",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s6",
+            "text": "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s7",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s8",
+            "text": "\"1\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s9",
+            "text": " under ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s10",
+            "text": "env",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s11",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "~/.codex/config.toml",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": ": sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s2",
+            "text": "enabled = false",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s3",
+            "text": " under ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s4",
+            "text": "[analytics]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s5",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n17s6",
+            "text": "[feedback]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s7",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "~/.gemini/settings.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": ": sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": "usageStatisticsEnabled",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s3",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s4",
+            "text": "false",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s5",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "It does not set ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": ". A test comment gives the reason: \"the switch that also stops updates stays untouched\". The module also says: \"Nothing here touches a shell profile or a file outside the tools' own config.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "How the code guards each config file",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "plan",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": " only reads. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s2",
+            "text": "apply",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s3",
+            "text": " writes. Before each write, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s4",
+            "text": "apply",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s5",
+            "text": " checks that the file did not change since the plan. If it did, the run stops with \"changed since the plan was made. Nothing was written to it. Run again.\" If the file exists, it copies it to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n21s6",
+            "text": "<name>.aium-backup-<stamp>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s7",
+            "text": ". Then it writes the new text to a temporary file and renames that file into place.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "The tests in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": "crates/core/tests/privacy_fix.rs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": " pin down more cases:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "Other keys in Claude settings keep their order and values.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "A second run plans no changes.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "Codex ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s1",
+            "text": "[analytics]",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s2",
+            "text": " with no ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s3",
+            "text": "enabled",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s4",
+            "text": " key gets the key inserted.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "An inline table such as ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "analytics = { enabled = true }",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": ", or a settings file that is not valid JSON, is refused and left as it was.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "One limit is in the code comments. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s1",
+            "text": "apply",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s2",
+            "text": " \"stops at the first problem; files written before it stay written and keep their backups.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "What one measured traffic run showed",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n29l0",
+            "href": "https://github.com/isatimur/ai-usage-meter/blob/main/docs/what-tools-send.md"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "The commit that added ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n29s1",
+            "text": "--disable",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n29s2",
+            "text": " also added ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n29s3",
+            "text": "docs/what-tools-send.md",
+            "marks": [
+              "n29l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n29s4",
+            "text": ". On 2026-11-22, on one Apple Silicon Mac, Claude Code 2.1.330 and Codex 0.170.0 each ran once with the prompt \"Reply with the single word ok.\". Traffic went through a local mitmproxy. The proxy recorded hosts, paths, header names and JSON key names, not values.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "Claude Code sent ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": "POST /api/event_logging/v2/batch",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s2",
+            "text": " 4 times, at about 1 MB and 400 events each. In the first batch, 289 of 400 events were ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s3",
+            "text": "tengu_skill_loaded",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s4",
+            "text": ". The doc also lists a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s5",
+            "text": "POST",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s6",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s7",
+            "text": "http-intake.logs.us5.datadoghq.com",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s8",
+            "text": ", described as \"Logs sent to Datadog\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "Codex sent ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": "POST /backend-api/codex/analytics-events/events",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s2",
+            "text": " 6 times. It also sent metrics to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s3",
+            "text": "ab.chatgpt.com/otlp/v1/metrics",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "A credential in a URL path on the first capture",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "On the first capture attempt, the proxy script kept URL paths whole. One path held a credential that a plugin puts in the URL. The script now masks path segments that are not short and plain. The doc's advice: if you repeat this, mask paths from the start.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n34s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "No capture ran with the switches set. The doc says \"A second capture with the switches set would test them.\" So the repo does not show which requests each switch stops.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "The capture did not record values. It does not show whether ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s1",
+            "text": "skill_name",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s2",
+            "text": " is a plain name or a hash, or how much of each 400-event batch was a backlog from earlier sessions.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "OpenCode and Gemini CLI traffic was not captured. Only their switches were read.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "The capture covers one Mac, one day, one short run, and one version of each tool.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "This post does not report a test run. No file read for it shows test results.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "How this post was made: an AI agent drafted it from the ai-usage-meter files listed in its sources file, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-sip-a-water-tracker-with-live-activity-and-health-sync",
+    "title": "Sip, a SwiftUI water tracker: Live Activity, Apple Health sync without duplicates, and what the tests cover",
+    "slug": {
+      "current": "sip-a-water-tracker-with-live-activity-and-health-sync"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-25T09:00:00.000Z",
+    "_updatedAt": "2026-11-25T09:00:00.000Z",
+    "excerpt": "How a SwiftUI water tracker writes drinks to Apple Health so that edits replace a sample and deletes remove it, how its Live Activity starts, updates and ends, how tea and coffee count toward the goal, and which parts the tests reach and which they do not.",
+    "categories": [
+      "Product engineering",
+      "iOS"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "How do you write drinks to Apple Health so that an edit replaces a sample and does not add a second one? Short answer: give each sample the drink's UUID as its HealthKit sync identifier, and save an edit with a higher sync version, so HealthKit replaces the old sample.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "This post is for iOS developers who build a small logging app with HealthKit, ActivityKit and widgets. It follows Sip, a SwiftUI water tracker in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "sim-pane-demo",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": " repo. You also get the Live Activity rules, the hydration factors, and what the tests cover and leave out.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "When each feature landed in the repo",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The repo has 26 commits, from 2026-11-18 to 2026-11-24. The first commit, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n3s1",
+            "text": "ab90ebf",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n3s2",
+            "text": ", is \"Sip: SwiftUI water tracker with 3D glass, onboarding, history, settings, UI tests\". On 2026-11-23, three commits added the features in this post, oldest first:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "161c39d",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": ": \"Hydration factors (tea 90%, coffee 80%), shown per drink, switch in Settings\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "483d402",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": ": \"Apple Health: write drinks as Water with sync identifiers (edits replace, deletes remove)\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "fb2cf09",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": ": \"Live Activity: Lock Screen card and Dynamic Island with one-tap logging; ends an hour after goal or at midnight\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "A later commit that day, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "42e33af",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": ", added a \"Live Activity quick-add UI test\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "How Apple Health sync avoids duplicates",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "HealthSync",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": " saves each drink as one Dietary Water sample. The sample's HealthKit sync identifier is the drink's UUID. The code comment says: \"Saving again with a higher sync version replaces the old sample (HealthKit does this), so edits never duplicate.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "A small ledger remembers what Sip last wrote. For each drink, it stores a fingerprint (the counted amount, the time in whole seconds, and the kind) and a version. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "plan",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": " function compares drinks to the ledger:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "A new drink gets version 1.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "A drink whose fingerprint changed gets the next version, with the same sync identifier.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "A drink that is gone from the log gets deleted from Health by its sync identifier.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "A drink older than 30 days leaves the ledger. The test says \"history stays in Health\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "Two details came from things that can go wrong. First, a comment says turning Health off keeps the ledger: \"HealthKit ignores a sync version that is not higher than the stored one, so restarting versions at 1 would silently drop updates.\" Second, drink times are whole seconds. The JSON log stores seconds, so \"a sub-second time would not survive a save and reload, and an untouched drink would compare as changed.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "How tea and coffee count toward the goal",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "DrinkKind",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": " gives each kind a factor: water 1.0, tea 0.9, coffee 0.8, sparkling 1.0, and an unknown kind counts as 1. A switch in Settings turns the factors off, and then each drink counts in full. The source comment says the factors \"follow common hydration-index findings\". The source file cites no study.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "The factor also reaches Health, because Sip writes the counted amount. A unit test turns the switch off for a 250 ml coffee. The plan then saves version 2 of that sample: \"250 counted instead of 200, so the sample is replaced\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "How the Live Activity starts, updates and ends",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "LiveProgress.sync",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": " keeps one Live Activity in step with the day's total. If the switch is off, or the system does not allow Live Activities, it calls ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": "endAll()",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Otherwise it takes one of four branches:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "An activity is live and the goal is not reached: it updates the activity.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "An activity is live and the goal is reached: it ends the activity with a dismissal one hour later.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "No activity is live and the goal is not reached: it starts one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "No activity is live and the goal is reached: it does nothing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "A comment records a trap: \"Ended activities stay in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "activities",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": " for a while, so filter by state: updating an ended activity does nothing and would block a new day's activity.\" So ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s3",
+            "text": "current",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s4",
+            "text": " counts only activities that are active or stale. The test asserts \"an ended activity must not count as current\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "What the tests cover",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "A search of the three test folders finds 62 ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s1",
+            "text": "func test",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s2",
+            "text": " declarations: 45 in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s3",
+            "text": "Tests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s4",
+            "text": ", 14 in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s5",
+            "text": "UITests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s6",
+            "text": " and 3 in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n28s7",
+            "text": "WatchUITests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n28s8",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "HealthPlanTests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n29s1",
+            "text": " checks the no-duplicates rules \"without touching HealthKit\". It covers version 1 for new drinks, no writes on a second run, a version bump on edit, a delete, the 30-day age-out, and the hydration switch.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "testHealthSyncHasNoDuplicates",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": " is a UI test with \"Real HealthKit on the simulator\". It logs two drinks, turns on the Health switch, and expects \"2 drinks\" in Settings. After an edit it expects \"2 drinks\" again (failure message: \"edit duplicated\"). After a delete it expects \"1 drink\" (\"delete left a sample\").",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "LiveProgressTests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": " checks the percent math and the end date. One test runs \"Real ActivityKit in the simulator\": switch on, log, switch off. It skips when Live Activities are off in that simulator.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "SipLiveActivityTests",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s1",
+            "text": " opens Notification Center, taps \"+250 ml\" on the Live Activity, and checks that the total on the Today screen changes. It waits three seconds with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n32s2",
+            "text": "sleep(3)",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s3",
+            "text": " while the intent runs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "scripts/flaky.sh",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n33s1",
+            "text": " runs one UI test up to N times (4 by default) and prints the failure messages on the first failure.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n34s0",
+            "text": "What broke on the way to the App Store",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s1",
+            "text": "5aaf00a",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s2",
+            "text": " on 2026-11-24 starts with: \"App Store: iPhone-only build (Apple rejected portrait-only iPad)\". The listing doc now sets the devices to \"iPhone only (TARGETED_DEVICE_FAMILY 1), plus the watch app\". The repo does not show whether the new build passed review.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "No file shows a test run result. This post reports test names and assertions, not pass rates.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s1",
+            "text": "HealthSync.sync",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s2",
+            "text": " path that calls HealthKit has no unit test. One simulator UI test checks it through the Settings read-back count.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "The roadmap says the Health device build \"needs a signing team\". Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n39s1",
+            "text": "17c2c4c",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n39s2",
+            "text": " on 2026-11-24 set up App Store signing. No file shows the Health sync run on a real device.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "No test reads the Dynamic Island. The Live Activity UI test uses Notification Center.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n41",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n41s0",
+            "text": "No file gives a flake rate for the UI tests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n42",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n42s0",
+            "text": "How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "archive-pena-park-29-languages",
+    "title": "How the Pena Park 3D tour handles 29 languages and checks its translations",
+    "slug": {
+      "current": "pena-park-29-languages"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-25T09:30:00.000Z",
+    "_updatedAt": "2026-11-25T09:30:00.000Z",
+    "excerpt": "A Three.js scroll tour lists 29 languages in its menu. Two are written in the code, 27 come from JSON files. Here is how the app picks a language, falls back to English, and how one script fails a translation that loses a number.",
+    "categories": [
+      "Product engineering",
+      "3D maps"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/pena-park-3d"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "How do you ship a small 3D site in 29 languages when no native speaker has read 27 of them? This post is for developers who add translations to a static web app. It follows ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "pena-park-3d",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", a real-scale Three.js map of Pena Park Hotel and Pena Aventura Park in Ribeira de Pena, Portugal. The repo calls it an \"unofficial concept demo\". You get the file layout, the fallback rules, and the checks one script runs on each translation file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "What the git history can and cannot show",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n2l0",
+            "href": "https://github.com/isatimur/pena-park-3d/commit/99d607b"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The repo has one commit: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "99d607b",
+            "marks": [
+              "n2l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": " on 2026-11-22, \"Initial commit: Pena Park 3D as it stands on 2026-11-22\". So git gives no order of events for the language work. The README says the site went public at https://pena-park-3d.vercel.app on 2026-10-31.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Two languages in the code, 27 in files",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "LANGS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": "src/i18n.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": " lists 29 languages. English and Portuguese are written in the code. The chapter copy lives in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": "src/journey.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": ", the figures in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": "data/facts.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s7",
+            "text": ", and the UI strings in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s8",
+            "text": "STRINGS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s9",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s10",
+            "text": "src/ui.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s11",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Every other language comes from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "data/i18n/<code>.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": ". The manifest ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s3",
+            "text": "data/i18n/index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s4",
+            "text": " lists 27 files, from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s5",
+            "text": "es.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s6",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s7",
+            "text": "th.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s8",
+            "text": ". The English source file ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s9",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s10",
+            "text": " holds 281 keys.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Keys are stable paths, for example ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "chapter.<id>.title",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "fact.<id>.value",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": ". The app and the extract script build them from the same object ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s5",
+            "text": "K",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s6",
+            "text": ". A code comment says this is so \"the two can never disagree\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "How the app picks a language",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "resolveLang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": " tries four sources in order: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": "?lang=",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": " in the URL, then ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s4",
+            "text": "localStorage.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s5",
+            "text": ", then the browser languages, then English. A source that names no known language falls through to the next one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "matchLang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": " maps tags to the registry. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": "pt-BR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s3",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s4",
+            "text": "pt",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s5",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s6",
+            "text": "zh-TW",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s7",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s8",
+            "text": "zh-HK",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s9",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s10",
+            "text": "zh-MO",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s11",
+            "text": " become ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s12",
+            "text": "zh-Hant",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s13",
+            "text": ", and other ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s14",
+            "text": "zh",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s15",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s16",
+            "text": "zh-Hans",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s17",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s18",
+            "text": "nb",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s19",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s20",
+            "text": "nn",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s21",
+            "text": " become ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s22",
+            "text": "no",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s23",
+            "text": ", and the old code ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s24",
+            "text": "iw",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s25",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s26",
+            "text": "he",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s27",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "How English fills the gaps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The app fetches ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": " first, so it does not ask for a file that the manifest does not list. A missing key, a missing file or a failed fetch falls back to English, string by string. A string that falls back carries ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "lang=\"en\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "When two language switches overlap, a counter makes the later call win over a slower earlier one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Right-to-left and script fonts",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Arabic and Hebrew set ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "dir=\"rtl\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " on the page. The app also sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s3",
+            "text": "data-script",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s4",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s5",
+            "text": "src/style.css",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s6",
+            "text": " gives each script its own system font stack. The app downloads no web fonts.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "One bidi problem has its own fix. A code comment says that in an rtl page, European digits after Arabic letters turn into Arabic numbers, so \"2026-10-29\" shows as \"29-10-2026\". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "bidiSafe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": " wraps each ISO date in left-to-right isolate marks when the page is rtl.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The check that fails a translation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The workflow in the README has five steps:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n18",
+        "language": "text",
+        "code": "node scripts/i18n-extract.mjs\n# translate data/i18n/_source.en.json, read each _note\n# save it as data/i18n/<code>.json\nnode scripts/i18n-check.mjs\n# list the file in data/i18n/index.json"
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "scripts/i18n-check.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": " exits with 1 on any FAIL. Its header lists these FAIL rules for a translation file:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "invalid JSON, a missing key, an extra key, or an empty string;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "_meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": " that is not the file's code;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "a lost number: each run of digits in the English must appear as many times in the translation (\"8.08\" may become \"8,08\");",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "a lost URL, ISO date, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n23s1",
+            "text": "{placeholder}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s2",
+            "text": ", \"©\" or \"ODbL\";",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "{placeholder}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": " that the English does not have;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "placeholder text such as TODO or \"lorem ipsum\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "The whole run also fails when ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": " is stale, or when ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s3",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s4",
+            "text": " lists a file that does not exist.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The script warns, and does not fail, for:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "a length ratio outside 0.4 to 3.5, for English strings of 8 or more characters;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "a missing protected name such as \"Fantasticable\" or \"Caminho do Abade\";",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": "_meta.sourceHash",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s2",
+            "text": " that differs from the current source;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "a language file that ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s2",
+            "text": " does not list.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n32l0",
+            "href": "/blog/requirements-a-machine-can-check"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s1",
+            "text": " runs this check as step (i). For more on checks of this kind, see ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n32s2",
+            "text": "Requirements a machine can check",
+            "marks": [
+              "n32l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "For each file the script prints one summary line in this format (source code, not a captured run):",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n34",
+        "language": "text",
+        "code": "<PASS or FAIL>  <file>: <n>/<total> keys, <n> identical to English (names and figures), <n> lost numbers, <n> warnings"
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "The first word is FAIL when a key is missing, a string is empty, a string lost a number or token, or a string holds an unknown placeholder or placeholder text. An extra key or a wrong ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s1",
+            "text": "_meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s2",
+            "text": " prints its own FAIL line, but the summary line can still read PASS. Either way the run exits with 1. A file with invalid JSON or no ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s3",
+            "text": "strings",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s4",
+            "text": " object gets no summary line.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "scripts/build-public.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s1",
+            "text": " copies ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s2",
+            "text": "data/i18n/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s3",
+            "text": " into the public build, but skips names that start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s4",
+            "text": "_",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s5",
+            "text": ". So the translator input ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s6",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s7",
+            "text": " stays out of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s8",
+            "text": "dist/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s9",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "Who wrote the translations",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "The README says all 27 translated files are machine translations (Claude), \"checked for keys and figures but not read by a native speaker\". In the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s1",
+            "text": "_meta",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s2",
+            "text": " blocks, 26 of the 27 files read ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s3",
+            "text": "\"translator\": \"machine (Claude), unreviewed\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s4",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s5",
+            "text": "es.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s6",
+            "text": " reads ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s7",
+            "text": "\"translator\": \"pilot translation (agent), from _source.en.json\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s8",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "No file in the repo shows a captured output of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s1",
+            "text": "node scripts/i18n-check.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s3",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s4",
+            "text": ". This post does not claim a pass.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n41",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n41s0",
+            "text": "No native speaker has read the 27 translated files, per the README. Their quality is unknown.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n42",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n42s0",
+            "text": "The check counts digits, tokens and keys. It does not test meaning, tone, or grammar.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n43",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n43s0",
+            "text": "No screenshot in the sources shows the rtl layout or the script fonts on a real device.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n44",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n44s0",
+            "text": "How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
