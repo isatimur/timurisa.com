@@ -3,7 +3,8 @@
     "presentation-md-decks-in-any-language-and-right-to-left-pptx",
     "iot-mqtt-topics-qos-retained-messages-and-last-will",
     "arouca-3d-delta-contract-against-braga",
-    "ai-usage-meter-read-first-then-switch-off-telemetry"
+    "ai-usage-meter-read-first-then-switch-off-telemetry",
+    "sip-a-water-tracker-with-live-activity-and-health-sync"
   ],
   "lastRun": "2026-11-25T00:14:44.021940",
   "lastSourceScan": null
