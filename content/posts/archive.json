@@ -35296,5 +35296,1931 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-life-mcp-a-tracker-agents-can-write-to",
+    "title": "life-mcp: the tool schema and guards of a workout and meal tracker that AI assistants write to",
+    "slug": {
+      "current": "life-mcp-a-tracker-agents-can-write-to"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-25T20:00:00.000Z",
+    "_updatedAt": "2026-11-25T20:00:00.000Z",
+    "excerpt": "life-mcp is a small MCP server on a Cloudflare Worker with Neon Postgres. An assistant turns plain talk about meals and training into rows. Here are its three tables, its eight tools, the instructions it sends on connect, the guards on SQL and edits, and what the repo does not test.",
+    "categories": [
+      "AI engineering",
+      "Developer workflow"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/life-mcp"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "How do you let an AI assistant write your meals and workouts into a database without giving it write access to the whole database? This post is for developers who want to build a small remote MCP server for personal data. It follows ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "life-mcp",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", a Cloudflare Worker with Neon Postgres.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "The short answer from its code: writes go through fixed tools, and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s1",
+            "text": "update_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s2",
+            "text": " changes only columns on a fixed list per table. Free SQL runs in a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s3",
+            "text": "READ ONLY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s4",
+            "text": " transaction. But reads are not limited to the three tables: a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n1s5",
+            "text": "SELECT",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n1s6",
+            "text": " can read any table the database user can read. You also get the tables, the tool schema and the instructions the server sends to the model.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "What the git history shows",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "The repo has 3 commits, all on 2026-11-23. Oldest first:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n4l0",
+            "href": "https://github.com/isatimur/life-mcp/commit/fd497bd"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "fd497bd",
+            "marks": [
+              "n4l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": ": \"Life MCP: Cloudflare Worker with Neon Postgres, MCP and REST doors\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n5l0",
+            "href": "https://github.com/isatimur/life-mcp/commit/7bf1ba3"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "7bf1ba3",
+            "marks": [
+              "n5l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": ": \"Track fiber: meals.fiber_g column, log_meal, update_row and summary\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n6l0",
+            "href": "https://github.com/isatimur/life-mcp/commit/adcb4cb"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "adcb4cb",
+            "marks": [
+              "n6l0",
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": ": \"Tell the model to estimate fiber too\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "The repo has no tags and no README. The main packages in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s1",
+            "text": "package.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s2",
+            "text": " are ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s3",
+            "text": "wrangler",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s4",
+            "text": " ^4.162.0, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s5",
+            "text": "typescript",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s6",
+            "text": " ^7.0.2 and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s7",
+            "text": "@neondatabase/serverless",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s8",
+            "text": " ^1.2.1. The Worker sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s9",
+            "text": "compatibility_date",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s10",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n7s11",
+            "text": "2026-11-01",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n7s12",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "Three tables, with dates as plain text",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "schema.sql",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": " holds three tables: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": "workouts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s3",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s4",
+            "text": "meals",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s5",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s6",
+            "text": "entries",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s7",
+            "text": ". Each date is ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s8",
+            "text": "TEXT",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s9",
+            "text": " in the form ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s10",
+            "text": "YYYY-MM-DD",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s11",
+            "text": ", with a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s12",
+            "text": "CHECK",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s13",
+            "text": " on that pattern. The schema comment gives the reason: \"so they travel as plain strings\". The schema comment tells readers to cast with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s14",
+            "text": "date::date",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s15",
+            "text": " when they need date math.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "workouts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": " keeps exercises in a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": "sets",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": " column of type ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": "JSONB",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s5",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s6",
+            "text": "meals",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s7",
+            "text": " has ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s8",
+            "text": "calories",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s9",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s10",
+            "text": "protein_g",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s11",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s12",
+            "text": "carbs_g",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s13",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s14",
+            "text": "fat_g",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s15",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s16",
+            "text": "fiber_g",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s17",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s18",
+            "text": "entries",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s19",
+            "text": " covers \"Anything else: weight, sleep, mood, supplements\" with a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s20",
+            "text": "kind",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s21",
+            "text": " and a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s22",
+            "text": "JSONB",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s23",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s24",
+            "text": "data",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s25",
+            "text": " object.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "meals",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": " table in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "CREATE TABLE",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": " has ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s5",
+            "text": "fiber_g",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s6",
+            "text": ". One more line, with its own comment, adds the column to older databases:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n12",
+        "language": "sql",
+        "code": "-- Added 2026-11-23 for databases created before fiber was tracked.\nALTER TABLE meals ADD COLUMN IF NOT EXISTS fiber_g DOUBLE PRECISION;"
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Eight tools for writing, reading and fixing rows",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "src/index.ts",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": " lists eight tools:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "log_workout",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": "log_meal",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s3",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s4",
+            "text": "add_entry",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s5",
+            "text": " write one row each.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "recent",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": " lists the newest rows of one table. The default limit is 20, and the maximum is 100.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "summary",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n17s1",
+            "text": " gives meal and workout totals per day, and a count of other entries per kind, for a date range. The default range is the last 7 days.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "query",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s1",
+            "text": " runs one read-only SQL ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n18s2",
+            "text": "SELECT",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n18s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "update_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": "delete_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": " change or remove one row by id.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Here is the schema for ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n20s1",
+            "text": "log_meal",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n20s2",
+            "text": ", as it is in the code:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n21",
+        "language": "ts",
+        "code": "inputSchema: {\n  type: \"object\",\n  properties: {\n    date: { type: \"string\", description: \"YYYY-MM-DD. Defaults to today (UTC).\" },\n    meal: { type: \"string\", enum: [\"breakfast\", \"lunch\", \"dinner\", \"snack\"] },\n    description: { type: \"string\" },\n    calories: { type: \"integer\" },\n    protein_g: { type: \"number\" },\n    carbs_g: { type: \"number\" },\n    fat_g: { type: \"number\" },\n    fiber_g: { type: \"number\" },\n    notes: { type: \"string\" },\n  },\n  required: [\"meal\", \"description\"],\n},"
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "Only ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": "meal",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s3",
+            "text": "description",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s4",
+            "text": " are required. The schema describes the optional ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s5",
+            "text": "date",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s6",
+            "text": " field as \"YYYY-MM-DD. Defaults to today (UTC).\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "The instructions the server sends on connect",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "initialize",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": " reply carries an ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s3",
+            "text": "instructions",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s4",
+            "text": " string. The code comment says it \"tells the assistant how to turn plain talk into rows\". The first line says: \"Personal life tracker. The user talks in plain language; you fill the fields. Never ask the user to name tables or fields.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "The instructions map talk to tools. Food goes to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s1",
+            "text": "log_meal",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s2",
+            "text": ", training goes to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s3",
+            "text": "log_workout",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s4",
+            "text": ", and the rest goes to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s5",
+            "text": "add_entry",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s6",
+            "text": ". For entries, they give a list of kinds to reuse, such as weight ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s7",
+            "text": "{kg}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s8",
+            "text": ", sleep ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s9",
+            "text": "{hours, quality_1_5}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s10",
+            "text": " and water ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n25s11",
+            "text": "{ml}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n25s12",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "The food line says: \"Estimate calories, protein_g, carbs_g, fat_g and fiber_g when the user gives none, and say they are estimates.\" This post does not show what commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "adcb4cb",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": " changed in that line.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The instructions tell the model to ask the user a question \"only when a missing detail changes the record a lot\". Before ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s1",
+            "text": "update_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n27s3",
+            "text": "delete_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n27s4",
+            "text": ", they tell it to find the row id and confirm \"when more than one row could match\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "Guards on SQL, edits and access",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n29s1",
+            "text": "query",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n29s2",
+            "text": " tool takes free SQL, so it has the most guards:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "The text must start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": "select",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s3",
+            "text": "with",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "A ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": ";",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s2",
+            "text": " inside the text is refused: \"Send one statement only.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "The query runs in a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n32s1",
+            "text": "READ ONLY",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s2",
+            "text": " transaction with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n32s3",
+            "text": "SET LOCAL statement_timeout = '5s'",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "The reply holds at most 500 rows.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n34",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n34s0",
+            "text": "The guard does not check table names.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "update_row",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s1",
+            "text": " changes only columns on a fixed list per table. Other names get the error \"Cannot change: ...\", with the allowed list. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s2",
+            "text": "id",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s3",
+            "text": " accepts digit strings too, because \"Postgres returns bigint ids as strings\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "On the MCP route, the message from these checks goes back as text with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s1",
+            "text": "isError: true",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s2",
+            "text": ". Other errors go back as \"The database call failed.\", and the code logs the details with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s3",
+            "text": "console.error",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "Access uses a bearer token, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s1",
+            "text": "MCP_TOKEN",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s2",
+            "text": ". A second path, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s3",
+            "text": "/mcp/<secret>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s4",
+            "text": ", serves \"clients that cannot send a header\", with its own ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s5",
+            "text": "MCP_PATH_TOKEN",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s6",
+            "text": ". The code hashes both values with SHA-256 and compares them with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n37s7",
+            "text": "timingSafeEqual",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n37s8",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "If ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s1",
+            "text": "MCP_TOKEN",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s3",
+            "text": "DATABASE_URL",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s4",
+            "text": " is not set, the MCP and REST routes return 503. The comment says: \"The secret is the only protection\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "One tool set, two ways in",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "The Worker speaks \"Stateless Streamable HTTP: one JSON-RPC request in, one JSON response out\". It lists protocol versions ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s1",
+            "text": "2025-06-18",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s2",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s3",
+            "text": "2025-03-26",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s4",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s5",
+            "text": "2024-11-05",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s6",
+            "text": ". When a client asks for another version, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s7",
+            "text": "initialize",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s8",
+            "text": " answers with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s9",
+            "text": "2025-06-18",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s10",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n41",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n41s0",
+            "text": "A second route, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n41s1",
+            "text": "POST /api/tools/<tool>",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n41s2",
+            "text": ", is the \"REST door for the native app\". It calls the same ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n41s3",
+            "text": "callTool",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n41s4",
+            "text": " function, so the checks inside the tools apply on both routes. The REST route takes only the bearer ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n41s5",
+            "text": "MCP_TOKEN",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n41s6",
+            "text": ", not the path secret. A check error there returns status 400, and other errors return 500.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n42",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n42s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n43",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n43s0",
+            "text": "The repo has no tests. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n43s1",
+            "text": "test",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n43s2",
+            "text": " script prints \"Error: no test specified\". A ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n43s3",
+            "text": "typecheck",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n43s4",
+            "text": " script exists, but no file shows its result.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n44",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n44s0",
+            "text": "No file shows latency, row counts, or how often the model estimates nutrition correctly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n45",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n45s0",
+            "text": "The native app that uses the REST door is not in the repo.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n46",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n46s0",
+            "text": "Dates default to UTC. The repo does not show what happens to a meal logged near midnight in another time zone.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n47",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n47s0",
+            "text": "No file shows a test of the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n47s1",
+            "text": "query",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n47s2",
+            "text": " guards against SQL that tries to write.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n48",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n48s0",
+            "text": "How this post was made: an AI agent drafted it from the repo's `src/index.ts`, `schema.sql`, `package.json`, `wrangler.jsonc` and git history, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
