@@ -5,6 +5,15 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    # The Sanity packages move together. A major bump needs Next 16 and React 19,
+    # so it is done as one planned migration, not as single bumps.
+    ignore:
+      - dependency-name: sanity
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@sanity/vision"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: next-sanity
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types: [minor, patch]
