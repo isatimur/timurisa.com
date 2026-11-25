@@ -33791,5 +33791,1510 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-pena-park-29-languages",
+    "title": "How the Pena Park 3D tour handles 29 languages and checks its translations",
+    "slug": {
+      "current": "pena-park-29-languages"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-25T09:30:00.000Z",
+    "_updatedAt": "2026-11-25T09:30:00.000Z",
+    "excerpt": "A Three.js scroll tour lists 29 languages in its menu. Two are written in the code, 27 come from JSON files. Here is how the app picks a language, falls back to English, and how one script fails a translation that loses a number.",
+    "categories": [
+      "Product engineering",
+      "3D maps"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/pena-park-3d"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "How do you ship a small 3D site in 29 languages when no native speaker has read 27 of them? This post is for developers who add translations to a static web app. It follows ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "pena-park-3d",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": ", a real-scale Three.js map of Pena Park Hotel and Pena Aventura Park in Ribeira de Pena, Portugal. The repo calls it an \"unofficial concept demo\". You get the file layout, the fallback rules, and the checks one script runs on each translation file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "What the git history can and cannot show",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n2l0",
+            "href": "https://github.com/isatimur/pena-park-3d/commit/99d607b"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "The repo has one commit: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "99d607b",
+            "marks": [
+              "n2l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": " on 2026-11-22, \"Initial commit: Pena Park 3D as it stands on 2026-11-22\". So git gives no order of events for the language work. The README says the site went public at https://pena-park-3d.vercel.app on 2026-10-31.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Two languages in the code, 27 in files",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "LANGS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": "src/i18n.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": " lists 29 languages. English and Portuguese are written in the code. The chapter copy lives in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": "src/journey.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": ", the figures in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": "data/facts.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s7",
+            "text": ", and the UI strings in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s8",
+            "text": "STRINGS",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s9",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s10",
+            "text": "src/ui.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s11",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "Every other language comes from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "data/i18n/<code>.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": ". The manifest ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s3",
+            "text": "data/i18n/index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s4",
+            "text": " lists 27 files, from ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s5",
+            "text": "es.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s6",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s7",
+            "text": "th.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s8",
+            "text": ". The English source file ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s9",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s10",
+            "text": " holds 281 keys.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Keys are stable paths, for example ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s1",
+            "text": "chapter.<id>.title",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s3",
+            "text": "fact.<id>.value",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s4",
+            "text": ". The app and the extract script build them from the same object ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n6s5",
+            "text": "K",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n6s6",
+            "text": ". A code comment says this is so \"the two can never disagree\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "How the app picks a language",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "resolveLang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": " tries four sources in order: ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": "?lang=",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": " in the URL, then ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s4",
+            "text": "localStorage.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s5",
+            "text": ", then the browser languages, then English. A source that names no known language falls through to the next one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "matchLang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s1",
+            "text": " maps tags to the registry. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s2",
+            "text": "pt-BR",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s3",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s4",
+            "text": "pt",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s5",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s6",
+            "text": "zh-TW",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s7",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s8",
+            "text": "zh-HK",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s9",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s10",
+            "text": "zh-MO",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s11",
+            "text": " become ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s12",
+            "text": "zh-Hant",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s13",
+            "text": ", and other ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s14",
+            "text": "zh",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s15",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s16",
+            "text": "zh-Hans",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s17",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s18",
+            "text": "nb",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s19",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s20",
+            "text": "nn",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s21",
+            "text": " become ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s22",
+            "text": "no",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s23",
+            "text": ", and the old code ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s24",
+            "text": "iw",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s25",
+            "text": " becomes ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n9s26",
+            "text": "he",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n9s27",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "How English fills the gaps",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "The app fetches ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s1",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s2",
+            "text": " first, so it does not ask for a file that the manifest does not list. A missing key, a missing file or a failed fetch falls back to English, string by string. A string that falls back carries ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n11s3",
+            "text": "lang=\"en\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n11s4",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "When two language switches overlap, a counter makes the later call win over a slower earlier one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Right-to-left and script fonts",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "Arabic and Hebrew set ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "dir=\"rtl\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " on the page. The app also sets ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s3",
+            "text": "data-script",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s4",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s5",
+            "text": "src/style.css",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s6",
+            "text": " gives each script its own system font stack. The app downloads no web fonts.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "One bidi problem has its own fix. A code comment says that in an rtl page, European digits after Arabic letters turn into Arabic numbers, so \"2026-10-29\" shows as \"29-10-2026\". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n15s1",
+            "text": "bidiSafe",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n15s2",
+            "text": " wraps each ISO date in left-to-right isolate marks when the page is rtl.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "The check that fails a translation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "The workflow in the README has five steps:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n18",
+        "language": "text",
+        "code": "node scripts/i18n-extract.mjs\n# translate data/i18n/_source.en.json, read each _note\n# save it as data/i18n/<code>.json\nnode scripts/i18n-check.mjs\n# list the file in data/i18n/index.json"
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "scripts/i18n-check.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": " exits with 1 on any FAIL. Its header lists these FAIL rules for a translation file:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "invalid JSON, a missing key, an extra key, or an empty string;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "_meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n21s1",
+            "text": " that is not the file's code;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "a lost number: each run of digits in the English must appear as many times in the translation (\"8.08\" may become \"8,08\");",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "a lost URL, ISO date, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n23s1",
+            "text": "{placeholder}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n23s2",
+            "text": ", \"©\" or \"ODbL\";",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "{placeholder}",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": " that the English does not have;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "placeholder text such as TODO or \"lorem ipsum\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "The whole run also fails when ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s1",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s2",
+            "text": " is stale, or when ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n26s3",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n26s4",
+            "text": " lists a file that does not exist.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The script warns, and does not fail, for:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "a length ratio outside 0.4 to 3.5, for English strings of 8 or more characters;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "a missing protected name such as \"Fantasticable\" or \"Caminho do Abade\";",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n30s1",
+            "text": "_meta.sourceHash",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n30s2",
+            "text": " that differs from the current source;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "a language file that ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n31s1",
+            "text": "index.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n31s2",
+            "text": " does not list.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n32l0",
+            "href": "/blog/requirements-a-machine-can-check"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s1",
+            "text": " runs this check as step (i). For more on checks of this kind, see ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n32s2",
+            "text": "Requirements a machine can check",
+            "marks": [
+              "n32l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n32s3",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n33s0",
+            "text": "For each file the script prints one summary line in this format (source code, not a captured run):",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "code",
+        "_key": "n34",
+        "language": "text",
+        "code": "<PASS or FAIL>  <file>: <n>/<total> keys, <n> identical to English (names and figures), <n> lost numbers, <n> warnings"
+      },
+      {
+        "_type": "block",
+        "_key": "n35",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n35s0",
+            "text": "The first word is FAIL when a key is missing, a string is empty, a string lost a number or token, or a string holds an unknown placeholder or placeholder text. An extra key or a wrong ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s1",
+            "text": "_meta.lang",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s2",
+            "text": " prints its own FAIL line, but the summary line can still read PASS. Either way the run exits with 1. A file with invalid JSON or no ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n35s3",
+            "text": "strings",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n35s4",
+            "text": " object gets no summary line.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n36",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n36s0",
+            "text": "scripts/build-public.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s1",
+            "text": " copies ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s2",
+            "text": "data/i18n/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s3",
+            "text": " into the public build, but skips names that start with ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s4",
+            "text": "_",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s5",
+            "text": ". So the translator input ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s6",
+            "text": "_source.en.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s7",
+            "text": " stays out of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n36s8",
+            "text": "dist/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n36s9",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n37",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n37s0",
+            "text": "Who wrote the translations",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n38",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n38s0",
+            "text": "The README says all 27 translated files are machine translations (Claude), \"checked for keys and figures but not read by a native speaker\". In the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s1",
+            "text": "_meta",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s2",
+            "text": " blocks, 26 of the 27 files read ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s3",
+            "text": "\"translator\": \"machine (Claude), unreviewed\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s4",
+            "text": ". ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s5",
+            "text": "es.json",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s6",
+            "text": " reads ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n38s7",
+            "text": "\"translator\": \"pilot translation (agent), from _source.en.json\"",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n38s8",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n39",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n39s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n40",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n40s0",
+            "text": "No file in the repo shows a captured output of ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s1",
+            "text": "node scripts/i18n-check.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s2",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n40s3",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n40s4",
+            "text": ". This post does not claim a pass.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n41",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n41s0",
+            "text": "No native speaker has read the 27 translated files, per the README. Their quality is unknown.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n42",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n42s0",
+            "text": "The check counts digits, tokens and keys. It does not test meaning, tone, or grammar.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n43",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n43s0",
+            "text": "No screenshot in the sources shows the rtl layout or the script fonts on a real device.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n44",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n44s0",
+            "text": "How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

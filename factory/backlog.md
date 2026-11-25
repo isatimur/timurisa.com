@@ -10,7 +10,7 @@ Build stories first. Each one must come from the repo's own files: what shipped,
 - [x] sip-a-water-tracker-with-live-activity-and-health-sync (slug: sip-a-water-tracker-with-live-activity-and-health-sync) | ~/Dev/sim-pane-demo | A SwiftUI water tracker: Live Activity, Dynamic Island, Apple Health sync with edits and deletes, hydration factors per drink. Read the docs folder. Say how it is tested and what is not tested.
 
 - [ ] what-claude-code-hooks-stopped-in-my-sessions | ~/.claude/projects (personal projects only), ~/.claude/CLAUDE.md | Which guard hooks fired, and what each one prevented. Use counts from logs only.
-- [ ] pena-park-29-languages | ~/Dev/pena-park-3d | How a 3D park site ships in 29 languages, and where translation checks sit.
+- [x] pena-park-29-languages (slug: pena-park-29-languages) | ~/Dev/pena-park-3d | How a 3D park site ships in 29 languages, and where translation checks sit.
 - [ ] life-mcp-a-tracker-agents-can-write-to | ~/Dev/life-mcp | A Cloudflare Worker and Neon Postgres MCP for workouts and meals. What the tool schema looks like.
 - [ ] chip-mascot-lip-sync | ~/Dev/chip-mascot-lab | Blender shape keys, Three.js, and realtime voice: how the lips follow the audio. Check LIVE.md for open gaps.
 - [x] [research] iot-mqtt-topics-qos-retained-messages-and-last-will | web: MQTT specification (OASIS), broker docs | What MQTT is, topics, QoS levels 0 to 2, retained messages, last will. Use the spec for facts.
