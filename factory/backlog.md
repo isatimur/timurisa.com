@@ -18,4 +18,4 @@ Build stories first. Each one must come from the repo's own files: what shipped,
 - [ ] [research] iot-edge-and-cloud-trade-offs-for-device-decisions | web: vendor and standards docs on edge computing for devices | Latency, bandwidth, offline behaviour, and privacy as trade-offs. Mark vendor claims as vendor claims.
 - [ ] [research] iot-device-security-owasp-nist-and-etsi-compared | web: OWASP IoT project, NIST IR 8259, ETSI EN 303 645 | What the three baselines ask of a device maker. Name the overlap and the differences.
 - [ ] [research] iot-over-the-air-update-recommendations-compared | web: Uptane, Mender or RAUC docs, NIST guidance | Signed images, A/B partitions, rollback. What each source recommends.
-- [ ] haru-47ms-per-frame | ~/Dev/haru | A full-duplex speech model on a laptop. Only report figures that appear in the repo.
+- [x] haru-47ms-per-frame (slug: haru-4b-frame-time-on-an-m1-max) | ~/Dev/haru | A full-duplex speech model on a laptop. Only report figures that appear in the repo.
