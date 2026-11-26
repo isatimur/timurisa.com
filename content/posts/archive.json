@@ -38057,5 +38057,871 @@
         ]
       }
     ]
+  },
+  {
+    "_id": "archive-porto-3d-walk-mode-street-level-faults-and-fixes",
+    "title": "Porto 3D walk mode: four street-level faults and the numbers behind each fix",
+    "slug": {
+      "current": "porto-3d-walk-mode-street-level-faults-and-fixes"
+    },
+    "authorName": "Timur Isachenko",
+    "publishedAt": "2026-11-26T18:00:00.000Z",
+    "_updatedAt": "2026-11-26T18:00:00.000Z",
+    "excerpt": "Walk mode came to the porto-3d map on 24 November 2026. In the next two days the progress log records a walk that froze, streets drawn as terraces, a hump of terrain on the Ribeira quay, and paving that disagreed with the ground. Here are the causes, the fixes, the counts, and what is still open.",
+    "categories": [
+      "Product engineering",
+      "Three.js"
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "n0",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n0l0",
+            "href": "https://github.com/isatimur/porto-3d"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n0s0",
+            "text": "What breaks when you walk at eye height through a 3D city map built to be seen from above? This post is for developers who build Three.js maps on terrain and OpenStreetMap (OSM) data. It follows four faults in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n0s1",
+            "text": "porto-3d",
+            "marks": [
+              "n0l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n0s2",
+            "text": " progress log. Each comes with its measured cause, fix commit, counts and open ends.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n1",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n1s0",
+            "text": "Where walk mode came from",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n2",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n2l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/e2efaf7"
+          },
+          {
+            "_type": "link",
+            "_key": "n2l1",
+            "href": "/blog/one-engine-many-cities"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n2s0",
+            "text": "porto-3d has 166 commits from 2 October to 26 November 2026. Walk mode arrived in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s1",
+            "text": "e2efaf7",
+            "marks": [
+              "n2l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s2",
+            "text": " on 24 November, ported from braga-3d with a GLB walker and a ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s3",
+            "text": "/play",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s4",
+            "text": " page. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n2s5",
+            "text": "One engine, many cities",
+            "marks": [
+              "n2l1"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n2s6",
+            "text": " covers the shared engine.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n3",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n3s0",
+            "text": "Fault 1: the walk froze every few seconds",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n4s0",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s1",
+            "text": "hitch.mjs",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s2",
+            "text": " probe on porto-3d.com found long tasks of 0.3 to 0.5 s every 4 to 5 s. A CPU profile put 80 % of that time in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s3",
+            "text": "readSurface",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s4",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n4s5",
+            "text": "walk.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n4s6",
+            "text": ". It re-read all 66 walkable meshes, about 1 M triangles, whenever the set of visible meshes changed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n5",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n5l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/7a8a137"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n5s0",
+            "text": "The fix in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n5s1",
+            "text": "7a8a137",
+            "marks": [
+              "n5l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n5s2",
+            "text": " builds the new index as a generator, 3 ms per frame, while the old index stays in use. In two 40 s runs, long tasks over 200 ms fell from 6 and 6 on main to 0 and 1. Start, teleport and a walker near the edge of the old index still read in one go.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n6",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n6s0",
+            "text": "Fault 2: sloped streets looked like terraces",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n7s0",
+            "text": "At the Ponte Luís I lower deck, the road looked like flat plates at different heights. Two causes:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n8",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n8s0",
+            "text": "strip()",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s1",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n8s2",
+            "text": "src/roads.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n8s3",
+            "text": " drew one quad per 12 m segment, lengthened at both ends, flat at the end height. On a slope, one quad's end lay over the next quad's start, 0.1 to 0.3 m apart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n9",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n9s0",
+            "text": "At the bridge ends, each way gets its ramp from its own junction. Ways that overlap in plan stood 0.3 to 1.4 m apart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n10",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n10l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/3030d20"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n10s0",
+            "text": "The fix in ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s1",
+            "text": "3030d20",
+            "marks": [
+              "n10l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s2",
+            "text": " mitres the joint at bends up to 60 degrees. In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n10s3",
+            "text": "harmoniseRamps()",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n10s4",
+            "text": ", where two ramps overlap in plan and stand less than 3 m apart, the lower takes the higher's lift. Stacked samples on Mouzinho da Silveira fell from 27 of 60 to 1 of 60.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n11",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n11s0",
+            "text": "Fault 3: a hump of terrain on the Ribeira quay, then a start in the river",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n12s0",
+            "text": "The owner reported \"humps of terrain in front of the arcades\" at Praça da Ribeira. The DEM, a 25 to 30 m source, smears the quay wall and the hill into one ramp, 10 to 13 m high at the house fronts. The real quay is about 4 to 5 m.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n13",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n13l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/23df719"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n13s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n13s1",
+            "text": "23df719",
+            "marks": [
+              "n13l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n13s2",
+            "text": " adds a quay terrace polygon at 4.6 m above sea level. Across the square, the ground went from 2.8–13.9 m to 3.9–4.8 m.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n14s0",
+            "text": "The entry's follow-up records a regression. The default ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n14s1",
+            "text": "/play",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n14s2",
+            "text": " start stood waist-deep in the river. The start lies 14 m river-ward of the OSM quay line.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n15s0",
+            "text": "\"The terrace lifts the ground only to the quay line\", so the ground under the deck is the river bed. The deck stood 3 m over it, more than the walker climbs (1.8 m), so it was a ceiling. The start check had passed with the walker in the river.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n16",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n16l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/c05f740"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n16s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s1",
+            "text": "c05f740",
+            "marks": [
+              "n16l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s2",
+            "text": " pins the deck to the terrace level. In ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n16s3",
+            "text": "walk.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n16s4",
+            "text": ", a quay deck is now a floor wherever it stands over the terrain. The start check now asks that the feet are on the top drawn surface.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n17",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n17s0",
+            "text": "Fault 4: paving and ground disagreed in the old centre",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n18s0",
+            "text": "Around the Luís I bridge foot, paving lay at odd angles on a raw hillside, and a bench and a parked car floated. One of five measured causes: \"the drawn ground is a 12 m lattice: it cannot follow a 6 m street cut into a slope\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_type": "link",
+            "_key": "n19l0",
+            "href": "https://github.com/isatimur/porto-3d/commit/c51163b"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n19s0",
+            "text": "Commit ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s1",
+            "text": "c51163b",
+            "marks": [
+              "n19l0"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s2",
+            "text": " adds ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n19s3",
+            "text": "src/street-ground.js",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n19s4",
+            "text": ". It builds a 2 m raster from the street network over a 1.15 x 1.14 km district, drawn on a 3 m lattice. The log's metric script measured a smaller box around the bridge foot (41.1395-41.1440, -8.6160 to -8.6080, 1.5 m grid), not the whole district. The counts, main against branch:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n20",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n20s0",
+            "text": "Drawn ground over the top paving by more than 0.15 m: 1,105 of 28,297 on main, 44 of 29,883 on the branch.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n21",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n21s0",
+            "text": "Props more than 0.2 m off the top drawn surface: 209 of 592 on main, 5 of 611 on the branch.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n22s0",
+            "text": "At the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s1",
+            "text": "/play",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s2",
+            "text": " start, triangles rose by about 6 %. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s3",
+            "text": "ready",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s4",
+            "text": " went from 17.3 s to 18.7 s on a loaded machine. The log records ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s5",
+            "text": "npm test",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s6",
+            "text": " 91/91 and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n22s7",
+            "text": "npm run verify",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n22s8",
+            "text": " OK, 17 passed.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n23s0",
+            "text": "What the log lists as not fixed, and what later entries change",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n24",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n24s0",
+            "text": "A one-off shader compile when a new material first draws. porto-038 listed it on 25 November. On 26 November, porto-040 added idle-slot material precompiling for the map (",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "n24s1",
+            "text": "/",
+            "marks": [
+              "code"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "n24s2",
+            "text": "). The log does not record its effect in walk mode.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n25",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n25s0",
+            "text": "The bridge-end ramps and the east embankment, which later entries partly close. porto-037 (25 November) listed the ramps at \"6 to 9 m over the DEM on grass embankments\", and porto-039 (26 November, before the street ground work) called the east embankment \"still a dark grass wedge beside the bridge abutment\". porto-041 no longer lists them and reports paving on a wall or embankment at 699 -> 113, \"now granite walls, no grass embankments\", in its metric box around the bridge foot (41.1395-41.1440, -8.6160 to -8.6080). The log does not record the effect on the east embankment itself.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n26",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n26s0",
+            "text": "In porto-039, Largo Luiz I on the Gaia side \"still stands 9 m over the DEM\". The log does not record whether porto-041 changed it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n27",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n27s0",
+            "text": "The 44 remaining ground samples sit where OSM draws ways over each other 2 to 5 m apart.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n28",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n28s0",
+            "text": "What is not measured",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n29",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n29s0",
+            "text": "Frame time on the owner's laptop. For the walk level of detail, the log says it \"decides whether stage 1b or 2 is needed\".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n30",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n30s0",
+            "text": "GPU time, in part. GPU timer queries on the M1 Max were too noisy to report (porto-033). porto-041 gives one paired run: 59.8 ms on main, 59.1 ms on the branch.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n31",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n31s0",
+            "text": "The street ground step on a throttled phone CPU: \"Not measured apart\". The perf soft gate missed 11 budgets at a load average of about 25.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "n32",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "n32s0",
+            "text": "How this post was made: an AI agent drafted it from the project files listed in the repo, a second agent reviewed it, and Timur merged it.",
+            "marks": [
+              "em"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
