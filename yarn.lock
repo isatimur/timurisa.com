@@ -4066,17 +4066,17 @@
     "@sanity/uuid" "^3.0.2"
     ts-brand "^0.2.0"
 
-"@sanity/image-url@1.1.0", "@sanity/image-url@^1.0.2":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.1.0.tgz"
-  integrity sha512-JHumVRxzzaZAJyOimntdukA9TjjzsJiaiq/uUBdTknMLCNvtM6KQ5OCp6W5fIdY78uyFxtQjz+MPXwK8WBIxWg==
-
-"@sanity/image-url@^2.2.0":
+"@sanity/image-url@2.2.0", "@sanity/image-url@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-2.2.0.tgz#998f928d9fe288a022496ff003fc6e1420dfd38d"
   integrity sha512-6uJnWhDJMlfwsnHwlnHpUgXCo5kmH3Wv/ERXalgRJHiBhChO/UYhIBTOxdwXTP01EkeoDARn6/+e3Vf+db+JIA==
   dependencies:
     "@sanity/signed-urls" "^2.0.2"
+
+"@sanity/image-url@^1.0.2":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.1.0.tgz"
+  integrity sha512-JHumVRxzzaZAJyOimntdukA9TjjzsJiaiq/uUBdTknMLCNvtM6KQ5OCp6W5fIdY78uyFxtQjz+MPXwK8WBIxWg==
 
 "@sanity/import@^3.38.2":
   version "3.38.3"
