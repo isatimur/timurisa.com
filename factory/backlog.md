@@ -19,3 +19,11 @@ Build stories first. Each one must come from the repo's own files: what shipped,
 - [ ] [research] iot-device-security-owasp-nist-and-etsi-compared | web: OWASP IoT project, NIST IR 8259, ETSI EN 303 645 | What the three baselines ask of a device maker. Name the overlap and the differences.
 - [ ] [research] iot-over-the-air-update-recommendations-compared | web: Uptane, Mender or RAUC docs, NIST guidance | Signed images, A/B partitions, rollback. What each source recommends.
 - [x] haru-47ms-per-frame (slug: haru-4b-frame-time-on-an-m1-max) | ~/Dev/haru | A full-duplex speech model on a laptop. Only report figures that appear in the repo.
+
+Added by the source scan on 2026-11-26. The first unchecked item above reads `~/.claude/projects`, which is outside the allowlist; the `[research]` items belong to the research lane.
+
+- [x] porto-3d-walk-mode-street-level-faults-and-fixes (slug: porto-3d-walk-mode-street-level-faults-and-fixes) | ~/Dev/porto-3d | Walk mode ported from braga-3d on 2026-11-24, and the street-level faults the progress log records in the next two days (freeze, terraces, start in the river, paving against ground), with before and after counts.
+- [ ] portugal-3d-phone-pass-44-px-targets | ~/Dev/portugal-3d | The 2026-11-18 phone pass on the globe landing: 44 px targets, no text under 12 px, the globe first and card pictures later. Use the commits and tests; say what was measured on a phone.
+- [ ] ai-engineering-book-diagram-truth-gate | ~/Dev/LifeOS/knowledge-bases/ai-engineer-book | Three diagrams said 794 videos while the corpus held 1,468 (commit ac32f1b), and a gate that "would have cried wolf on a near-tie" (1846b5b). How the gate checks numbers in figures.
+- [ ] ai-engineering-book-captions-are-not-proof | ~/Dev/LifeOS/knowledge-bases/ai-engineer-book | Ingest fixes from October 2026: a rate limit recorded as "no captions", an absent subtitle file is not proof, fail fast on a blocked video. Use the commits and the ingest docs.
+- [ ] porto-3d-draw-only-the-road-cells-in-view | ~/Dev/porto-3d | Perf round 3 (2026-11-17): cell-runs.js, a counting sort over grid cells, honest bounds instead of frustumCulled = false. Report only the numbers in BASELINE and the progress log.
